@@ -32,6 +32,11 @@
 		64B3285B2AAF78EA00D64EFF /* SeminarDetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3285A2AAF78EA00D64EFF /* SeminarDetailEditView.swift */; };
 		64B3285D2AAF790000D64EFF /* SeminarDetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3285C2AAF790000D64EFF /* SeminarDetailMapView.swift */; };
 		64B3285F2AAF792800D64EFF /* SeminarMapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3285E2AAF792800D64EFF /* SeminarMapMarker.swift */; };
+		64B328632AAF798800D64EFF /* SeminarListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328622AAF798800D64EFF /* SeminarListStore.swift */; };
+		64B328662AAF79A500D64EFF /* SeminarSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328652AAF79A500D64EFF /* SeminarSideView.swift */; };
+		64B328682AAF79B700D64EFF /* ClosedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328672AAF79B700D64EFF /* ClosedListView.swift */; };
+		64B3286A2AAF79C300D64EFF /* RecruitingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328692AAF79C300D64EFF /* RecruitingListView.swift */; };
+		64B3286C2AAF79E600D64EFF /* WholeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3286B2AAF79E600D64EFF /* WholeListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +66,11 @@
 		64B3285A2AAF78EA00D64EFF /* SeminarDetailEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarDetailEditView.swift; sourceTree = "<group>"; };
 		64B3285C2AAF790000D64EFF /* SeminarDetailMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarDetailMapView.swift; sourceTree = "<group>"; };
 		64B3285E2AAF792800D64EFF /* SeminarMapMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarMapMarker.swift; sourceTree = "<group>"; };
+		64B328622AAF798800D64EFF /* SeminarListStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarListStore.swift; sourceTree = "<group>"; };
+		64B328652AAF79A500D64EFF /* SeminarSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarSideView.swift; sourceTree = "<group>"; };
+		64B328672AAF79B700D64EFF /* ClosedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedListView.swift; sourceTree = "<group>"; };
+		64B328692AAF79C300D64EFF /* RecruitingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitingListView.swift; sourceTree = "<group>"; };
+		64B3286B2AAF79E600D64EFF /* WholeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +134,7 @@
 				64B3282F2AAF763F00D64EFF /* Main */,
 				64B328372AAF76D200D64EFF /* Add */,
 				64B328482AAF782300D64EFF /* Detail */,
+				64B328602AAF795D00D64EFF /* SeminarList */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -218,6 +229,34 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		64B328602AAF795D00D64EFF /* SeminarList */ = {
+			isa = PBXGroup;
+			children = (
+				64B328612AAF797900D64EFF /* ViewModels */,
+				64B328642AAF799200D64EFF /* Views */,
+			);
+			path = SeminarList;
+			sourceTree = "<group>";
+		};
+		64B328612AAF797900D64EFF /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				64B328622AAF798800D64EFF /* SeminarListStore.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		64B328642AAF799200D64EFF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				64B328652AAF79A500D64EFF /* SeminarSideView.swift */,
+				64B328672AAF79B700D64EFF /* ClosedListView.swift */,
+				64B328692AAF79C300D64EFF /* RecruitingListView.swift */,
+				64B3286B2AAF79E600D64EFF /* WholeListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -299,17 +338,22 @@
 				64B3285B2AAF78EA00D64EFF /* SeminarDetailEditView.swift in Sources */,
 				64B3284D2AAF786A00D64EFF /* SeminarDetailModel.swift in Sources */,
 				64B3283A2AAF770200D64EFF /* SeminarStore.swift in Sources */,
+				64B3286A2AAF79C300D64EFF /* RecruitingListView.swift in Sources */,
 				64B3285F2AAF792800D64EFF /* SeminarMapMarker.swift in Sources */,
+				64B328662AAF79A500D64EFF /* SeminarSideView.swift in Sources */,
 				64B328362AAF768C00D64EFF /* ResearchModel.swift in Sources */,
 				64B328452AAF77AB00D64EFF /* CategoryChipContainerView.swift in Sources */,
+				64B3286C2AAF79E600D64EFF /* WholeListView.swift in Sources */,
 				64B328432AAF779300D64EFF /* SeminarMapView.swift in Sources */,
 				64B328532AAF78A600D64EFF /* SeminarDetail.swift in Sources */,
 				64B3282D2AAF71BA00D64EFF /* Color+.swift in Sources */,
+				64B328632AAF798800D64EFF /* SeminarListStore.swift in Sources */,
 				64B328572AAF78CA00D64EFF /* SeminarSidebarCell.swift in Sources */,
 				64B328512AAF789300D64EFF /* DetailSidebar.swift in Sources */,
 				64B328472AAF77E800D64EFF /* CategoryChipView.swift in Sources */,
 				64B3283C2AAF772900D64EFF /* CategoryChipModel.swift in Sources */,
 				64B328342AAF767900D64EFF /* UserModel.swift in Sources */,
+				64B328682AAF79B700D64EFF /* ClosedListView.swift in Sources */,
 				64B327D92AAF5E8000D64EFF /* TicketLion_AdminApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
