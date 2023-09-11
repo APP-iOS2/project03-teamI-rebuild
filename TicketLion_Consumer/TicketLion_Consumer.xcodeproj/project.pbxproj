@@ -21,6 +21,13 @@
 		64B327F92AAF6CA400D64EFF /* SeminarDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327F82AAF6CA400D64EFF /* SeminarDetailView.swift */; };
 		64B327FB2AAF6CC900D64EFF /* SeminarAttendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327FA2AAF6CC900D64EFF /* SeminarAttendView.swift */; };
 		64B327FD2AAF6CE400D64EFF /* SeminarAttendPlusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327FC2AAF6CE400D64EFF /* SeminarAttendPlusView.swift */; };
+		64B328012AAF6D3C00D64EFF /* MySeminarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328002AAF6D3C00D64EFF /* MySeminarView.swift */; };
+		64B328032AAF6D5800D64EFF /* MyReservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328022AAF6D5800D64EFF /* MyReservationView.swift */; };
+		64B328052AAF6D7E00D64EFF /* MyFavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328042AAF6D7E00D64EFF /* MyFavoriteView.swift */; };
+		64B328072AAF6D9B00D64EFF /* MyTicketSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328062AAF6D9B00D64EFF /* MyTicketSheetView.swift */; };
+		64B328092AAF6DB100D64EFF /* MyFilterBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328082AAF6DB100D64EFF /* MyFilterBar.swift */; };
+		64B3280B2AAF6DC900D64EFF /* MySeminarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3280A2AAF6DC900D64EFF /* MySeminarStore.swift */; };
+		64B3280D2AAF6DE000D64EFF /* MyCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3280C2AAF6DE000D64EFF /* MyCategoryButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +46,13 @@
 		64B327F82AAF6CA400D64EFF /* SeminarDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarDetailView.swift; sourceTree = "<group>"; };
 		64B327FA2AAF6CC900D64EFF /* SeminarAttendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarAttendView.swift; sourceTree = "<group>"; };
 		64B327FC2AAF6CE400D64EFF /* SeminarAttendPlusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarAttendPlusView.swift; sourceTree = "<group>"; };
+		64B328002AAF6D3C00D64EFF /* MySeminarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySeminarView.swift; sourceTree = "<group>"; };
+		64B328022AAF6D5800D64EFF /* MyReservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReservationView.swift; sourceTree = "<group>"; };
+		64B328042AAF6D7E00D64EFF /* MyFavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoriteView.swift; sourceTree = "<group>"; };
+		64B328062AAF6D9B00D64EFF /* MyTicketSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTicketSheetView.swift; sourceTree = "<group>"; };
+		64B328082AAF6DB100D64EFF /* MyFilterBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFilterBar.swift; sourceTree = "<group>"; };
+		64B3280A2AAF6DC900D64EFF /* MySeminarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySeminarStore.swift; sourceTree = "<group>"; };
+		64B3280C2AAF6DE000D64EFF /* MyCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCategoryButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +132,8 @@
 		64B327E82AAF6B1E00D64EFF /* MySeminarView */ = {
 			isa = PBXGroup;
 			children = (
+				64B327FE2AAF6D1C00D64EFF /* MyView */,
+				64B327FF2AAF6D2500D64EFF /* myModel */,
 			);
 			path = MySeminarView;
 			sourceTree = "<group>";
@@ -127,6 +143,27 @@
 			children = (
 			);
 			path = SettingView;
+			sourceTree = "<group>";
+		};
+		64B327FE2AAF6D1C00D64EFF /* MyView */ = {
+			isa = PBXGroup;
+			children = (
+				64B328002AAF6D3C00D64EFF /* MySeminarView.swift */,
+				64B328022AAF6D5800D64EFF /* MyReservationView.swift */,
+				64B328042AAF6D7E00D64EFF /* MyFavoriteView.swift */,
+				64B328062AAF6D9B00D64EFF /* MyTicketSheetView.swift */,
+			);
+			path = MyView;
+			sourceTree = "<group>";
+		};
+		64B327FF2AAF6D2500D64EFF /* myModel */ = {
+			isa = PBXGroup;
+			children = (
+				64B328082AAF6DB100D64EFF /* MyFilterBar.swift */,
+				64B3280A2AAF6DC900D64EFF /* MySeminarStore.swift */,
+				64B3280C2AAF6DE000D64EFF /* MyCategoryButton.swift */,
+			);
+			path = myModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,18 +236,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64B328072AAF6D9B00D64EFF /* MyTicketSheetView.swift in Sources */,
 				64B327EF2AAF6BAF00D64EFF /* ResearchModel.swift in Sources */,
 				64B327F92AAF6CA400D64EFF /* SeminarDetailView.swift in Sources */,
 				64B327EB2AAF6B6B00D64EFF /* SeminarModel.swift in Sources */,
 				64B327F72AAF6C8500D64EFF /* SeminarEnum.swift in Sources */,
 				64B327FD2AAF6CE400D64EFF /* SeminarAttendPlusView.swift in Sources */,
+				64B328032AAF6D5800D64EFF /* MyReservationView.swift in Sources */,
 				64B327A72AAF5CEE00D64EFF /* MainTabView.swift in Sources */,
+				64B328012AAF6D3C00D64EFF /* MySeminarView.swift in Sources */,
 				64B327F12AAF6BC300D64EFF /* DevModel.swift in Sources */,
 				64B327ED2AAF6B7E00D64EFF /* UserModel.swift in Sources */,
 				64B327A52AAF5CEE00D64EFF /* TicketLion_ConsumerApp.swift in Sources */,
 				64B327F52AAF6C4A00D64EFF /* SeminarListView.swift in Sources */,
+				64B3280D2AAF6DE000D64EFF /* MyCategoryButton.swift in Sources */,
 				64B327F32AAF6BDC00D64EFF /* DevStore.swift in Sources */,
+				64B328092AAF6DB100D64EFF /* MyFilterBar.swift in Sources */,
+				64B328052AAF6D7E00D64EFF /* MyFavoriteView.swift in Sources */,
 				64B327FB2AAF6CC900D64EFF /* SeminarAttendView.swift in Sources */,
+				64B3280B2AAF6DC900D64EFF /* MySeminarStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
