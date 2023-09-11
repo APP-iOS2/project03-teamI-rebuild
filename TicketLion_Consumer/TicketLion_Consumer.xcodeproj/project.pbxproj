@@ -8,17 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		64B327A52AAF5CEE00D64EFF /* TicketLion_ConsumerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327A42AAF5CEE00D64EFF /* TicketLion_ConsumerApp.swift */; };
-		64B327A72AAF5CEE00D64EFF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327A62AAF5CEE00D64EFF /* ContentView.swift */; };
+		64B327A72AAF5CEE00D64EFF /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327A62AAF5CEE00D64EFF /* MainTabView.swift */; };
 		64B327A92AAF5CF000D64EFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64B327A82AAF5CF000D64EFF /* Assets.xcassets */; };
 		64B327AC2AAF5CF000D64EFF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64B327AB2AAF5CF000D64EFF /* Preview Assets.xcassets */; };
+		64B327EB2AAF6B6B00D64EFF /* SeminarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327EA2AAF6B6B00D64EFF /* SeminarModel.swift */; };
+		64B327ED2AAF6B7E00D64EFF /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327EC2AAF6B7E00D64EFF /* UserModel.swift */; };
+		64B327EF2AAF6BAF00D64EFF /* ResearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327EE2AAF6BAF00D64EFF /* ResearchModel.swift */; };
+		64B327F12AAF6BC300D64EFF /* DevModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327F02AAF6BC300D64EFF /* DevModel.swift */; };
+		64B327F32AAF6BDC00D64EFF /* DevStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327F22AAF6BDC00D64EFF /* DevStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		64B327A12AAF5CEE00D64EFF /* TicketLion_Consumer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicketLion_Consumer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B327A42AAF5CEE00D64EFF /* TicketLion_ConsumerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketLion_ConsumerApp.swift; sourceTree = "<group>"; };
-		64B327A62AAF5CEE00D64EFF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		64B327A62AAF5CEE00D64EFF /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		64B327A82AAF5CF000D64EFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64B327AB2AAF5CF000D64EFF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		64B327EA2AAF6B6B00D64EFF /* SeminarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarModel.swift; sourceTree = "<group>"; };
+		64B327EC2AAF6B7E00D64EFF /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		64B327EE2AAF6BAF00D64EFF /* ResearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchModel.swift; sourceTree = "<group>"; };
+		64B327F02AAF6BC300D64EFF /* DevModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevModel.swift; sourceTree = "<group>"; };
+		64B327F22AAF6BDC00D64EFF /* DevStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +62,11 @@
 			isa = PBXGroup;
 			children = (
 				64B327A42AAF5CEE00D64EFF /* TicketLion_ConsumerApp.swift */,
-				64B327A62AAF5CEE00D64EFF /* ContentView.swift */,
+				64B327A62AAF5CEE00D64EFF /* MainTabView.swift */,
+				64B327E62AAF69E600D64EFF /* Model */,
+				64B327E72AAF69EE00D64EFF /* SeminarListView */,
+				64B327E82AAF6B1E00D64EFF /* MySeminarView */,
+				64B327E92AAF6B3000D64EFF /* SettingView */,
 				64B327A82AAF5CF000D64EFF /* Assets.xcassets */,
 				64B327AA2AAF5CF000D64EFF /* Preview Content */,
 			);
@@ -65,6 +79,39 @@
 				64B327AB2AAF5CF000D64EFF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		64B327E62AAF69E600D64EFF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				64B327EA2AAF6B6B00D64EFF /* SeminarModel.swift */,
+				64B327EC2AAF6B7E00D64EFF /* UserModel.swift */,
+				64B327EE2AAF6BAF00D64EFF /* ResearchModel.swift */,
+				64B327F02AAF6BC300D64EFF /* DevModel.swift */,
+				64B327F22AAF6BDC00D64EFF /* DevStore.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		64B327E72AAF69EE00D64EFF /* SeminarListView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SeminarListView;
+			sourceTree = "<group>";
+		};
+		64B327E82AAF6B1E00D64EFF /* MySeminarView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MySeminarView;
+			sourceTree = "<group>";
+		};
+		64B327E92AAF6B3000D64EFF /* SettingView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SettingView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +184,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64B327A72AAF5CEE00D64EFF /* ContentView.swift in Sources */,
+				64B327EF2AAF6BAF00D64EFF /* ResearchModel.swift in Sources */,
+				64B327EB2AAF6B6B00D64EFF /* SeminarModel.swift in Sources */,
+				64B327A72AAF5CEE00D64EFF /* MainTabView.swift in Sources */,
+				64B327F12AAF6BC300D64EFF /* DevModel.swift in Sources */,
+				64B327ED2AAF6B7E00D64EFF /* UserModel.swift in Sources */,
 				64B327A52AAF5CEE00D64EFF /* TicketLion_ConsumerApp.swift in Sources */,
+				64B327F32AAF6BDC00D64EFF /* DevStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
