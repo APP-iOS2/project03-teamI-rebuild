@@ -22,6 +22,16 @@
 		64B328432AAF779300D64EFF /* SeminarMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328422AAF779300D64EFF /* SeminarMapView.swift */; };
 		64B328452AAF77AB00D64EFF /* CategoryChipContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328442AAF77AB00D64EFF /* CategoryChipContainerView.swift */; };
 		64B328472AAF77E800D64EFF /* CategoryChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328462AAF77E800D64EFF /* CategoryChipView.swift */; };
+		64B3284D2AAF786A00D64EFF /* SeminarDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3284C2AAF786A00D64EFF /* SeminarDetailModel.swift */; };
+		64B3284F2AAF788200D64EFF /* SeminarDetailStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3284E2AAF788200D64EFF /* SeminarDetailStore.swift */; };
+		64B328512AAF789300D64EFF /* DetailSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328502AAF789300D64EFF /* DetailSidebar.swift */; };
+		64B328532AAF78A600D64EFF /* SeminarDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328522AAF78A600D64EFF /* SeminarDetail.swift */; };
+		64B328552AAF78B700D64EFF /* SeminarDetailSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328542AAF78B700D64EFF /* SeminarDetailSidebar.swift */; };
+		64B328572AAF78CA00D64EFF /* SeminarSidebarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328562AAF78CA00D64EFF /* SeminarSidebarCell.swift */; };
+		64B328592AAF78DB00D64EFF /* SeminarDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328582AAF78DB00D64EFF /* SeminarDetailInfo.swift */; };
+		64B3285B2AAF78EA00D64EFF /* SeminarDetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3285A2AAF78EA00D64EFF /* SeminarDetailEditView.swift */; };
+		64B3285D2AAF790000D64EFF /* SeminarDetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3285C2AAF790000D64EFF /* SeminarDetailMapView.swift */; };
+		64B3285F2AAF792800D64EFF /* SeminarMapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3285E2AAF792800D64EFF /* SeminarMapMarker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +51,16 @@
 		64B328422AAF779300D64EFF /* SeminarMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarMapView.swift; sourceTree = "<group>"; };
 		64B328442AAF77AB00D64EFF /* CategoryChipContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryChipContainerView.swift; sourceTree = "<group>"; };
 		64B328462AAF77E800D64EFF /* CategoryChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryChipView.swift; sourceTree = "<group>"; };
+		64B3284C2AAF786A00D64EFF /* SeminarDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarDetailModel.swift; sourceTree = "<group>"; };
+		64B3284E2AAF788200D64EFF /* SeminarDetailStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarDetailStore.swift; sourceTree = "<group>"; };
+		64B328502AAF789300D64EFF /* DetailSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSidebar.swift; sourceTree = "<group>"; };
+		64B328522AAF78A600D64EFF /* SeminarDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarDetail.swift; sourceTree = "<group>"; };
+		64B328542AAF78B700D64EFF /* SeminarDetailSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarDetailSidebar.swift; sourceTree = "<group>"; };
+		64B328562AAF78CA00D64EFF /* SeminarSidebarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarSidebarCell.swift; sourceTree = "<group>"; };
+		64B328582AAF78DB00D64EFF /* SeminarDetailInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarDetailInfo.swift; sourceTree = "<group>"; };
+		64B3285A2AAF78EA00D64EFF /* SeminarDetailEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarDetailEditView.swift; sourceTree = "<group>"; };
+		64B3285C2AAF790000D64EFF /* SeminarDetailMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarDetailMapView.swift; sourceTree = "<group>"; };
+		64B3285E2AAF792800D64EFF /* SeminarMapMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarMapMarker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +121,9 @@
 		64B3282E2AAF763600D64EFF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				64B328372AAF76D200D64EFF /* Add */,
 				64B3282F2AAF763F00D64EFF /* Main */,
+				64B328372AAF76D200D64EFF /* Add */,
+				64B328482AAF782300D64EFF /* Detail */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -154,6 +175,47 @@
 				64B328462AAF77E800D64EFF /* CategoryChipView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		64B328482AAF782300D64EFF /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				64B328492AAF783800D64EFF /* Model */,
+				64B3284A2AAF783F00D64EFF /* ViewModel */,
+				64B3284B2AAF784900D64EFF /* Views */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		64B328492AAF783800D64EFF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				64B3284C2AAF786A00D64EFF /* SeminarDetailModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		64B3284A2AAF783F00D64EFF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				64B3284E2AAF788200D64EFF /* SeminarDetailStore.swift */,
+				64B328502AAF789300D64EFF /* DetailSidebar.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		64B3284B2AAF784900D64EFF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				64B328522AAF78A600D64EFF /* SeminarDetail.swift */,
+				64B328542AAF78B700D64EFF /* SeminarDetailSidebar.swift */,
+				64B328562AAF78CA00D64EFF /* SeminarSidebarCell.swift */,
+				64B328582AAF78DB00D64EFF /* SeminarDetailInfo.swift */,
+				64B3285A2AAF78EA00D64EFF /* SeminarDetailEditView.swift */,
+				64B3285C2AAF790000D64EFF /* SeminarDetailMapView.swift */,
+				64B3285E2AAF792800D64EFF /* SeminarMapMarker.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,12 +291,22 @@
 				64B328412AAF777B00D64EFF /* SeminarAddView.swift in Sources */,
 				64B327DB2AAF5E8000D64EFF /* MainView.swift in Sources */,
 				64B3283F2AAF775900D64EFF /* MapMarkerDetailView.swift in Sources */,
+				64B328552AAF78B700D64EFF /* SeminarDetailSidebar.swift in Sources */,
+				64B3285D2AAF790000D64EFF /* SeminarDetailMapView.swift in Sources */,
+				64B328592AAF78DB00D64EFF /* SeminarDetailInfo.swift in Sources */,
 				64B328322AAF766700D64EFF /* SeminarModel.swift in Sources */,
+				64B3284F2AAF788200D64EFF /* SeminarDetailStore.swift in Sources */,
+				64B3285B2AAF78EA00D64EFF /* SeminarDetailEditView.swift in Sources */,
+				64B3284D2AAF786A00D64EFF /* SeminarDetailModel.swift in Sources */,
 				64B3283A2AAF770200D64EFF /* SeminarStore.swift in Sources */,
+				64B3285F2AAF792800D64EFF /* SeminarMapMarker.swift in Sources */,
 				64B328362AAF768C00D64EFF /* ResearchModel.swift in Sources */,
 				64B328452AAF77AB00D64EFF /* CategoryChipContainerView.swift in Sources */,
 				64B328432AAF779300D64EFF /* SeminarMapView.swift in Sources */,
+				64B328532AAF78A600D64EFF /* SeminarDetail.swift in Sources */,
 				64B3282D2AAF71BA00D64EFF /* Color+.swift in Sources */,
+				64B328572AAF78CA00D64EFF /* SeminarSidebarCell.swift in Sources */,
+				64B328512AAF789300D64EFF /* DetailSidebar.swift in Sources */,
 				64B328472AAF77E800D64EFF /* CategoryChipView.swift in Sources */,
 				64B3283C2AAF772900D64EFF /* CategoryChipModel.swift in Sources */,
 				64B328342AAF767900D64EFF /* UserModel.swift in Sources */,
