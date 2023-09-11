@@ -28,6 +28,20 @@
 		64B328092AAF6DB100D64EFF /* MyFilterBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328082AAF6DB100D64EFF /* MyFilterBar.swift */; };
 		64B3280B2AAF6DC900D64EFF /* MySeminarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3280A2AAF6DC900D64EFF /* MySeminarStore.swift */; };
 		64B3280D2AAF6DE000D64EFF /* MyCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3280C2AAF6DE000D64EFF /* MyCategoryButton.swift */; };
+		64B328102AAF6E5300D64EFF /* SettingSignUpEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3280F2AAF6E5300D64EFF /* SettingSignUpEmailView.swift */; };
+		64B328122AAF6E6500D64EFF /* SettingSignUpPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328112AAF6E6500D64EFF /* SettingSignUpPasswordView.swift */; };
+		64B328142AAF6E7400D64EFF /* SettingSignUpNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328132AAF6E7400D64EFF /* SettingSignUpNameView.swift */; };
+		64B328162AAF6E9C00D64EFF /* SettingSignUpPhoneNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328152AAF6E9C00D64EFF /* SettingSignUpPhoneNumberView.swift */; };
+		64B328182AAF6EB000D64EFF /* SettingSignUpBirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328172AAF6EB000D64EFF /* SettingSignUpBirthView.swift */; };
+		64B3281A2AAF6EC000D64EFF /* SettingSignUpCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328192AAF6EC000D64EFF /* SettingSignUpCompleteView.swift */; };
+		64B3281C2AAF6ED600D64EFF /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3281B2AAF6ED600D64EFF /* SettingView.swift */; };
+		64B3281E2AAF6EEC00D64EFF /* SettingLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3281D2AAF6EEC00D64EFF /* SettingLoginView.swift */; };
+		64B328202AAF6EFC00D64EFF /* SettingTermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3281F2AAF6EFC00D64EFF /* SettingTermsView.swift */; };
+		64B328222AAF6F0D00D64EFF /* SettingUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328212AAF6F0D00D64EFF /* SettingUserView.swift */; };
+		64B328242AAF6F1F00D64EFF /* SettingUserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328232AAF6F1F00D64EFF /* SettingUserDetailView.swift */; };
+		64B328262AAF6F6400D64EFF /* SettingDevInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328252AAF6F6400D64EFF /* SettingDevInfoView.swift */; };
+		64B328282AAF6F7E00D64EFF /* SettingDevInfoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328272AAF6F7E00D64EFF /* SettingDevInfoDetailView.swift */; };
+		64B3282A2AAF6FA700D64EFF /* SettingDevInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328292AAF6FA700D64EFF /* SettingDevInformationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +67,20 @@
 		64B328082AAF6DB100D64EFF /* MyFilterBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFilterBar.swift; sourceTree = "<group>"; };
 		64B3280A2AAF6DC900D64EFF /* MySeminarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySeminarStore.swift; sourceTree = "<group>"; };
 		64B3280C2AAF6DE000D64EFF /* MyCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCategoryButton.swift; sourceTree = "<group>"; };
+		64B3280F2AAF6E5300D64EFF /* SettingSignUpEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSignUpEmailView.swift; sourceTree = "<group>"; };
+		64B328112AAF6E6500D64EFF /* SettingSignUpPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSignUpPasswordView.swift; sourceTree = "<group>"; };
+		64B328132AAF6E7400D64EFF /* SettingSignUpNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSignUpNameView.swift; sourceTree = "<group>"; };
+		64B328152AAF6E9C00D64EFF /* SettingSignUpPhoneNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSignUpPhoneNumberView.swift; sourceTree = "<group>"; };
+		64B328172AAF6EB000D64EFF /* SettingSignUpBirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSignUpBirthView.swift; sourceTree = "<group>"; };
+		64B328192AAF6EC000D64EFF /* SettingSignUpCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSignUpCompleteView.swift; sourceTree = "<group>"; };
+		64B3281B2AAF6ED600D64EFF /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		64B3281D2AAF6EEC00D64EFF /* SettingLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLoginView.swift; sourceTree = "<group>"; };
+		64B3281F2AAF6EFC00D64EFF /* SettingTermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTermsView.swift; sourceTree = "<group>"; };
+		64B328212AAF6F0D00D64EFF /* SettingUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingUserView.swift; sourceTree = "<group>"; };
+		64B328232AAF6F1F00D64EFF /* SettingUserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingUserDetailView.swift; sourceTree = "<group>"; };
+		64B328252AAF6F6400D64EFF /* SettingDevInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDevInfoView.swift; sourceTree = "<group>"; };
+		64B328272AAF6F7E00D64EFF /* SettingDevInfoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDevInfoDetailView.swift; sourceTree = "<group>"; };
+		64B328292AAF6FA700D64EFF /* SettingDevInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDevInformationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +169,15 @@
 		64B327E92AAF6B3000D64EFF /* SettingView */ = {
 			isa = PBXGroup;
 			children = (
+				64B3280E2AAF6E3800D64EFF /* SettingSignUpViews */,
+				64B3281B2AAF6ED600D64EFF /* SettingView.swift */,
+				64B3281D2AAF6EEC00D64EFF /* SettingLoginView.swift */,
+				64B3281F2AAF6EFC00D64EFF /* SettingTermsView.swift */,
+				64B328212AAF6F0D00D64EFF /* SettingUserView.swift */,
+				64B328232AAF6F1F00D64EFF /* SettingUserDetailView.swift */,
+				64B328252AAF6F6400D64EFF /* SettingDevInfoView.swift */,
+				64B328272AAF6F7E00D64EFF /* SettingDevInfoDetailView.swift */,
+				64B328292AAF6FA700D64EFF /* SettingDevInformationView.swift */,
 			);
 			path = SettingView;
 			sourceTree = "<group>";
@@ -164,6 +201,19 @@
 				64B3280C2AAF6DE000D64EFF /* MyCategoryButton.swift */,
 			);
 			path = myModel;
+			sourceTree = "<group>";
+		};
+		64B3280E2AAF6E3800D64EFF /* SettingSignUpViews */ = {
+			isa = PBXGroup;
+			children = (
+				64B3280F2AAF6E5300D64EFF /* SettingSignUpEmailView.swift */,
+				64B328112AAF6E6500D64EFF /* SettingSignUpPasswordView.swift */,
+				64B328132AAF6E7400D64EFF /* SettingSignUpNameView.swift */,
+				64B328152AAF6E9C00D64EFF /* SettingSignUpPhoneNumberView.swift */,
+				64B328172AAF6EB000D64EFF /* SettingSignUpBirthView.swift */,
+				64B328192AAF6EC000D64EFF /* SettingSignUpCompleteView.swift */,
+			);
+			path = SettingSignUpViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,23 +287,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				64B328072AAF6D9B00D64EFF /* MyTicketSheetView.swift in Sources */,
+				64B328202AAF6EFC00D64EFF /* SettingTermsView.swift in Sources */,
 				64B327EF2AAF6BAF00D64EFF /* ResearchModel.swift in Sources */,
+				64B328122AAF6E6500D64EFF /* SettingSignUpPasswordView.swift in Sources */,
 				64B327F92AAF6CA400D64EFF /* SeminarDetailView.swift in Sources */,
 				64B327EB2AAF6B6B00D64EFF /* SeminarModel.swift in Sources */,
+				64B3281E2AAF6EEC00D64EFF /* SettingLoginView.swift in Sources */,
 				64B327F72AAF6C8500D64EFF /* SeminarEnum.swift in Sources */,
 				64B327FD2AAF6CE400D64EFF /* SeminarAttendPlusView.swift in Sources */,
+				64B328102AAF6E5300D64EFF /* SettingSignUpEmailView.swift in Sources */,
 				64B328032AAF6D5800D64EFF /* MyReservationView.swift in Sources */,
+				64B328242AAF6F1F00D64EFF /* SettingUserDetailView.swift in Sources */,
 				64B327A72AAF5CEE00D64EFF /* MainTabView.swift in Sources */,
 				64B328012AAF6D3C00D64EFF /* MySeminarView.swift in Sources */,
 				64B327F12AAF6BC300D64EFF /* DevModel.swift in Sources */,
+				64B328222AAF6F0D00D64EFF /* SettingUserView.swift in Sources */,
+				64B328282AAF6F7E00D64EFF /* SettingDevInfoDetailView.swift in Sources */,
+				64B328162AAF6E9C00D64EFF /* SettingSignUpPhoneNumberView.swift in Sources */,
+				64B3281A2AAF6EC000D64EFF /* SettingSignUpCompleteView.swift in Sources */,
+				64B328262AAF6F6400D64EFF /* SettingDevInfoView.swift in Sources */,
 				64B327ED2AAF6B7E00D64EFF /* UserModel.swift in Sources */,
 				64B327A52AAF5CEE00D64EFF /* TicketLion_ConsumerApp.swift in Sources */,
+				64B328182AAF6EB000D64EFF /* SettingSignUpBirthView.swift in Sources */,
+				64B328142AAF6E7400D64EFF /* SettingSignUpNameView.swift in Sources */,
 				64B327F52AAF6C4A00D64EFF /* SeminarListView.swift in Sources */,
 				64B3280D2AAF6DE000D64EFF /* MyCategoryButton.swift in Sources */,
 				64B327F32AAF6BDC00D64EFF /* DevStore.swift in Sources */,
+				64B3281C2AAF6ED600D64EFF /* SettingView.swift in Sources */,
 				64B328092AAF6DB100D64EFF /* MyFilterBar.swift in Sources */,
 				64B328052AAF6D7E00D64EFF /* MyFavoriteView.swift in Sources */,
 				64B327FB2AAF6CC900D64EFF /* SeminarAttendView.swift in Sources */,
+				64B3282A2AAF6FA700D64EFF /* SettingDevInformationView.swift in Sources */,
 				64B3280B2AAF6DC900D64EFF /* MySeminarStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
