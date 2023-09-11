@@ -15,6 +15,13 @@
 		64B328322AAF766700D64EFF /* SeminarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328312AAF766700D64EFF /* SeminarModel.swift */; };
 		64B328342AAF767900D64EFF /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328332AAF767900D64EFF /* UserModel.swift */; };
 		64B328362AAF768C00D64EFF /* ResearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328352AAF768C00D64EFF /* ResearchModel.swift */; };
+		64B3283A2AAF770200D64EFF /* SeminarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328392AAF770200D64EFF /* SeminarStore.swift */; };
+		64B3283C2AAF772900D64EFF /* CategoryChipModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3283B2AAF772900D64EFF /* CategoryChipModel.swift */; };
+		64B3283F2AAF775900D64EFF /* MapMarkerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3283E2AAF775900D64EFF /* MapMarkerDetailView.swift */; };
+		64B328412AAF777B00D64EFF /* SeminarAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328402AAF777B00D64EFF /* SeminarAddView.swift */; };
+		64B328432AAF779300D64EFF /* SeminarMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328422AAF779300D64EFF /* SeminarMapView.swift */; };
+		64B328452AAF77AB00D64EFF /* CategoryChipContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328442AAF77AB00D64EFF /* CategoryChipContainerView.swift */; };
+		64B328472AAF77E800D64EFF /* CategoryChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328462AAF77E800D64EFF /* CategoryChipView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +34,13 @@
 		64B328312AAF766700D64EFF /* SeminarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarModel.swift; sourceTree = "<group>"; };
 		64B328332AAF767900D64EFF /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		64B328352AAF768C00D64EFF /* ResearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchModel.swift; sourceTree = "<group>"; };
+		64B328392AAF770200D64EFF /* SeminarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarStore.swift; sourceTree = "<group>"; };
+		64B3283B2AAF772900D64EFF /* CategoryChipModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryChipModel.swift; sourceTree = "<group>"; };
+		64B3283E2AAF775900D64EFF /* MapMarkerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarkerDetailView.swift; sourceTree = "<group>"; };
+		64B328402AAF777B00D64EFF /* SeminarAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarAddView.swift; sourceTree = "<group>"; };
+		64B328422AAF779300D64EFF /* SeminarMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarMapView.swift; sourceTree = "<group>"; };
+		64B328442AAF77AB00D64EFF /* CategoryChipContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryChipContainerView.swift; sourceTree = "<group>"; };
+		64B328462AAF77E800D64EFF /* CategoryChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryChipView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +101,7 @@
 		64B3282E2AAF763600D64EFF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				64B328372AAF76D200D64EFF /* Add */,
 				64B3282F2AAF763F00D64EFF /* Main */,
 			);
 			path = Views;
@@ -109,6 +124,36 @@
 				64B328352AAF768C00D64EFF /* ResearchModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		64B328372AAF76D200D64EFF /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				64B328382AAF76EE00D64EFF /* Model */,
+				64B3283D2AAF773900D64EFF /* View */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		64B328382AAF76EE00D64EFF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				64B328392AAF770200D64EFF /* SeminarStore.swift */,
+				64B3283B2AAF772900D64EFF /* CategoryChipModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		64B3283D2AAF773900D64EFF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				64B3283E2AAF775900D64EFF /* MapMarkerDetailView.swift */,
+				64B328402AAF777B00D64EFF /* SeminarAddView.swift */,
+				64B328422AAF779300D64EFF /* SeminarMapView.swift */,
+				64B328442AAF77AB00D64EFF /* CategoryChipContainerView.swift */,
+				64B328462AAF77E800D64EFF /* CategoryChipView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,10 +226,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64B328412AAF777B00D64EFF /* SeminarAddView.swift in Sources */,
 				64B327DB2AAF5E8000D64EFF /* MainView.swift in Sources */,
+				64B3283F2AAF775900D64EFF /* MapMarkerDetailView.swift in Sources */,
 				64B328322AAF766700D64EFF /* SeminarModel.swift in Sources */,
+				64B3283A2AAF770200D64EFF /* SeminarStore.swift in Sources */,
 				64B328362AAF768C00D64EFF /* ResearchModel.swift in Sources */,
+				64B328452AAF77AB00D64EFF /* CategoryChipContainerView.swift in Sources */,
+				64B328432AAF779300D64EFF /* SeminarMapView.swift in Sources */,
 				64B3282D2AAF71BA00D64EFF /* Color+.swift in Sources */,
+				64B328472AAF77E800D64EFF /* CategoryChipView.swift in Sources */,
+				64B3283C2AAF772900D64EFF /* CategoryChipModel.swift in Sources */,
 				64B328342AAF767900D64EFF /* UserModel.swift in Sources */,
 				64B327D92AAF5E8000D64EFF /* TicketLion_AdminApp.swift in Sources */,
 			);
