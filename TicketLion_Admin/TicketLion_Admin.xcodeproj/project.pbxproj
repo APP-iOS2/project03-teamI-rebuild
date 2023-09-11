@@ -37,6 +37,8 @@
 		64B328682AAF79B700D64EFF /* ClosedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328672AAF79B700D64EFF /* ClosedListView.swift */; };
 		64B3286A2AAF79C300D64EFF /* RecruitingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328692AAF79C300D64EFF /* RecruitingListView.swift */; };
 		64B3286C2AAF79E600D64EFF /* WholeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3286B2AAF79E600D64EFF /* WholeListView.swift */; };
+		64B3286F2AAF7B2300D64EFF /* ParticipationListVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3286E2AAF7B2300D64EFF /* ParticipationListVIew.swift */; };
+		64B328712AAF7B3E00D64EFF /* ParticipationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328702AAF7B3E00D64EFF /* ParticipationModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +73,8 @@
 		64B328672AAF79B700D64EFF /* ClosedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedListView.swift; sourceTree = "<group>"; };
 		64B328692AAF79C300D64EFF /* RecruitingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruitingListView.swift; sourceTree = "<group>"; };
 		64B3286B2AAF79E600D64EFF /* WholeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeListView.swift; sourceTree = "<group>"; };
+		64B3286E2AAF7B2300D64EFF /* ParticipationListVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipationListVIew.swift; sourceTree = "<group>"; };
+		64B328702AAF7B3E00D64EFF /* ParticipationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,7 @@
 				64B328372AAF76D200D64EFF /* Add */,
 				64B328482AAF782300D64EFF /* Detail */,
 				64B328602AAF795D00D64EFF /* SeminarList */,
+				64B3286D2AAF7B0E00D64EFF /* koo */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -257,6 +262,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		64B3286D2AAF7B0E00D64EFF /* koo */ = {
+			isa = PBXGroup;
+			children = (
+				64B3286E2AAF7B2300D64EFF /* ParticipationListVIew.swift */,
+				64B328702AAF7B3E00D64EFF /* ParticipationModel.swift */,
+			);
+			path = koo;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -338,6 +352,7 @@
 				64B3285B2AAF78EA00D64EFF /* SeminarDetailEditView.swift in Sources */,
 				64B3284D2AAF786A00D64EFF /* SeminarDetailModel.swift in Sources */,
 				64B3283A2AAF770200D64EFF /* SeminarStore.swift in Sources */,
+				64B328712AAF7B3E00D64EFF /* ParticipationModel.swift in Sources */,
 				64B3286A2AAF79C300D64EFF /* RecruitingListView.swift in Sources */,
 				64B3285F2AAF792800D64EFF /* SeminarMapMarker.swift in Sources */,
 				64B328662AAF79A500D64EFF /* SeminarSideView.swift in Sources */,
@@ -351,6 +366,7 @@
 				64B328572AAF78CA00D64EFF /* SeminarSidebarCell.swift in Sources */,
 				64B328512AAF789300D64EFF /* DetailSidebar.swift in Sources */,
 				64B328472AAF77E800D64EFF /* CategoryChipView.swift in Sources */,
+				64B3286F2AAF7B2300D64EFF /* ParticipationListVIew.swift in Sources */,
 				64B3283C2AAF772900D64EFF /* CategoryChipModel.swift in Sources */,
 				64B328342AAF767900D64EFF /* UserModel.swift in Sources */,
 				64B328682AAF79B700D64EFF /* ClosedListView.swift in Sources */,
