@@ -16,6 +16,11 @@
 		64B327EF2AAF6BAF00D64EFF /* ResearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327EE2AAF6BAF00D64EFF /* ResearchModel.swift */; };
 		64B327F12AAF6BC300D64EFF /* DevModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327F02AAF6BC300D64EFF /* DevModel.swift */; };
 		64B327F32AAF6BDC00D64EFF /* DevStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327F22AAF6BDC00D64EFF /* DevStore.swift */; };
+		64B327F52AAF6C4A00D64EFF /* SeminarListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327F42AAF6C4A00D64EFF /* SeminarListView.swift */; };
+		64B327F72AAF6C8500D64EFF /* SeminarEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327F62AAF6C8500D64EFF /* SeminarEnum.swift */; };
+		64B327F92AAF6CA400D64EFF /* SeminarDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327F82AAF6CA400D64EFF /* SeminarDetailView.swift */; };
+		64B327FB2AAF6CC900D64EFF /* SeminarAttendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327FA2AAF6CC900D64EFF /* SeminarAttendView.swift */; };
+		64B327FD2AAF6CE400D64EFF /* SeminarAttendPlusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327FC2AAF6CE400D64EFF /* SeminarAttendPlusView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +34,11 @@
 		64B327EE2AAF6BAF00D64EFF /* ResearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchModel.swift; sourceTree = "<group>"; };
 		64B327F02AAF6BC300D64EFF /* DevModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevModel.swift; sourceTree = "<group>"; };
 		64B327F22AAF6BDC00D64EFF /* DevStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevStore.swift; sourceTree = "<group>"; };
+		64B327F42AAF6C4A00D64EFF /* SeminarListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarListView.swift; sourceTree = "<group>"; };
+		64B327F62AAF6C8500D64EFF /* SeminarEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarEnum.swift; sourceTree = "<group>"; };
+		64B327F82AAF6CA400D64EFF /* SeminarDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarDetailView.swift; sourceTree = "<group>"; };
+		64B327FA2AAF6CC900D64EFF /* SeminarAttendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarAttendView.swift; sourceTree = "<group>"; };
+		64B327FC2AAF6CE400D64EFF /* SeminarAttendPlusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarAttendPlusView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +106,11 @@
 		64B327E72AAF69EE00D64EFF /* SeminarListView */ = {
 			isa = PBXGroup;
 			children = (
+				64B327F42AAF6C4A00D64EFF /* SeminarListView.swift */,
+				64B327F62AAF6C8500D64EFF /* SeminarEnum.swift */,
+				64B327F82AAF6CA400D64EFF /* SeminarDetailView.swift */,
+				64B327FA2AAF6CC900D64EFF /* SeminarAttendView.swift */,
+				64B327FC2AAF6CE400D64EFF /* SeminarAttendPlusView.swift */,
 			);
 			path = SeminarListView;
 			sourceTree = "<group>";
@@ -185,12 +200,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				64B327EF2AAF6BAF00D64EFF /* ResearchModel.swift in Sources */,
+				64B327F92AAF6CA400D64EFF /* SeminarDetailView.swift in Sources */,
 				64B327EB2AAF6B6B00D64EFF /* SeminarModel.swift in Sources */,
+				64B327F72AAF6C8500D64EFF /* SeminarEnum.swift in Sources */,
+				64B327FD2AAF6CE400D64EFF /* SeminarAttendPlusView.swift in Sources */,
 				64B327A72AAF5CEE00D64EFF /* MainTabView.swift in Sources */,
 				64B327F12AAF6BC300D64EFF /* DevModel.swift in Sources */,
 				64B327ED2AAF6B7E00D64EFF /* UserModel.swift in Sources */,
 				64B327A52AAF5CEE00D64EFF /* TicketLion_ConsumerApp.swift in Sources */,
+				64B327F52AAF6C4A00D64EFF /* SeminarListView.swift in Sources */,
 				64B327F32AAF6BDC00D64EFF /* DevStore.swift in Sources */,
+				64B327FB2AAF6CC900D64EFF /* SeminarAttendView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
