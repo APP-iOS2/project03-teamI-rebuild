@@ -8,17 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		64B327D92AAF5E8000D64EFF /* TicketLion_AdminApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327D82AAF5E8000D64EFF /* TicketLion_AdminApp.swift */; };
-		64B327DB2AAF5E8000D64EFF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327DA2AAF5E8000D64EFF /* ContentView.swift */; };
+		64B327DB2AAF5E8000D64EFF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B327DA2AAF5E8000D64EFF /* MainView.swift */; };
 		64B327DD2AAF5E8200D64EFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64B327DC2AAF5E8200D64EFF /* Assets.xcassets */; };
 		64B327E02AAF5E8200D64EFF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64B327DF2AAF5E8200D64EFF /* Preview Assets.xcassets */; };
+		64B3282D2AAF71BA00D64EFF /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3282C2AAF71BA00D64EFF /* Color+.swift */; };
+		64B328322AAF766700D64EFF /* SeminarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328312AAF766700D64EFF /* SeminarModel.swift */; };
+		64B328342AAF767900D64EFF /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328332AAF767900D64EFF /* UserModel.swift */; };
+		64B328362AAF768C00D64EFF /* ResearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328352AAF768C00D64EFF /* ResearchModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		64B327D52AAF5E8000D64EFF /* TicketLion_Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicketLion_Admin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B327D82AAF5E8000D64EFF /* TicketLion_AdminApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketLion_AdminApp.swift; sourceTree = "<group>"; };
-		64B327DA2AAF5E8000D64EFF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		64B327DA2AAF5E8000D64EFF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		64B327DC2AAF5E8200D64EFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64B327DF2AAF5E8200D64EFF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		64B3282C2AAF71BA00D64EFF /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		64B328312AAF766700D64EFF /* SeminarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarModel.swift; sourceTree = "<group>"; };
+		64B328332AAF767900D64EFF /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		64B328352AAF768C00D64EFF /* ResearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +60,8 @@
 			isa = PBXGroup;
 			children = (
 				64B327D82AAF5E8000D64EFF /* TicketLion_AdminApp.swift */,
-				64B327DA2AAF5E8000D64EFF /* ContentView.swift */,
+				64B3282B2AAF71A800D64EFF /* Extension */,
+				64B3282E2AAF763600D64EFF /* Views */,
 				64B327DC2AAF5E8200D64EFF /* Assets.xcassets */,
 				64B327DE2AAF5E8200D64EFF /* Preview Content */,
 			);
@@ -65,6 +74,41 @@
 				64B327DF2AAF5E8200D64EFF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		64B3282B2AAF71A800D64EFF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				64B3282C2AAF71BA00D64EFF /* Color+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		64B3282E2AAF763600D64EFF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				64B3282F2AAF763F00D64EFF /* Main */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		64B3282F2AAF763F00D64EFF /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				64B327DA2AAF5E8000D64EFF /* MainView.swift */,
+				64B328302AAF765700D64EFF /* Model */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		64B328302AAF765700D64EFF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				64B328312AAF766700D64EFF /* SeminarModel.swift */,
+				64B328332AAF767900D64EFF /* UserModel.swift */,
+				64B328352AAF768C00D64EFF /* ResearchModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +181,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64B327DB2AAF5E8000D64EFF /* ContentView.swift in Sources */,
+				64B327DB2AAF5E8000D64EFF /* MainView.swift in Sources */,
+				64B328322AAF766700D64EFF /* SeminarModel.swift in Sources */,
+				64B328362AAF768C00D64EFF /* ResearchModel.swift in Sources */,
+				64B3282D2AAF71BA00D64EFF /* Color+.swift in Sources */,
+				64B328342AAF767900D64EFF /* UserModel.swift in Sources */,
 				64B327D92AAF5E8000D64EFF /* TicketLion_AdminApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
