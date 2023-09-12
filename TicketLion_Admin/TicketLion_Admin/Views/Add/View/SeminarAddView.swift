@@ -11,12 +11,13 @@ import CoreLocation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseCore
+import Combine
 
 struct SeminarAddView: View {
     @Environment(\.dismiss) private var dismiss
     
     @ObservedObject var seminarStore: SeminarStore
-	@ObservedObject var chipsViewModel: ChipsViewModel
+    @ObservedObject var chipsViewModel: ChipsViewModel
     @State private var name: String = ""
     @State private var seminarImage: String = ""
     @State private var details: String = ""
@@ -28,8 +29,21 @@ struct SeminarAddView: View {
     @State private var seminarEndDatePicker = Date()
     @State private var selectedImage: UIImage? = nil
     @State private var isImagePickerPresented: Bool = false
-	
-	var db = Firestore.firestore()
+    
+    var isFieldAllWrite: Bool {
+        let currentDate = Calendar.current.startOfDay(for: Date())
+        return !name.isEmpty &&
+        Calendar.current.startOfDay(for: registerStartDatePicker) != currentDate &&
+        Calendar.current.startOfDay(for: registerEndDatePicker) != currentDate &&
+        chipsViewModel.chipArray.contains(where: { $0.isSelected}) &&
+        !details.isEmpty &&
+        !detailLocation.isEmpty &&
+        !maximumUserNumber.isEmpty &&
+        Calendar.current.startOfDay(for: seminarStartDatePicker) != currentDate &&
+        Calendar.current.startOfDay(for: seminarEndDatePicker) != currentDate
+    }
+    
+    var db = Firestore.firestore()
     
     @State var isOpenMap: Bool = false
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
@@ -39,37 +53,6 @@ struct SeminarAddView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                HStack {
-                    Spacer()
-                    
-                    Button {
-                        isShowing = true
-						fetchSeminar()
-					
-						
-                    } label: {
-                        Text("등록")
-                            .font(.system(size: 30) .bold())
-                        
-                    }
-                    .padding(.bottom, 20)
-                    .buttonStyle(.borderedProminent)
-                    .alert(isPresented: $isShowing) {
-                        Alert(
-                            title: Text(""),
-                            message: Text("등록이 완료되었습니다."),
-                            dismissButton:
-                                    .default(Text("확인"),
-                                             action: {
-                                                 dismiss()
-                                             })
-                        )
-                    }
-                    .padding(.horizontal, 20)
-                }
-                .buttonStyle(.bordered)
-            }
             
             ScrollView {
                 VStack(alignment: .leading) {
@@ -185,6 +168,12 @@ struct SeminarAddView: View {
                         TextField("", text: $maximumUserNumber)
                             .keyboardType(.numberPad)
                             .textFieldStyle(.roundedBorder)
+                            .onReceive(Just(maximumUserNumber)) { newValue in
+                                let filtered = newValue.filter { "0123456789".contains($0) }
+                                if filtered != newValue {
+                                    self.maximumUserNumber = filtered
+                                }
+                            }
                     }
                     
                     Group {
@@ -205,10 +194,36 @@ struct SeminarAddView: View {
                                 .labelsHidden()
                         }
                     }
-                    
                 }
                 .font(.title2)
                 .padding(.horizontal, 20)
+                
+                Button {
+                    isShowing = true
+                    fetchSeminar()
+                } label: {
+                    Text("등록")
+                        .font(.title)
+                        .foregroundColor(.white)
+                        .bold()
+                        .padding(.vertical, 20)
+                        .frame(maxWidth: .infinity)
+                        .background(isFieldAllWrite ? .blue : .secondary)
+                }
+                .disabled(!isFieldAllWrite)
+                .padding(.horizontal, 20)
+                .padding(.top, 50)
+                .alert(isPresented: $isShowing) {
+                    Alert(
+                        title: Text(""),
+                        message: Text("등록이 완료되었습니다."),
+                        dismissButton:
+                                .default(Text("확인"),
+                                         action: {
+                                             dismiss()
+                                         })
+                    )
+                }
             }
             .onTapGesture {
                 hideKeyboard()
@@ -229,24 +244,24 @@ struct SeminarAddView: View {
     func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
-	
-	func fetchSeminar() {
-		
-		let selectCategory = chipsViewModel.chipArray.filter { $0.isSelected }.map { $0.titleKey }
-		
-		let seminar = Seminar(category: selectCategory, name: name, seminarImage: seminarImage, host: "호스트", details: details, location: detailLocation, maximumUserNumber: 10, closingStatus: true, registerStartDate: registerStartDatePicker.timeIntervalSince1970, registerEndDate: registerEndDatePicker.timeIntervalSince1970, seminarStartDate: seminarStartDatePicker.timeIntervalSince1970, seminarEndDate: seminarEndDatePicker.timeIntervalSince1970, enterUsers: [])
-		
-		do {
-			try db.collection("Seminar").document(seminar.id).setData(from: seminar)
-		} catch {
-			print(error)
-		}
-		
-	}
+    
+    func fetchSeminar() {
+        
+        let selectCategory = chipsViewModel.chipArray.filter { $0.isSelected }.map { $0.titleKey }
+        
+        let seminar = Seminar(category: selectCategory, name: name, seminarImage: seminarImage, host: "호스트", details: details, location: detailLocation, maximumUserNumber: 10, closingStatus: true, registerStartDate: registerStartDatePicker.timeIntervalSince1970, registerEndDate: registerEndDatePicker.timeIntervalSince1970, seminarStartDate: seminarStartDatePicker.timeIntervalSince1970, seminarEndDate: seminarEndDatePicker.timeIntervalSince1970, enterUsers: [])
+        
+        do {
+            try db.collection("Seminar").document(seminar.id).setData(from: seminar)
+        } catch {
+            print(error)
+        }
+        
+    }
 }
 
 struct SeminarAddView_Previews: PreviewProvider {
     static var previews: some View {
-		SeminarAddView(seminarStore: SeminarStore(), chipsViewModel: ChipsViewModel())
+        SeminarAddView(seminarStore: SeminarStore(), chipsViewModel: ChipsViewModel())
     }
 }
