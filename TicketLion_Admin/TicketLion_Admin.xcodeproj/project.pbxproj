@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1BDD9AAB2AB0088C002EDE8E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BDD9AAA2AB0088C002EDE8E /* GoogleService-Info.plist */; };
 		6412FA092AA6FC8E00F1467B /* TicketLion_AdminApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6412FA082AA6FC8E00F1467B /* TicketLion_AdminApp.swift */; };
 		6412FA0D2AA6FC9000F1467B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6412FA0C2AA6FC9000F1467B /* Assets.xcassets */; };
 		6412FA102AA6FC9000F1467B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6412FA0F2AA6FC9000F1467B /* Preview Assets.xcassets */; };
@@ -52,6 +53,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1BDD9AAA2AB0088C002EDE8E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6412FA052AA6FC8E00F1467B /* TicketLion_Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicketLion_Admin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6412FA082AA6FC8E00F1467B /* TicketLion_AdminApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketLion_AdminApp.swift; sourceTree = "<group>"; };
 		6412FA0C2AA6FC9000F1467B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -152,7 +154,9 @@
 				C06B1B082AAEC91600D08744 /* Extension */,
 				64A071032AA7246400AF887A /* Views */,
 				6412FA0C2AA6FC9000F1467B /* Assets.xcassets */,
-				C06B1B9D2AB00A2000D08744 /* GoogleService-Info.plist */,
+
+				1BDD9AAA2AB0088C002EDE8E /* GoogleService-Info.plist */,
+
 				6412FA0E2AA6FC9000F1467B /* Preview Content */,
 			);
 			path = TicketLion_Admin;
@@ -366,7 +370,9 @@
 			files = (
 				6412FA102AA6FC9000F1467B /* Preview Assets.xcassets in Resources */,
 				6412FA0D2AA6FC9000F1467B /* Assets.xcassets in Resources */,
-				C06B1B9E2AB00A2000D08744 /* GoogleService-Info.plist in Resources */,
+
+				1BDD9AAB2AB0088C002EDE8E /* GoogleService-Info.plist in Resources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
