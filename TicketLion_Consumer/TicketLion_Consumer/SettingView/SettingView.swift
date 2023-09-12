@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingView: View {
     @State private var isToggleAutomaticLogin: Bool = false
-    @State private var isLoggedinUser: Bool = true
+    @State private var isLoggedinUser: Bool = false
     @State private var isShowingTermsView: Bool = false
     @State private var isLogoutAlert: Bool = false
     
