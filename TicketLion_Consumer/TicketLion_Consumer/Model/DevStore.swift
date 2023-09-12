@@ -21,15 +21,15 @@ class DevStore: ObservableObject {
         
         consumer1 = [
             Dev(name: "남현정", introduction: "양천구 물주먹", imageURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStXyGc1FomidCBT2JJ9tgkHHylM61iaS0TQSAkxWDT39TH--aH8sRfFqYIZPBJosh9hPQ&usqp=CAU", informationURL: "https://appschool3-ios.github.io/iOS-XC-16.html"),
-            Dev(name: "이재승", introduction: "미정", imageURL: "https://i.namu.wiki/i/y7qTOOIL6nIa2cXybk511OASqwAGMgZiNjh6CtErz0ust7MPJaztzSYiypYevehQOjdJc-TQvTctUk7N629V7A.webp", informationURL: "https://appschool3-ios.github.io/iOS-XC-58.html"),
+            Dev(name: "이재승", introduction: "미정승", imageURL: "https://i.namu.wiki/i/y7qTOOIL6nIa2cXybk511OASqwAGMgZiNjh6CtErz0ust7MPJaztzSYiypYevehQOjdJc-TQvTctUk7N629V7A.webp", informationURL: "https://appschool3-ios.github.io/iOS-XC-58.html"),
             Dev(name: "윤진영", introduction: "은평구 피바다", imageURL: "https://cdn.discordapp.com/attachments/1148869731705704541/1148869824169128036/2023-09-06_3.37.19.png", informationURL: "https://appschool3-ios.github.io/iOS-XC-51.html"),
             Dev(name: "주진형", introduction: "농심 너구리", imageURL: "https://cdn.discordapp.com/attachments/1143375923832422510/1148866857135243284/2EE951F5-69EE-4EB2-8098-29FC360FB956_1_105_c.jpeg", informationURL: "https://appschool3-ios.github.io/iOS-XC-74.html"),
         ]
         
         consumer2 = [
-            Dev(name: "원강묵", introduction: "몸뚱아리 왼팔", imageURL: "https://i.namu.wiki/i/y7qTOOIL6nIa2cXybk511OASqwAGMgZiNjh6CtErz0ust7MPJaztzSYiypYevehQOjdJc-TQvTctUk7N629V7A.webp", informationURL: "https://appschool3-ios.github.io/iOS-XC-46.html"),
-            Dev(name: "정석호", introduction: "몸뚱아리 오른팔", imageURL: "https://i.namu.wiki/i/y7qTOOIL6nIa2cXybk511OASqwAGMgZiNjh6CtErz0ust7MPJaztzSYiypYevehQOjdJc-TQvTctUk7N629V7A.webp", informationURL: "https://appschool3-ios.github.io/iOS-XC-69.html"),
-            Dev(name: "한아리", introduction: "몸뚱아리", imageURL: "https://i.namu.wiki/i/y7qTOOIL6nIa2cXybk511OASqwAGMgZiNjh6CtErz0ust7MPJaztzSYiypYevehQOjdJc-TQvTctUk7N629V7A.webp", informationURL: "https://appschool3-ios.github.io/iOS-XC-78.html"),
+            Dev(name: "원강묵", introduction: "몸뚱아리 왼팔", imageURL: "https://cdn.discordapp.com/attachments/1149169733032214589/1149169941682081872/2023-09-07_11.27.24.png", informationURL: "https://appschool3-ios.github.io/iOS-XC-46.html"),
+            Dev(name: "정석호", introduction: "몸뚱아리 오른팔", imageURL: "https://cdn.discordapp.com/attachments/1149169733032214589/1149169942160220180/2023-09-07_11.27.31.png", informationURL: "https://appschool3-ios.github.io/iOS-XC-69.html"),
+            Dev(name: "한아리", introduction: "몸뚱아리", imageURL: "https://cdn.discordapp.com/attachments/1149169733032214589/1149169941354905730/2023-09-07_11.27.09.png", informationURL: "https://appschool3-ios.github.io/iOS-XC-78.html"),
         ]
         
         consumer3 = [

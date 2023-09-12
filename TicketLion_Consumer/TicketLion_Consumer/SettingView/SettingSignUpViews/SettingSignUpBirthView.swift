@@ -7,64 +7,75 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 struct SettingSignUpBirthView: View {
-   @State private var birth: String = ""
-   
-   @Binding var isCompleteSignUp: Bool
-   var body: some View {
-       NavigationStack{
-           VStack(alignment: .leading, spacing: 25 ){
-               
-               Divider()
-                   .background(Color("AnyButtonColor"))
-               
-               HStack{
-                   Text("") +
-                   Text("생년월일").fontWeight(.bold) +
-                   Text("을\n입력해주세요")
-
-                   Spacer()
-                   Text("5/5")
-                   }
-                   .font(.title2)
-                   TextField("ex)19960422", text: $birth)
-                   .padding()
-                   .background(Color(uiColor: .secondarySystemBackground))
-                   .cornerRadius(5)
-               
-               
-               
-               NavigationLink {
-                   SettingSignUpCompleteView( isCompleteSignUp: $isCompleteSignUp)
-               } label: {
-                   
-                   Text("다음")
-               }
-               .frame(maxWidth: .infinity, maxHeight: 20)
-               .padding()
-               .font(.title2)
-               .foregroundColor(.white)
-               .background(birth.isEmpty ?  Color.gray : Color("AnyButtonColor"))
-               .cornerRadius(5)
-               .disabled(birth.isEmpty)
-               
-               
-           }
-           .padding()
-           .navigationTitle("회원가입")
-           .navigationBarTitleDisplayMode(.inline)
-           
-           Spacer()
-       }
-   }
-   
+    
+    @ObservedObject var userStore: UserStore
+    
+    @State private var birth: String = ""
+    
+    @Binding var isCompleteSignUp: Bool
+    @Binding var isLoggedinUser: Bool
+    
+    var body: some View {
+        NavigationStack{
+            VStack(alignment: .leading, spacing: 25 ){
+                
+                Divider()
+                    .background(Color("AnyButtonColor"))
+                
+                HStack{
+                    Text("") +
+                    Text("생년월일").fontWeight(.bold) +
+                    Text("을\n입력해주세요")
+                    
+                    Spacer()
+                    Text("5/5")
+                }
+                .font(.title2)
+                TextField("ex)19960422", text: $userStore.birth)
+                    .keyboardType(.decimalPad)
+                    .padding()
+                    .background(Color(uiColor: .secondarySystemBackground))
+                    .cornerRadius(5)
+                    .keyboardType(.decimalPad)
+                
+                
+                NavigationLink {
+                    SettingSignUpCompleteView( userStore: userStore, isCompleteSignUp: $isCompleteSignUp, isLoggedinUser: $isLoggedinUser)
+                        .onAppear {
+                            userStore.signUpUser(name: userStore.name, email: userStore.email, password: userStore.password, phoneNumber: userStore.phoneNumber, birth: userStore.birth)
+                        }
+                } label: {
+                    
+                    Text("다음")
+                }
+                .frame(maxWidth: .infinity, maxHeight: 20)
+                .padding()
+                .font(.title2)
+                .foregroundColor(.white)
+                .background(userStore.birth.isEmpty ?  Color.gray : Color("AnyButtonColor"))
+                .cornerRadius(5)
+                .disabled(userStore.birth.isEmpty)
+                
+                
+            }
+            .padding()
+            .navigationTitle("회원가입")
+            .navigationBarTitleDisplayMode(.inline)
+            
+            Spacer()
+        }
+    }
 }
 
 struct SettingSignUpBirthView_Previews: PreviewProvider {
-   static var previews: some View {
-       NavigationStack{
-           SettingSignUpBirthView(isCompleteSignUp: .constant(false))
-       }
-   }
+    static var previews: some View {
+        NavigationStack{
+            SettingSignUpBirthView(userStore: UserStore(), isCompleteSignUp: .constant(false), isLoggedinUser: .constant(false))
+        }
+    }
 }

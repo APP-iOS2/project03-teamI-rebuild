@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct SettingSignUpCompleteView: View {
+    
+    @ObservedObject var userStore: UserStore
+    
     @Binding var isCompleteSignUp: Bool
+    @Binding var isLoggedinUser: Bool
     
     var body: some View {
         NavigationStack {
@@ -36,9 +40,9 @@ struct SettingSignUpCompleteView: View {
                 VStack(spacing: 20) {
                     HStack {
                         VStack(alignment: .leading) {
-                            Text("이름 : 유재희")
+                            Text("이름 : \(userStore.name)")
                             Divider()
-                            Text("이메일 아이디 : pkj0522@naver.com")
+                            Text("이메일 아이디 : \(userStore.email)")
                         }
                         .padding()
                         .foregroundColor(.black)
@@ -56,7 +60,7 @@ struct SettingSignUpCompleteView: View {
                         Text("확인")
                     }
                     .navigationDestination(isPresented: $isCompleteSignUp, destination: {
-                        SettingLoginView()
+                        SettingLoginView(isLoggedinUser: $isLoggedinUser, userStore: userStore)
                     })
                     .frame(maxWidth:.infinity, maxHeight: 50)
                     .foregroundColor(.white)
@@ -76,7 +80,7 @@ struct SettingSignUpCompleteView: View {
 struct SettingSignUpCompleteView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            SettingSignUpCompleteView(isCompleteSignUp: .constant(false))
+            SettingSignUpCompleteView(userStore: UserStore(), isCompleteSignUp: .constant(false), isLoggedinUser: .constant(false))
         }
     }
 }

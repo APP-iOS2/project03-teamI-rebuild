@@ -9,24 +9,28 @@ import SwiftUI
 
 struct SettingView: View {
     @State private var isToggleAutomaticLogin: Bool = false
-    @State private var isLoggedinUser: Bool = true
+    @State private var isLoggedinUser: Bool = false
     @State private var isShowingTermsView: Bool = false
     @State private var isLogoutAlert: Bool = false
+    
+    @ObservedObject var userStore: UserStore = UserStore()
+    
     var body: some View {
         NavigationStack {
             Form {
                 if isLoggedinUser {
                     Section("계정 정보") {
                         NavigationLink {
-                            SettingUserDetailView()
+                            SettingUserDetailView(userStore: userStore)
                         } label: {
-                            SettingUserView()
+                            SettingUserView(userStore: userStore)
                         }
                     }
                 }
                 Section("계정 로그인") {
                     if isLoggedinUser {
                         Button {
+                            userStore.logout()
                             isLogoutAlert.toggle()
                         } label: {
                             Text("로그아웃")
@@ -42,22 +46,16 @@ struct SettingView: View {
                         }
                     } else {
                         NavigationLink {
-                            SettingLoginView()
+                            SettingLoginView(isLoggedinUser: $isLoggedinUser, userStore: userStore)
                         } label: {
                             Text("로그인")
-                        }
-                        
-                        HStack {
-                            Text("자동 로그인")
-                            Toggle(isOn: $isToggleAutomaticLogin) {
-                                //
-                            }
                         }
                     }
                 }
                 Section("알림") {
                     NavigationLink {
                         // 푸시 알림 설정
+                        NotificationSettingsView()
                     } label: {
                         Text("푸시 알림 설정")
                     }
@@ -96,6 +94,12 @@ struct SettingView: View {
             .listStyle(.grouped)
             .navigationTitle("설정")
             .navigationBarTitleDisplayMode(.inline)
+        }
+        .onAppear {
+            if userStore.currentUser != nil {
+                isLoggedinUser = true
+                userStore.autoLogin()
+            }
         }
     }
 }

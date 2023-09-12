@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SettingUserView: View {
-    var user: User = User.usersDummy[0]
+    
+    @ObservedObject var userStore: UserStore
     
     var body: some View {
         
@@ -20,11 +21,12 @@ struct SettingUserView: View {
                 .clipShape(Circle())
                 .frame(width: 75, height: 75)
             VStack(alignment: .leading) {
-                Text(user.name)
+                Text(userStore.name)
                     .font(.title2)
                     .bold()
-                Text(user.phoneNumber)
-                Text(user.email)
+                Text(userStore.phoneNumber)
+                Text(userStore.email)
+                Text(userStore.birth)
             }
         }
     }
@@ -32,6 +34,6 @@ struct SettingUserView: View {
 
 struct SettingUserView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingUserView()
+        SettingUserView(userStore: UserStore())
     }
 }

@@ -8,29 +8,33 @@
 import SwiftUI
 
 struct SettingLoginView: View {
-    @State var userId: String = ""
-    @State var userPassword: String = ""
-    @State var isCompleteSignUp: Bool = false
+    @State private var userEmail: String = ""
+    @State private var userPassword: String = ""
+    @State private var isCompleteSignUp: Bool = false
+    
+    @Binding var isLoggedinUser: Bool
+    
+    @ObservedObject var userStore: UserStore
     
     var body: some View {
         VStack(spacing: 25) {
             Divider()
                 .background(Color("AnyButtonColor"))
             Spacer()
-            Image("TicketLion")
+            Image("AppIcon")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 200, height: 200)
                 .cornerRadius(20)
             Spacer()
-            TextField("아이디 입력", text: $userId)
+            TextField("아이디 입력", text: $userEmail)
                 .padding()
                 .overlay(
                     RoundedRectangle(cornerRadius: 5)
                         .stroke(Color.gray, lineWidth: 2)
                 )
                 
-            TextField("비밀번호 입력", text: $userPassword)
+            SecureField("비밀번호 입력", text: $userPassword)
                 .padding()
                 .overlay(
                     RoundedRectangle(cornerRadius: 5)
@@ -38,7 +42,12 @@ struct SettingLoginView: View {
                 )
             
             Button {
-                // 로그인
+                userStore.login(email: userEmail, password: userPassword)
+                if userStore.$currentUser != nil {
+                    isLoggedinUser = true
+                } else {
+                    isLoggedinUser = false
+                }
             } label: {
                 Text("로그인")
             }
@@ -48,9 +57,12 @@ struct SettingLoginView: View {
             .foregroundColor(.white)
             .background(Color("AnyButtonColor"))
             .cornerRadius(5)
+            .navigationDestination(isPresented: $isLoggedinUser, destination: {
+                SettingView()
+            })
             
             NavigationLink {
-                SettingSignUpEmailView(isCompleteSignUp: $isCompleteSignUp)
+                SettingSignUpEmailView(isCompleteSignUp: $isCompleteSignUp, isLoggedinUser: $isLoggedinUser)
             } label: {
                 Text("회원가입")
                 Image(systemName: "chevron.right")
@@ -68,7 +80,7 @@ struct SettingLoginView: View {
 struct SettingLoginView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SettingLoginView()
+            SettingLoginView(isLoggedinUser: .constant(false), userStore: UserStore())
         }
     }
 }
