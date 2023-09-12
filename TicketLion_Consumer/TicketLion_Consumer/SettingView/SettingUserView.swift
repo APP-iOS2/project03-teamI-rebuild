@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct SettingUserView: View {
-    var user: User = User.usersDummy[0]
+	@EnvironmentObject var userStore: UserStore
     
     var body: some View {
-        
         HStack {
             Image("")
                 .resizable()
@@ -20,15 +19,21 @@ struct SettingUserView: View {
                 .clipShape(Circle())
                 .frame(width: 75, height: 75)
             VStack(alignment: .leading) {
-                Text(user.name)
+                Text(userStore.name) // 이름 업데이트
                     .font(.title2)
                     .bold()
-                Text(user.phoneNumber)
-                Text(user.email)
+                Text(userStore.phoneNumber) // 전화번호 업데이트
+                Text(userStore.email) // 이메일 업데이트
+                Text(userStore.birth) // 생년월일 업데이트
             }
+        }
+        .onAppear {
+            // 뷰가 나타날 때 사용자 정보를 가져옵니다.
+            userStore.fetchUserInfo()
         }
     }
 }
+
 
 struct SettingUserView_Previews: PreviewProvider {
     static var previews: some View {

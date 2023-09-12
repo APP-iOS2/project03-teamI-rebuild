@@ -16,13 +16,11 @@ struct WholeListView: View {
     @ObservedObject var seminarStore: SeminarListStore
     @State private var selectedSeminar: Seminar.ID? = nil
     @State private var order: Order = .recent
-    let currentDate = Date().timeIntervalSince1970
+    @State private var isShowingSeminarInfo = false
     
     var body: some View {
-        if let seminarId = selectedSeminar {
-            SeminarDetail()
-        } else {
-            NavigationStack {
+        NavigationStack {
+            VStack {
                 HStack {
                     Spacer()
                     Picker("sort whole list", selection: $order) {
@@ -81,7 +79,7 @@ struct WholeListView: View {
                 
                 HStack {
                     NavigationLink {
-                        SeminarAddView(seminarStore: SeminarStore())
+                        SeminarAddView(seminarStore: SeminarStore(), chipsViewModel: ChipsViewModel())
                     } label: {
                         Text("세미나 등록하기")
                             .font(.title).bold()
@@ -89,9 +87,23 @@ struct WholeListView: View {
                     .padding([.horizontal, .vertical], 20)
                     .buttonStyle(.bordered)
                 }
+                
             }
-            //.tint(Color(hex: 0xD7D7D9))
-            .foregroundColor(.black)
+            .navigationDestination(isPresented: $isShowingSeminarInfo) {
+                if let seminarId = selectedSeminar {
+                    if let seminar = seminarStore.selectSeminar(id: seminarId) { SeminarInfoView(seminar: seminar)
+                    }
+                }
+            }
+        }
+        .foregroundColor(.black)
+        .onAppear {
+            seminarStore.fetch()
+        }
+        .onChange(of: selectedSeminar) { seminarId in
+            if let seminarId = seminarId {
+                isShowingSeminarInfo.toggle()
+            }
         }
     }
 }

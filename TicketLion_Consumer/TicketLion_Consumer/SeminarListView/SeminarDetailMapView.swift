@@ -14,7 +14,7 @@ extension MKPointAnnotation: Identifiable{}
 
 struct SeminarDetailMapView: View {
     
-    var dummy: Seminar
+    var seminar: Seminar
     
     ///지도MapKit
 //    @State var address: String
@@ -39,28 +39,28 @@ struct SeminarDetailMapView: View {
             .frame(height: 200)
         }
         .onTapGesture {
-            convertAddressToCoordinate(address: dummy.location ?? "location -") { coordinate, error in
+            convertAddressToCoordinate(address: seminar.location ?? "location -") { coordinate, error in
                 if let coordinate = coordinate {
                     region.center.latitude = coordinate.latitude
                     region.center.longitude = coordinate.longitude
                     annotation = MKPointAnnotation()
                     annotation?.coordinate = coordinate
                     annotation?.title = "목적지"
-                    annotation?.subtitle = dummy.location ?? "location -"
+                    annotation?.subtitle = seminar.location ?? "location -"
                 }
             }
         }
         .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
         .onAppear {
             // 주소를 좌표로 변환하여 지도에 표시
-            convertAddressToCoordinate(address: dummy.location ?? "location -") { coordinate, error in
+            convertAddressToCoordinate(address: seminar.location ?? "location -") { coordinate, error in
                 if let coordinate = coordinate {
                     region.center.latitude = coordinate.latitude
                     region.center.longitude = coordinate.longitude
                     annotation = MKPointAnnotation()
                     annotation?.coordinate = coordinate
                     annotation?.title = "목적지"
-                    annotation?.subtitle = dummy.location ?? "location -"
+                    annotation?.subtitle = seminar.location ?? "location -"
                 }
             }
         }
@@ -89,6 +89,6 @@ struct SeminarDetailMapView: View {
 
 struct SeminarMapView_Previews: PreviewProvider {
     static var previews: some View {
-        SeminarDetailMapView(dummy: Seminar.seminarsDummy[2])
+        SeminarDetailMapView(seminar: Seminar.seminarsDummy[2])
     }
 }

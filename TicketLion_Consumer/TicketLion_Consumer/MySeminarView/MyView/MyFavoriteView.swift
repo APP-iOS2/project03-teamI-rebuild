@@ -101,7 +101,7 @@ struct MyFavoriteView: View {
             .fullScreenCover(isPresented: $isShowingDetail) {
                 NavigationStack {
                     
-                    SeminarDetailView(isShowingDetail: $isShowingDetail, dummy: Seminar.seminarsDummy[0])
+//                    SeminarDetailView(isShowingDetail: $isShowingDetail, seminar: $seminar)
                 }
             }
             
