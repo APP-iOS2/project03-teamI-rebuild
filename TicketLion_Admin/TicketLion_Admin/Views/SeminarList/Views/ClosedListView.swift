@@ -20,9 +20,11 @@ struct ClosedListView: View {
     let currentDate = Date().timeIntervalSince1970
     
     var body: some View {
-            if let seminarId = selectedSeminar {
-                SeminarDetail()
-            } else {
+        if let seminarId = selectedSeminar {
+            //SeminarDetail()
+            if let seminar = seminarStore.selectSeminar(id: seminarId) { SeminarInfoView(seminar: seminar)
+            }
+        } else {
                 VStack {
                     HStack {
                         Spacer()
