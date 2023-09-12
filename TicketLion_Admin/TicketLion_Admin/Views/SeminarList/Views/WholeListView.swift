@@ -20,9 +20,7 @@ struct WholeListView: View {
     
     var body: some View {
         if let seminarId = selectedSeminar {
-            if let seminar = seminarStore.selectSeminar(id: seminarId) { SeminarInfoView(seminar: seminar)
-            }
-            //SeminarDetail()
+            SeminarDetail()
         } else {
             NavigationStack {
                 HStack {
