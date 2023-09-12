@@ -30,7 +30,6 @@ struct SettingView: View {
                 Section("계정 로그인") {
                     if isLoggedinUser {
                         Button {
-                            userStore.logout()
                             isLogoutAlert.toggle()
                         } label: {
                             Text("로그아웃")
@@ -41,6 +40,7 @@ struct SettingView: View {
                                   message: Text("해당 계정이 로그아웃 됩니다."),
                                   primaryButton: .destructive(Text("확인"),action: {
                                 // 로그아웃 시켜야함
+                                userStore.logout()
                                 isLoggedinUser.toggle()
                             }), secondaryButton: .cancel(Text("취소")))
                         }
