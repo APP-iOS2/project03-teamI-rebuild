@@ -32,6 +32,7 @@ struct SettingSignUpEmailView: View {
                     .font(.title2)
                     
                     TextField("ex)example@google.com", text: $userStore.email)
+                        .keyboardType(.emailAddress)
                         .padding()
                         .background(Color(uiColor: .secondarySystemBackground))
                         .cornerRadius(5)

@@ -37,6 +37,7 @@ struct SettingSignUpBirthView: View {
                 }
                 .font(.title2)
                 TextField("ex)19960422", text: $userStore.birth)
+                    .keyboardType(.decimalPad)
                     .padding()
                     .background(Color(uiColor: .secondarySystemBackground))
                     .cornerRadius(5)

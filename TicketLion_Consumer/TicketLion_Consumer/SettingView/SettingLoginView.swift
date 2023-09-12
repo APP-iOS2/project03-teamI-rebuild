@@ -16,8 +16,6 @@ struct SettingLoginView: View {
     
     @ObservedObject var userStore: UserStore
     
-    @Environment(\.dismiss) private var dismiss
-    
     var body: some View {
         VStack(spacing: 25) {
             Divider()
@@ -44,9 +42,7 @@ struct SettingLoginView: View {
                 )
             
             Button {
-                print("\(userEmail) - \(userPassword)")
                 userStore.login(email: userEmail, password: userPassword)
-                dismiss()
                 if userStore.$currentUser != nil {
                     isLoggedinUser = true
                 } else {
@@ -61,6 +57,9 @@ struct SettingLoginView: View {
             .foregroundColor(.white)
             .background(Color("AnyButtonColor"))
             .cornerRadius(5)
+            .navigationDestination(isPresented: $isLoggedinUser, destination: {
+                SettingView()
+            })
             
             NavigationLink {
                 SettingSignUpEmailView(isCompleteSignUp: $isCompleteSignUp, isLoggedinUser: $isLoggedinUser)

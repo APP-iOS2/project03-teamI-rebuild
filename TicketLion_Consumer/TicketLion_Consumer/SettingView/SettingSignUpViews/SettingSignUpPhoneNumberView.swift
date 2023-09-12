@@ -42,6 +42,7 @@ struct SettingSignUpPhoneNumberView: View {
                 .font(.title2)
                 
                 TextField("- 없이 입력", text: $userStore.phoneNumber)
+                    .keyboardType(.phonePad)
                     .padding()
                     .background(Color(uiColor: .secondarySystemBackground))
                     .cornerRadius(5)

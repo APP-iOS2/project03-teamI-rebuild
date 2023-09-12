@@ -100,7 +100,6 @@ struct SettingView: View {
                 isLoggedinUser = true
                 userStore.autoLogin()
             }
-            
         }
     }
 }
