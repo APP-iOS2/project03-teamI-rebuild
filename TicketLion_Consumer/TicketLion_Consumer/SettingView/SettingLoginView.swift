@@ -21,7 +21,7 @@ struct SettingLoginView: View {
             Divider()
                 .background(Color("AnyButtonColor"))
             Spacer()
-            Image("TicketLion")
+            Image("AppIcon")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 200, height: 200)

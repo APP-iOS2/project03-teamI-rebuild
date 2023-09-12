@@ -78,7 +78,7 @@ class UserStore: ObservableObject {
     
     var isPasswordValid: Bool {
         // 비밀번호가 최소 8자 이상, 특수문자와 숫자를 포함하는지 확인
-        let passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&#])[A-Za-z\\d@$!%*?&#]{8,}$"
+        let passwordRegex = "^(?=.*[0-9]).{6,}$"
         let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
         return passwordPredicate.evaluate(with: password)
     }
