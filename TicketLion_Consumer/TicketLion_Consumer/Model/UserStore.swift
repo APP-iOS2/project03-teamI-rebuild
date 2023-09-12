@@ -31,7 +31,7 @@ class UserStore: ObservableObject {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let error = error {
                 print("회원가입 실패: \(error.localizedDescription)")
-            } else if let user = authResult?.user {
+			} else if (authResult?.user) != nil {
                 // 회원가입 성공
                 let user = User(name: name, phoneNumber: phoneNumber, email: email, password: password, birth: birth, appliedSeminars: [], favoriteSeminars: [], recentlySeminars: [], canceledSeminars: [])
                 
