@@ -31,7 +31,7 @@ class UserStore: ObservableObject {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let error = error {
                 print("회원가입 실패: \(error.localizedDescription)")
-            } else {
+            } else if let user = authResult?.user {
                 // 회원가입 성공
                 let user = User(name: name, phoneNumber: phoneNumber, email: email, password: password, birth: birth, appliedSeminars: [], favoriteSeminars: [], recentlySeminars: [], canceledSeminars: [])
                 
@@ -46,10 +46,10 @@ class UserStore: ObservableObject {
                     "recentlySeminars": user.recentlySeminars,
                     "canceledSeminars": user.canceledSeminars
                 ]
-
-                // Firestore에 데이터 추가
+                
+                // Firestore에 데이터 추가 (이메일을 문서 ID로 사용)
                 let db = Firestore.firestore()
-                db.collection("users").addDocument(data: userDictionary) { error in
+                db.collection("users").document(email).setData(userDictionary) { error in
                     if error != nil {
                         print("회원가입 실패")
                     } else {
@@ -59,6 +59,7 @@ class UserStore: ObservableObject {
             }
         }
     }
+
     
     var passwordsMatch: Bool {
         // 두 비밀번호가 일치하는지 확인
@@ -78,7 +79,7 @@ class UserStore: ObservableObject {
     
     var isPasswordValid: Bool {
         // 비밀번호가 최소 8자 이상, 특수문자와 숫자를 포함하는지 확인
-        let passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&#])[A-Za-z\\d@$!%*?&#]{8,}$"
+        let passwordRegex = "^(?=.*[0-9]).{6,}$"
         let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
         return passwordPredicate.evaluate(with: password)
     }
