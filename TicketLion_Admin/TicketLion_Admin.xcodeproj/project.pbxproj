@@ -21,8 +21,8 @@
 		64A0712C2AA7FC2800AF887A /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 64A0712B2AA7FC2800AF887A /* FirebaseFirestoreSwift */; };
 		64A0712E2AA7FC2800AF887A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 64A0712D2AA7FC2800AF887A /* FirebaseStorage */; };
 		64A071302AA7FC2800AF887A /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 64A0712F2AA7FC2800AF887A /* FirebaseStorageCombine-Community */; };
-		64B3278C2AAEA6FD00D64EFF /* ResearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3278B2AAEA6FD00D64EFF /* ResearchModel.swift */; };
-		9A36905A2AA80E5B00ECB557 /* PatricipationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3690592AA80E5B00ECB557 /* PatricipationModel.swift */; };
+		64B3278C2AAEA6FD00D64EFF /* ResearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3278B2AAEA6FD00D64EFF /* ResearchModel.swift */;
+		9A3690582AA80A3200ECB557 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A3690572AA80A3200ECB557 /* GoogleService-Info.plist */; };
 		9AB0027A2AA955E80029BBC3 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002792AA955E80029BBC3 /* Color+.swift */; };
 		9AB0027D2AA956350029BBC3 /* SeminarListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0027C2AA956350029BBC3 /* SeminarListStore.swift */; };
 		9AB002842AA956830029BBC3 /* WholeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0027F2AA956830029BBC3 /* WholeListView.swift */; };
@@ -60,8 +60,7 @@
 		64A071052AA7257B00AF887A /* SeminarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarModel.swift; sourceTree = "<group>"; };
 		64A071072AA725A200AF887A /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		64B3278B2AAEA6FD00D64EFF /* ResearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchModel.swift; sourceTree = "<group>"; };
-		9A3690592AA80E5B00ECB557 /* PatricipationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatricipationModel.swift; sourceTree = "<group>"; };
-		9AB002792AA955E80029BBC3 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+    9AB002792AA955E80029BBC3 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		9AB0027C2AA956350029BBC3 /* SeminarListStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarListStore.swift; sourceTree = "<group>"; };
 		9AB0027F2AA956830029BBC3 /* WholeListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WholeListView.swift; sourceTree = "<group>"; };
 		9AB002802AA956830029BBC3 /* RecruitingListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruitingListView.swift; sourceTree = "<group>"; };
@@ -222,7 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				9ADA57572AA8045500AA4191 /* ParticipationListVIew.swift */,
-				9A3690592AA80E5B00ECB557 /* PatricipationModel.swift */,
 			);
 			path = koo;
 			sourceTree = "<group>";
@@ -407,7 +405,6 @@
 				9AB002872AA956830029BBC3 /* SeminarSideView.swift in Sources */,
 				9ADA57582AA8045500AA4191 /* ParticipationListVIew.swift in Sources */,
 				64A071082AA725A200AF887A /* UserModel.swift in Sources */,
-				9A36905A2AA80E5B00ECB557 /* PatricipationModel.swift in Sources */,
 				6412FA092AA6FC8E00F1467B /* TicketLion_AdminApp.swift in Sources */,
 				9AB002992AA9572D0029BBC3 /* SeminarDetailStore.swift in Sources */,
 				9AB002AE2AA957BE0029BBC3 /* SeminarMapView.swift in Sources */,
