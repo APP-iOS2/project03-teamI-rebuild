@@ -43,7 +43,7 @@ struct SettingLoginView: View {
             
             Button {
                 userStore.login(email: userEmail, password: userPassword)
-                if userStore.$currentUser != nil {
+                if userStore.currentUser != nil {
                     isLoggedinUser = true
                 } else {
                     isLoggedinUser = false

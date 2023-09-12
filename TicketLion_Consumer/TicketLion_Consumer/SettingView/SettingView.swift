@@ -91,7 +91,6 @@ struct SettingView: View {
                     }
                 }
             }
-            .listStyle(.grouped)
             .navigationTitle("설정")
             .navigationBarTitleDisplayMode(.inline)
         }
