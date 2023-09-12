@@ -22,11 +22,13 @@ struct SeminarDetailEditView: View {
     
     @State var seminarLocation: SeminarLocation
     @Binding var seminarData: Seminar
+    
     @State private var introduceText: String = ""
     @State private var imageText: String = ""
-    @State private var isShowingAlert: Bool = false
-
+    @State private var OrganizerText: String = ""
     
+    
+    @State private var isShowingAlert: Bool = false
     @Binding var isShowEditView: Bool
     private let textLimit: Int = 100
     private let today = Calendar.current.startOfDay(for: Date())
@@ -40,13 +42,13 @@ struct SeminarDetailEditView: View {
                     Text("소개 글")
                         .font(.system(size: 30) .bold())
                         .padding(.top, 50)
-
+                    
                     ZStack(alignment: .topLeading) {
                         VStack {
                             TextEditor(text: $introduceText)
                                 .keyboardType(.default)
                                 .foregroundColor(Color.black)
-                                .frame(width: 600, height: 200)
+                                .frame(width: 950, height: 200)
                                 .lineSpacing(10)
                                 .shadow(radius: 2.0)
                             
@@ -76,146 +78,180 @@ struct SeminarDetailEditView: View {
                     
                     Divider()
                         .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
-
-                    //MARK: 일시
-                    Text("일시")
-                        .font(.system(size: 30) .bold())
                     
-                    DatePicker("모집 마감 날짜 선택", selection: $date, in: self.today..., displayedComponents: .date)
-//                        .foregroundColor(.secondary)
-//                        선택 시 secondary
-                        .datePickerStyle(.compact)
-                        .padding(.horizontal, 200)
-                    
-                    Divider()
-                        .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
-                    //MARK: 장소
-                    VStack(alignment: .center) {
-                        VStack {
-                            Text("장소")
-                                .font(.system(size: 30) .bold())
-                            Button {
-                                isOpenMap.toggle()
-                                //                  setRegion()
-                            } label: {
-                                Label("지역 검색", systemImage: "mappin.and.ellipse")
-                            }
-                            .padding()
-                            
-                            if clickLocation {
-                                
-                                Text(seminarLocation.address)
-                                    .font(.body)
-                                
-                                ZStack(alignment: .center) {
-                                    Map(coordinateRegion: $startingPoint,
-                                        showsUserLocation: true,
-                                        annotationItems: [Location(coordinate:
-                                                                    CLLocationCoordinate2D(
-                                                                        latitude: seminarLocation.latitude,
-                                                                        longitude: seminarLocation.longitude))]) {
-                                                                            location in
-                                                                            MapMarker(coordinate: location.coordinate)
-                                                                        }
-                                    
-                                }.frame(width: 370, height: 150)
-                                    .padding([.leading, .trailing,.bottom])
-                            } else {
-                                Text("세미나 장소를 선택해주세요")
-                                    .font(.body)
-                                    .foregroundColor(.gray)
-                                //                                    .padding([.leading,.bottom])
-                            }
-                        }
-                        .sheet(isPresented: $isOpenMap) {
-                            //요기서 fraction 값 바꾸면 시트 비율조정 가능
-                            SeminarDetailMapView(seminarStore: SeminarDetailStore(), clickLocation: $clickLocation, seminarLocation: $seminarLocation).presentationDetents([.fraction(0.75)])
-                            
-                            // Text(seminars.location ?? "장소가 있어야 함")
-                            Divider()
-                                .padding(.top, 7)
-                        }
+                    //MARK: 주최자
+                    VStack {
+                        Text("주최자")
+                            .font(.system(size: 30) .bold())
+                        
+                        TextEditor(text: $OrganizerText)
+                            .keyboardType(.default)
+                            .foregroundColor(Color.black)
+                            .frame(width: 950, height: 50)
+                            .lineSpacing(10)
+                            .shadow(radius: 2.0)
+                        
                         Divider()
                             .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
-                        //MARK: 대표 이미지
-                        VStack(alignment: .center, spacing: 50) {
-                            Text("대표 이미지")
-                                .font(.system(size: 30) .bold())
-
-                        }
-                        // AsyncImage를 쓰려면 String? 타입이여야함
-                        // UIImage 쓰신다는 거 이해 후 다시 작성해야함
-//                        if let userImage = seminars.seminarImage {
-//                            AsyncImage(url: URL(string: userImage)) { image in
-//                                image
-//                                    .resizable()
-//                                    .clipShape(Circle())
-//                                    .aspectRatio(contentMode: .fit)
-//                                    .frame(width: 400)
-//                            } placeholder: {
-//                                ProgressView()
-//                            }
-//                        } else {
-//                            Image(systemName: "person.circle.fill")
-//                                .font(.system(size: 150))
-//                        }
-                        Text("이미지 URL을 입력하세요")
-                            .padding()
-
-                        ZStack(alignment: .topLeading) {
+                        
+                        //MARK: 일시
+                        Text("마감날짜")
+                            .font(.system(size: 30) .bold())
+                        
+                        DatePicker("모집 마감 날짜 선택", selection: $date, in: self.today..., displayedComponents: .date)
+                        //                        .foregroundColor(.secondary)
+                        //                        선택 시 secondary
+                            .datePickerStyle(.compact)
+                            .padding(.horizontal, 200)
+                        
+                        Divider()
+                            .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
+                        
+                        //MARK: 장소
+                        VStack(alignment: .center) {
                             VStack {
-                                TextEditor(text: $imageText)
-                                    .keyboardType(.default)
-                                    .foregroundColor(Color.black)
-                                    .frame(width: 600, height: 70)
-                                    .lineSpacing(10)
-                                    .shadow(radius: 2.0)
+                                Text("장소")
+                                    .font(.system(size: 30) .bold())
+                                Button {
+                                    isOpenMap.toggle()
+                                    //                  setRegion()
+                                } label: {
+                                    Label("지역 검색", systemImage: "mappin.and.ellipse")
+                                }
+                                .padding()
                                 
-                                // 글자제한
-                                    .onChange(of: self.imageText, perform: {
-                                        if $0.count > textLimit {
-                                            self.imageText = String($0.prefix(textLimit))
-                                        }
-                                    })
-                                
-                                // TextEditor누르면 키보드 내려감
-                                    .onTapGesture {
-                                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                    }
+                                if clickLocation {
+                                    
+                                    Text(seminarLocation.address)
+                                        .font(.body)
+                                    
+                                    ZStack(alignment: .center) {
+                                        Map(coordinateRegion: $startingPoint,
+                                            showsUserLocation: true,
+                                            annotationItems: [Location(coordinate:
+                                                                        CLLocationCoordinate2D(
+                                                                            latitude: seminarLocation.latitude,
+                                                                            longitude: seminarLocation.longitude))]) {
+                                                                                location in
+                                                                                MapMarker(coordinate: location.coordinate)
+                                                                            }
+                                        
+                                    }.frame(width: 370, height: 150)
+                                        .padding([.leading, .trailing,.bottom])
+                                } else {
+                                    Text("세미나 장소를 선택해주세요")
+                                        .font(.body)
+                                        .foregroundColor(.gray)
+                                }
                             }
-                            .padding(.bottom, 50)
-                        }
-                        //MARK: 수정하기
-                        Button {
-                            isShowingAlert = true
-                        } label: {
-                            Text("수정하기")
-                                .font(.system(size: 30) .bold())
+                            .sheet(isPresented: $isOpenMap) {
+                                //요기서 fraction 값 바꾸면 시트 비율조정 가능
+                                SeminarDetailMapView(seminarStore: SeminarDetailStore(), clickLocation: $clickLocation, seminarLocation: $seminarLocation).presentationDetents([.fraction(0.75)])
+                                
+                                // Text(seminars.location ?? "장소가 있어야 함")
+                                Divider()
+                                    .padding(.top, 7)
+                            }
+                            Divider()
+                                .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
+                            //MARK: 대표 이미지
+                            VStack(alignment: .center, spacing: 50) {
+                                Text("대표 이미지")
+                                    .font(.system(size: 30) .bold())
+                                
+                            }
+                            // AsyncImage를 쓰려면 String? 타입이여야함
+                            // UIImage 쓰신다는 거 이해 후 다시 작성해야함
+                            //                        if let userImage = seminars.seminarImage {
+                            //                            AsyncImage(url: URL(string: userImage)) { image in
+                            //                                image
+                            //                                    .resizable()
+                            //                                    .clipShape(Circle())
+                            //                                    .aspectRatio(contentMode: .fit)
+                            //                                    .frame(width: 400)
+                            //                            } placeholder: {
+                            //                                ProgressView()
+                            //                            }
+                            //                        } else {
+                            //                            Image(systemName: "person.circle.fill")
+                            //                                .font(.system(size: 150))
+                            //                        }
+                            Text("이미지 URL을 입력하세요")
+                                .padding()
+                            
+                            ZStack(alignment: .topLeading) {
+                                VStack {
+                                    TextEditor(text: $imageText)
+                                        .keyboardType(.default)
+                                        .foregroundColor(Color.black)
+                                        .frame(width: 600, height: 70)
+                                        .lineSpacing(10)
+                                        .shadow(radius: 2.0)
+                                    
+                                    //                                    .actionSheet(isPresented: $showingSheet) {
+                                    //                                        ActionSheet(title: Text("프로필 사진 편집"), buttons: [
+                                    //                                            .default(Text("라이브러리에서 선택")) {
+                                    //                                                isOpenPhoto = true
+                                    //                                            },
+                                    //                                            .default(Text("사진 찍기")) {
+                                    //                                                // TODO: 사진 찍기
+                                    //                                            },
+                                    //                                            .cancel()
+                                    //                                        ])
+                                    //                                    }
+                                    //                                    .onDisappear{
+                                    //                                        myPageStore.image = UIImage()
+                                    //                                    }
+                                    //                                    .sheet(isPresented: $isOpenPhoto, content: {
+                                    //                                        ImagePicker(sourceType: .photoLibrary, selectedImage: self.$myPageStore.image)
+                                    //                                    })
+                                    
+                                    // 글자제한
+                                        .onChange(of: self.imageText, perform: {
+                                            if $0.count > textLimit {
+                                                self.imageText = String($0.prefix(textLimit))
+                                            }
+                                        })
+                                    // TextEditor누르면 키보드 내려감
+                                        .onTapGesture {
+                                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                        }
+                                }
+                                .padding(.bottom, 50)
+                            }
+                            //MARK: 수정하기
+                            Button {
+                                isShowingAlert = true
+                            } label: {
+                                Text("수정하기")
+                                    .font(.system(size: 30) .bold())
+                                
+                            }
+                            .padding(.bottom, 20)
+                            .buttonStyle(.borderedProminent)
+                            .alert(isPresented: $isShowingAlert) {
+                                Alert(
+                                    title: Text("세미나 수정"),
+                                    message: Text("수정완료"),
+                                    dismissButton:
+                                            .default(Text("확인"),
+                                                     action: {
+                                                         dismiss()
+                                                     })
+                                )
+                            }
                             
                         }
-                        .padding(.bottom, 20)
-                        .buttonStyle(.borderedProminent)
-                        .alert(isPresented: $isShowingAlert) {
-                            Alert(
-                                title: Text("세미나 수정"),
-                                message: Text("수정완료"),
-                                dismissButton:
-                                        .default(Text("확인"),
-                                                 action: {
-                                                     dismiss()
-                                                 })
-                            )
-                        }
                         
-                    } // 장소, 이미지 VStack
-                    // 이미지 ContextMenu로 처리할지 URLString을 받아서 처리할지 고민
+                        // 장소, 이미지 VStack
+                        // 이미지 ContextMenu로 처리할지 URLString을 받아서 처리할지 고민
+                    }
+                    //        func setRegion() {
+                    //          startingPoint.center.latitude = seminars.location.latitude
+                    //          startingPoint.center.longitude = seminars.location.longitude
+                    //        }
+                    
                 }
-                
-                //        func setRegion() {
-                //          startingPoint.center.latitude = seminars.location.latitude
-                //          startingPoint.center.longitude = seminars.location.longitude
-                //        }
-                
             }
         }
     }
