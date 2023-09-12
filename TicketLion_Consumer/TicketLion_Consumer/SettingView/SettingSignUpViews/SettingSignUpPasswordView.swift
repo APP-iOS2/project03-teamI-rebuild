@@ -42,7 +42,7 @@ struct SettingSignUpPasswordView: View {
                 Group {
                     // 비밀번호 유효성 검사
                     if !userStore.isPasswordValid {
-                        Text("비밀번호는 최소 8자 이상, 특수문자와 숫자를 포함해야 합니다.")
+                        Text("비밀번호는 최소 6자 이상 포함해야 합니다.")
                             .foregroundColor(.red)
                     }
                     
