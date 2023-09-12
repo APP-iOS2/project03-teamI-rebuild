@@ -39,7 +39,7 @@ struct SeminarDetailEditView: View {
                 VStack(alignment: .center, spacing: 30) {
                     Text("소개 글")
                         .font(.system(size: 30) .bold())
-                        .padding(.top, 100)
+                        .padding(.top, 50)
 
                     ZStack(alignment: .topLeading) {
                         VStack {
@@ -71,18 +71,11 @@ struct SeminarDetailEditView: View {
                                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 220))
                                 }
                             }
-                            // 글자수 확인
-//                            if introduceText.isEmpty {
-//                                Text("새로운 세미나 소개 글 작성")
-//                                    .lineSpacing(10)
-//                                    .foregroundColor(Color.primary.opacity(0.25))
-//                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 50, trailing: 250))
-//                            } // 글자 수 확인
                         }
                     }
                     
                     Divider()
-                        .padding(EdgeInsets(top: 100, leading: 0, bottom: 50, trailing: 0))
+                        .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
 
                     //MARK: 일시
                     Text("일시")
@@ -92,10 +85,10 @@ struct SeminarDetailEditView: View {
 //                        .foregroundColor(.secondary)
 //                        선택 시 secondary
                         .datePickerStyle(.compact)
-                        .padding(.horizontal, 350)
+                        .padding(.horizontal, 200)
                     
                     Divider()
-                        .padding(EdgeInsets(top: 100, leading: 0, bottom: 50, trailing: 0))
+                        .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
                     //MARK: 장소
                     VStack(alignment: .center) {
                         VStack {
@@ -136,14 +129,14 @@ struct SeminarDetailEditView: View {
                         }
                         .sheet(isPresented: $isOpenMap) {
                             //요기서 fraction 값 바꾸면 시트 비율조정 가능
-                            SeminarDetailMapView(seminarStore: SeminarDetailStore(), region: $startingPoint, clickLocation: $clickLocation, seminarLocation: $seminarLocation).presentationDetents([.fraction(0.75)])
+                            SeminarDetailMapView(seminarStore: SeminarDetailStore(), clickLocation: $clickLocation, seminarLocation: $seminarLocation).presentationDetents([.fraction(0.75)])
                             
                             // Text(seminars.location ?? "장소가 있어야 함")
                             Divider()
                                 .padding(.top, 7)
                         }
                         Divider()
-                            .padding(EdgeInsets(top: 100, leading: 0, bottom: 50, trailing: 0))
+                            .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
                         //MARK: 대표 이미지
                         VStack(alignment: .center, spacing: 50) {
                             Text("대표 이미지")
@@ -190,31 +183,32 @@ struct SeminarDetailEditView: View {
                                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                                     }
                             }
-                            .padding(.bottom, 100)
+                            .padding(.bottom, 50)
                         }
                         //MARK: 수정하기
                         Button {
-                            
+                            isShowingAlert = true
                         } label: {
                             Text("수정하기")
                                 .font(.system(size: 30) .bold())
                             
                         }
-                        .padding(.bottom, 12)
+                        .padding(.bottom, 20)
                         .buttonStyle(.borderedProminent)
                         .alert(isPresented: $isShowingAlert) {
                             Alert(
-                                title: Text("선택된 사용자가 정지됩니다."),
-                                message: Text("이 작업은 되돌릴 수 없습니다."),
-                                primaryButton: .destructive(Text("정지"), action: {
-                                    dismiss()
-                                }),
-                                secondaryButton: .cancel(Text("취소"))
+                                title: Text("세미나 수정"),
+                                message: Text("수정완료"),
+                                dismissButton:
+                                        .default(Text("확인"),
+                                                 action: {
+                                                     dismiss()
+                                                 })
                             )
                         }
                         
                     } // 장소, 이미지 VStack
-                      // 이미지 ContextMenu로 처리할지 URLString을 받아서 처리할지 고민
+                    // 이미지 ContextMenu로 처리할지 URLString을 받아서 처리할지 고민
                 }
                 
                 //        func setRegion() {

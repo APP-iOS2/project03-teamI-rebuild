@@ -12,9 +12,6 @@ import MapKit
 struct SeminarMapView: View {
     
     @Environment(\.dismiss) private var dismiss
-    
-    //@ObservedObject var studyStore : StudyStore
-    
     @ObservedObject var seminarStore: SeminarStore
     @StateObject var locationManager = LocationManager()
     @State private var location = Location(coordinate: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780))

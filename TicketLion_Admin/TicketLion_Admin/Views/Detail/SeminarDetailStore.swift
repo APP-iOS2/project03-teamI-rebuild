@@ -27,7 +27,7 @@ final class SeminarDetailStore: ObservableObject {
 
 struct Location: Identifiable {
     let id = UUID()
-    var coordinate: CLLocationCoordinate2D
+    let coordinate: CLLocationCoordinate2D
 }
 
 struct SeminarLocation: Identifiable, Codable {

@@ -68,7 +68,7 @@ struct RecruitingListView: View {
                 
                 HStack {
                     NavigationLink {
-                        SeminarAddView(seminarStore: SeminarStore())
+						SeminarAddView(seminarStore: SeminarStore(), chipsViewModel: ChipsViewModel())
                     } label: {
                         Text("세미나 등록하기")
                             .font(.title).bold()

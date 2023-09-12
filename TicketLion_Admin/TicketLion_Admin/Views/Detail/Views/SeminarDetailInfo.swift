@@ -32,7 +32,7 @@ struct SeminarDetailInfo: View {
                                 Text("일시")
                                     .font(.system(size: 20) .bold())
                                 
-                                // Date 형식으로 바꿔야함
+                                // Date 형식으로 바꿔야함 
                                 Text("\(seminars.registerStartDate)")
                             }
 

@@ -8,9 +8,15 @@
 import SwiftUI
 import MapKit
 import CoreLocation
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+import FirebaseCore
 
 struct SeminarAddView: View {
+    @Environment(\.dismiss) private var dismiss
+    
     @ObservedObject var seminarStore: SeminarStore
+	@ObservedObject var chipsViewModel: ChipsViewModel
     @State private var name: String = ""
     @State private var seminarImage: String = ""
     @State private var details: String = ""
@@ -22,27 +28,48 @@ struct SeminarAddView: View {
     @State private var seminarEndDatePicker = Date()
     @State private var selectedImage: UIImage? = nil
     @State private var isImagePickerPresented: Bool = false
-
+	
+	var db = Firestore.firestore()
+    
     @State var isOpenMap: Bool = false
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
     @State var seminarLocation: SeminarLocation = SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청")
     @State var clickLocation: Bool = false
+    @State var isShowing: Bool = false
     
     var body: some View {
         NavigationStack {
-            HStack {
-                Spacer()
-                
-                NavigationLink {
+            VStack {
+                HStack {
+                    Spacer()
                     
-                } label: {
-                    Text("등록")
-                        .font(.title)
-                        .bold()
+                    Button {
+                        isShowing = true
+						fetchSeminar()
+					
+						
+                    } label: {
+                        Text("등록")
+                            .font(.system(size: 30) .bold())
+                        
+                    }
+                    .padding(.bottom, 20)
+                    .buttonStyle(.borderedProminent)
+                    .alert(isPresented: $isShowing) {
+                        Alert(
+                            title: Text(""),
+                            message: Text("등록이 완료되었습니다."),
+                            dismissButton:
+                                    .default(Text("확인"),
+                                             action: {
+                                                 dismiss()
+                                             })
+                        )
+                    }
+                    .padding(.horizontal, 20)
                 }
-                .padding(.horizontal, 20)
+                .buttonStyle(.bordered)
             }
-            .buttonStyle(.bordered)
             
             ScrollView {
                 VStack(alignment: .leading) {
@@ -78,7 +105,7 @@ struct SeminarAddView: View {
                             .bold()
                             .padding(.top, 30)
                         
-                        CategoryChipContainerView(viewModel: ChipsViewModel())
+                        CategoryChipContainerView(viewModel: chipsViewModel)
                     }
                     
                     Group {
@@ -103,15 +130,6 @@ struct SeminarAddView: View {
                                 .frame(width: 250, height: 250)
                                 .clipShape(Rectangle())
                         }
- 
-                        Text("이미지 URL")
-                            .bold()
-                            .padding(.top, 60)
-                        
-                        TextField("", text: $seminarImage)
-                            .textFieldStyle(.roundedBorder)
-                            .textInputAutocapitalization(.never)
-                            .disableAutocorrection(true)
                     }
                     
                     Group {
@@ -163,7 +181,7 @@ struct SeminarAddView: View {
                         Text("최대 인원")
                             .bold()
                             .padding(.top, 30)
-
+                        
                         TextField("", text: $maximumUserNumber)
                             .keyboardType(.numberPad)
                             .textFieldStyle(.roundedBorder)
@@ -202,7 +220,7 @@ struct SeminarAddView: View {
             .navigationTitle("세미나 등록")
         }
     }
-
+    
     func setRegion() {
         region.center.latitude = seminarLocation.latitude
         region.center.longitude = seminarLocation.longitude
@@ -211,10 +229,24 @@ struct SeminarAddView: View {
     func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
+	
+	func fetchSeminar() {
+		
+		let selectCategory = chipsViewModel.chipArray.filter { $0.isSelected }.map { $0.titleKey }
+		
+		let seminar = Seminar(category: selectCategory, name: name, seminarImage: seminarImage, host: "호스트", details: details, location: detailLocation, maximumUserNumber: 10, closingStatus: true, registerStartDate: registerStartDatePicker.timeIntervalSince1970, registerEndDate: registerEndDatePicker.timeIntervalSince1970, seminarStartDate: seminarStartDatePicker.timeIntervalSince1970, seminarEndDate: seminarEndDatePicker.timeIntervalSince1970, enterUsers: [])
+		
+		do {
+			try db.collection("Seminar").document(seminar.id).setData(from: seminar)
+		} catch {
+			print(error)
+		}
+		
+	}
 }
 
 struct SeminarAddView_Previews: PreviewProvider {
     static var previews: some View {
-        SeminarAddView(seminarStore: SeminarStore())
+		SeminarAddView(seminarStore: SeminarStore(), chipsViewModel: ChipsViewModel())
     }
 }

@@ -9,7 +9,9 @@ import Foundation
 import SwiftUI
 
 class SeminarStore: ObservableObject {
-    @Published var seminarAddStore: [Seminar] = []
+    @Published var seminarStore: [Seminar] = []
+//	@Published var categoryChipArr: [CategoryChipModel] = []
+	
     
     func setLocation(latitude: Double, longitude: Double, address: String) -> SeminarLocation {
         let location = SeminarLocation(latitude: latitude, longitude: longitude, address: address)

@@ -21,8 +21,7 @@ struct SeminarDetailMapView: View {
     @State private var address = "서울 시청"
     
     
-//    @Binding var region: MKCoordinateRegion
-    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
+    @Binding var region: MKCoordinateRegion
     @Binding var clickLocation: Bool
     @Binding var seminarLocation: SeminarLocation
     
@@ -36,21 +35,6 @@ struct SeminarDetailMapView: View {
                     Map(coordinateRegion: $region, showsUserLocation: true, annotationItems: [location]) { location in
                         MapAnnotation(coordinate: location.coordinate) {
                             SeminarMapMarker()
-                                .gesture(
-                                    DragGesture()
-                                        .onChanged { value in
-                                            let translation = value.translation
-                                            let newCoordinate = CLLocationCoordinate2D(
-                                                latitude: location.coordinate.latitude + translation.height * region.span.latitudeDelta / 200.0,
-                                                longitude: location.coordinate.longitude + translation.width * region.span.longitudeDelta / 200.0)
-
-                                            
-                                            self.location.coordinate = newCoordinate
-                                        }
-                                        .onEnded { _ in
-                                            drawMarkerWithAddress()
-                                        }
-                                )
                         }
                     }
                     .edgesIgnoringSafeArea(.bottom)
@@ -195,6 +179,6 @@ struct Cross: Shape {
 
 struct SeminarDetailMapView_Previews: PreviewProvider {
     static var previews: some View {
-        SeminarDetailMapView(seminarStore: SeminarDetailStore(), clickLocation: .constant(false), seminarLocation: .constant(SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청")))
+        SeminarDetailMapView(seminarStore: SeminarDetailStore(), region: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), span: MKCoordinateSpan(latitudeDelta: 0.009, longitudeDelta: 0.009))), clickLocation: .constant(false), seminarLocation: .constant(SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청")))
     }
 }
