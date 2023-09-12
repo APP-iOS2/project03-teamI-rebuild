@@ -25,8 +25,8 @@ class UserStore: ObservableObject {
     @Published var isCompleteSignUp = false
     
     @Published var currentUser: Firebase.User?
-
-
+    
+    
     func signUpUser(name: String, email: String, password: String, phoneNumber: String, birth: String) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let error = error {
@@ -59,7 +59,31 @@ class UserStore: ObservableObject {
             }
         }
     }
-
+    
+    
+    // 사용자 정보 가져오기
+    func fetchUserInfo() {
+        guard let currentUser = currentUser else {
+            return
+        }
+        
+        let db = Firestore.firestore()
+        let userRef = db.collection("users").document(currentUser.email ?? currentUser.uid)
+        
+        userRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let userData = document.data()
+                self.name = userData?["name"] as? String ?? ""
+                self.phoneNumber = userData?["phoneNumber"] as? String ?? ""
+                self.email = userData?["email"] as? String ?? ""
+                self.birth = userData?["birth"] as? String ?? ""
+            } else {
+                print("사용자 정보를 불러오는 중 오류가 발생했습니다.")
+            }
+        }
+    }
+    
+    
     
     var passwordsMatch: Bool {
         // 두 비밀번호가 일치하는지 확인
@@ -83,7 +107,7 @@ class UserStore: ObservableObject {
         let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
         return passwordPredicate.evaluate(with: password)
     }
-
+    
     init() {
         currentUser = Auth.auth().currentUser
     }
@@ -95,8 +119,10 @@ class UserStore: ObservableObject {
                 return
             }
             self.currentUser = result?.user
+            self.fetchUserInfo() // 로그인 후 사용자 정보 업데이트
         }
     }
+
     
     func logout() {
         currentUser = nil
@@ -104,7 +130,7 @@ class UserStore: ObservableObject {
     }
     
     func autoLogin() {
-            guard let currentUser = currentUser else { return }
+        guard let currentUser = currentUser else { return }
         login(email: currentUser.email ?? "", password:"")
     }
     
