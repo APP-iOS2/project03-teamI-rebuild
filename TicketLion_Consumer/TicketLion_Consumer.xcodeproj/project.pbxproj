@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		09EA3D8B2AAFE97C0057F805 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09EA3D8A2AAFE97C0057F805 /* GoogleService-Info.plist */; };
 		09EA3D8D2AAFEAB70057F805 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EA3D8C2AAFEAB70057F805 /* UserStore.swift */; };
 		632D2A702AAFFDF5003F2D1C /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632D2A6F2AAFFDF5003F2D1C /* NotificationSettingsView.swift */; };
 		646BA2712AAFE3B600C1FC69 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 646BA2702AAFE3B600C1FC69 /* FirebaseAuth */; };
@@ -58,7 +57,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		09EA3D8A2AAFE97C0057F805 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		09EA3D8C2AAFEAB70057F805 /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		632D2A6F2AAFFDF5003F2D1C /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
 		64B327A12AAF5CEE00D64EFF /* TicketLion_Consumer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicketLion_Consumer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,7 +137,6 @@
 		64B327A32AAF5CEE00D64EFF /* TicketLion_Consumer */ = {
 			isa = PBXGroup;
 			children = (
-				09EA3D8A2AAFE97C0057F805 /* GoogleService-Info.plist */,
 				64B327A42AAF5CEE00D64EFF /* TicketLion_ConsumerApp.swift */,
 				64B327A62AAF5CEE00D64EFF /* MainTabView.swift */,
 				64B327E62AAF69E600D64EFF /* Model */,
@@ -320,7 +317,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				64B327AC2AAF5CF000D64EFF /* Preview Assets.xcassets in Resources */,
-				09EA3D8B2AAFE97C0057F805 /* GoogleService-Info.plist in Resources */,
 				64B327A92AAF5CF000D64EFF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
