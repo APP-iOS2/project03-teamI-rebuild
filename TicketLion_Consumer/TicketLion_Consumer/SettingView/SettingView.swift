@@ -9,27 +9,26 @@ import SwiftUI
 
 struct SettingView: View {
     @State private var isToggleAutomaticLogin: Bool = false
-    @State private var isLoggedinUser: Bool = false
     @State private var isShowingTermsView: Bool = false
     @State private var isLogoutAlert: Bool = false
     
-    @ObservedObject var userStore: UserStore = UserStore()
+    @EnvironmentObject var userStore: UserStore
 
     
     var body: some View {
         NavigationStack {
             List {
-                if isLoggedinUser {
+                if userStore.currentUser != nil {
                     Section("계정 정보") {
                         NavigationLink {
-                            SettingUserDetailView(userStore: userStore)
+                            SettingUserDetailView()
                         } label: {
-                            SettingUserView(userStore: userStore)
+                            SettingUserView()
                         }
                     }
                 }
                 Section("계정 로그인") {
-                    if isLoggedinUser {
+					if userStore.currentUser != nil {
                         Button {
                             isLogoutAlert.toggle()
                         } label: {
@@ -42,17 +41,26 @@ struct SettingView: View {
                                   primaryButton: .destructive(Text("확인"),action: {
                                 // 로그아웃 시켜야함
                                 userStore.logout()
-                                isLoggedinUser.toggle()
                             }), secondaryButton: .cancel(Text("취소")))
                         }
                     } else {
-                        NavigationLink {
-                            SettingLoginView(isLoggedinUser: $isLoggedinUser, userStore: userStore)
-                        } label: {
-                            Text("로그인")
-                        }
+						Button("로그인") {
+							userStore.loginSheet = true
+						}
+//                        NavigationLink {
+//                            SettingLoginView(isLoggedinUser: $isLoggedinUser, userStore: userStore)
+//                        } label: {
+//                            Text("로그인")
+//                        }
                     }
                 }
+				.sheet(isPresented: $userStore.loginSheet, content: {
+					NavigationStack {
+						SettingLoginView()
+					}
+				})
+				
+				
                 Section("알림") {
                     NavigationLink {
                         // 푸시 알림 설정
@@ -97,8 +105,9 @@ struct SettingView: View {
         }
         .onAppear {
             if userStore.currentUser != nil {
-                isLoggedinUser = true
-                userStore.autoLogin()
+				Task {
+					await userStore.autoLogin()
+				}
             }
         }
     }

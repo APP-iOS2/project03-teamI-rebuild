@@ -9,8 +9,8 @@ import SwiftUI
 
 struct SettingUserDetailView: View {
     
-    @ObservedObject var userStore: UserStore
-    
+    @EnvironmentObject var userStore: UserStore
+	
     var body: some View {
         VStack {
              Form {
@@ -66,7 +66,7 @@ struct SettingUserDetailView: View {
 struct SettingUserDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SettingUserDetailView(userStore: UserStore())
+            SettingUserDetailView()
         }
     }
 }

@@ -18,7 +18,6 @@ struct SettingSignUpBirthView: View {
     @State private var birth: String = ""
     
     @Binding var isCompleteSignUp: Bool
-    @Binding var isLoggedinUser: Bool
     
     var body: some View {
         NavigationStack{
@@ -45,9 +44,12 @@ struct SettingSignUpBirthView: View {
                 
                 
                 NavigationLink {
-                    SettingSignUpCompleteView( userStore: userStore, isCompleteSignUp: $isCompleteSignUp, isLoggedinUser: $isLoggedinUser)
+                    SettingSignUpCompleteView(isCompleteSignUp: $isCompleteSignUp)
                         .onAppear {
-                            userStore.signUpUser(name: userStore.name, email: userStore.email, password: userStore.password, phoneNumber: userStore.phoneNumber, birth: userStore.birth)
+							Task {
+								await userStore.signUpUser(name: userStore.name, email: userStore.email, password: userStore.password, phoneNumber: userStore.phoneNumber, birth: userStore.birth)
+							}
+                            
                         }
                 } label: {
                     
@@ -75,7 +77,7 @@ struct SettingSignUpBirthView: View {
 struct SettingSignUpBirthView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            SettingSignUpBirthView(userStore: UserStore(), isCompleteSignUp: .constant(false), isLoggedinUser: .constant(false))
+            SettingSignUpBirthView(userStore: UserStore(), isCompleteSignUp: .constant(false))
         }
     }
 }

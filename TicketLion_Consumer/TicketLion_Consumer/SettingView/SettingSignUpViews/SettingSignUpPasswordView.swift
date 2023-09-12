@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct SettingSignUpPasswordView: View {
-    @ObservedObject var userStore: UserStore
+    @EnvironmentObject var userStore: UserStore
     @Binding var isCompleteSignUp: Bool
-    @Binding var isLoggedinUser: Bool
     
     var body: some View {
         NavigationStack {
@@ -55,7 +54,7 @@ struct SettingSignUpPasswordView: View {
                 .font(.subheadline)
                 
                 NavigationLink {
-                    SettingSignUpNameView(userStore: userStore, isCompleteSignUp: $isCompleteSignUp, isLoggedinUser: $isLoggedinUser)
+                    SettingSignUpNameView(isCompleteSignUp: $isCompleteSignUp)
                 } label: {
                     Text("다음")
                 }
@@ -79,7 +78,7 @@ struct SettingSignUpPasswordView: View {
 struct SettingSignUpPasswordView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SettingSignUpPasswordView(userStore: UserStore(), isCompleteSignUp: .constant(false), isLoggedinUser: .constant(false))
+            SettingSignUpPasswordView(isCompleteSignUp: .constant(false))
         }
     }
 }

@@ -11,6 +11,7 @@ import SwiftUI
 struct SeminarListView: View {
     
     @StateObject var seminarStore: SeminarStore = SeminarStore()
+	@EnvironmentObject var userStore: UserStore
     @State private var category: Category = .iOSDevelop
     @State private var search: String = ""
     @State var isShowingDetail: Bool = false
@@ -52,16 +53,20 @@ struct SeminarListView: View {
                                     Button { // 즐겨찾기 버튼
                                         // User, favoriteSeminar에 저장
                                         // 저장 후 User의 favoriteSeminar 배열에 해당 Seminar가 있으면 즐겨찾기 버튼에 불이 들어와야한다.
-                                        
-                                        if let firstIndex = user.favoriteSeminars.firstIndex(of: "\(seminar.id)") {
-                                            user.favoriteSeminars.remove(at: firstIndex)
+										
+										if userStore.favoriteSeminars.firstIndex(of: "\(seminar.id)") != nil {
+											// 즐겨찾기 없애기
+											userStore.removeFavoriteSeminar(seminarID: seminar.id)
+											print("\(userStore.favoriteSeminars)")
                                         } else {
-                                            user.favoriteSeminars.append(seminar.id)
+											// 즐겨찾기 넣기
+											userStore.addFavoriteSeminar(seminarID: seminar.id)
+											print("\(userStore.favoriteSeminars)")
                                         }
                                     } label: {
                                         
-                                        Image(systemName: user.favoriteSeminars.contains(seminar.id) ? "star.fill" : "star")
-                                            .foregroundColor(user.favoriteSeminars.contains(seminar.id) ? Color("AnyButtonColor") : .gray)
+                                        Image(systemName: userStore.favoriteSeminars.contains(seminar.id) ? "star.fill" : "star")
+                                            .foregroundColor(userStore.favoriteSeminars.contains(seminar.id) ? Color("AnyButtonColor") : .gray)
                                     }
                                 }
                                 .bold()
@@ -69,13 +74,20 @@ struct SeminarListView: View {
                                 
                                 VStack {
                                     HStack(alignment: .top) {
-                                        AsyncImage(url: URL(string: seminar.seminarImage)) { image in
-                                            image.resizable()
-                                                .frame(width: 100, height: 100)
-                                                .aspectRatio(contentMode: .fit)
-                                        } placeholder: {
-                                            ProgressView()
-                                        } // 이미지
+										if seminar.seminarImage == "" {
+											Image("TicketLion")
+												.resizable()
+												.frame(width: 100, height: 100)
+												.aspectRatio(contentMode: .fit)
+										} else {
+											AsyncImage(url: URL(string: seminar.seminarImage)) { image in
+												image.resizable()
+													.frame(width: 100, height: 100)
+													.aspectRatio(contentMode: .fit)
+											} placeholder: {
+												ProgressView()
+											} // 이미지
+										}
                                         
                                         Spacer()
                                         
@@ -112,9 +124,11 @@ struct SeminarListView: View {
             }
             .onAppear {
                 seminarStore.fetchSeminar()
+				userStore.fetchUserInfo()
             }
             .refreshable {
                 seminarStore.fetchSeminar()
+				userStore.fetchUserInfo()
             }
             .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always), prompt: "\(category.categoryName) 세미나를 찾아보세요.")
             

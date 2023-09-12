@@ -12,10 +12,7 @@ struct SettingLoginView: View {
     @State private var userPassword: String = ""
     @State private var isCompleteSignUp: Bool = false
     
-    @Binding var isLoggedinUser: Bool
-    @Environment(\.dismiss) private var dismiss
-    
-    @ObservedObject var userStore: UserStore
+    @EnvironmentObject var userStore: UserStore
     
     var body: some View {
         NavigationStack {
@@ -35,6 +32,7 @@ struct SettingLoginView: View {
                         RoundedRectangle(cornerRadius: 5)
                             .stroke(Color.gray, lineWidth: 2)
                     )
+					.textInputAutocapitalization(.never)
                 
                 SecureField("비밀번호 입력", text: $userPassword)
                     .padding()
@@ -44,11 +42,19 @@ struct SettingLoginView: View {
                     )
                 
                 Button {
-                    userStore.login(email: userEmail, password: userPassword)
-                    if userStore.currentUser != nil {
-                        isLoggedinUser.toggle()
-                        dismiss()
-                    }
+					Task {
+						do {
+							try await userStore.login(email: userEmail, password: userPassword)
+						} catch {
+							
+						}
+						
+						if userStore.currentUser != nil {
+							userStore.loginSheet = false
+						}
+					}
+					
+                    
                 } label: {
                     Text("로그인")
                 }
@@ -63,7 +69,7 @@ struct SettingLoginView: View {
 //                })
                 
                 NavigationLink {
-                    SettingSignUpEmailView(isCompleteSignUp: $isCompleteSignUp, isLoggedinUser: $isLoggedinUser)
+                    SettingSignUpEmailView(isCompleteSignUp: $isCompleteSignUp)
                 } label: {
                     Text("회원가입")
                     Image(systemName: "chevron.right")
@@ -83,7 +89,7 @@ struct SettingLoginView: View {
 struct SettingLoginView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SettingLoginView(isLoggedinUser: .constant(false), userStore: UserStore())
+            SettingLoginView()
         }
     }
 }

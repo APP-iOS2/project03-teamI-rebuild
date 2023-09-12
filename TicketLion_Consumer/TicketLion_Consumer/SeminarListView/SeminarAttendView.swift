@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SeminarAttendView: View {
-    var seminar: Seminar
+    @Binding var seminar: Seminar
     let user: User
     @Binding var isShowingDetail: Bool
         
@@ -68,7 +68,7 @@ struct SeminarAttendView: View {
                         }
                     }.padding()
                     Divider()
-                    SeminarAttendPlusView(isShowingDetail: $isShowingDetail)
+					SeminarAttendPlusView(seminar: $seminar, isShowingDetail: $isShowingDetail)
                 }.navigationTitle("신청하기")
                     .navigationBarTitleDisplayMode(.inline)
             }
@@ -78,7 +78,7 @@ struct SeminarAttendView: View {
 
 struct SeminarAttendView_Previews: PreviewProvider {
     static var previews: some View {
-        SeminarAttendView(seminar: Seminar.seminarsDummy[1], user: User.usersDummy[0], isShowingDetail: .constant(true))
+		SeminarAttendView(seminar: .constant(Seminar.TempSeminar), user: User.usersDummy[0], isShowingDetail: .constant(true))
 
     }
 }
