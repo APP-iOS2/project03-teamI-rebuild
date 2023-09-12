@@ -22,6 +22,7 @@ final class MySeminarStore: ObservableObject {
     @Published var selectedSeminar: Seminar = Seminar.TempSeminar
     
     //MyFavoriteView
+    @Published var favoriteSeminar: Seminar = Seminar.TempSeminar
     
     //MyTicketSheetView
     

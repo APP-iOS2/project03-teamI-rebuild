@@ -27,7 +27,7 @@ struct MySeminarView: View {
                                     .onAppear {
                                         mySeminarStore.fetchSeminar()
                                     }
-                            case .favorite: MyFavoriteView()
+                            case .favorite: MyFavoriteView(mySeminarStore: mySeminarStore)
                             }
                         }
                     
