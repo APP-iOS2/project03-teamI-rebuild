@@ -28,4 +28,8 @@ class SeminarListStore: ObservableObject {
         dateFormatter.dateFormat = "yy.MM.dd"
         return dateFormatter.string(from: date)
     }
+    
+    func selectSeminar(id: String) -> Seminar? {
+        seminarList.first { $0.id == id }
+    }
 }

@@ -22,10 +22,6 @@
 		64A0712E2AA7FC2800AF887A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 64A0712D2AA7FC2800AF887A /* FirebaseStorage */; };
 		64A071302AA7FC2800AF887A /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 64A0712F2AA7FC2800AF887A /* FirebaseStorageCombine-Community */; };
 		64B3278C2AAEA6FD00D64EFF /* ResearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3278B2AAEA6FD00D64EFF /* ResearchModel.swift */; };
-		9A3690582AA80A3200ECB557 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A3690572AA80A3200ECB557 /* GoogleService-Info.plist */; };
-		64B3278C2AAEA6FD00D64EFF /* ResearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3278B2AAEA6FD00D64EFF /* ResearchModel.swift */; };
-		9A3690582AA80A3200ECB557 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A3690572AA80A3200ECB557 /* GoogleService-Info.plist */; };
-		9A36905A2AA80E5B00ECB557 /* PatricipationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3690592AA80E5B00ECB557 /* PatricipationModel.swift */; };
 		9AB0027A2AA955E80029BBC3 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002792AA955E80029BBC3 /* Color+.swift */; };
 		9AB0027D2AA956350029BBC3 /* SeminarListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0027C2AA956350029BBC3 /* SeminarListStore.swift */; };
 		9AB002842AA956830029BBC3 /* WholeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0027F2AA956830029BBC3 /* WholeListView.swift */; };
@@ -51,6 +47,8 @@
 		9AB002AD2AA957BE0029BBC3 /* CategotyChipModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002A52AA957BE0029BBC3 /* CategotyChipModel.swift */; };
 		9AB002AE2AA957BE0029BBC3 /* SeminarMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002A62AA957BE0029BBC3 /* SeminarMapView.swift */; };
 		9ADA57582AA8045500AA4191 /* ParticipationListVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADA57572AA8045500AA4191 /* ParticipationListVIew.swift */; };
+		C06B1B9E2AB00A2000D08744 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C06B1B9D2AB00A2000D08744 /* GoogleService-Info.plist */; };
+		C06B1BA12AB00A4800D08744 /* SeminarInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B1BA02AB00A4800D08744 /* SeminarInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,9 +59,6 @@
 		64A071052AA7257B00AF887A /* SeminarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarModel.swift; sourceTree = "<group>"; };
 		64A071072AA725A200AF887A /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		64B3278B2AAEA6FD00D64EFF /* ResearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchModel.swift; sourceTree = "<group>"; };
-    		9AB002792AA955E80029BBC3 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
-		9A3690572AA80A3200ECB557 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		9A3690592AA80E5B00ECB557 /* PatricipationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatricipationModel.swift; sourceTree = "<group>"; };
 		9AB002792AA955E80029BBC3 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		9AB0027C2AA956350029BBC3 /* SeminarListStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarListStore.swift; sourceTree = "<group>"; };
 		9AB0027F2AA956830029BBC3 /* WholeListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WholeListView.swift; sourceTree = "<group>"; };
@@ -89,6 +84,8 @@
 		9AB002A52AA957BE0029BBC3 /* CategotyChipModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategotyChipModel.swift; sourceTree = "<group>"; };
 		9AB002A62AA957BE0029BBC3 /* SeminarMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarMapView.swift; sourceTree = "<group>"; };
 		9ADA57572AA8045500AA4191 /* ParticipationListVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipationListVIew.swift; sourceTree = "<group>"; };
+		C06B1B9D2AB00A2000D08744 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C06B1BA02AB00A4800D08744 /* SeminarInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +152,7 @@
 				C06B1B082AAEC91600D08744 /* Extension */,
 				64A071032AA7246400AF887A /* Views */,
 				6412FA0C2AA6FC9000F1467B /* Assets.xcassets */,
-				9A3690572AA80A3200ECB557 /* GoogleService-Info.plist */,
+				C06B1B9D2AB00A2000D08744 /* GoogleService-Info.plist */,
 				6412FA0E2AA6FC9000F1467B /* Preview Content */,
 			);
 			path = TicketLion_Admin;
@@ -234,6 +231,7 @@
 				9AB002812AA956830029BBC3 /* ClosedListView.swift */,
 				9AB002802AA956830029BBC3 /* RecruitingListView.swift */,
 				9AB0027F2AA956830029BBC3 /* WholeListView.swift */,
+				C06B1BA02AB00A4800D08744 /* SeminarInfoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -368,7 +366,7 @@
 			files = (
 				6412FA102AA6FC9000F1467B /* Preview Assets.xcassets in Resources */,
 				6412FA0D2AA6FC9000F1467B /* Assets.xcassets in Resources */,
-				9A3690582AA80A3200ECB557 /* GoogleService-Info.plist in Resources */,
+				C06B1B9E2AB00A2000D08744 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +385,7 @@
 				9AB002842AA956830029BBC3 /* WholeListView.swift in Sources */,
 				9AB0029A2AA9572D0029BBC3 /* SeminarDetail.swift in Sources */,
 				9AB002A92AA957BE0029BBC3 /* SeminarAddView.swift in Sources */,
+				C06B1BA12AB00A4800D08744 /* SeminarInfoView.swift in Sources */,
 				64A071062AA7257B00AF887A /* SeminarModel.swift in Sources */,
 				9AB002AD2AA957BE0029BBC3 /* CategotyChipModel.swift in Sources */,
 				9AB002AB2AA957BE0029BBC3 /* SeminarStore.swift in Sources */,
