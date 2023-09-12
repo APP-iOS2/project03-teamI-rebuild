@@ -114,8 +114,16 @@ struct SeminarListView: View {
                                 .padding(EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15))
                                 
                             } // 라벨 끝
+                            .fullScreenCover(isPresented: $isShowingDetail) {
+                                NavigationStack {
+                                    // 여기에 디테일 뷰
+                                    
+                                    SeminarDetailView(isShowingDetail: $isShowingDetail, seminar: seminar)
+                                }
+                            }
                             
                         }
+
                     } // ForEach 끝
                 
             }
@@ -123,12 +131,7 @@ struct SeminarListView: View {
                 seminarStore.fetchSeminar()
             }
             .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always), prompt: "\(category.categoryName) 세미나를 찾아보세요.")
-            .fullScreenCover(isPresented: $isShowingDetail) {
-                NavigationStack {
-                    // 여기에 디테일 뷰
-                    SeminarDetailView(isShowingDetail: $isShowingDetail, dummy: Seminar.seminarsDummy[0])
-                }
-            }
+            
         }
         .navigationTitle("Seminar")
         .navigationBarTitleDisplayMode(.inline)

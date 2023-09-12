@@ -13,7 +13,7 @@ struct SeminarDetailView: View {
     
     @Binding var isShowingDetail: Bool
     
-    var dummy: Seminar
+    var seminar: Seminar
     
     ///하단 신청 버튼 ( 원래.contains("\(dummy.id)") )
     private var attendButtonText: String {
@@ -28,10 +28,10 @@ struct SeminarDetailView: View {
     
     ///모집중, 모집마감
     private var recruiteText: String {
-        dummy.closingStatus ? "모집마감" : "모집중"
+        seminar.closingStatus ? "모집마감" : "모집중"
     }
     private var recruiteColor: Color {
-        dummy.closingStatus ? .red : .blue
+        seminar.closingStatus ? .red : .blue
     }
     
 /*
@@ -93,7 +93,7 @@ struct SeminarDetailView: View {
                 VStack {
                     ZStack {
                         
-                        AsyncImage(url: URL(string: dummy.seminarImage)) { image in
+                        AsyncImage(url: URL(string: seminar.seminarImage)) { image in
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
@@ -102,7 +102,9 @@ struct SeminarDetailView: View {
                         } placeholder: {
                             ProgressView()
                         }
-                        .padding(.bottom, 20)
+                        .padding(.bottom, 10)
+                        
+                        
                         
                         //모집마감 여부 눈에 띄면 좋을 것 같아서 추가
                         Text(" \(recruiteText) ")
@@ -117,62 +119,24 @@ struct SeminarDetailView: View {
 
                     }
                     
+                    Divider()
+                    
                     VStack(alignment: .leading) {
+                        Text("세미나")
+                            .font(.title3)
+                            .bold()
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
+                            
                         HStack {
-                            Grid(alignment: .topLeading) {
-                                GridRow {
-                                    Text("진행 날짜 ")
-                                        .modifier(textStyle())
-                                    
-                                    Text("\(startDateCreator(dummy.registerStartDate)) ~ \(endDateCreator(dummy.registerEndDate, dummy.registerStartDate))")
-                                    
-                                }
-                                .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
-                                
-                                GridRow {
-                                    Text("진행 시간 ")
-                                        .modifier(textStyle())
-                                    
-                                    Text("\(timeCreator(dummy.seminarStartDate)) ~ \(timeCreator(dummy.seminarEndDate))")
-                                    
-                                }
-                                .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
-                                
-                                GridRow {
-                                    Text("장소 ")
-                                        .modifier(textStyle())
-                                    
-                                    if let _ = dummy.location {//오프라인이면
- 
-                                        Text("\(dummy.location ?? "location -")")
-                                    }
-                                    else {
-                                        
-                                        Text("(온라인 진행)")
-                                        
-                                    }
-                                    
-                                }
-                                .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
-                                
-                                GridRow {
-                                    Text("주최자 ")
-                                        .bold()
-                                        .modifier(textStyle())
-                                    
-                                    Text("\(dummy.host)")
-                                }
-                                .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
-                            }
-                            Spacer()//도저히 alignment가 안먹어서 넣었습니당
+                            SeminarInfoView(seminar: seminar)
+                            Spacer()
                         }
                     }
+                    .padding()
+                    
                 
                 }
-                .padding()
-                
-                
-                
+      
                 Divider()
                 
                 //MARK: 행사소개
@@ -189,7 +153,7 @@ struct SeminarDetailView: View {
                                 .modifier(textStyle())
 
 
-                            Text("\(dummy.details)")
+                            Text("\(seminar.details)")
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
                         
@@ -197,7 +161,7 @@ struct SeminarDetailView: View {
                             Text("모집 인원")
                                 .modifier(textStyle())
 
-                            Text("\(dummy.maximumUserNumber)")
+                            Text("\(seminar.maximumUserNumber)")
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
                         
@@ -206,7 +170,7 @@ struct SeminarDetailView: View {
                                 .modifier(textStyle())
 
 
-                            Text("\(dummy.registerStartDate)")
+                            Text("\(seminar.registerStartDate)")
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
                         
@@ -214,7 +178,7 @@ struct SeminarDetailView: View {
                             Text("진행 날짜")
                                 .modifier(textStyle())
 
-                            Text("\(startDateCreator(dummy.registerStartDate)) ~ \(endDateCreator(dummy.registerEndDate, dummy.registerStartDate))")
+                            Text("\(startDateCreator(seminar.registerStartDate)) ~ \(endDateCreator(seminar.registerEndDate, seminar.registerStartDate))")
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
                         
@@ -222,7 +186,7 @@ struct SeminarDetailView: View {
                             Text("진행 시간")
                                 .modifier(textStyle())
 
-                            Text("\(timeCreator(dummy.registerStartDate)) ~ \(timeCreator(dummy.registerEndDate))")
+                            Text("\(timeCreator(seminar.registerStartDate)) ~ \(timeCreator(seminar.registerEndDate))")
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
                         
@@ -230,21 +194,22 @@ struct SeminarDetailView: View {
                             Text("장소")
                                 .modifier(textStyle())
 
-                            if let _ = dummy.location { //오프라인이면
-                                
-                                Text("\(dummy.location ?? "location -")")
+                            if let _ = seminar.location { //오프라인이면
+ 
+                                Text("\(seminar.location ?? "location -")")
                                 
                                 
                             }else {
+                                
                                 Text("(온라인 진행)")
                                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
                                 
                             }
                         }
                     }
-                    if let _ = dummy.location {
+                    if let _ = seminar.location {
                         
-                        SeminarDetailMapView(dummy: dummy)
+                        SeminarDetailMapView(seminar: seminar)
 
                     }
 
@@ -255,13 +220,13 @@ struct SeminarDetailView: View {
     
                 
             }
-            .navigationTitle("\(dummy.name)")
+            .navigationTitle("\(seminar.name)")
             .navigationBarTitleDisplayMode(.inline)
 
             
             //MARK: 신청버튼
             NavigationLink {
-                SeminarAttendView(user: User.usersDummy[0], isShowingDetail: $isShowingDetail)
+                SeminarAttendView(seminar: seminar, user: User.usersDummy[0], isShowingDetail: $isShowingDetail)
             } label: {
                 Text(attendButtonText)
 //                    .frame(maxWidth: .infinity)
@@ -296,7 +261,7 @@ struct SeminarDetailView: View {
 struct SeminarDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SeminarDetailView(isShowingDetail: .constant(true), dummy: Seminar.seminarsDummy[2])
+            SeminarDetailView(isShowingDetail: .constant(true), seminar: Seminar.seminarsDummy[1])
 
         }
     }
