@@ -8,12 +8,21 @@
 import SwiftUI
 import MapKit
 import CoreLocation
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+import FirebaseCore
+import Combine
+
+
 
 struct SeminarDetailEditView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.dismiss) private var dismiss
     
+    
+    @ObservedObject var chipsViewModel: ChipsViewModel
+//    @StateObject var seminars: SeminarDetailStore = SeminarDetailStore()
     let seminars: Seminar
     @State private var startingPoint = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
     @State private var date : Date = Date()
@@ -27,12 +36,26 @@ struct SeminarDetailEditView: View {
     @State private var imageText: String = ""
     @State private var OrganizerText: String = ""
     
+    @State private var name: String = ""
+    @State private var seminarImage: String = ""
+    @State private var host: String = ""
+    @State private var details: String = ""
+    @State private var detailLocation: String = ""
+    @State private var maximumUserNumber: String = ""
+    @State private var registerStartDatePicker = Date()
+    @State private var registerEndDatePicker = Date()
+    @State private var seminarStartDatePicker = Date()
+    @State private var seminarEndDatePicker = Date()
+    @State private var selectedImage: UIImage? = nil
+    @State private var isImagePickerPresented: Bool = false
     
     @State private var isShowingAlert: Bool = false
     @Binding var isShowEditView: Bool
     private let textLimit: Int = 100
     private let today = Calendar.current.startOfDay(for: Date())
     
+    let detaildb = Firestore.firestore()
+
     
     var body: some View {
         NavigationStack {
@@ -222,6 +245,16 @@ struct SeminarDetailEditView: View {
                             //MARK: 수정하기
                             Button {
                                 isShowingAlert = true
+                                detaildb.collection("Seminar").document(introduceText).updateData([
+                                    "details": introduceText
+                                
+                                ]) { error in
+                                    if let error = error {
+                                        print(error.localizedDescription) } else {
+                                            print("소개글 업데이트 성공!")
+                                    }
+                                }
+//                                fetchSeminar()
                             } label: {
                                 Text("수정하기")
                                     .font(.system(size: 30) .bold())
@@ -255,11 +288,25 @@ struct SeminarDetailEditView: View {
             }
         }
     }
+    
+//    func fetchSeminar() {
+//
+//        let selectCategory = chipsViewModel.chipArray.filter { $0.isSelected }.map { $0.titleKey }
+//
+//        let seminar = Seminar(category: selectCategory, name: name, seminarImage: imageText, host: OrganizerText, details: introduceText, location: "\(seminarLocation.address+detailLocation)", maximumUserNumber: Int(maximumUserNumber) ?? 0, closingStatus: false, registerStartDate: registerStartDatePicker.timeIntervalSince1970, registerEndDate: registerEndDatePicker.timeIntervalSince1970, seminarStartDate: seminarStartDatePicker.timeIntervalSince1970, seminarEndDate: seminarEndDatePicker.timeIntervalSince1970, enterUsers: [])
+//
+//        do {
+//            try detaildb.collection("Seminar").document(seminar.id).setData(from: seminar)
+//        } catch {
+//            print(error)
+//        }
+//
+//    }
 }
 
 struct SeminarDetailEditView_Previews: PreviewProvider {
     static var previews: some View {
-        SeminarDetailEditView(seminars: Seminar.seminarsDummy[0], seminarLocation: SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청"), seminarData: .constant(Seminar.seminarsDummy[0]), isShowEditView: .constant(true))
+        SeminarDetailEditView(chipsViewModel: ChipsViewModel(), seminars: Seminar.seminarsDummy[0], seminarLocation: SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청"), seminarData: .constant(Seminar.seminarsDummy[0]), isShowEditView: .constant(true))
     }
 }
 
