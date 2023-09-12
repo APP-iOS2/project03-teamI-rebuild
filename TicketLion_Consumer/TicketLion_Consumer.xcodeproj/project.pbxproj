@@ -52,6 +52,7 @@
 		64B328262AAF6F6400D64EFF /* SettingDevInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328252AAF6F6400D64EFF /* SettingDevInfoView.swift */; };
 		64B328282AAF6F7E00D64EFF /* SettingDevInfoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328272AAF6F7E00D64EFF /* SettingDevInfoDetailView.swift */; };
 		64B3282A2AAF6FA700D64EFF /* SettingDevInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328292AAF6FA700D64EFF /* SettingDevInformationView.swift */; };
+		999453B62AAFE94B0005A842 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 999453B52AAFE94B0005A842 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,7 @@
 		64B328252AAF6F6400D64EFF /* SettingDevInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDevInfoView.swift; sourceTree = "<group>"; };
 		64B328272AAF6F7E00D64EFF /* SettingDevInfoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDevInfoDetailView.swift; sourceTree = "<group>"; };
 		64B328292AAF6FA700D64EFF /* SettingDevInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDevInformationView.swift; sourceTree = "<group>"; };
+		999453B52AAFE94B0005A842 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 		64B327A32AAF5CEE00D64EFF /* TicketLion_Consumer */ = {
 			isa = PBXGroup;
 			children = (
+				999453B52AAFE94B0005A842 /* GoogleService-Info.plist */,
 				64B327A42AAF5CEE00D64EFF /* TicketLion_ConsumerApp.swift */,
 				64B327A62AAF5CEE00D64EFF /* MainTabView.swift */,
 				64B327E62AAF69E600D64EFF /* Model */,
@@ -312,6 +315,7 @@
 			files = (
 				64B327AC2AAF5CF000D64EFF /* Preview Assets.xcassets in Resources */,
 				64B327A92AAF5CF000D64EFF /* Assets.xcassets in Resources */,
+				999453B62AAFE94B0005A842 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,7 +31,7 @@ struct MyReservationView: View {
                 .padding(.top, 3)
             
             ScrollView {
-                ForEach(Seminar.seminarsDummy, id: \.id) { seminar in
+                ForEach(mySeminarStore.seminarList, id: \.id) { seminar in
                     
                     Button {
                         isShowingSheet = true
