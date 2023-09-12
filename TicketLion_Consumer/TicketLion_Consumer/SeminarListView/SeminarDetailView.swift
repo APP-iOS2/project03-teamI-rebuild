@@ -261,7 +261,7 @@ struct SeminarDetailView: View {
             
             //MARK: 신청버튼
             NavigationLink {
-                SeminarAttendView(seminar: Seminar.seminarsDummy[0], user: User.usersDummy[0], isShowingDetail: $isShowingDetail)
+                SeminarAttendView(user: User.usersDummy[0], isShowingDetail: $isShowingDetail)
             } label: {
                 Text(attendButtonText)
 //                    .frame(maxWidth: .infinity)
