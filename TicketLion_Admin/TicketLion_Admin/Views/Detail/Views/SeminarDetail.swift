@@ -18,10 +18,6 @@ struct SeminarDetail: View {
         } detail: {
             SeminarDetailInfo(seminars: Seminar.seminarsDummy[0], seminarData: .constant(Seminar.seminarsDummy[0]), seminarLocation: SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청"))
         }
-        .tabItem {
-            Image(systemName: "person")
-            Text("회원관리")
-        }
         .onAppear {
 //            seminarStore.fetchSeminar()
         }

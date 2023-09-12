@@ -93,7 +93,7 @@ struct SeminarDetailInfo: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Menu {
-                            NavigationLink(destination: SeminarDetailEditView(seminars: seminars, seminarLocation: seminarLocation, seminarData: $seminarData, isShowEditView: $isShowEditView), label: {
+                            NavigationLink(destination: SeminarDetailEditView(chipsViewModel: ChipsViewModel(), seminars: seminars, seminarLocation: seminarLocation, seminarData: $seminarData, isShowEditView: $isShowEditView), label: {
                                 Text("수정")
                             })
                         } label: {
@@ -103,6 +103,7 @@ struct SeminarDetailInfo: View {
                     }
                 }
                 .navigationTitle(seminars.name)
+                .navigationBarTitle(seminars.name, displayMode: .large)
             } // NavigationStack
     }
 }
