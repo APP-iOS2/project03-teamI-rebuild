@@ -20,6 +20,7 @@ struct SeminarAddView: View {
     @ObservedObject var chipsViewModel: ChipsViewModel
     @State private var name: String = ""
     @State private var seminarImage: String = ""
+    @State private var host: String = ""
     @State private var details: String = ""
     @State private var detailLocation: String = ""
     @State private var maximumUserNumber: String = ""
@@ -33,6 +34,7 @@ struct SeminarAddView: View {
     var isFieldAllWrite: Bool {
         let currentDate = Calendar.current.startOfDay(for: Date())
         return !name.isEmpty &&
+        !host.isEmpty &&
         Calendar.current.startOfDay(for: registerStartDatePicker) != currentDate &&
         Calendar.current.startOfDay(for: registerEndDatePicker) != currentDate &&
         chipsViewModel.chipArray.contains(where: { $0.isSelected}) &&
@@ -56,14 +58,25 @@ struct SeminarAddView: View {
             
             ScrollView {
                 VStack(alignment: .leading) {
-                    Text("타이틀")
-                        .padding(.top, 30)
-                        .bold()
-                    
-                    TextField("", text: $name)
-                        .textFieldStyle(.roundedBorder)
-                        .textInputAutocapitalization(.never)
-                        .disableAutocorrection(true)
+                    Group {
+                        Text("타이틀")
+                            .padding(.top, 30)
+                            .bold()
+                        
+                        TextField("", text: $name)
+                            .textFieldStyle(.roundedBorder)
+                            .textInputAutocapitalization(.never)
+                            .disableAutocorrection(true)
+                        
+                        Text("주최자")
+                            .padding(.top, 30)
+                            .bold()
+                        
+                        TextField("", text: $host)
+                            .textFieldStyle(.roundedBorder)
+                            .textInputAutocapitalization(.never)
+                            .disableAutocorrection(true)
+                    }
                     
                     Group {
                         Text("신청 기간")
