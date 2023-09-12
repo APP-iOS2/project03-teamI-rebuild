@@ -20,7 +20,9 @@ struct WholeListView: View {
     
     var body: some View {
         if let seminarId = selectedSeminar {
-            SeminarDetail()
+            //SeminarDetail()
+            if let seminar = seminarStore.selectSeminar(id: seminarId) { SeminarInfoView(seminar: seminar)
+            }
         } else {
             NavigationStack {
                 HStack {
@@ -92,6 +94,9 @@ struct WholeListView: View {
             }
             //.tint(Color(hex: 0xD7D7D9))
             .foregroundColor(.black)
+            .onAppear {
+                seminarStore.fetch()
+            }
         }
     }
 }
