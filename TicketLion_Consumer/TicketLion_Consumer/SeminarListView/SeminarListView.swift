@@ -18,22 +18,7 @@ struct SeminarListView: View {
     @State var newSeminar: Seminar = Seminar.seminarsDummy[1]
     
     @State var user: User = User(name: "파이링", phoneNumber: "01011111111", email: "fighring@naver.com", password: "1111", birth: "0128", appliedSeminars: [], favoriteSeminars: ["\(Seminar.seminarsDummy[0].id)", "\(Seminar.seminarsDummy[2].id)"], recentlySeminars: [], canceledSeminars: [])
-    
-    func timeCreator(_ time: Double) -> String {
-        let createdAt: Date = Date(timeIntervalSince1970: time)
-        let fomatter: DateFormatter = DateFormatter()
-        fomatter.dateFormat = "hh:mm a"
-        
-        return fomatter.string(from: createdAt)
-    }
-    
-    func dateCreator(_ time: Double) -> String {
-        let createdAt: Date = Date(timeIntervalSince1970: time)
-        let fomatter: DateFormatter = DateFormatter()
-        fomatter.dateFormat = "yyyy년 MM월 dd일"
-        
-        return fomatter.string(from: createdAt)
-    }
+
     
     var body: some View {
         NavigationStack {
@@ -98,8 +83,8 @@ struct SeminarListView: View {
                                             Group {
                                                 Text("강연자 : \(seminar.host)")
                                                 Text("장소 : \(seminar.location ?? "location -")")
-                                                Text("날짜 : \(dateCreator(seminar.registerStartDate)) 부터")
-                                                Text("시간 : \(timeCreator( seminar.registerStartDate)) ~ \(timeCreator( seminar.registerEndDate))")
+                                                Text("날짜 : \(seminar.startDateCreator(seminar.registerStartDate)) 부터")
+                                                Text("시간 : \(seminar.timeCreator( seminar.registerStartDate)) ~ \(seminar.timeCreator( seminar.registerEndDate))")
                                             }
                                             .padding(EdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0))
                                             .foregroundColor(.black)

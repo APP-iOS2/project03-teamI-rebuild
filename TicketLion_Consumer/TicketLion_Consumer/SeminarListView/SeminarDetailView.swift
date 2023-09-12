@@ -33,59 +33,7 @@ struct SeminarDetailView: View {
     private var recruiteColor: Color {
         seminar.closingStatus ? .red : .blue
     }
-    
-/*
-    ///지도MapKit
-//    @State var address: String
-    @State private var coordinate: CLLocationCoordinate2D?
-    @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), // 초기 지도 표시 위치 (예: 샌프란시스코)
-        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01) // 초기 확대 수준
-    )
-    @State private var annotation: MKPointAnnotation?
-    private let testAddress: String = "서울 종로구 종로3길"
-*/
-    
-    ///지도 sheet변수
-//    @State private var isShowingSheet: Bool = false
-    
-    func timeCreator(_ time: Double) -> String {
-        let createdAt: Date = Date(timeIntervalSince1970: time)
-        let formatter: DateFormatter = DateFormatter()
-        formatter.dateFormat = "hh:mm a"
-        
-        return formatter.string(from: createdAt)
-    }
-    
-    func startDateCreator(_ time: Double) -> String {
-        let createdAt: Date = Date(timeIntervalSince1970: time)
-        let formatter: DateFormatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 MM월 dd일"
-        
-        return formatter.string(from: createdAt)
-    }
-    
-    func endDateCreator(_ time: Double, _ startDate: Double) -> String {
-        let createdAt: Date = Date(timeIntervalSince1970: time)
-        
-        let yearFormatter: DateFormatter = DateFormatter()
-        let formatter: DateFormatter = DateFormatter()
-        
-        
-        yearFormatter.dateFormat = "yyyy"
-        
-        //start년도와 end년도가 같으면 end년도 출력안하기
-        if yearFormatter.string(from: createdAt) == yearFormatter.string(from: Date(timeIntervalSince1970: startDate)) {
-            formatter.dateFormat = "MM월 dd일"
-        }else {
-            formatter.dateFormat = "yyyy월 MM월 dd일"
-        }
-        
-        return formatter.string(from: createdAt)
-    }
-    
 
-    
     var body: some View {
         VStack {
             ScrollView {
@@ -178,7 +126,7 @@ struct SeminarDetailView: View {
                             Text("진행 날짜")
                                 .modifier(textStyle())
 
-                            Text("\(startDateCreator(seminar.registerStartDate)) ~ \(endDateCreator(seminar.registerEndDate, seminar.registerStartDate))")
+                            Text("\(seminar.startDateCreator(seminar.registerStartDate)) ~ \(seminar.endDateCreator(seminar.registerEndDate, seminar.registerStartDate))")
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
                         
@@ -186,7 +134,7 @@ struct SeminarDetailView: View {
                             Text("진행 시간")
                                 .modifier(textStyle())
 
-                            Text("\(timeCreator(seminar.registerStartDate)) ~ \(timeCreator(seminar.registerEndDate))")
+                            Text("\(seminar.timeCreator(seminar.registerStartDate)) ~ \(seminar.timeCreator(seminar.registerEndDate))")
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
                         
