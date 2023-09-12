@@ -14,10 +14,11 @@ struct SettingView: View {
     @State private var isLogoutAlert: Bool = false
     
     @ObservedObject var userStore: UserStore = UserStore()
+
     
     var body: some View {
         NavigationStack {
-            Form {
+            List {
                 if isLoggedinUser {
                     Section("계정 정보") {
                         NavigationLink {
