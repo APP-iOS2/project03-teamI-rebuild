@@ -9,10 +9,9 @@ import SwiftUI
 
 struct SettingSignUpEmailView: View {
     
-    @ObservedObject var userStore = UserStore()
+	@EnvironmentObject var userStore: UserStore
     
     @Binding var isCompleteSignUp: Bool
-    @Binding var isLoggedinUser: Bool
     
     var body: some View {
             NavigationStack {
@@ -40,7 +39,7 @@ struct SettingSignUpEmailView: View {
                         .textContentType(.none)
                     
                     NavigationLink {
-                        SettingSignUpPasswordView(userStore: userStore, isCompleteSignUp: $isCompleteSignUp, isLoggedinUser: $isLoggedinUser)
+                        SettingSignUpPasswordView(isCompleteSignUp: $isCompleteSignUp)
                     } label: {
                         Text("다음")
                     }
@@ -63,7 +62,7 @@ struct SettingSignUpEmailView: View {
 struct SettingSignUpEmailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            SettingSignUpEmailView(isCompleteSignUp: .constant(false), isLoggedinUser: .constant(false))
+            SettingSignUpEmailView(isCompleteSignUp: .constant(false))
         }
     }
 }

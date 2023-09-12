@@ -9,10 +9,9 @@ import SwiftUI
 
 struct SettingSignUpCompleteView: View {
     
-    @ObservedObject var userStore: UserStore
+    @EnvironmentObject var userStore: UserStore
     
     @Binding var isCompleteSignUp: Bool
-    @Binding var isLoggedinUser: Bool
     
     var body: some View {
         NavigationStack {
@@ -60,7 +59,7 @@ struct SettingSignUpCompleteView: View {
                         Text("확인")
                     }
                     .navigationDestination(isPresented: $isCompleteSignUp, destination: {
-                        SettingLoginView(isLoggedinUser: $isLoggedinUser, userStore: userStore)
+                        SettingLoginView()
                     })
                     .frame(maxWidth:.infinity, maxHeight: 50)
                     .foregroundColor(.white)
@@ -80,7 +79,7 @@ struct SettingSignUpCompleteView: View {
 struct SettingSignUpCompleteView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            SettingSignUpCompleteView(userStore: UserStore(), isCompleteSignUp: .constant(false), isLoggedinUser: .constant(false))
+            SettingSignUpCompleteView(isCompleteSignUp: .constant(false))
         }
     }
 }

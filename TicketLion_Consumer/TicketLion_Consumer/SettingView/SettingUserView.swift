@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingUserView: View {
-    @ObservedObject var userStore = UserStore()
+	@EnvironmentObject var userStore: UserStore
     
     var body: some View {
         HStack {
@@ -37,6 +37,6 @@ struct SettingUserView: View {
 
 struct SettingUserView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingUserView(userStore: UserStore())
+        SettingUserView()
     }
 }

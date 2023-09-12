@@ -9,12 +9,12 @@ import SwiftUI
 
 struct SettingSignUpNameView: View {
     
-    @ObservedObject var userStore: UserStore
+    @EnvironmentObject var userStore: UserStore
     
     @State private var name: String = ""
     
     @Binding var isCompleteSignUp: Bool
-    @Binding var isLoggedinUser: Bool
+	
     var body: some View {
         NavigationStack{
             VStack(alignment: .leading, spacing: 25 ){
@@ -37,7 +37,7 @@ struct SettingSignUpNameView: View {
                     .cornerRadius(5)
                 
                 NavigationLink {
-                    SettingSignUpPhoneNumberView(userStore: userStore, isCompleteSignUp: $isCompleteSignUp, isLoggedinUser: $isLoggedinUser)
+                    SettingSignUpPhoneNumberView(userStore: userStore, isCompleteSignUp: $isCompleteSignUp)
                 } label: {
                     
                     Text("다음")
@@ -65,7 +65,7 @@ struct SettingSignUpNameView: View {
 struct SettingSignUpNameView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SettingSignUpNameView(userStore: UserStore(), isCompleteSignUp: .constant(false), isLoggedinUser: .constant(false))
+            SettingSignUpNameView(isCompleteSignUp: .constant(false))
         }
     }
 }
