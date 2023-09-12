@@ -1,40 +1,44 @@
 //
-//  SeminarMapView.swift
+//  SeminarDetailMapView.swift
 //  TicketLion_Admin
 //
-//  Created by 나예슬 on 2023/09/06.
+//  Created by 최세근 on 2023/09/06.
 //
 
 import SwiftUI
 import CoreLocation
 import MapKit
 
-struct SeminarMapView: View {
-
+struct SeminarDetailMapView: View {
+    
     @Environment(\.dismiss) private var dismiss
-    @ObservedObject var seminarStore: SeminarStore
+
+    
+    @ObservedObject var seminarStore: SeminarDetailStore
+    
     @StateObject var locationManager = LocationManager()
     @State private var location = Location(coordinate: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780))
     @State private var address = "서울 시청"
-
+    
+    
     @Binding var region: MKCoordinateRegion
     @Binding var clickLocation: Bool
     @Binding var seminarLocation: SeminarLocation
-
+    
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             VStack {
                 Text(address)
                     .font(.subheadline)
-
+                
                 ZStack {
                     Map(coordinateRegion: $region, showsUserLocation: true, annotationItems: [location]) { location in
                         MapAnnotation(coordinate: location.coordinate) {
-                            MapMarkerDetail()
+                            SeminarMapMarker()
                         }
                     }
                     .edgesIgnoringSafeArea(.bottom)
-
+                    
                     VStack {
                         ZStack{
                             Text("클릭하면 가운데 장소로 선택됩니다")
@@ -47,7 +51,7 @@ struct SeminarMapView: View {
                         .cornerRadius(5)
                         .padding(.top)
                         Spacer()
-
+                        
                         HStack {
                             Spacer()
                             VStack {
@@ -66,9 +70,9 @@ struct SeminarMapView: View {
                                         .clipShape(Circle())
                                         .shadow(color: .black, radius: 3)
                                 }
-
+                                
                                 Spacer()
-
+                                
                                 Button(action: {
                                     withAnimation {
                                         region.span.latitudeDelta *= 2
@@ -88,12 +92,12 @@ struct SeminarMapView: View {
                             .frame(height: 150)
                         } // Zoom In/Out 버튼
                         .padding(.init(top: 0, leading: 0, bottom: -50, trailing: 15))
-
+                        
                         Spacer()
-
+                        
                         HStack {
                             Spacer()
-
+                            
                             Button(action: {
                                 if let userLocation = locationManager.location?.coordinate {
                                     withAnimation {
@@ -121,7 +125,7 @@ struct SeminarMapView: View {
                 .onTapGesture {
                     drawMarkerWithAddress()
                 }
-
+                
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button {
@@ -130,21 +134,24 @@ struct SeminarMapView: View {
                             Text("취소")
                         }
                     }
-
+                    
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
                             dismiss()
                             clickLocation = true
-                            seminarLocation = seminarStore.setLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, address: address)
+                            seminarLocation = seminarStore.setLocation(
+                                latitude: location.coordinate.latitude,
+                                longitude: location.coordinate.longitude,
+                                address: address)
                         } label: {
                             Text("완료")
                         }
                     }
                 }//toolbar
-            }
-        }
-    } //body
+            } // 큰 VStack
 
+        } // navigationStack
+    } // body
     func drawMarkerWithAddress() {
         let touchPoint = region.center
         location = Location(coordinate: touchPoint)
@@ -155,7 +162,7 @@ struct SeminarMapView: View {
             }
         }
     }
-} // view
+} // Struct View
 
 struct Cross: Shape {
     func path(in rect: CGRect) -> Path {
@@ -170,9 +177,8 @@ struct Cross: Shape {
     }
 }
 
-struct SeminarMapView_Previews: PreviewProvider {
+struct SeminarDetailMapView_Previews: PreviewProvider {
     static var previews: some View {
-        SeminarMapView(seminarStore: SeminarStore(), region: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), span: MKCoordinateSpan(latitudeDelta: 0.009, longitudeDelta: 0.009))), clickLocation: .constant(false), seminarLocation: .constant(SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청")))
+        SeminarDetailMapView(seminarStore: SeminarDetailStore(), region: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), span: MKCoordinateSpan(latitudeDelta: 0.009, longitudeDelta: 0.009))), clickLocation: .constant(false), seminarLocation: .constant(SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청")))
     }
 }
-
