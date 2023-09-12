@@ -55,12 +55,19 @@ struct SeminarInfoView: View {
         
         var body: some View {
             VStack(alignment: .leading) {
-                Text("신청한 세미나")
-                    .font(.title3)
-                    .bold()
-                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
                 
                 Grid(alignment: .topLeading) {
+                    GridRow {
+                        Text("세미나")
+                            .bold()
+                            .foregroundColor(.gray)
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
+                        
+                        Text("\(seminar.name)")
+                    }
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
+
+                    
                     GridRow {
                         
                         Text("진행날짜")
@@ -110,7 +117,6 @@ struct SeminarInfoView: View {
                 }
 
             }
-            .padding()
         }
     }
 struct SeminarInfoView_Previews: PreviewProvider {
