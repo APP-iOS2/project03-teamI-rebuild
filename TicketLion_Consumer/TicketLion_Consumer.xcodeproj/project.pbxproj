@@ -10,7 +10,7 @@
 		09EA3D8B2AAFE97C0057F805 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09EA3D8A2AAFE97C0057F805 /* GoogleService-Info.plist */; };
 		09EA3D8D2AAFEAB70057F805 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EA3D8C2AAFEAB70057F805 /* UserStore.swift */; };
 		519DD7FB2AAFF71600150961 /* SignUpStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519DD7FA2AAFF71600150961 /* SignUpStore.swift */; };
-		519DD7FD2AAFF89000150961 /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519DD7FC2AAFF89000150961 /* NotificationSettingsView.swift */; };
+		632D2A702AAFFDF5003F2D1C /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632D2A6F2AAFFDF5003F2D1C /* NotificationSettingsView.swift */; };
 		646BA2712AAFE3B600C1FC69 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 646BA2702AAFE3B600C1FC69 /* FirebaseAuth */; };
 		646BA2732AAFE3B600C1FC69 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 646BA2722AAFE3B600C1FC69 /* FirebaseAuthCombine-Community */; };
 		646BA2752AAFE3B600C1FC69 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 646BA2742AAFE3B600C1FC69 /* FirebaseDatabase */; };
@@ -62,7 +62,7 @@
 		09EA3D8A2AAFE97C0057F805 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		09EA3D8C2AAFEAB70057F805 /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		519DD7FA2AAFF71600150961 /* SignUpStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpStore.swift; sourceTree = "<group>"; };
-		519DD7FC2AAFF89000150961 /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationSettingsView.swift; path = "../../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/project03-teamI-rebuild/TicketLion_Consumer/TicketLion_Consumer/SettingView/NotificationSettingsView.swift"; sourceTree = "<group>"; };
+		632D2A6F2AAFFDF5003F2D1C /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
 		64B327A12AAF5CEE00D64EFF /* TicketLion_Consumer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicketLion_Consumer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B327A42AAF5CEE00D64EFF /* TicketLion_ConsumerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketLion_ConsumerApp.swift; sourceTree = "<group>"; };
 		64B327A62AAF5CEE00D64EFF /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -208,8 +208,8 @@
 				64B328252AAF6F6400D64EFF /* SettingDevInfoView.swift */,
 				64B328272AAF6F7E00D64EFF /* SettingDevInfoDetailView.swift */,
 				64B328292AAF6FA700D64EFF /* SettingDevInformationView.swift */,
+				632D2A6F2AAFFDF5003F2D1C /* NotificationSettingsView.swift */,
 				519DD7FA2AAFF71600150961 /* SignUpStore.swift */,
-				519DD7FC2AAFF89000150961 /* NotificationSettingsView.swift */,
 			);
 			path = SettingView;
 			sourceTree = "<group>";
@@ -359,7 +359,7 @@
 				64B327ED2AAF6B7E00D64EFF /* UserModel.swift in Sources */,
 				64B327A52AAF5CEE00D64EFF /* TicketLion_ConsumerApp.swift in Sources */,
 				64B328182AAF6EB000D64EFF /* SettingSignUpBirthView.swift in Sources */,
-				519DD7FD2AAFF89000150961 /* NotificationSettingsView.swift in Sources */,
+				632D2A702AAFFDF5003F2D1C /* NotificationSettingsView.swift in Sources */,
 				64B328142AAF6E7400D64EFF /* SettingSignUpNameView.swift in Sources */,
 				64B327F52AAF6C4A00D64EFF /* SeminarListView.swift in Sources */,
 				64B3280D2AAF6DE000D64EFF /* MyCategoryButton.swift in Sources */,
