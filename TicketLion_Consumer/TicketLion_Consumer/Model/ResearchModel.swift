@@ -15,8 +15,11 @@ struct Research: Identifiable {
     /// 설문에 참여한 유저ID
     let userID: String
     /// 첫번째 설문 응답
-    let answer1: Bool
+    var answer1: Int?
     /// 두번째 설문 응답
-    let answer2: Bool
+    var answer2: Int?
     
+    static let researchDummy: [Research] = [
+    Research(seminarID: "123", userID: "23223")
+    ]
 }
