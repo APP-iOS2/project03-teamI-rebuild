@@ -17,7 +17,7 @@ import SwiftUI
 
 struct SettingSignUpPhoneNumberView: View {
     
-    @ObservedObject var signUpStore: SignUpStore
+    @ObservedObject var userStore: UserStore
     
     @State private var number: String = ""
 
@@ -39,14 +39,14 @@ struct SettingSignUpPhoneNumberView: View {
                 }
                 .font(.title2)
                 
-                TextField("- 없이 입력", text: $signUpStore.phoneNumber)
+                TextField("- 없이 입력", text: $userStore.phoneNumber)
                     .padding()
                     .background(Color(uiColor: .secondarySystemBackground))
                     .cornerRadius(5)
                 
                 NavigationLink {
                     
-                    SettingSignUpBirthView(signUpStore: signUpStore, isCompleteSignUp: $isCompleteSignUp)
+                    SettingSignUpBirthView(userStore: userStore, isCompleteSignUp: $isCompleteSignUp)
                     
                 } label: {
                     
@@ -56,9 +56,9 @@ struct SettingSignUpPhoneNumberView: View {
                 .padding()
                 .font(.title2)
                 .foregroundColor(.white)
-                .background(signUpStore.phoneNumber.isEmpty ?  Color.gray : Color("AnyButtonColor"))
+                .background(userStore.phoneNumber.isEmpty ?  Color.gray : Color("AnyButtonColor"))
                 .cornerRadius(5)
-                .disabled(signUpStore.phoneNumber.isEmpty)
+                .disabled(userStore.phoneNumber.isEmpty)
                 
             }
             .padding()
@@ -75,7 +75,7 @@ struct SettingSignUpPhoneNumberView: View {
 struct SettingSignUpPhoneNumberView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            SettingSignUpPhoneNumberView(signUpStore: SignUpStore(), isCompleteSignUp: .constant(false))
+            SettingSignUpPhoneNumberView(userStore: UserStore(), isCompleteSignUp: .constant(false))
         }
     }
 }

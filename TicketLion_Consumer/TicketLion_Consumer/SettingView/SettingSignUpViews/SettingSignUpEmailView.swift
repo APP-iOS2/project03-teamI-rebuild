@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingSignUpEmailView: View {
     
-    @ObservedObject var signUpStore = SignUpStore()
+    @ObservedObject var userStore = UserStore()
     
     @Binding var isCompleteSignUp: Bool
     
@@ -30,7 +30,7 @@ struct SettingSignUpEmailView: View {
                     }
                     .font(.title2)
                     
-                    TextField("ex)example@google.com", text: $signUpStore.email)
+                    TextField("ex)example@google.com", text: $userStore.email)
                         .padding()
                         .background(Color(uiColor: .secondarySystemBackground))
                         .cornerRadius(5)
@@ -38,7 +38,7 @@ struct SettingSignUpEmailView: View {
                         .textContentType(.none)
                     
                     NavigationLink {
-                        SettingSignUpPasswordView(signUpStore: signUpStore, isCompleteSignUp: $isCompleteSignUp)
+                        SettingSignUpPasswordView(userStore: userStore, isCompleteSignUp: $isCompleteSignUp)
                     } label: {
                         Text("다음")
                     }
@@ -46,9 +46,9 @@ struct SettingSignUpEmailView: View {
                     .padding()
                     .font(.title2)
                     .foregroundColor(.white)
-                    .background(signUpStore.isValidEmail() ? Color("AnyButtonColor") : Color.gray)
+                    .background(userStore.isValidEmail() ? Color("AnyButtonColor") : Color.gray)
                     .cornerRadius(5)
-                    .disabled(!signUpStore.isValidEmail())
+                    .disabled(!userStore.isValidEmail())
                 }
                 .padding()
                 .navigationTitle("회원가입")

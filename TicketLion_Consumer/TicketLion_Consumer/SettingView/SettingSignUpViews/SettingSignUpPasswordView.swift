@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingSignUpPasswordView: View {
-    @ObservedObject var signUpStore: SignUpStore
+    @ObservedObject var userStore: UserStore
     @Binding var isCompleteSignUp: Bool
     
     var body: some View {
@@ -28,25 +28,25 @@ struct SettingSignUpPasswordView: View {
                 }
                 .font(.title2)
                 
-                SecureField("비밀번호 입력", text: $signUpStore.password)
+                SecureField("비밀번호 입력", text: $userStore.password)
                     .padding()
                     .background(Color(uiColor: .secondarySystemBackground))
                     .cornerRadius(5)
                 
-                SecureField("비밀번호 확인", text: $signUpStore.passwordCheck)
+                SecureField("비밀번호 확인", text: $userStore.passwordCheck)
                     .padding()
                     .background(Color(uiColor: .secondarySystemBackground))
                     .cornerRadius(5)
                 
                 Group {
                     // 비밀번호 유효성 검사
-                    if !signUpStore.isPasswordValid {
+                    if !userStore.isPasswordValid {
                         Text("비밀번호는 최소 8자 이상, 특수문자와 숫자를 포함해야 합니다.")
                             .foregroundColor(.red)
                     }
                     
                     // 비밀번호 일치 여부 검사
-                    if !signUpStore.passwordsMatch {
+                    if !userStore.passwordsMatch {
                         Text("비밀번호가 일치하지 않습니다.")
                             .foregroundColor(.red)
                     }
@@ -54,7 +54,7 @@ struct SettingSignUpPasswordView: View {
                 .font(.subheadline)
                 
                 NavigationLink {
-                    SettingSignUpNameView(signUpStore: signUpStore, isCompleteSignUp: $isCompleteSignUp)
+                    SettingSignUpNameView(userStore: userStore, isCompleteSignUp: $isCompleteSignUp)
                 } label: {
                     Text("다음")
                 }
@@ -62,9 +62,9 @@ struct SettingSignUpPasswordView: View {
                 .padding()
                 .font(.title2)
                 .foregroundColor(.white)
-                .background(signUpStore.isPasswordValid && signUpStore.passwordsMatch ? Color("AnyButtonColor") : Color.gray)
+                .background(userStore.isPasswordValid && userStore.passwordsMatch ? Color("AnyButtonColor") : Color.gray)
                 .cornerRadius(5)
-                .disabled(!signUpStore.isPasswordValid || !signUpStore.passwordsMatch)
+                .disabled(!userStore.isPasswordValid || !userStore.passwordsMatch)
             }
             .padding()
             .navigationTitle("회원가입")
@@ -78,7 +78,7 @@ struct SettingSignUpPasswordView: View {
 struct SettingSignUpPasswordView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SettingSignUpPasswordView(signUpStore: SignUpStore(), isCompleteSignUp: .constant(false))
+            SettingSignUpPasswordView(userStore: UserStore(), isCompleteSignUp: .constant(false))
         }
     }
 }
