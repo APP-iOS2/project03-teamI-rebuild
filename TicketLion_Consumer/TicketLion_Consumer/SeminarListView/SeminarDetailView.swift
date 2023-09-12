@@ -13,7 +13,7 @@ struct SeminarDetailView: View {
     
     @Binding var isShowingDetail: Bool
     
-    var seminar: Seminar
+    @Binding var seminar: Seminar
     
     ///하단 신청 버튼 ( 원래.contains("\(dummy.id)") )
     private var attendButtonText: String {
@@ -261,7 +261,7 @@ struct SeminarDetailView: View {
 struct SeminarDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SeminarDetailView(isShowingDetail: .constant(true), seminar: Seminar.seminarsDummy[1])
+            SeminarDetailView(isShowingDetail: .constant(true), seminar: .constant(Seminar.seminarsDummy[1]))
 
         }
     }
