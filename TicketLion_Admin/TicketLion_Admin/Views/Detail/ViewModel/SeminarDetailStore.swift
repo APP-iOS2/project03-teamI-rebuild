@@ -8,21 +8,70 @@
 import SwiftUI
 import CoreLocation
 import MapKit
+import FirebaseFirestore
 
 final class SeminarDetailStore: ObservableObject {
+
     @Published var seminarDetailStore: [Seminar] = []
         
     
     @Published var seminarIntroduce: [Seminar] = [] // 세미나 소개
-    @Published var seminarDate: [Seminar] = [] // 세미나 일시
-    @Published var seminarPlace: [Seminar] = [] // 세미나 장소
     
+    @Published var seminarInfo: [Seminar] = []
+
+//    @Published var seminarDate: [Seminar] = [] // 세미나 일시
+//    @Published var seminarPlace: [Seminar] = [] // 세미나 장소
+//    @Published var seminarImage: [Seminar] = [] // 세미나 이미지
+    let currentDate = Date().timeIntervalSince1970
+
+    var recruitingList: [Seminar] {
+        Seminar.seminarsDummy.filter { $0.registerEndDate >= currentDate }
+    }
+    var closedList: [Seminar] {
+        Seminar.seminarsDummy.filter { $0.registerEndDate < currentDate }
+    }
+    
+
     func setLocation(latitude: Double, longitude: Double, address: String) -> SeminarLocation {
         let location = SeminarLocation(latitude: latitude, longitude: longitude, address: address)
         return location
     }
 
-    
+    func fetchSeminar(completion: @escaping (Bool) -> Void) {
+        seminarInfo.removeAll()
+        
+        let dataBase = Firestore.firestore().collection("studies")
+        dataBase.getDocuments { snapshot, error in
+            guard let snapshot = snapshot, error == nil else {
+                print("Error fetching data: (error?.localizedDescription ?? ")
+                return
+            }
+            
+            for document in snapshot.documents {
+                if let jsonData = try? JSONSerialization.data(withJSONObject: document.data(), options: []),
+                   let seminar = try? JSONDecoder().decode(Seminar.self, from: jsonData) {
+                    self.seminarInfo.append(seminar)
+                    print(seminar)
+                    
+                        
+                }
+            }
+            
+            completion(true)
+            print("세미나리스트 패치: \(self.seminarInfo)")
+        }
+    }
+}
+
+
+
+extension String {
+    func detailcalculateDate(date: Double) -> String {
+        let date = Date(timeIntervalSince1970: date)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yy.MM.dd"
+        return dateFormatter.string(from: date)
+    }
 }
 
 struct Location: Identifiable {
