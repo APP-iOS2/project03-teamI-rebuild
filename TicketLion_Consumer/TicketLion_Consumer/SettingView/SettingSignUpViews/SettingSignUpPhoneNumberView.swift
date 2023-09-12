@@ -45,7 +45,7 @@ struct SettingSignUpPhoneNumberView: View {
                     .padding()
                     .background(Color(uiColor: .secondarySystemBackground))
                     .cornerRadius(5)
-                
+                    .keyboardType(.decimalPad)
                 NavigationLink {
                     
                     SettingSignUpBirthView(userStore: userStore, isCompleteSignUp: $isCompleteSignUp, isLoggedinUser: $isLoggedinUser)

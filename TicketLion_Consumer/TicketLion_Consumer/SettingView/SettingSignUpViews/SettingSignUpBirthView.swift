@@ -40,7 +40,7 @@ struct SettingSignUpBirthView: View {
                     .padding()
                     .background(Color(uiColor: .secondarySystemBackground))
                     .cornerRadius(5)
-                
+                    .keyboardType(.decimalPad)
                 
                 
                 NavigationLink {
