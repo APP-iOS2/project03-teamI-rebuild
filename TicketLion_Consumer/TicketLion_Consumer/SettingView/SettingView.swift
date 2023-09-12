@@ -13,6 +13,8 @@ struct SettingView: View {
     @State private var isShowingTermsView: Bool = false
     @State private var isLogoutAlert: Bool = false
     
+    @ObservedObject var userStore: UserStore = UserStore()
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -28,6 +30,7 @@ struct SettingView: View {
                 Section("계정 로그인") {
                     if isLoggedinUser {
                         Button {
+                            userStore.logout()
                             isLogoutAlert.toggle()
                         } label: {
                             Text("로그아웃")
@@ -43,7 +46,7 @@ struct SettingView: View {
                         }
                     } else {
                         NavigationLink {
-                            SettingLoginView()
+                            SettingLoginView(userStore: userStore)
                         } label: {
                             Text("로그인")
                         }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingSignUpNameView: View {
     
-    @ObservedObject var signUpStore: SignUpStore
+    @ObservedObject var userStore: UserStore
     
     @State private var name: String = ""
     
@@ -30,13 +30,13 @@ struct SettingSignUpNameView: View {
                     }
                     .font(.title2)
 
-                TextField("이름 입력", text: $signUpStore.name)
+                TextField("이름 입력", text: $userStore.name)
                     .padding()
                     .background(Color(uiColor: .secondarySystemBackground))
                     .cornerRadius(5)
                 
                 NavigationLink {
-                    SettingSignUpPhoneNumberView(signUpStore: signUpStore, isCompleteSignUp: $isCompleteSignUp)
+                    SettingSignUpPhoneNumberView(userStore: userStore, isCompleteSignUp: $isCompleteSignUp)
                 } label: {
                     
                     Text("다음")
@@ -45,9 +45,9 @@ struct SettingSignUpNameView: View {
                 .padding()
                 .font(.title2)
                 .foregroundColor(.white)
-                .background(signUpStore.name.isEmpty ?  Color.gray : Color("AnyButtonColor"))
+                .background(userStore.name.isEmpty ?  Color.gray : Color("AnyButtonColor"))
                 .cornerRadius(5)
-                .disabled(signUpStore.name.isEmpty)
+                .disabled(userStore.name.isEmpty)
                 
             }
             .padding()
@@ -64,7 +64,7 @@ struct SettingSignUpNameView: View {
 struct SettingSignUpNameView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SettingSignUpNameView(signUpStore: SignUpStore(), isCompleteSignUp: .constant(false))
+            SettingSignUpNameView(userStore: UserStore(), isCompleteSignUp: .constant(false))
         }
     }
 }

@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct SettingLoginView: View {
-    @State var userId: String = ""
+    @State var userEmail: String = ""
     @State var userPassword: String = ""
     @State var isCompleteSignUp: Bool = false
+    
+    @ObservedObject var userStore: UserStore
     
     var body: some View {
         VStack(spacing: 25) {
@@ -23,7 +25,7 @@ struct SettingLoginView: View {
                 .frame(width: 200, height: 200)
                 .cornerRadius(20)
             Spacer()
-            TextField("아이디 입력", text: $userId)
+            TextField("아이디 입력", text: $userEmail)
                 .padding()
                 .overlay(
                     RoundedRectangle(cornerRadius: 5)
@@ -38,7 +40,8 @@ struct SettingLoginView: View {
                 )
             
             Button {
-                // 로그인
+                print("\(userEmail) - \(userPassword)")
+                userStore.login(email: userEmail, password: userPassword)
             } label: {
                 Text("로그인")
             }
@@ -68,7 +71,7 @@ struct SettingLoginView: View {
 struct SettingLoginView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SettingLoginView()
+            SettingLoginView(userStore: UserStore())
         }
     }
 }
