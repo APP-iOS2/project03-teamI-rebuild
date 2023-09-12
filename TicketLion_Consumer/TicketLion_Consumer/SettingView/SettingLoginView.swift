@@ -36,7 +36,7 @@ struct SettingLoginView: View {
                         .stroke(Color.gray, lineWidth: 2)
                 )
                 
-            TextField("비밀번호 입력", text: $userPassword)
+            SecureField("비밀번호 입력", text: $userPassword)
                 .padding()
                 .overlay(
                     RoundedRectangle(cornerRadius: 5)
