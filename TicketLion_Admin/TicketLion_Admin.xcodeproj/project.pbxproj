@@ -1,0 +1,677 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6412FA092AA6FC8E00F1467B /* TicketLion_AdminApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6412FA082AA6FC8E00F1467B /* TicketLion_AdminApp.swift */; };
+		6412FA0D2AA6FC9000F1467B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6412FA0C2AA6FC9000F1467B /* Assets.xcassets */; };
+		6412FA102AA6FC9000F1467B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6412FA0F2AA6FC9000F1467B /* Preview Assets.xcassets */; };
+		64A071062AA7257B00AF887A /* SeminarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A071052AA7257B00AF887A /* SeminarModel.swift */; };
+		64A071082AA725A200AF887A /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A071072AA725A200AF887A /* UserModel.swift */; };
+		64A071202AA7FC2800AF887A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 64A0711F2AA7FC2800AF887A /* FirebaseAuth */; };
+		64A071222AA7FC2800AF887A /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 64A071212AA7FC2800AF887A /* FirebaseAuthCombine-Community */; };
+		64A071242AA7FC2800AF887A /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 64A071232AA7FC2800AF887A /* FirebaseDatabase */; };
+		64A071262AA7FC2800AF887A /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 64A071252AA7FC2800AF887A /* FirebaseDatabaseSwift */; };
+		64A071282AA7FC2800AF887A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 64A071272AA7FC2800AF887A /* FirebaseFirestore */; };
+		64A0712A2AA7FC2800AF887A /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 64A071292AA7FC2800AF887A /* FirebaseFirestoreCombine-Community */; };
+		64A0712C2AA7FC2800AF887A /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 64A0712B2AA7FC2800AF887A /* FirebaseFirestoreSwift */; };
+		64A0712E2AA7FC2800AF887A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 64A0712D2AA7FC2800AF887A /* FirebaseStorage */; };
+		64A071302AA7FC2800AF887A /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 64A0712F2AA7FC2800AF887A /* FirebaseStorageCombine-Community */; };
+		64B3278C2AAEA6FD00D64EFF /* ResearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B3278B2AAEA6FD00D64EFF /* ResearchModel.swift */; };
+		9A3690582AA80A3200ECB557 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A3690572AA80A3200ECB557 /* GoogleService-Info.plist */; };
+		9A36905A2AA80E5B00ECB557 /* PatricipationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3690592AA80E5B00ECB557 /* PatricipationModel.swift */; };
+		9AB0027A2AA955E80029BBC3 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002792AA955E80029BBC3 /* Color+.swift */; };
+		9AB0027D2AA956350029BBC3 /* SeminarListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0027C2AA956350029BBC3 /* SeminarListStore.swift */; };
+		9AB002842AA956830029BBC3 /* WholeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0027F2AA956830029BBC3 /* WholeListView.swift */; };
+		9AB002852AA956830029BBC3 /* RecruitingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002802AA956830029BBC3 /* RecruitingListView.swift */; };
+		9AB002862AA956830029BBC3 /* ClosedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002812AA956830029BBC3 /* ClosedListView.swift */; };
+		9AB002872AA956830029BBC3 /* SeminarSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002822AA956830029BBC3 /* SeminarSideView.swift */; };
+		9AB002882AA956830029BBC3 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002832AA956830029BBC3 /* MainView.swift */; };
+		9AB002942AA9572D0029BBC3 /* SeminarDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0028A2AA9572D0029BBC3 /* SeminarDetailModel.swift */; };
+		9AB002952AA9572D0029BBC3 /* SeminarDetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0028B2AA9572D0029BBC3 /* SeminarDetailMapView.swift */; };
+		9AB002962AA9572D0029BBC3 /* SeminarDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0028C2AA9572D0029BBC3 /* SeminarDetailInfo.swift */; };
+		9AB002972AA9572D0029BBC3 /* SeminarDetailSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0028D2AA9572D0029BBC3 /* SeminarDetailSidebar.swift */; };
+		9AB002982AA9572D0029BBC3 /* SeminarSidebarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0028E2AA9572D0029BBC3 /* SeminarSidebarCell.swift */; };
+		9AB002992AA9572D0029BBC3 /* SeminarDetailStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0028F2AA9572D0029BBC3 /* SeminarDetailStore.swift */; };
+		9AB0029A2AA9572D0029BBC3 /* SeminarDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002902AA9572D0029BBC3 /* SeminarDetail.swift */; };
+		9AB0029B2AA9572D0029BBC3 /* SeminarDetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002912AA9572D0029BBC3 /* SeminarDetailEditView.swift */; };
+		9AB0029C2AA9572D0029BBC3 /* SeminarMapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002922AA9572D0029BBC3 /* SeminarMapMarker.swift */; };
+		9AB0029D2AA9572D0029BBC3 /* DetailSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002932AA9572D0029BBC3 /* DetailSidebar.swift */; };
+		9AB002A72AA957BE0029BBC3 /* MapMarkerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0029F2AA957BD0029BBC3 /* MapMarkerDetailView.swift */; };
+		9AB002A92AA957BE0029BBC3 /* SeminarAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002A12AA957BD0029BBC3 /* SeminarAddView.swift */; };
+		9AB002AA2AA957BE0029BBC3 /* CategoryChipContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002A22AA957BE0029BBC3 /* CategoryChipContainerView.swift */; };
+		9AB002AB2AA957BE0029BBC3 /* SeminarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002A32AA957BE0029BBC3 /* SeminarStore.swift */; };
+		9AB002AC2AA957BE0029BBC3 /* CategoryChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002A42AA957BE0029BBC3 /* CategoryChipView.swift */; };
+		9AB002AD2AA957BE0029BBC3 /* CategotyChipModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002A52AA957BE0029BBC3 /* CategotyChipModel.swift */; };
+		9AB002AE2AA957BE0029BBC3 /* SeminarMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002A62AA957BE0029BBC3 /* SeminarMapView.swift */; };
+		9ADA57582AA8045500AA4191 /* ParticipationListVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADA57572AA8045500AA4191 /* ParticipationListVIew.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6412FA052AA6FC8E00F1467B /* TicketLion_Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicketLion_Admin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6412FA082AA6FC8E00F1467B /* TicketLion_AdminApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketLion_AdminApp.swift; sourceTree = "<group>"; };
+		6412FA0C2AA6FC9000F1467B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6412FA0F2AA6FC9000F1467B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		64A071052AA7257B00AF887A /* SeminarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarModel.swift; sourceTree = "<group>"; };
+		64A071072AA725A200AF887A /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		64B3278B2AAEA6FD00D64EFF /* ResearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchModel.swift; sourceTree = "<group>"; };
+		9A3690572AA80A3200ECB557 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9A3690592AA80E5B00ECB557 /* PatricipationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatricipationModel.swift; sourceTree = "<group>"; };
+		9AB002792AA955E80029BBC3 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		9AB0027C2AA956350029BBC3 /* SeminarListStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarListStore.swift; sourceTree = "<group>"; };
+		9AB0027F2AA956830029BBC3 /* WholeListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WholeListView.swift; sourceTree = "<group>"; };
+		9AB002802AA956830029BBC3 /* RecruitingListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruitingListView.swift; sourceTree = "<group>"; };
+		9AB002812AA956830029BBC3 /* ClosedListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosedListView.swift; sourceTree = "<group>"; };
+		9AB002822AA956830029BBC3 /* SeminarSideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarSideView.swift; sourceTree = "<group>"; };
+		9AB002832AA956830029BBC3 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		9AB0028A2AA9572D0029BBC3 /* SeminarDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarDetailModel.swift; sourceTree = "<group>"; };
+		9AB0028B2AA9572D0029BBC3 /* SeminarDetailMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarDetailMapView.swift; sourceTree = "<group>"; };
+		9AB0028C2AA9572D0029BBC3 /* SeminarDetailInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarDetailInfo.swift; sourceTree = "<group>"; };
+		9AB0028D2AA9572D0029BBC3 /* SeminarDetailSidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarDetailSidebar.swift; sourceTree = "<group>"; };
+		9AB0028E2AA9572D0029BBC3 /* SeminarSidebarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarSidebarCell.swift; sourceTree = "<group>"; };
+		9AB0028F2AA9572D0029BBC3 /* SeminarDetailStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarDetailStore.swift; sourceTree = "<group>"; };
+		9AB002902AA9572D0029BBC3 /* SeminarDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarDetail.swift; sourceTree = "<group>"; };
+		9AB002912AA9572D0029BBC3 /* SeminarDetailEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarDetailEditView.swift; sourceTree = "<group>"; };
+		9AB002922AA9572D0029BBC3 /* SeminarMapMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarMapMarker.swift; sourceTree = "<group>"; };
+		9AB002932AA9572D0029BBC3 /* DetailSidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSidebar.swift; sourceTree = "<group>"; };
+		9AB0029F2AA957BD0029BBC3 /* MapMarkerDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapMarkerDetailView.swift; sourceTree = "<group>"; };
+		9AB002A12AA957BD0029BBC3 /* SeminarAddView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarAddView.swift; sourceTree = "<group>"; };
+		9AB002A22AA957BE0029BBC3 /* CategoryChipContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryChipContainerView.swift; sourceTree = "<group>"; };
+		9AB002A32AA957BE0029BBC3 /* SeminarStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarStore.swift; sourceTree = "<group>"; };
+		9AB002A42AA957BE0029BBC3 /* CategoryChipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryChipView.swift; sourceTree = "<group>"; };
+		9AB002A52AA957BE0029BBC3 /* CategotyChipModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategotyChipModel.swift; sourceTree = "<group>"; };
+		9AB002A62AA957BE0029BBC3 /* SeminarMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarMapView.swift; sourceTree = "<group>"; };
+		9ADA57572AA8045500AA4191 /* ParticipationListVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipationListVIew.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6412FA022AA6FC8E00F1467B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64A071262AA7FC2800AF887A /* FirebaseDatabaseSwift in Frameworks */,
+				64A071242AA7FC2800AF887A /* FirebaseDatabase in Frameworks */,
+				64A071202AA7FC2800AF887A /* FirebaseAuth in Frameworks */,
+				64A0712C2AA7FC2800AF887A /* FirebaseFirestoreSwift in Frameworks */,
+				64A0712A2AA7FC2800AF887A /* FirebaseFirestoreCombine-Community in Frameworks */,
+				64A0712E2AA7FC2800AF887A /* FirebaseStorage in Frameworks */,
+				64A071282AA7FC2800AF887A /* FirebaseFirestore in Frameworks */,
+				64A071302AA7FC2800AF887A /* FirebaseStorageCombine-Community in Frameworks */,
+				64A071222AA7FC2800AF887A /* FirebaseAuthCombine-Community in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1BC5E98C2AAECBF00025B8A8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9AB0029F2AA957BD0029BBC3 /* MapMarkerDetailView.swift */,
+				9AB002A12AA957BD0029BBC3 /* SeminarAddView.swift */,
+				9AB002A62AA957BE0029BBC3 /* SeminarMapView.swift */,
+				9AB002A22AA957BE0029BBC3 /* CategoryChipContainerView.swift */,
+				9AB002A42AA957BE0029BBC3 /* CategoryChipView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1BC5E98D2AAECBF50025B8A8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9AB002A32AA957BE0029BBC3 /* SeminarStore.swift */,
+				9AB002A52AA957BE0029BBC3 /* CategotyChipModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6412F9FC2AA6FC8E00F1467B = {
+			isa = PBXGroup;
+			children = (
+				6412FA072AA6FC8E00F1467B /* TicketLion_Admin */,
+				6412FA062AA6FC8E00F1467B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6412FA062AA6FC8E00F1467B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6412FA052AA6FC8E00F1467B /* TicketLion_Admin.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6412FA072AA6FC8E00F1467B /* TicketLion_Admin */ = {
+			isa = PBXGroup;
+			children = (
+				6412FA082AA6FC8E00F1467B /* TicketLion_AdminApp.swift */,
+				C06B1B082AAEC91600D08744 /* Extension */,
+				64A071032AA7246400AF887A /* Views */,
+				6412FA0C2AA6FC9000F1467B /* Assets.xcassets */,
+				9A3690572AA80A3200ECB557 /* GoogleService-Info.plist */,
+				6412FA0E2AA6FC9000F1467B /* Preview Content */,
+			);
+			path = TicketLion_Admin;
+			sourceTree = "<group>";
+		};
+		6412FA0E2AA6FC9000F1467B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				6412FA0F2AA6FC9000F1467B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		64A071032AA7246400AF887A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C06B1B092AAEC94400D08744 /* Main */,
+				9AB0029E2AA957AA0029BBC3 /* Add */,
+				9AB002892AA9572D0029BBC3 /* Detail */,
+				9AB0027E2AA956830029BBC3 /* SeminarList */,
+				9ADA57562AA803FC00AA4191 /* koo */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		64A071042AA7246D00AF887A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				64A071052AA7257B00AF887A /* SeminarModel.swift */,
+				64A071072AA725A200AF887A /* UserModel.swift */,
+				64B3278B2AAEA6FD00D64EFF /* ResearchModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9AB0027E2AA956830029BBC3 /* SeminarList */ = {
+			isa = PBXGroup;
+			children = (
+				C06B1B052AAEC87400D08744 /* ViewModels */,
+				C06B1B042AAEC86500D08744 /* Views */,
+			);
+			path = SeminarList;
+			sourceTree = "<group>";
+		};
+		9AB002892AA9572D0029BBC3 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				E32BFC7F2AAE9F0700A42FDE /* Model */,
+				E32BFC812AAE9F3B00A42FDE /* ViewModel */,
+				E32BFC822AAE9F7100A42FDE /* Views */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		9AB0029E2AA957AA0029BBC3 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				1BC5E98D2AAECBF50025B8A8 /* Model */,
+				1BC5E98C2AAECBF00025B8A8 /* View */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		9ADA57562AA803FC00AA4191 /* koo */ = {
+			isa = PBXGroup;
+			children = (
+				9ADA57572AA8045500AA4191 /* ParticipationListVIew.swift */,
+				9A3690592AA80E5B00ECB557 /* PatricipationModel.swift */,
+			);
+			path = koo;
+			sourceTree = "<group>";
+		};
+		C06B1B042AAEC86500D08744 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9AB002822AA956830029BBC3 /* SeminarSideView.swift */,
+				9AB002812AA956830029BBC3 /* ClosedListView.swift */,
+				9AB002802AA956830029BBC3 /* RecruitingListView.swift */,
+				9AB0027F2AA956830029BBC3 /* WholeListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C06B1B052AAEC87400D08744 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				9AB0027C2AA956350029BBC3 /* SeminarListStore.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		C06B1B082AAEC91600D08744 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				9AB002792AA955E80029BBC3 /* Color+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		C06B1B092AAEC94400D08744 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				9AB002832AA956830029BBC3 /* MainView.swift */,
+				64A071042AA7246D00AF887A /* Model */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		E32BFC7F2AAE9F0700A42FDE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9AB0028A2AA9572D0029BBC3 /* SeminarDetailModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E32BFC812AAE9F3B00A42FDE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9AB0028F2AA9572D0029BBC3 /* SeminarDetailStore.swift */,
+				9AB002932AA9572D0029BBC3 /* DetailSidebar.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E32BFC822AAE9F7100A42FDE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9AB002902AA9572D0029BBC3 /* SeminarDetail.swift */,
+				9AB0028D2AA9572D0029BBC3 /* SeminarDetailSidebar.swift */,
+				9AB0028E2AA9572D0029BBC3 /* SeminarSidebarCell.swift */,
+				9AB0028C2AA9572D0029BBC3 /* SeminarDetailInfo.swift */,
+				9AB002912AA9572D0029BBC3 /* SeminarDetailEditView.swift */,
+				9AB0028B2AA9572D0029BBC3 /* SeminarDetailMapView.swift */,
+				9AB002922AA9572D0029BBC3 /* SeminarMapMarker.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6412FA042AA6FC8E00F1467B /* TicketLion_Admin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6412FA132AA6FC9000F1467B /* Build configuration list for PBXNativeTarget "TicketLion_Admin" */;
+			buildPhases = (
+				6412FA012AA6FC8E00F1467B /* Sources */,
+				6412FA022AA6FC8E00F1467B /* Frameworks */,
+				6412FA032AA6FC8E00F1467B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TicketLion_Admin;
+			packageProductDependencies = (
+				64A0711F2AA7FC2800AF887A /* FirebaseAuth */,
+				64A071212AA7FC2800AF887A /* FirebaseAuthCombine-Community */,
+				64A071232AA7FC2800AF887A /* FirebaseDatabase */,
+				64A071252AA7FC2800AF887A /* FirebaseDatabaseSwift */,
+				64A071272AA7FC2800AF887A /* FirebaseFirestore */,
+				64A071292AA7FC2800AF887A /* FirebaseFirestoreCombine-Community */,
+				64A0712B2AA7FC2800AF887A /* FirebaseFirestoreSwift */,
+				64A0712D2AA7FC2800AF887A /* FirebaseStorage */,
+				64A0712F2AA7FC2800AF887A /* FirebaseStorageCombine-Community */,
+			);
+			productName = TicketLion_Admin;
+			productReference = 6412FA052AA6FC8E00F1467B /* TicketLion_Admin.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6412F9FD2AA6FC8E00F1467B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					6412FA042AA6FC8E00F1467B = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 6412FA002AA6FC8E00F1467B /* Build configuration list for PBXProject "TicketLion_Admin" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6412F9FC2AA6FC8E00F1467B;
+			packageReferences = (
+				64A0711E2AA7FC2800AF887A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
+			productRefGroup = 6412FA062AA6FC8E00F1467B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6412FA042AA6FC8E00F1467B /* TicketLion_Admin */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6412FA032AA6FC8E00F1467B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6412FA102AA6FC9000F1467B /* Preview Assets.xcassets in Resources */,
+				6412FA0D2AA6FC9000F1467B /* Assets.xcassets in Resources */,
+				9A3690582AA80A3200ECB557 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6412FA012AA6FC8E00F1467B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AB002AA2AA957BE0029BBC3 /* CategoryChipContainerView.swift in Sources */,
+				9AB0029D2AA9572D0029BBC3 /* DetailSidebar.swift in Sources */,
+				9AB002962AA9572D0029BBC3 /* SeminarDetailInfo.swift in Sources */,
+				9AB002852AA956830029BBC3 /* RecruitingListView.swift in Sources */,
+				9AB002882AA956830029BBC3 /* MainView.swift in Sources */,
+				9AB002842AA956830029BBC3 /* WholeListView.swift in Sources */,
+				9AB0029A2AA9572D0029BBC3 /* SeminarDetail.swift in Sources */,
+				9AB002A92AA957BE0029BBC3 /* SeminarAddView.swift in Sources */,
+				64A071062AA7257B00AF887A /* SeminarModel.swift in Sources */,
+				9AB002AD2AA957BE0029BBC3 /* CategotyChipModel.swift in Sources */,
+				9AB002AB2AA957BE0029BBC3 /* SeminarStore.swift in Sources */,
+				9AB002972AA9572D0029BBC3 /* SeminarDetailSidebar.swift in Sources */,
+				64B3278C2AAEA6FD00D64EFF /* ResearchModel.swift in Sources */,
+				9AB0029B2AA9572D0029BBC3 /* SeminarDetailEditView.swift in Sources */,
+				9AB002942AA9572D0029BBC3 /* SeminarDetailModel.swift in Sources */,
+				9AB002AC2AA957BE0029BBC3 /* CategoryChipView.swift in Sources */,
+				9AB002A72AA957BE0029BBC3 /* MapMarkerDetailView.swift in Sources */,
+				9AB002862AA956830029BBC3 /* ClosedListView.swift in Sources */,
+				9AB0029C2AA9572D0029BBC3 /* SeminarMapMarker.swift in Sources */,
+				9AB0027A2AA955E80029BBC3 /* Color+.swift in Sources */,
+				9AB0027D2AA956350029BBC3 /* SeminarListStore.swift in Sources */,
+				9AB002982AA9572D0029BBC3 /* SeminarSidebarCell.swift in Sources */,
+				9AB002952AA9572D0029BBC3 /* SeminarDetailMapView.swift in Sources */,
+				9AB002872AA956830029BBC3 /* SeminarSideView.swift in Sources */,
+				9ADA57582AA8045500AA4191 /* ParticipationListVIew.swift in Sources */,
+				64A071082AA725A200AF887A /* UserModel.swift in Sources */,
+				9A36905A2AA80E5B00ECB557 /* PatricipationModel.swift in Sources */,
+				6412FA092AA6FC8E00F1467B /* TicketLion_AdminApp.swift in Sources */,
+				9AB002992AA9572D0029BBC3 /* SeminarDetailStore.swift in Sources */,
+				9AB002AE2AA957BE0029BBC3 /* SeminarMapView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6412FA112AA6FC9000F1467B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6412FA122AA6FC9000F1467B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6412FA142AA6FC9000F1467B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TicketLion_Admin/Preview Content\"";
+				DEVELOPMENT_TEAM = YK2Y8AHWU8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "TicketLion-Admin";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		6412FA152AA6FC9000F1467B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TicketLion_Admin/Preview Content\"";
+				DEVELOPMENT_TEAM = YK2Y8AHWU8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "TicketLion-Admin";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6412FA002AA6FC8E00F1467B /* Build configuration list for PBXProject "TicketLion_Admin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6412FA112AA6FC9000F1467B /* Debug */,
+				6412FA122AA6FC9000F1467B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6412FA132AA6FC9000F1467B /* Build configuration list for PBXNativeTarget "TicketLion_Admin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6412FA142AA6FC9000F1467B /* Debug */,
+				6412FA152AA6FC9000F1467B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		64A0711E2AA7FC2800AF887A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		64A0711F2AA7FC2800AF887A /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64A0711E2AA7FC2800AF887A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		64A071212AA7FC2800AF887A /* FirebaseAuthCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64A0711E2AA7FC2800AF887A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseAuthCombine-Community";
+		};
+		64A071232AA7FC2800AF887A /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64A0711E2AA7FC2800AF887A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		64A071252AA7FC2800AF887A /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64A0711E2AA7FC2800AF887A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
+		};
+		64A071272AA7FC2800AF887A /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64A0711E2AA7FC2800AF887A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		64A071292AA7FC2800AF887A /* FirebaseFirestoreCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64A0711E2AA7FC2800AF887A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreCombine-Community";
+		};
+		64A0712B2AA7FC2800AF887A /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64A0711E2AA7FC2800AF887A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		64A0712D2AA7FC2800AF887A /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64A0711E2AA7FC2800AF887A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		64A0712F2AA7FC2800AF887A /* FirebaseStorageCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64A0711E2AA7FC2800AF887A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseStorageCombine-Community";
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 6412F9FD2AA6FC8E00F1467B /* Project object */;
+}
