@@ -8,58 +8,55 @@
 import SwiftUI
 
 struct SettingSignUpEmailView: View {
-    @State private var email: String = ""
+    
+    @ObservedObject var signUpStore = SignUpStore()
     
     @Binding var isCompleteSignUp: Bool
     
     var body: some View {
-        NavigationStack{
-            VStack(alignment: .leading, spacing: 25 ){
-                
-                Divider()
-                    .background(Color("AnyButtonColor"))
-                
-                HStack{
-                    Text("로그인시 사용할\n") +
-                    Text("이메일 아이디").fontWeight(.bold) +
-                    Text("를 입력해주세요")
-
-                    Spacer()
+            NavigationStack {
+                VStack(alignment: .leading, spacing: 25) {
+                    Divider()
+                        .background(Color("AnyButtonColor"))
                     
-                    Text("1/5")
+                    HStack {
+                        Text("로그인시 사용할\n") +
+                        Text("이메일 아이디").fontWeight(.bold) +
+                        Text("를 입력해주세요")
+                        
+                        Spacer()
+                        
+                        Text("1/5")
                     }
                     .font(.title2)
-
-                    TextField("사용하실 이메일 아이디를 입력해주세요.", text: $email)
-                    .padding()
-                    .background(Color(uiColor: .secondarySystemBackground))
-                    .cornerRadius(5)
-                
-                NavigationLink {
-                    SettingSignUpPasswordView(isCompleteSignUp: $isCompleteSignUp)
-                } label: {
                     
-                    Text("다음")
+                    TextField("ex)example@google.com", text: $signUpStore.email)
+                        .padding()
+                        .background(Color(uiColor: .secondarySystemBackground))
+                        .cornerRadius(5)
+                        .textInputAutocapitalization(.never)
+                        .textContentType(.none)
+                    
+                    NavigationLink {
+                        SettingSignUpPasswordView(signUpStore: signUpStore, isCompleteSignUp: $isCompleteSignUp)
+                    } label: {
+                        Text("다음")
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: 20)
+                    .padding()
+                    .font(.title2)
+                    .foregroundColor(.white)
+                    .background(signUpStore.isValidEmail() ? Color("AnyButtonColor") : Color.gray)
+                    .cornerRadius(5)
+                    .disabled(!signUpStore.isValidEmail())
                 }
-                .frame(maxWidth: .infinity, maxHeight: 20)
                 .padding()
-                .font(.title2)
-                .foregroundColor(.white)
-                .background(email.isEmpty ?  Color.gray : Color("AnyButtonColor"))
-                .cornerRadius(5)
-                .disabled(email.isEmpty)
-                
+                .navigationTitle("회원가입")
+                .navigationBarTitleDisplayMode(.inline)
+                Spacer()
             }
-            .padding()
-            .navigationTitle("회원가입")
-            .navigationBarTitleDisplayMode(.inline)
-            
-            Spacer()
-            
         }
     }
-    
-}
 
 struct SettingSignUpEmailView_Previews: PreviewProvider {
     static var previews: some View {

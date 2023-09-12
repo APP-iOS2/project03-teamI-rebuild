@@ -58,6 +58,7 @@ struct SettingView: View {
                 Section("알림") {
                     NavigationLink {
                         // 푸시 알림 설정
+                        NotificationSettingsView()
                     } label: {
                         Text("푸시 알림 설정")
                     }

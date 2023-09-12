@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SettingSignUpNameView: View {
+    
+    @ObservedObject var signUpStore: SignUpStore
+    
     @State private var name: String = ""
     
     @Binding var isCompleteSignUp: Bool
@@ -27,13 +30,13 @@ struct SettingSignUpNameView: View {
                     }
                     .font(.title2)
 
-                    TextField("이름 입력", text: $name)
+                TextField("이름 입력", text: $signUpStore.name)
                     .padding()
                     .background(Color(uiColor: .secondarySystemBackground))
                     .cornerRadius(5)
                 
                 NavigationLink {
-                    SettingSignUpPhoneNumberView( isCompleteSignUp: $isCompleteSignUp)
+                    SettingSignUpPhoneNumberView(signUpStore: signUpStore, isCompleteSignUp: $isCompleteSignUp)
                 } label: {
                     
                     Text("다음")
@@ -42,9 +45,9 @@ struct SettingSignUpNameView: View {
                 .padding()
                 .font(.title2)
                 .foregroundColor(.white)
-                .background(name.isEmpty ?  Color.gray : Color("AnyButtonColor"))
+                .background(signUpStore.name.isEmpty ?  Color.gray : Color("AnyButtonColor"))
                 .cornerRadius(5)
-                .disabled(name.isEmpty)
+                .disabled(signUpStore.name.isEmpty)
                 
             }
             .padding()
@@ -61,7 +64,7 @@ struct SettingSignUpNameView: View {
 struct SettingSignUpNameView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SettingSignUpNameView(isCompleteSignUp: .constant(false))
+            SettingSignUpNameView(signUpStore: SignUpStore(), isCompleteSignUp: .constant(false))
         }
     }
 }
