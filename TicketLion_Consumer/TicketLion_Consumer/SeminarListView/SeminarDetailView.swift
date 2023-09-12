@@ -6,11 +6,6 @@
 //
 
 import SwiftUI
-import MapKit
-import CoreLocation
-
-
-extension MKPointAnnotation: Identifiable{}
 
 struct SeminarDetailView: View {
     
@@ -22,7 +17,7 @@ struct SeminarDetailView: View {
     
     ///하단 신청 버튼 ( 원래.contains("\(dummy.id)") )
     private var attendButtonText: String {
-        User.usersDummy[0].appliedSeminars .contains("1") ? "신 청 하 기 " : "이미 신청한 세미나입니다"
+        User.usersDummy[0].appliedSeminars .contains("1") ? "신청하기 " : "이미 신청한 세미나입니다"
     }
     private var attendButtonColor: Color {
         User.usersDummy[0].appliedSeminars .contains("1") ? Color("AnyButtonColor") : .gray
@@ -30,7 +25,16 @@ struct SeminarDetailView: View {
     private var attendButtonDisabled: Bool {
         User.usersDummy[0].appliedSeminars .contains("1") ? false : true
     }
-
+    
+    ///모집중, 모집마감
+    private var recruiteText: String {
+        dummy.closingStatus ? "모집마감" : "모집중"
+    }
+    private var recruiteColor: Color {
+        dummy.closingStatus ? .red : .blue
+    }
+    
+/*
     ///지도MapKit
 //    @State var address: String
     @State private var coordinate: CLLocationCoordinate2D?
@@ -40,25 +44,46 @@ struct SeminarDetailView: View {
     )
     @State private var annotation: MKPointAnnotation?
     private let testAddress: String = "서울 종로구 종로3길"
+*/
     
     ///지도 sheet변수
 //    @State private var isShowingSheet: Bool = false
     
     func timeCreator(_ time: Double) -> String {
         let createdAt: Date = Date(timeIntervalSince1970: time)
-        let fomatter: DateFormatter = DateFormatter()
-        fomatter.dateFormat = "hh:mm a"
+        let formatter: DateFormatter = DateFormatter()
+        formatter.dateFormat = "hh:mm a"
         
-        return fomatter.string(from: createdAt)
+        return formatter.string(from: createdAt)
     }
     
-    func dateCreator(_ time: Double) -> String {
+    func startDateCreator(_ time: Double) -> String {
         let createdAt: Date = Date(timeIntervalSince1970: time)
-        let fomatter: DateFormatter = DateFormatter()
-        fomatter.dateFormat = "yyyy년 MM월 dd일"
+        let formatter: DateFormatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 MM월 dd일"
         
-        return fomatter.string(from: createdAt)
+        return formatter.string(from: createdAt)
     }
+    
+    func endDateCreator(_ time: Double, _ startDate: Double) -> String {
+        let createdAt: Date = Date(timeIntervalSince1970: time)
+        
+        let yearFormatter: DateFormatter = DateFormatter()
+        let formatter: DateFormatter = DateFormatter()
+        
+        
+        yearFormatter.dateFormat = "yyyy"
+        
+        //start년도와 end년도가 같으면 end년도 출력안하기
+        if yearFormatter.string(from: createdAt) == yearFormatter.string(from: Date(timeIntervalSince1970: startDate)) {
+            formatter.dateFormat = "MM월 dd일"
+        }else {
+            formatter.dateFormat = "yyyy월 MM월 dd일"
+        }
+        
+        return formatter.string(from: createdAt)
+    }
+    
 
     
     var body: some View {
@@ -66,59 +91,83 @@ struct SeminarDetailView: View {
             ScrollView {
                 
                 VStack {
-                    AsyncImage(url: URL(string: dummy.seminarImage)) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(maxWidth: 250)
+                    ZStack {
+                        
+                        AsyncImage(url: URL(string: dummy.seminarImage)) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(maxWidth: 270)
+                            
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .padding(.bottom, 20)
+                        
+                        //모집마감 여부 눈에 띄면 좋을 것 같아서 추가
+                        Text(" \(recruiteText) ")
+                            .foregroundColor(recruiteColor)
+                            .border(recruiteColor)
+                            .background(.white)
+                            .frame(
+                                maxWidth: 270,
+                                maxHeight: .infinity,
+                                alignment: .topLeading)
+                            
 
-                    } placeholder: {
-                        ProgressView()
                     }
-                    .padding()
-                    
                     
                     VStack(alignment: .leading) {
-                        
-                        Text("\(dummy.name)")
-                        Text("")
-                        
-                        VStack(alignment: .leading) {
-                            
-                            Text("진행 날짜 : \(dateCreator(dummy.registerStartDate)) ~ \(dateCreator(dummy.registerEndDate))")
-                            Text("진행 시간 : \(timeCreator(dummy.seminarStartDate)) ~ \(timeCreator(dummy.seminarEndDate))")
-                            
-//                            Text("모집 기간 : \(dummy.registerStartDate)") //모집기간있으면 좋을 것 같아서 일단 추가
-                            
-                            if let _ = dummy.location {//오프라인이면
-                                
-                                Text("장소 : \(dummy.location ?? "location -")")
-                            }
-                            else {
-                                
-                                Text("온라인 진행")
-                            }
-                            
-                            Text("주최자 : \(dummy.host)")
+                        HStack {
+                            Grid(alignment: .topLeading) {
+                                GridRow {
+                                    Text("진행 날짜 ")
+                                        .modifier(textStyle())
+                                    
+                                    Text("\(startDateCreator(dummy.registerStartDate)) ~ \(endDateCreator(dummy.registerEndDate, dummy.registerStartDate))")
+                                    
+                                }
                                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
-                            
-                            
-                            //모집마감 여부 눈에 띄면 좋을 것 같아서 추가
-                            if dummy.closingStatus { //마감이면
-                                Text(" 모집마감 ")
-                                    .foregroundColor(.red)
-                                    .border(.red)
                                 
-                            }else {
-                                Text(" 모집중 ")
-                                    .foregroundColor(.blue)
-                                    .border(.blue)
+                                GridRow {
+                                    Text("진행 시간 ")
+                                        .modifier(textStyle())
+                                    
+                                    Text("\(timeCreator(dummy.seminarStartDate)) ~ \(timeCreator(dummy.seminarEndDate))")
+                                    
+                                }
+                                .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
+                                
+                                GridRow {
+                                    Text("장소 ")
+                                        .modifier(textStyle())
+                                    
+                                    if let _ = dummy.location {//오프라인이면
+ 
+                                        Text("\(dummy.location ?? "location -")")
+                                    }
+                                    else {
+                                        
+                                        Text("(온라인 진행)")
+                                        
+                                    }
+                                    
+                                }
+                                .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
+                                
+                                GridRow {
+                                    Text("주최자 ")
+                                        .bold()
+                                        .modifier(textStyle())
+                                    
+                                    Text("\(dummy.host)")
+                                }
+                                .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
                             }
-                            
+                            Spacer()//도저히 alignment가 안먹어서 넣었습니당
                         }
-
                     }
-                    Spacer()
+                
                 }
                 .padding()
                 
@@ -128,81 +177,77 @@ struct SeminarDetailView: View {
                 
                 //MARK: 행사소개
                 VStack(alignment: .leading) {
-                    
-                    Text("행사 소개")
-                    Text("")
-                    
-                    Text("상세 : \(dummy.details)")
+                    Text("상세 소개")
+                        .font(.title3)
+                        .bold()
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
                     
-                    Text("모집인원 : \(dummy.maximumUserNumber)")
+                    Grid(alignment: .topLeading) {
+                        GridRow {
+                            
+                            Text("상세 정보")
+                                .modifier(textStyle())
+
+
+                            Text("\(dummy.details)")
+                        }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
-                    
-                    Text("모집 기간 : \(dummy.registerStartDate)")
-                    
-                    
-                    Text("진행 날짜 : \(dateCreator(dummy.registerStartDate)) ~ \(dateCreator(dummy.registerEndDate))")
+                        
+                        GridRow {
+                            Text("모집 인원")
+                                .modifier(textStyle())
+
+                            Text("\(dummy.maximumUserNumber)")
+                        }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
-                    
-                    Text("진행 시간 : \(timeCreator(dummy.registerStartDate)) ~ \(timeCreator(dummy.registerEndDate))")
+                        
+                        GridRow {
+                            Text("모집 기간")
+                                .modifier(textStyle())
+
+
+                            Text("\(dummy.registerStartDate)")
+                        }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
-                    
-                    
-                    if let _ = dummy.location { //오프라인이면
-                        HStack {
-                            Text("장소 : \(dummy.location ?? "location -")")
-                            /*
-                            Button(action: {
-                                isShowingSheet = true
+                        
+                        GridRow {
+                            Text("진행 날짜")
+                                .modifier(textStyle())
+
+                            Text("\(startDateCreator(dummy.registerStartDate)) ~ \(endDateCreator(dummy.registerEndDate, dummy.registerStartDate))")
+                        }
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
+                        
+                        GridRow {
+                            Text("진행 시간")
+                                .modifier(textStyle())
+
+                            Text("\(timeCreator(dummy.registerStartDate)) ~ \(timeCreator(dummy.registerEndDate))")
+                        }
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
+                        
+                        GridRow {
+                            Text("장소")
+                                .modifier(textStyle())
+
+                            if let _ = dummy.location { //오프라인이면
                                 
-                            }, label: {
-                                Text("위치보기")
-                                    .foregroundColor(.white)
-                                    .font(.caption)
-                            })
-                            .padding(EdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)) //위치 버튼은 buttonStyle .bordered보다 padding이 나은것같습니다.
-                            .background(Color("AnyButtonColor"))
-                            .cornerRadius(5)
-                             */
-                        }
-                             
-                        
-                        //지도지도~ 진형님
-                        VStack {
-                            Map(coordinateRegion: $region, interactionModes: [], showsUserLocation: true, annotationItems: [annotation].compactMap { $0 }) { pin in
-                                //MapMarker(coordinate: pin.coordinate, tint: .red)
-                                MapAnnotation(coordinate: annotation?.coordinate ?? CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780)) {
-                                    Image("customPin")
-                                }
-                            }
-                            .frame(height: 250)
-                        }
-                        .onTapGesture {
-                            convertAddressToCoordinate(address: dummy.location ?? "location -") { coordinate, error in
-                                if let coordinate = coordinate {
-                                    region.center.latitude = coordinate.latitude
-                                    region.center.longitude = coordinate.longitude
-                                    annotation = MKPointAnnotation()
-                                    annotation?.coordinate = coordinate
-                                    annotation?.title = "목적지"
-                                    annotation?.subtitle = dummy.location ?? "location -"
-                                }
+                                Text("\(dummy.location ?? "location -")")
+                                
+                                
+                            }else {
+                                Text("(온라인 진행)")
+                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
+                                
                             }
                         }
-                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
-                        
-                        
-                    }else {
-                        Text("온라인으로 진행")
-                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
-                        
                     }
-                    
-                    Text("문의하기")
-                    Text("전화 : 010-0000-0000")
-                        .font(.caption)
-                    
-                    
+                    if let _ = dummy.location {
+                        
+                        SeminarDetailMapView(dummy: dummy)
+
+                    }
+
                 }
                 .padding()
                 
@@ -212,19 +257,7 @@ struct SeminarDetailView: View {
             }
             .navigationTitle("\(dummy.name)")
             .navigationBarTitleDisplayMode(.inline)
-            .onAppear {
-                // 주소를 좌표로 변환하여 지도에 표시
-                convertAddressToCoordinate(address: dummy.location ?? "location -") { coordinate, error in
-                    if let coordinate = coordinate {
-                        region.center.latitude = coordinate.latitude
-                        region.center.longitude = coordinate.longitude
-                        annotation = MKPointAnnotation()
-                        annotation?.coordinate = coordinate
-                        annotation?.title = "목적지"
-                        annotation?.subtitle = dummy.location ?? "location -"
-                    }
-                }
-            }
+
             
             //MARK: 신청버튼
             NavigationLink {
@@ -234,7 +267,7 @@ struct SeminarDetailView: View {
 //                    .frame(maxWidth: .infinity)
                     .font(.title2.bold())
             }
-            .frame(width: 380,height: 70) //높이가 너무 긴가..?
+            .frame(width: 380,height: 60)
             .foregroundColor(.white)
             .background(attendButtonColor)
             .cornerRadius(5)
@@ -249,41 +282,21 @@ struct SeminarDetailView: View {
                     dismiss()
                 } label: {
                     Image(systemName: "chevron.backward")
-                        .foregroundColor(Color("AnyButtonColor"))
+                        .foregroundColor(.orange)
                 }
 
             }
         }
 
     }
-    //MARK: 함수들
-    
-    func convertAddressToCoordinate(address: String, completion: @escaping (CLLocationCoordinate2D?, Error?) -> Void) {
-        
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(address) { placemarks, error in
-            if let error = error {
-                print("Geocoding error: \(error)")
-                completion(nil, error)
-                return
-            }
-            
-            if let placemark = placemarks?.first {
-                let coordinate = placemark.location?.coordinate
-                completion(coordinate, nil)
-            } else {
-                print("No location found for address: \(address)")
-                completion(nil, nil)
-            }
-        }
-    }
     
 }
+
 
 struct SeminarDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SeminarDetailView(isShowingDetail: .constant(true), dummy: Seminar.seminarsDummy[0])
+            SeminarDetailView(isShowingDetail: .constant(true), dummy: Seminar.seminarsDummy[2])
 
         }
     }
