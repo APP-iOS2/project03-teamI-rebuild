@@ -7,8 +7,15 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 struct SettingSignUpBirthView: View {
+    
+    @ObservedObject var signUpStore: SignUpStore
+    
+    let db = Firestore.firestore()
+    
    @State private var birth: String = ""
    
    @Binding var isCompleteSignUp: Bool
@@ -28,7 +35,7 @@ struct SettingSignUpBirthView: View {
                    Text("5/5")
                    }
                    .font(.title2)
-                   TextField("ex)19960422", text: $birth)
+               TextField("ex)19960422", text: $signUpStore.birth)
                    .padding()
                    .background(Color(uiColor: .secondarySystemBackground))
                    .cornerRadius(5)
@@ -36,7 +43,10 @@ struct SettingSignUpBirthView: View {
                
                
                NavigationLink {
-                   SettingSignUpCompleteView( isCompleteSignUp: $isCompleteSignUp)
+                   SettingSignUpCompleteView( signUpStore: signUpStore, isCompleteSignUp: $isCompleteSignUp)
+                       .onAppear {
+                               fetchUser()
+                       }
                } label: {
                    
                    Text("다음")
@@ -45,9 +55,9 @@ struct SettingSignUpBirthView: View {
                .padding()
                .font(.title2)
                .foregroundColor(.white)
-               .background(birth.isEmpty ?  Color.gray : Color("AnyButtonColor"))
+               .background(signUpStore.birth.isEmpty ?  Color.gray : Color("AnyButtonColor"))
                .cornerRadius(5)
-               .disabled(birth.isEmpty)
+               .disabled(signUpStore.birth.isEmpty)
                
                
            }
@@ -58,13 +68,33 @@ struct SettingSignUpBirthView: View {
            Spacer()
        }
    }
+    
+    func fetchUser() {
+        let user =  User(name: signUpStore.name,
+                         phoneNumber: signUpStore.phoneNumber,
+                         email: signUpStore.email,
+                         password: signUpStore.password,
+                         birth: signUpStore.birth,
+                         appliedSeminars: [],
+                         favoriteSeminars: [],
+                         recentlySeminars: [],
+                         canceledSeminars: [])
+        
+        print("오케이")
+        
+        do {
+          try db.collection("User").document(user.id).setData(from: user)
+        } catch {
+            print(error)
+        }
+    }
    
 }
 
 struct SettingSignUpBirthView_Previews: PreviewProvider {
    static var previews: some View {
        NavigationStack{
-           SettingSignUpBirthView(isCompleteSignUp: .constant(false))
+           SettingSignUpBirthView(signUpStore: SignUpStore(), isCompleteSignUp: .constant(false))
        }
    }
 }
