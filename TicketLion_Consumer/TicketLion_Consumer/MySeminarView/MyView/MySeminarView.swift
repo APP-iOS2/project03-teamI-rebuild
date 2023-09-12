@@ -24,6 +24,9 @@ struct MySeminarView: View {
                         VStack {
                             switch selectedFilter {
                             case .reservation: MyReservationView(mySeminarStore: mySeminarStore)
+                                    .onAppear {
+                                        mySeminarStore.fetchSeminar()
+                                    }
                             case .favorite: MyFavoriteView()
                             }
                         }
