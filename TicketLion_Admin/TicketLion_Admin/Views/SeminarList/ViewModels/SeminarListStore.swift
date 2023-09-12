@@ -15,11 +15,11 @@ class SeminarListStore: ObservableObject {
     let currentDate = Date().timeIntervalSince1970
     
     var recruitingList: [Seminar] {
-        seminarList.filter { $0.registerEndDate >= currentDate }
+        seminarList.filter { $0.registerEndDate >= currentDate && $0.closingStatus}
     }
     
     var closedList: [Seminar] {
-        seminarList.filter { $0.registerEndDate < currentDate }
+        seminarList.filter { $0.registerEndDate < currentDate || !$0.closingStatus}
     }
     
     init() {
