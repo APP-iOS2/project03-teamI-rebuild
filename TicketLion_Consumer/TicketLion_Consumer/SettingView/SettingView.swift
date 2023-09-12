@@ -21,9 +21,9 @@ struct SettingView: View {
                 if isLoggedinUser {
                     Section("계정 정보") {
                         NavigationLink {
-                            SettingUserDetailView()
+                            SettingUserDetailView(userStore: userStore)
                         } label: {
-                            SettingUserView()
+                            SettingUserView(userStore: userStore)
                         }
                     }
                 }
@@ -46,16 +46,9 @@ struct SettingView: View {
                         }
                     } else {
                         NavigationLink {
-                            SettingLoginView(userStore: userStore)
+                            SettingLoginView(isLoggedinUser: $isLoggedinUser, userStore: userStore)
                         } label: {
                             Text("로그인")
-                        }
-                        
-                        HStack {
-                            Text("자동 로그인")
-                            Toggle(isOn: $isToggleAutomaticLogin) {
-                                //
-                            }
                         }
                     }
                 }
@@ -101,6 +94,13 @@ struct SettingView: View {
             .listStyle(.grouped)
             .navigationTitle("설정")
             .navigationBarTitleDisplayMode(.inline)
+        }
+        .onAppear {
+            if userStore.currentUser != nil {
+                isLoggedinUser = true
+                userStore.autoLogin()
+            }
+            
         }
     }
 }

@@ -17,6 +17,10 @@ class UserStore: ObservableObject {
     @Published var name: String = ""
     @Published var birth: String = ""
     @Published var phoneNumber: String = ""
+    @Published var appliedSeminars: [String] = []
+    @Published var favoriteSeminars: [String] = []
+    @Published var recentlySeminars: [String] = []
+    @Published var canceledSeminars: [String] = []
     
     @Published var isCompleteSignUp = false
     
@@ -98,6 +102,10 @@ class UserStore: ObservableObject {
         try? Auth.auth().signOut()
     }
     
+    func autoLogin() {
+            guard let currentUser = currentUser else { return }
+        login(email: currentUser.email ?? "", password:"")
+    }
     
 }
 

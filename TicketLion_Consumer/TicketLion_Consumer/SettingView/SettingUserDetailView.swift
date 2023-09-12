@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct SettingUserDetailView: View {
-    var user: User = User.usersDummy[0]
+    
+    @ObservedObject var userStore: UserStore
+    
     var body: some View {
         VStack {
              Form {
@@ -26,32 +28,32 @@ struct SettingUserDetailView: View {
                          }
                          
                          VStack(alignment: .leading) {
-                             Text(user.name)
+                             Text(userStore.name)
                                  .font(.title)
                                  .bold()
-                             Text(user.phoneNumber)
-                             Text(user.email)
-                             Text(user.birth)
+                             Text(userStore.phoneNumber)
+                             Text(userStore.email)
+                             Text(userStore.birth)
                          }
                      }
                  }
                  Section("신청한 세미나") {
-                     ForEach(user.appliedSeminars, id: \.self) { appliedSeminar in
+                     ForEach(userStore.appliedSeminars, id: \.self) { appliedSeminar in
                          Text(appliedSeminar)
                      }
                  }
                  Section("즐겨찾기한 세미나") {
-                     ForEach(user.favoriteSeminars, id: \.self) { favoriteSeminar in
+                     ForEach(userStore.favoriteSeminars, id: \.self) { favoriteSeminar in
                          Text(favoriteSeminar)
                      }
                  }
                  Section("최근 본 세미나") {
-                     ForEach(user.recentlySeminars, id: \.self) { recentlySeminar in
+                     ForEach(userStore.recentlySeminars, id: \.self) { recentlySeminar in
                          Text(recentlySeminar)
                      }
                  }
                  Section("취소한 세미나") {
-                     ForEach(user.canceledSeminars, id: \.self) { canceledSeminar in
+                     ForEach(userStore.canceledSeminars, id: \.self) { canceledSeminar in
                          Text(canceledSeminar)
                      }
                  }
@@ -64,7 +66,7 @@ struct SettingUserDetailView: View {
 struct SettingUserDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SettingUserDetailView()
+            SettingUserDetailView(userStore: UserStore())
         }
     }
 }

@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct SettingLoginView: View {
-    @State var userEmail: String = ""
-    @State var userPassword: String = ""
-    @State var isCompleteSignUp: Bool = false
+    @State private var userEmail: String = ""
+    @State private var userPassword: String = ""
+    @State private var isCompleteSignUp: Bool = false
+    
+    @Binding var isLoggedinUser: Bool
     
     @ObservedObject var userStore: UserStore
+    
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack(spacing: 25) {
@@ -42,6 +46,12 @@ struct SettingLoginView: View {
             Button {
                 print("\(userEmail) - \(userPassword)")
                 userStore.login(email: userEmail, password: userPassword)
+                dismiss()
+                if userStore.$currentUser != nil {
+                    isLoggedinUser = true
+                } else {
+                    isLoggedinUser = false
+                }
             } label: {
                 Text("로그인")
             }
@@ -53,7 +63,7 @@ struct SettingLoginView: View {
             .cornerRadius(5)
             
             NavigationLink {
-                SettingSignUpEmailView(isCompleteSignUp: $isCompleteSignUp)
+                SettingSignUpEmailView(isCompleteSignUp: $isCompleteSignUp, isLoggedinUser: $isLoggedinUser)
             } label: {
                 Text("회원가입")
                 Image(systemName: "chevron.right")
@@ -71,7 +81,7 @@ struct SettingLoginView: View {
 struct SettingLoginView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SettingLoginView(userStore: UserStore())
+            SettingLoginView(isLoggedinUser: .constant(false), userStore: UserStore())
         }
     }
 }

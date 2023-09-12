@@ -22,6 +22,8 @@ struct SettingSignUpPhoneNumberView: View {
     @State private var number: String = ""
 
     @Binding var isCompleteSignUp: Bool
+    @Binding var isLoggedinUser: Bool
+    
     var body: some View {
         NavigationStack{
             VStack(alignment: .leading, spacing: 25 ){
@@ -46,7 +48,7 @@ struct SettingSignUpPhoneNumberView: View {
                 
                 NavigationLink {
                     
-                    SettingSignUpBirthView(userStore: userStore, isCompleteSignUp: $isCompleteSignUp)
+                    SettingSignUpBirthView(userStore: userStore, isCompleteSignUp: $isCompleteSignUp, isLoggedinUser: $isLoggedinUser)
                     
                 } label: {
                     
@@ -75,7 +77,7 @@ struct SettingSignUpPhoneNumberView: View {
 struct SettingSignUpPhoneNumberView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            SettingSignUpPhoneNumberView(userStore: UserStore(), isCompleteSignUp: .constant(false))
+            SettingSignUpPhoneNumberView(userStore: UserStore(), isCompleteSignUp: .constant(false), isLoggedinUser: .constant(false))
         }
     }
 }
