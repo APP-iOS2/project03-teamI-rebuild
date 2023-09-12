@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SeminarListView: View {
     
+    @StateObject var seminarStore: SeminarStore = SeminarStore()
     @State private var category: Category = .iOSDevelop
     @State private var search: String = ""
     @State var isShowingDetail: Bool = false
@@ -46,7 +47,7 @@ struct SeminarListView: View {
                 .pickerStyle(.segmented)
                 .padding()
                 
-                ForEach(Seminar.seminarsDummy.filter({"\($0)".localizedStandardContains(self.search) || self.search.isEmpty})) { seminar in
+                ForEach(seminarStore.seminarList.filter({"\($0)".localizedStandardContains(self.search) || self.search.isEmpty})) { seminar in
                         
                         if seminar.category.contains(category.categoryName) {
                             
@@ -117,6 +118,9 @@ struct SeminarListView: View {
                         }
                     } // ForEach 끝
                 
+            }
+            .onAppear {
+                seminarStore.fetchSeminar()
             }
             .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always), prompt: "\(category.categoryName) 세미나를 찾아보세요.")
             .fullScreenCover(isPresented: $isShowingDetail) {
