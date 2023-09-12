@@ -94,6 +94,9 @@ struct WholeListView: View {
             }
             //.tint(Color(hex: 0xD7D7D9))
             .foregroundColor(.black)
+            .onAppear {
+                seminarStore.fetch()
+            }
         }
     }
 }
