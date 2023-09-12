@@ -25,6 +25,7 @@ struct SettingUserView: View {
                     .bold()
                 Text(user.phoneNumber)
                 Text(user.email)
+                Text(user.birth)
             }
         }
     }
