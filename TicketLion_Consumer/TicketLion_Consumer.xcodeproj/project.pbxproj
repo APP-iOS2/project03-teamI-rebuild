@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09EA3D8B2AAFE97C0057F805 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09EA3D8A2AAFE97C0057F805 /* GoogleService-Info.plist */; };
+		09EA3D8D2AAFEAB70057F805 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EA3D8C2AAFEAB70057F805 /* UserStore.swift */; };
 		646BA2712AAFE3B600C1FC69 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 646BA2702AAFE3B600C1FC69 /* FirebaseAuth */; };
 		646BA2732AAFE3B600C1FC69 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 646BA2722AAFE3B600C1FC69 /* FirebaseAuthCombine-Community */; };
 		646BA2752AAFE3B600C1FC69 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 646BA2742AAFE3B600C1FC69 /* FirebaseDatabase */; };
@@ -55,6 +57,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09EA3D8A2AAFE97C0057F805 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		09EA3D8C2AAFEAB70057F805 /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		64B327A12AAF5CEE00D64EFF /* TicketLion_Consumer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicketLion_Consumer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B327A42AAF5CEE00D64EFF /* TicketLion_ConsumerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketLion_ConsumerApp.swift; sourceTree = "<group>"; };
 		64B327A62AAF5CEE00D64EFF /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 		64B327A32AAF5CEE00D64EFF /* TicketLion_Consumer */ = {
 			isa = PBXGroup;
 			children = (
+				09EA3D8A2AAFE97C0057F805 /* GoogleService-Info.plist */,
 				64B327A42AAF5CEE00D64EFF /* TicketLion_ConsumerApp.swift */,
 				64B327A62AAF5CEE00D64EFF /* MainTabView.swift */,
 				64B327E62AAF69E600D64EFF /* Model */,
@@ -158,6 +163,7 @@
 			children = (
 				64B327EA2AAF6B6B00D64EFF /* SeminarModel.swift */,
 				64B327EC2AAF6B7E00D64EFF /* UserModel.swift */,
+				09EA3D8C2AAFEAB70057F805 /* UserStore.swift */,
 				64B327EE2AAF6BAF00D64EFF /* ResearchModel.swift */,
 				64B327F02AAF6BC300D64EFF /* DevModel.swift */,
 				64B327F22AAF6BDC00D64EFF /* DevStore.swift */,
@@ -311,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64B327AC2AAF5CF000D64EFF /* Preview Assets.xcassets in Resources */,
+				09EA3D8B2AAFE97C0057F805 /* GoogleService-Info.plist in Resources */,
 				64B327A92AAF5CF000D64EFF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -352,6 +359,7 @@
 				64B3281C2AAF6ED600D64EFF /* SettingView.swift in Sources */,
 				64B328092AAF6DB100D64EFF /* MyFilterBar.swift in Sources */,
 				64B328052AAF6D7E00D64EFF /* MyFavoriteView.swift in Sources */,
+				09EA3D8D2AAFEAB70057F805 /* UserStore.swift in Sources */,
 				64B327FB2AAF6CC900D64EFF /* SeminarAttendView.swift in Sources */,
 				64B3282A2AAF6FA700D64EFF /* SettingDevInformationView.swift in Sources */,
 				64B3280B2AAF6DC900D64EFF /* MySeminarStore.swift in Sources */,
