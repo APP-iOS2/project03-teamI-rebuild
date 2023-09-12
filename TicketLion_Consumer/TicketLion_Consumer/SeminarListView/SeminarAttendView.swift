@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SeminarAttendView: View {
+    var seminar: Seminar
     let user: User
     @Binding var isShowingDetail: Bool
         
@@ -16,7 +17,17 @@ struct SeminarAttendView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     Divider()
-                    SeminarInfoView(seminar: Seminar.seminarsDummy[0])
+                    
+                    VStack(alignment: .leading) {
+                        Text("신청한 세미나")
+                            .font(.title3)
+                            .bold()
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
+                        
+                        SeminarInfoView(seminar: seminar)
+                    }
+                    .padding()
+                    
                     Divider()
                     
                     VStack(alignment: .leading) {
@@ -67,7 +78,7 @@ struct SeminarAttendView: View {
 
 struct SeminarAttendView_Previews: PreviewProvider {
     static var previews: some View {
-        SeminarAttendView(user: User.usersDummy[0], isShowingDetail: .constant(true))
+        SeminarAttendView(seminar: Seminar.seminarsDummy[1], user: User.usersDummy[0], isShowingDetail: .constant(true))
 
     }
 }

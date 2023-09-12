@@ -96,7 +96,7 @@ struct SeminarAttendPlusView: View {
                 } label: {
                     Text("제출하기")
                         .font(.title2.bold())
-                        .frame(width:380,height: 70)
+                        .frame(width:380,height: 60)
                         .background(isButton ? Color("AnyButtonColor") : Color(.gray))
                         .cornerRadius(5)
                         .foregroundColor(.white)
