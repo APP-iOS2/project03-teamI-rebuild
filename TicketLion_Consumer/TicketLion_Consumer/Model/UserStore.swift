@@ -38,7 +38,7 @@ class UserStore: ObservableObject {
                 // Firestore에 데이터 추가
                 let db = Firestore.firestore()
                 db.collection("users").addDocument(data: userDictionary) { error in
-                    if let error = error {
+                    if error != nil {
                         self.errorMessage = "회원가입 중 오류가 발생했습니다."
                     } else {
                         self.isCompleteSignUp = true
@@ -48,5 +48,28 @@ class UserStore: ObservableObject {
         }
     }
 
+    
+    @Published var currentUser: Firebase.User?
+    
+    init() {
+        currentUser = Auth.auth().currentUser
+    }
+    
+    func login(email: String, password: String) {
+        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+            if let error = error {
+                print("error: \(error.localizedDescription)")
+                return
+            }
+            self.currentUser = result?.user
+        }
+    }
+    
+    func logout() {
+        currentUser = nil
+        try? Auth.auth().signOut()
+    }
+    
+    
 }
 
