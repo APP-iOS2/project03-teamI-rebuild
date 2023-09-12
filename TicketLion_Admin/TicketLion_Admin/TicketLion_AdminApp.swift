@@ -26,7 +26,7 @@ struct TicketLion_AdminApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                MainView()
+                MainView(seminarStore: SeminarListStore())
             }
         }
     }
