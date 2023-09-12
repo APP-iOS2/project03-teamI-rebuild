@@ -30,6 +30,7 @@ struct MainTabView: View {
                 }.tag(2)
         }
         .tint(Color("AnyButtonColor"))
+        
     }
 }
 
