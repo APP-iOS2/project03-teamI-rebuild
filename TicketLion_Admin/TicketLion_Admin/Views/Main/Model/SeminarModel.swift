@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-struct Seminar: Identifiable {
+struct Seminar: Identifiable, Codable {
     
     /// UUID
     var id: String = UUID().uuidString

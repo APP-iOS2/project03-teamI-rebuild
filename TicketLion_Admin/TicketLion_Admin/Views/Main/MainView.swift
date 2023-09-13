@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @State var columnVisibility = NavigationSplitViewVisibility.doubleColumn
-    @ObservedObject var seminarStore: SeminarListStore
+    @ObservedObject var seminarStore: SeminarListStore = SeminarListStore()
     
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
@@ -17,11 +17,12 @@ struct MainView: View {
         } detail: {
             WholeListView(seminarStore: seminarStore)
         }
+        .navigationBarBackButtonHidden()
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(seminarStore: SeminarListStore())
+        MainView()
     }
 }

@@ -17,9 +17,12 @@ import SwiftUI
 
 struct SettingSignUpPhoneNumberView: View {
     
+    @ObservedObject var userStore: UserStore
+    
     @State private var number: String = ""
 
     @Binding var isCompleteSignUp: Bool
+    
     var body: some View {
         NavigationStack{
             VStack(alignment: .leading, spacing: 25 ){
@@ -37,14 +40,15 @@ struct SettingSignUpPhoneNumberView: View {
                 }
                 .font(.title2)
                 
-                TextField("- 없이 입력", text: $number)
+                TextField("- 없이 입력", text: $userStore.phoneNumber)
+                    .keyboardType(.phonePad)
                     .padding()
                     .background(Color(uiColor: .secondarySystemBackground))
                     .cornerRadius(5)
-                
+                    .keyboardType(.decimalPad)
                 NavigationLink {
                     
-                    SettingSignUpBirthView(isCompleteSignUp: $isCompleteSignUp)
+                    SettingSignUpBirthView(userStore: userStore, isCompleteSignUp: $isCompleteSignUp)
                     
                 } label: {
                     
@@ -54,9 +58,9 @@ struct SettingSignUpPhoneNumberView: View {
                 .padding()
                 .font(.title2)
                 .foregroundColor(.white)
-                .background(number.isEmpty ?  Color.gray : Color("AnyButtonColor"))
+                .background(userStore.phoneNumber.isEmpty ?  Color.gray : Color("AnyButtonColor"))
                 .cornerRadius(5)
-                .disabled(number.isEmpty)
+                .disabled(userStore.phoneNumber.isEmpty)
                 
             }
             .padding()
@@ -73,7 +77,7 @@ struct SettingSignUpPhoneNumberView: View {
 struct SettingSignUpPhoneNumberView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            SettingSignUpPhoneNumberView(isCompleteSignUp: .constant(false))
+            SettingSignUpPhoneNumberView(userStore: UserStore(), isCompleteSignUp: .constant(false))
         }
     }
 }

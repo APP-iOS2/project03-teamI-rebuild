@@ -10,6 +10,8 @@ import SwiftUI
 struct MainTabView: View {
     
     @State private var tabIndex: Int = 0
+	
+	@ObservedObject var userStore = UserStore()
     
     var body: some View {
         TabView {
@@ -30,6 +32,8 @@ struct MainTabView: View {
                 }.tag(2)
         }
         .tint(Color("AnyButtonColor"))
+		.environmentObject(userStore)
+        
     }
 }
 
