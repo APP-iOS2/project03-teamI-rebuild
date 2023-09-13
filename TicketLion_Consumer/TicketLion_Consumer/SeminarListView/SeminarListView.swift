@@ -20,7 +20,9 @@ struct SeminarListView: View {
     @State var newSeminar: Seminar = Seminar.seminarsDummy[1]
     
     var body: some View {
+        
         NavigationStack {
+            
             ScrollView {
                 Picker("Category", selection: $category) {
                     Text(Category.iOSDevelop.categoryName).tag(Category.iOSDevelop)
@@ -29,7 +31,7 @@ struct SeminarListView: View {
                     Text(Category.BackEnd.categoryName).tag(Category.BackEnd)
                 }
                 .pickerStyle(.segmented)
-                .padding()
+                .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                 
                 ForEach(seminarStore.seminarList.filter({"\($0)".localizedStandardContains(self.search) || self.search.isEmpty})) { seminar in
                     
@@ -38,29 +40,30 @@ struct SeminarListView: View {
                         Button {
                             newSeminar = seminar
                             isShowingDetail = true
-                            print("버튼 눌려요! \(newSeminar)")
-                            print("isShowingDetail: \(isShowingDetail)")
+                            print("디테일뷰에 들어갈 \n")
                         } label: {
                             VStack(alignment: .leading) {
                                 HStack(alignment: .top) {
-                                    
+                                                                    
                                     Text("\(seminar.name)") // 메인 타이틀
                                         .foregroundColor(.black)
                                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
                                     
                                     Spacer()
                                     
-                                    Text(seminar.closingStatus ? "모집마감" : "모집중")
-                                        .foregroundColor(seminar.closingStatus ? .red : .blue)
-                                        .border(seminar.closingStatus ? .red : .blue)
-                                        .background(.white)
-                                    
                                     
                                     Text("\(seminar.enterUsers.count)/\(seminar.maximumUserNumber)")
                                         .foregroundColor(Color("AnyButtonColor"))
                                         .border(Color("AnyButtonColor"))
                                         .background(.white)
+
                                     
+                                    Text(seminar.closingStatus ? "모집마감" : "모집중")
+                                        .foregroundColor(seminar.closingStatus ? .red : .blue)
+                                        .border(seminar.closingStatus ? .red : .blue)
+                                        .background(.white)
+
+    
                                     
                                     
                                     Button { // 즐겨찾기 버튼
@@ -106,48 +109,23 @@ struct SeminarListView: View {
                                 
                                 VStack {
                                     HStack(alignment: .top) {
-                                        
-                                        ZStack {
                                             
-                                            AsyncImage(url: URL(string: seminar.seminarImage)) { phase in
-                                                if let image = phase.image {
-                                                    image
-                                                } else if phase.error != nil { // 에러 있을때
-                                                    Image("TicketLion")
-                                                        .resizable()
-                                                        .frame(width: 100, height: 100)
-                                                        .aspectRatio(contentMode: .fit)
-                                                } else { // placeholder
-                                                    Image("TicketLion")
-                                                        .resizable()
-                                                        .frame(width: 100, height: 100)
-                                                        .aspectRatio(contentMode: .fit)
-                                                }
+                                        AsyncImage(url: URL(string: seminar.seminarImage)) { phase in
+                                            if let image = phase.image {
+                                                image
+                                            } else if phase.error != nil { // 에러 있을때
+                                                Image("TicketLion")
+                                                    .resizable()
+                                                    .frame(width: 100, height: 100)
+                                                    .aspectRatio(contentMode: .fill)
+                                            } else { // placeholder
+                                                Image("TicketLion")
+                                                    .resizable()
+                                                    .frame(width: 100, height: 100)
+                                                    .aspectRatio(contentMode: .fill)
                                             }
-                                            //모집마감 여부 눈에 띄면 좋을 것 같아서 추가
-                                            /* Text(seminar.closingStatus ? "모집마감" : "모집중")
-                                             .foregroundColor(seminar.closingStatus ? .red : .blue)
-                                             .border(seminar.closingStatus ? .red : .blue)
-                                             .background(.white)
-                                             .frame(
-                                             maxWidth: 100,
-                                             maxHeight: 99,
-                                             alignment: .topLeading)
-                                             
-                                             
-                                             Text("\(seminar.enterUsers.count)/\(seminar.maximumUserNumber)")
-                                             .foregroundColor(Color("AnyButtonColor"))
-                                             .border(Color("AnyButtonColor"))
-                                             .background(.white)
-                                             .frame(
-                                             maxWidth: 100,
-                                             maxHeight: 99,
-                                             alignment: .bottomLeading) */
-                                            
-                                            
                                         }
-                                        
-                                        Spacer()
+
                                         
                                         VStack(alignment: .leading) { // 세미나 디테일
                                             Group {
@@ -157,9 +135,11 @@ struct SeminarListView: View {
                                                 Text("시간 : \(seminar.timeCreator( seminar.registerStartDate)) ~ \(seminar.timeCreator( seminar.registerEndDate))")
                                             }
                                             .padding(EdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0))
+                                            
                                             .foregroundColor(.black)
                                             .font(.footnote)
                                         }
+                                        .padding(EdgeInsets(top: 0, leading: 7, bottom: 0, trailing: 0))
                                         
                                     }
                                 }
@@ -169,17 +149,18 @@ struct SeminarListView: View {
                             .cornerRadius(20)
                             .padding(EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15))
                             
-                        }
-                        .fullScreenCover(isPresented: $isShowingDetail) {
-                            NavigationStack {
-                                // 여기에 디테일 뷰
-                                SeminarDetailView(isShowingDetail: $isShowingDetail, seminar: $newSeminar)
-                            }
-                        }// 라벨 끝
+                        } // 라벨 끝
                     }
                 } // ForEach 끝
             }
-            
+            .navigationTitle("세미나 목록")
+//            .navigationBarTitleDisplayMode(.inline)
+            .fullScreenCover(isPresented: $isShowingDetail) {
+                NavigationStack {
+                    // 여기에 디테일 뷰
+                    SeminarDetailView(isShowingDetail: $isShowingDetail, seminar: $newSeminar)
+                }
+            }
             .onAppear {
                 seminarStore.fetchSeminar()
                 userStore.fetchUserInfo()
@@ -191,8 +172,7 @@ struct SeminarListView: View {
             .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always), prompt: "\(category.categoryName) 세미나를 찾아보세요.")
             
         }
-        .navigationTitle("Seminar")
-        .navigationBarTitleDisplayMode(.inline)
+
     }
 }
 
