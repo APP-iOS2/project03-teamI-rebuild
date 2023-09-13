@@ -24,7 +24,7 @@ struct Seminar: Identifiable, Codable {
     var location: String?
     /// 세미나 모집 최대 인원
     var maximumUserNumber: Int
-    /// 세미나 시작 날짜
+    /// 세미나 등록 날짜
     var createdAt: Double
     /// 세미나 마감 여부
     var closingStatus: Bool
