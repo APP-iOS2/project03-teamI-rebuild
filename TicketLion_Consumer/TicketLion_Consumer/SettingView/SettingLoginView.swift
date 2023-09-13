@@ -11,6 +11,7 @@ struct SettingLoginView: View {
     @State private var userEmail: String = ""
     @State private var userPassword: String = ""
     @State private var isCompleteSignUp: Bool = false
+    @State private var loginFailedMessage: String = ""
     
     @EnvironmentObject var userStore: UserStore
     
@@ -20,13 +21,14 @@ struct SettingLoginView: View {
                 Divider()
                     .background(Color("AnyButtonColor"))
                 Spacer()
-                Image("AppIcon")
+                Image("TicketLion")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 200, height: 200)
                     .cornerRadius(20)
-                Spacer()
-                TextField("아이디 입력", text: $userEmail)
+                Text(loginFailedMessage)
+                    .foregroundColor(.red)
+                TextField("이메일 입력", text: $userEmail)
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 5)
@@ -48,22 +50,22 @@ struct SettingLoginView: View {
 						} catch {
 							
 						}
-						
 						if userStore.currentUser != nil {
 							userStore.loginSheet = false
-						}
+                        } else {
+                            loginFailedMessage = "이메일 또는 비밀번호가 틀렸습니다."
+                        }
 					}
-					
-                    
                 } label: {
                     Text("로그인")
+                        .frame(maxWidth: .infinity, maxHeight: 20)
+                        .padding()
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .background(Color("AnyButtonColor"))
+                        .cornerRadius(5)
                 }
-                .frame(maxWidth: .infinity, maxHeight: 20)
-                .padding()
-                .font(.title2)
-                .foregroundColor(.white)
-                .background(Color("AnyButtonColor"))
-                .cornerRadius(5)
+                
 //                .navigationDestination(isPresented: $isLoggedinUser, destination: {
 //                    SettingView()
 //                })
