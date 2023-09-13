@@ -35,17 +35,14 @@ struct SeminarDetailView: View {
     
     }
     private var attendButtonDisabled: Bool {
-        if let _ = userStore.currentUser { //로그인되어있고
+        if let _ = userStore.currentUser { //로그인상태
             if !userStore.appliedSeminars.contains("\(seminar.id)") && !seminar.closingStatus{ //신청안되어있고 모집중일때만 활성화
                 return false
             }
             return true //나머지는 비활성화
         }
-        //로그인도 안되어있으면
-        if seminar.closingStatus {//마감되었음
-            return true
-        }
-        return false
+        //로그인안되어있으면 무조건 비활성화 & 알림
+        return true
     
     }
     
