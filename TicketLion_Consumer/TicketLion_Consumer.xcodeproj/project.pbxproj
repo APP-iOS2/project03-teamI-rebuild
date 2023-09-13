@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		082204222AB1ACEE007A9B36 /* SeminarListSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082204212AB1ACEE007A9B36 /* SeminarListSubView.swift */; };
 		08C7AD392AAFF53D00B6C19E /* SeminarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C7AD382AAFF53D00B6C19E /* SeminarStore.swift */; };
 		09EA3D8D2AAFEAB70057F805 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EA3D8C2AAFEAB70057F805 /* UserStore.swift */; };
 		632D2A702AAFFDF5003F2D1C /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632D2A6F2AAFFDF5003F2D1C /* NotificationSettingsView.swift */; };
@@ -58,10 +59,10 @@
 		8B924DC02AAFE8E00042D790 /* SeminarDetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B924DBF2AAFE8E00042D790 /* SeminarDetailMapView.swift */; };
 		8B924DC22AAFE9B30042D790 /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B924DC12AAFE9B30042D790 /* Modifier.swift */; };
 		99804C9D2AAFEAE30050F27F /* SeminarInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99804C9C2AAFEAE30050F27F /* SeminarInfoView.swift */; };
-		99D3FC042AB1409600D83835 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 99D3FC032AB1409600D83835 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		082204212AB1ACEE007A9B36 /* SeminarListSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarListSubView.swift; sourceTree = "<group>"; };
 		08C7AD382AAFF53D00B6C19E /* SeminarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarStore.swift; sourceTree = "<group>"; };
 		09EA3D8C2AAFEAB70057F805 /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		632D2A6F2AAFFDF5003F2D1C /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
@@ -104,7 +105,6 @@
 		8B924DBF2AAFE8E00042D790 /* SeminarDetailMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarDetailMapView.swift; sourceTree = "<group>"; };
 		8B924DC12AAFE9B30042D790 /* Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifier.swift; sourceTree = "<group>"; };
 		99804C9C2AAFEAE30050F27F /* SeminarInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarInfoView.swift; sourceTree = "<group>"; };
-		99D3FC032AB1409600D83835 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +156,6 @@
 		64B327A32AAF5CEE00D64EFF /* TicketLion_Consumer */ = {
 			isa = PBXGroup;
 			children = (
-				99D3FC032AB1409600D83835 /* GoogleService-Info.plist */,
 				64B327A42AAF5CEE00D64EFF /* TicketLion_ConsumerApp.swift */,
 				64B327A62AAF5CEE00D64EFF /* MainTabView.swift */,
 				64B327E62AAF69E600D64EFF /* Model */,
@@ -195,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				64B327F42AAF6C4A00D64EFF /* SeminarListView.swift */,
+				082204212AB1ACEE007A9B36 /* SeminarListSubView.swift */,
 				64B327F82AAF6CA400D64EFF /* SeminarDetailView.swift */,
 				99804C9C2AAFEAE30050F27F /* SeminarInfoView.swift */,
 				8B924DBF2AAFE8E00042D790 /* SeminarDetailMapView.swift */,
@@ -341,7 +341,6 @@
 			files = (
 				64B327AC2AAF5CF000D64EFF /* Preview Assets.xcassets in Resources */,
 				64B327A92AAF5CF000D64EFF /* Assets.xcassets in Resources */,
-				99D3FC042AB1409600D83835 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +370,7 @@
 				64B328222AAF6F0D00D64EFF /* SettingUserView.swift in Sources */,
 				64B328282AAF6F7E00D64EFF /* SettingDevInfoDetailView.swift in Sources */,
 				64B328162AAF6E9C00D64EFF /* SettingSignUpPhoneNumberView.swift in Sources */,
+				082204222AB1ACEE007A9B36 /* SeminarListSubView.swift in Sources */,
 				8B924DC02AAFE8E00042D790 /* SeminarDetailMapView.swift in Sources */,
 				64B3281A2AAF6EC000D64EFF /* SettingSignUpCompleteView.swift in Sources */,
 				64B328262AAF6F6400D64EFF /* SettingDevInfoView.swift in Sources */,

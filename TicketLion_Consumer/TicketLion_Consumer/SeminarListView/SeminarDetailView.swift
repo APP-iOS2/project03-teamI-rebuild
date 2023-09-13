@@ -12,7 +12,7 @@ struct SeminarDetailView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var userStore: UserStore
     @Binding var isShowingDetail: Bool
-    
+    @State var showingAlert: Bool = false
     @Binding var seminar: Seminar
     
     ///하단 신청 버튼 ( 원래.contains("\(dummy.id)") )
@@ -32,7 +32,7 @@ struct SeminarDetailView: View {
         }
         
         return Color("AnyButtonColor")
-    
+        
     }
     private var attendButtonDisabled: Bool {
         if let _ = userStore.currentUser { //로그인상태
@@ -43,7 +43,7 @@ struct SeminarDetailView: View {
         }
         //로그인안되어있으면 무조건 비활성화 & 알림
         return true
-    
+        
     }
     
     ///모집중, 모집마감
@@ -148,7 +148,8 @@ struct SeminarDetailView: View {
                                 .modifier(textStyle())
                             
                             
-                            Text("\(seminar.registerStartDate)")
+                            Text("\(seminar.startDateCreator(seminar.registerStartDate)) ~ \(seminar.endDateCreator(seminar.registerEndDate, seminar.registerStartDate))")
+                            
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
                         
@@ -156,7 +157,7 @@ struct SeminarDetailView: View {
                             Text("진행 날짜")
                                 .modifier(textStyle())
                             
-                            Text("\(seminar.startDateCreator(seminar.registerStartDate)) ~ \(seminar.endDateCreator(seminar.registerEndDate, seminar.registerStartDate))")
+                            Text("\(seminar.startDateCreator(seminar.seminarStartDate)) ~ \(seminar.endDateCreator(seminar.seminarEndDate, seminar.seminarStartDate))")
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
                         
@@ -164,7 +165,7 @@ struct SeminarDetailView: View {
                             Text("진행 시간")
                                 .modifier(textStyle())
                             
-                            Text("\(seminar.timeCreator(seminar.registerStartDate)) ~ \(seminar.timeCreator(seminar.registerEndDate))")
+                            Text("\(seminar.timeCreator(seminar.seminarStartDate)) ~ \(seminar.timeCreator(seminar.seminarEndDate))")
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
                         
@@ -198,25 +199,63 @@ struct SeminarDetailView: View {
                 
                 
             }
+            .alert(isPresented: $showingAlert) {
+                Alert(title: Text("로그인후 이용해주세요"),
+                      message: nil,
+                      primaryButton: .default(Text("OK")) {
+                    isShowingDetail = false
+                    userStore.loginSheet = true
+                },
+                      secondaryButton: .cancel()
+                )
+            }
             .navigationTitle("\(seminar.name)")
             .navigationBarTitleDisplayMode(.inline)
             
             
             //MARK: 신청버튼
-            NavigationLink {
-                SeminarAttendView(seminar: $seminar, user: User.usersDummy[0], isShowingDetail: $isShowingDetail)
-            } label: {
-                Text(attendButtonText)
-                //                    .frame(maxWidth: .infinity)
-                    .font(.title2.bold())
+            if let _ = userStore.currentUser {
+                NavigationLink {
+                    SeminarAttendView(seminar: $seminar, user: User.usersDummy[0], isShowingDetail: $isShowingDetail)
+                } label: {
+                    Text(attendButtonText)
+                    //                    .frame(maxWidth: .infinity)
+                        .font(.title2.bold())
+                }
+                .frame(width: 380,height: 60)
+                .foregroundColor(.white)
+                .background(attendButtonColor)
+                .cornerRadius(5)
+                .disabled(attendButtonDisabled)
+                .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                
+                
+            } else {
+                Button {
+                    showingAlert = true
+                } label: {
+                    Text(attendButtonText)
+                    //                    .frame(maxWidth: .infinity)
+                        .font(.title2.bold())
+                }
+                .frame(width: 380,height: 60)
+                .foregroundColor(.white)
+                .background(attendButtonColor)
+                .cornerRadius(5)
+                //.disabled(attendButtonDisabled)
+                .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                .alert(isPresented: $showingAlert) {
+                    Alert(title: Text("로그인후 이용해주세요"),
+                          message: nil,
+                          primaryButton: .default(Text("OK")) {
+                        
+                        userStore.loginSheet = true
+                        print("\(userStore.loginSheet)")
+                    },
+                          secondaryButton: .cancel()
+                    )
+                }
             }
-            .frame(width: 380,height: 60)
-            .foregroundColor(.white)
-            .background(attendButtonColor)
-            .cornerRadius(5)
-            .disabled(attendButtonDisabled)
-            .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
-            
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
