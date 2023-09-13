@@ -12,13 +12,13 @@ struct SeminarListView: View {
     @StateObject var seminarStore: SeminarStore = SeminarStore()
     @EnvironmentObject var userStore: UserStore
     
-    @State private var selectedCategory: Category = .iOSDevelop
+    @State private var selectedCategory: Category = .FrontEnd
     @Namespace var animation
     
     @State private var search: String = ""
     
     @State var isShowingDetail: Bool = false
-    @State private var showingAlert = false
+    @State var showingAlert = false
     
     @State var newSeminar: Seminar = Seminar.seminarsDummy[1]
     
@@ -44,13 +44,15 @@ struct SeminarListView: View {
                 .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                 
                 
-                SeminarListSubView(seminarStore: seminarStore, category: $selectedCategory, search: $search) // ForEach 끝
+                SeminarListSubView(seminarStore: seminarStore, category: $selectedCategory, search: $search, showingAlert: $showingAlert) // 서브뷰
             }
             .alert(isPresented: $showingAlert) {
                 Alert(title: Text("로그인후 이용해주세요"),
                       message: nil,
                       primaryButton: .default(Text("OK")) {
                     userStore.loginSheet = true
+                    print("userStore.loginSheet : \(userStore.loginSheet)")
+                    print("알럿 먹힘")
                 },
                       secondaryButton: .cancel()
                 )
