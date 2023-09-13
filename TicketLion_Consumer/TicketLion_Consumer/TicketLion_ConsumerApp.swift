@@ -34,11 +34,12 @@ struct TicketLion_ConsumerApp: App {
     // register app delegate for Firebase setup
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
-    
+    @StateObject var router = Router()
     var body: some Scene {
         WindowGroup {
             NavigationView {
                 MainTabView()
+                    .environmentObject(router)
             }
         }
     }
