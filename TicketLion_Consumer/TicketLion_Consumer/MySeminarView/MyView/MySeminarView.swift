@@ -28,9 +28,6 @@ struct MySeminarView: View {
 						.padding(.top)
 					
 					VStack {
-						Button("딸각") {
-							print("\(userStore.appliedSeminars)")
-						}
 						
 						switch selectedFilter {
 						case .reservation: MyReservationView(mySeminarStore: mySeminarStore)

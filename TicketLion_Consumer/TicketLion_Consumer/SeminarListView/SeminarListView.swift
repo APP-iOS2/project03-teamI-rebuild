@@ -141,7 +141,7 @@ struct SeminarListView: View {
 struct SeminarListView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SeminarListView()
+			SeminarListView().environmentObject(UserStore())
         }
     }
 }

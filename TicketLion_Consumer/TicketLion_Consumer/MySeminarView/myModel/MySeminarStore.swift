@@ -20,6 +20,8 @@ final class MySeminarStore: ObservableObject {
     
     //MyReservationView
     @Published var selectedSeminar: Seminar = Seminar.TempSeminar
+	@Published var isShowingSheet = false
+	@Published var showingToast = false
     
     //MyFavoriteView
     @Published var favoriteSeminar: Seminar = Seminar.TempSeminar
