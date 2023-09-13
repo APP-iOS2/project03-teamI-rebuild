@@ -57,13 +57,13 @@ struct SettingSignUpPasswordView: View {
                     SettingSignUpNameView(isCompleteSignUp: $isCompleteSignUp)
                 } label: {
                     Text("다음")
+                        .frame(maxWidth: .infinity, maxHeight: 20)
+                        .padding()
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .background(userStore.isPasswordValid && userStore.passwordsMatch ? Color("AnyButtonColor") : Color.gray)
+                        .cornerRadius(5)
                 }
-                .frame(maxWidth: .infinity, maxHeight: 20)
-                .padding()
-                .font(.title2)
-                .foregroundColor(.white)
-                .background(userStore.isPasswordValid && userStore.passwordsMatch ? Color("AnyButtonColor") : Color.gray)
-                .cornerRadius(5)
                 .disabled(!userStore.isPasswordValid || !userStore.passwordsMatch)
             }
             .padding()
