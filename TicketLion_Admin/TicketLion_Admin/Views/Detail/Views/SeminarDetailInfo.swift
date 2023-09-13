@@ -11,6 +11,8 @@ struct SeminarDetailInfo: View {
     
     let seminars: Seminar
     @ObservedObject var seminarStore: SeminarDetailStore = SeminarDetailStore()
+    
+    
     @Binding var seminarData: Seminar
     @State var seminarLocation: SeminarLocation
     @State var isShowEditView: Bool = false
