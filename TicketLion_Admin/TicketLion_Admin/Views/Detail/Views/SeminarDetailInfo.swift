@@ -103,7 +103,6 @@ struct SeminarDetailInfo: View {
                     }
                 }
                 .navigationTitle(seminars.name)
-                .navigationBarTitle(seminars.name, displayMode: .large)
             } // NavigationStack
     }
 }

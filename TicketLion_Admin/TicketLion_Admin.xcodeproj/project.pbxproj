@@ -33,10 +33,8 @@
 		9AB002942AA9572D0029BBC3 /* SeminarDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0028A2AA9572D0029BBC3 /* SeminarDetailModel.swift */; };
 		9AB002952AA9572D0029BBC3 /* SeminarDetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0028B2AA9572D0029BBC3 /* SeminarDetailMapView.swift */; };
 		9AB002962AA9572D0029BBC3 /* SeminarDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0028C2AA9572D0029BBC3 /* SeminarDetailInfo.swift */; };
-		9AB002972AA9572D0029BBC3 /* SeminarDetailSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0028D2AA9572D0029BBC3 /* SeminarDetailSidebar.swift */; };
 		9AB002982AA9572D0029BBC3 /* SeminarSidebarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0028E2AA9572D0029BBC3 /* SeminarSidebarCell.swift */; };
 		9AB002992AA9572D0029BBC3 /* SeminarDetailStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0028F2AA9572D0029BBC3 /* SeminarDetailStore.swift */; };
-		9AB0029A2AA9572D0029BBC3 /* SeminarDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002902AA9572D0029BBC3 /* SeminarDetail.swift */; };
 		9AB0029B2AA9572D0029BBC3 /* SeminarDetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002912AA9572D0029BBC3 /* SeminarDetailEditView.swift */; };
 		9AB0029C2AA9572D0029BBC3 /* SeminarMapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002922AA9572D0029BBC3 /* SeminarMapMarker.swift */; };
 		9AB0029D2AA9572D0029BBC3 /* DetailSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002932AA9572D0029BBC3 /* DetailSidebar.swift */; };
@@ -49,6 +47,7 @@
 		9AB002AE2AA957BE0029BBC3 /* SeminarMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002A62AA957BE0029BBC3 /* SeminarMapView.swift */; };
 		9ADA57582AA8045500AA4191 /* ParticipationListVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADA57572AA8045500AA4191 /* ParticipationListVIew.swift */; };
 		C06B1BA12AB00A4800D08744 /* SeminarInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B1BA02AB00A4800D08744 /* SeminarInfoView.swift */; };
+		E350FBB02AB18E9600E59EE2 /* EncodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E350FBAF2AB18E9600E59EE2 /* EncodableExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,10 +70,8 @@
 		9AB0028A2AA9572D0029BBC3 /* SeminarDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarDetailModel.swift; sourceTree = "<group>"; };
 		9AB0028B2AA9572D0029BBC3 /* SeminarDetailMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarDetailMapView.swift; sourceTree = "<group>"; };
 		9AB0028C2AA9572D0029BBC3 /* SeminarDetailInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarDetailInfo.swift; sourceTree = "<group>"; };
-		9AB0028D2AA9572D0029BBC3 /* SeminarDetailSidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarDetailSidebar.swift; sourceTree = "<group>"; };
 		9AB0028E2AA9572D0029BBC3 /* SeminarSidebarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarSidebarCell.swift; sourceTree = "<group>"; };
 		9AB0028F2AA9572D0029BBC3 /* SeminarDetailStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarDetailStore.swift; sourceTree = "<group>"; };
-		9AB002902AA9572D0029BBC3 /* SeminarDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarDetail.swift; sourceTree = "<group>"; };
 		9AB002912AA9572D0029BBC3 /* SeminarDetailEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarDetailEditView.swift; sourceTree = "<group>"; };
 		9AB002922AA9572D0029BBC3 /* SeminarMapMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarMapMarker.swift; sourceTree = "<group>"; };
 		9AB002932AA9572D0029BBC3 /* DetailSidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSidebar.swift; sourceTree = "<group>"; };
@@ -87,6 +84,7 @@
 		9AB002A62AA957BE0029BBC3 /* SeminarMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarMapView.swift; sourceTree = "<group>"; };
 		9ADA57572AA8045500AA4191 /* ParticipationListVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipationListVIew.swift; sourceTree = "<group>"; };
 		C06B1BA02AB00A4800D08744 /* SeminarInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarInfoView.swift; sourceTree = "<group>"; };
+		E350FBAF2AB18E9600E59EE2 /* EncodableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodableExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				9AB0028A2AA9572D0029BBC3 /* SeminarDetailModel.swift */,
+				E350FBAF2AB18E9600E59EE2 /* EncodableExtension.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -283,8 +282,6 @@
 		E32BFC822AAE9F7100A42FDE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9AB002902AA9572D0029BBC3 /* SeminarDetail.swift */,
-				9AB0028D2AA9572D0029BBC3 /* SeminarDetailSidebar.swift */,
 				9AB0028E2AA9572D0029BBC3 /* SeminarSidebarCell.swift */,
 				9AB0028C2AA9572D0029BBC3 /* SeminarDetailInfo.swift */,
 				9AB002912AA9572D0029BBC3 /* SeminarDetailEditView.swift */,
@@ -385,13 +382,12 @@
 				9AB002852AA956830029BBC3 /* RecruitingListView.swift in Sources */,
 				9AB002882AA956830029BBC3 /* MainView.swift in Sources */,
 				9AB002842AA956830029BBC3 /* WholeListView.swift in Sources */,
-				9AB0029A2AA9572D0029BBC3 /* SeminarDetail.swift in Sources */,
 				9AB002A92AA957BE0029BBC3 /* SeminarAddView.swift in Sources */,
+				E350FBB02AB18E9600E59EE2 /* EncodableExtension.swift in Sources */,
 				C06B1BA12AB00A4800D08744 /* SeminarInfoView.swift in Sources */,
 				64A071062AA7257B00AF887A /* SeminarModel.swift in Sources */,
 				9AB002AD2AA957BE0029BBC3 /* CategotyChipModel.swift in Sources */,
 				9AB002AB2AA957BE0029BBC3 /* SeminarStore.swift in Sources */,
-				9AB002972AA9572D0029BBC3 /* SeminarDetailSidebar.swift in Sources */,
 				64B3278C2AAEA6FD00D64EFF /* ResearchModel.swift in Sources */,
 				9AB0029B2AA9572D0029BBC3 /* SeminarDetailEditView.swift in Sources */,
 				9AB002942AA9572D0029BBC3 /* SeminarDetailModel.swift in Sources */,

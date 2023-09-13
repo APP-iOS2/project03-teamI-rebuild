@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreLocation
 import MapKit
+import Firebase
 import FirebaseFirestore
 
 final class SeminarDetailStore: ObservableObject {
@@ -41,30 +42,45 @@ final class SeminarDetailStore: ObservableObject {
     
     
 
-//    func fetchSeminar(completion: @escaping (Bool) -> Void) {
-//        seminarInfo.removeAll()
+    func fetchSeminar(completion: @escaping (Bool) -> Void) {
+        seminarInfo.removeAll()
+
+        let dataBase = Firestore.firestore().collection("Seminar")
+        dataBase.getDocuments { snapshot, error in
+            guard let snapshot = snapshot, error == nil else {
+                print("Error fetching data: (error?.localizedDescription ?? ")
+                return
+            }
+
+            for document in snapshot.documents {
+                if let jsonData = try? JSONSerialization.data(withJSONObject: document.data(), options: []),
+                   let seminar = try? JSONDecoder().decode(Seminar.self, from: jsonData) {
+                    self.seminarInfo.append(seminar)
+                    print(seminar)
+                }
+            }
+
+            completion(true)
+            print("세미나리스트 패치: \(self.seminarInfo)")
+        }
+    }
+    
+//    func editSeminar() async {
+//        
+//        let selectCategory = chipsViewModel.chipArray.filter { $0.isSelected }.map { $0.titleKey }
 //
-//        let dataBase = Firestore.firestore().collection("studies")
-//        dataBase.getDocuments { snapshot, error in
-//            guard let snapshot = snapshot, error == nil else {
-//                print("Error fetching data: (error?.localizedDescription ?? ")
-//                return
-//            }
+//        let seminar = Seminar(category: selectCategory, name: name, seminarImage: seminarImage, host: host, details: details, location: "\(seminarLocation.address+detailLocation)", maximumUserNumber: Int(maximumUserNumber) ?? 0, closingStatus: false, registerStartDate: registerStartDatePicker.timeIntervalSince1970, registerEndDate: registerEndDatePicker.timeIntervalSince1970, seminarStartDate: seminarStartDatePicker.timeIntervalSince1970, seminarEndDate: seminarEndDatePicker.timeIntervalSince1970, enterUsers: [])
 //
-//            for document in snapshot.documents {
-//                if let jsonData = try? JSONSerialization.data(withJSONObject: document.data(), options: []),
-//                   let seminar = try? JSONDecoder().decode(Seminar.self, from: jsonData) {
-//                    self.seminarInfo.append(seminar)
-//                    print(seminar)
-//
-//
-//                }
-//            }
-//
-//            completion(true)
-//            print("세미나리스트 패치: \(self.seminarInfo)")
+//        do {
+//            try await detaildb.collection("Seminar").document(seminar.id).updateData(seminar.asDictionary())
+//        } catch {
+//            print(error)
 //        }
+//
 //    }
+    
+    
+    
 }
 
 
@@ -150,3 +166,7 @@ extension Binding {
     Binding<T>(get: { self.wrappedValue ?? defaultValue }, set: { self.wrappedValue = $0 })
   }
 }
+
+
+
+
