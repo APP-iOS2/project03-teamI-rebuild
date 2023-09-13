@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SeminarAttendPlusView: View {
     @EnvironmentObject var userStore: UserStore
+    @StateObject var seminarStore: SeminarStore = SeminarStore() // 세미나에 유저 저장하기 위해
     @State var research : Research = Research(seminarID: "", userID: "")
     @State private var alertText: String = "세미나 신청이 완료되었습니다."
     @State private var isShowingAlert : Bool = false
@@ -95,6 +96,7 @@ struct SeminarAttendPlusView: View {
                         isShowingAlert = true
                         // 세미나신청 함수
                         userStore.addSeminar(seminarID: seminar.id)
+                        seminarStore.addUserPhoneNumberInSeminar(seminar: seminar)
                         alertText = "세미나 신청이 완료되었습니다."
                     }
                 } label: {
