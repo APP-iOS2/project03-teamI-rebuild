@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
+@MainActor
 class UserStore: ObservableObject {
 	@Published var email: String = ""
 	@Published var password: String = ""
@@ -28,6 +29,7 @@ class UserStore: ObservableObject {
 	@Published var currentUser: Firebase.User?
 	
 	@Published var loginSheet: Bool = false
+    
 	
 	var db = Firestore.firestore()
 	
@@ -247,10 +249,11 @@ class UserStore: ObservableObject {
 				print("사용자 정보를 불러오는 중 오류가 발생했습니다.")
 			}
 		}
+    
 		
 	}
 	
-	
+    
 	
 	
 }

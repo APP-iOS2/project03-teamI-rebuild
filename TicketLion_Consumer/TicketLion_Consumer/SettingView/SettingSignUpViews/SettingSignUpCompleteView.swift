@@ -10,11 +10,12 @@ import SwiftUI
 struct SettingSignUpCompleteView: View {
     
     @EnvironmentObject var userStore: UserStore
+    @EnvironmentObject var router: Router
     
-    @Binding var isCompleteSignUp: Bool
+//    @Binding var isCompleteSignUp: Bool
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $router.path) {
             
             VStack {
                 
@@ -54,13 +55,14 @@ struct SettingSignUpCompleteView: View {
                     )
                     
                     Button {
-                        isCompleteSignUp.toggle()
+//                        isCompleteSignUp.toggle()
+                        router.reset()
                     } label: {
                         Text("확인")
                     }
-                    .navigationDestination(isPresented: $isCompleteSignUp, destination: {
-                        SettingLoginView()
-                    })
+//                    .navigationDestination(isPresented: $isCompleteSignUp, destination: {
+//                        SettingLoginView()}
+//                    )
                     .frame(maxWidth:.infinity, maxHeight: 50)
                     .foregroundColor(.white)
                     .background(Color("AnyButtonColor"))
@@ -79,7 +81,8 @@ struct SettingSignUpCompleteView: View {
 struct SettingSignUpCompleteView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            SettingSignUpCompleteView(isCompleteSignUp: .constant(false))
+            SettingSignUpCompleteView(/* isCompleteSignUp: .constant(false) */ )
+                .environmentObject(Router())
         }
     }
 }
