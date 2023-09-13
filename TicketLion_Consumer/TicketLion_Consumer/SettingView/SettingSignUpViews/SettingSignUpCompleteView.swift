@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SettingSignUpCompleteView: View {
+    
+    @EnvironmentObject var userStore: UserStore
+    
     @Binding var isCompleteSignUp: Bool
     
     var body: some View {
@@ -36,9 +39,9 @@ struct SettingSignUpCompleteView: View {
                 VStack(spacing: 20) {
                     HStack {
                         VStack(alignment: .leading) {
-                            Text("이름 : 유재희")
+                            Text("이름 : \(userStore.name)")
                             Divider()
-                            Text("이메일 아이디 : pkj0522@naver.com")
+                            Text("이메일 아이디 : \(userStore.email)")
                         }
                         .padding()
                         .foregroundColor(.black)

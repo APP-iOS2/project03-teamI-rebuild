@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		08C7AD392AAFF53D00B6C19E /* SeminarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C7AD382AAFF53D00B6C19E /* SeminarStore.swift */; };
+		09EA3D8D2AAFEAB70057F805 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EA3D8C2AAFEAB70057F805 /* UserStore.swift */; };
+		632D2A702AAFFDF5003F2D1C /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632D2A6F2AAFFDF5003F2D1C /* NotificationSettingsView.swift */; };
 		646BA2712AAFE3B600C1FC69 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 646BA2702AAFE3B600C1FC69 /* FirebaseAuth */; };
 		646BA2732AAFE3B600C1FC69 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 646BA2722AAFE3B600C1FC69 /* FirebaseAuthCombine-Community */; };
 		646BA2752AAFE3B600C1FC69 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 646BA2742AAFE3B600C1FC69 /* FirebaseDatabase */; };
@@ -60,6 +62,8 @@
 
 /* Begin PBXFileReference section */
 		08C7AD382AAFF53D00B6C19E /* SeminarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarStore.swift; sourceTree = "<group>"; };
+		09EA3D8C2AAFEAB70057F805 /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
+		632D2A6F2AAFFDF5003F2D1C /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
 		64B327A12AAF5CEE00D64EFF /* TicketLion_Consumer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicketLion_Consumer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B327A42AAF5CEE00D64EFF /* TicketLion_ConsumerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketLion_ConsumerApp.swift; sourceTree = "<group>"; };
 		64B327A62AAF5CEE00D64EFF /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -175,6 +179,7 @@
 			children = (
 				64B327EA2AAF6B6B00D64EFF /* SeminarModel.swift */,
 				64B327EC2AAF6B7E00D64EFF /* UserModel.swift */,
+				09EA3D8C2AAFEAB70057F805 /* UserStore.swift */,
 				64B327EE2AAF6BAF00D64EFF /* ResearchModel.swift */,
 				64B327F02AAF6BC300D64EFF /* DevModel.swift */,
 				64B327F22AAF6BDC00D64EFF /* DevStore.swift */,
@@ -218,6 +223,7 @@
 				64B328252AAF6F6400D64EFF /* SettingDevInfoView.swift */,
 				64B328272AAF6F7E00D64EFF /* SettingDevInfoDetailView.swift */,
 				64B328292AAF6FA700D64EFF /* SettingDevInformationView.swift */,
+				632D2A6F2AAFFDF5003F2D1C /* NotificationSettingsView.swift */,
 			);
 			path = SettingView;
 			sourceTree = "<group>";
@@ -367,6 +373,7 @@
 				64B327ED2AAF6B7E00D64EFF /* UserModel.swift in Sources */,
 				64B327A52AAF5CEE00D64EFF /* TicketLion_ConsumerApp.swift in Sources */,
 				64B328182AAF6EB000D64EFF /* SettingSignUpBirthView.swift in Sources */,
+				632D2A702AAFFDF5003F2D1C /* NotificationSettingsView.swift in Sources */,
 				64B328142AAF6E7400D64EFF /* SettingSignUpNameView.swift in Sources */,
 				64B327F52AAF6C4A00D64EFF /* SeminarListView.swift in Sources */,
 				64B3280D2AAF6DE000D64EFF /* MyCategoryButton.swift in Sources */,
@@ -375,6 +382,7 @@
 				64B3281C2AAF6ED600D64EFF /* SettingView.swift in Sources */,
 				64B328092AAF6DB100D64EFF /* MyFilterBar.swift in Sources */,
 				64B328052AAF6D7E00D64EFF /* MyFavoriteView.swift in Sources */,
+				09EA3D8D2AAFEAB70057F805 /* UserStore.swift in Sources */,
 				64B327FB2AAF6CC900D64EFF /* SeminarAttendView.swift in Sources */,
 				64B3282A2AAF6FA700D64EFF /* SettingDevInformationView.swift in Sources */,
 				64B3280B2AAF6DC900D64EFF /* MySeminarStore.swift in Sources */,

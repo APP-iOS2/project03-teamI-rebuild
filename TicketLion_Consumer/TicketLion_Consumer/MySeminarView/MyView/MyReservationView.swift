@@ -31,7 +31,7 @@ struct MyReservationView: View {
                 .padding(.top, 3)
             
             ScrollView {
-                ForEach(Seminar.seminarsDummy, id: \.id) { seminar in
+                ForEach(mySeminarStore.seminarList, id: \.id) { seminar in
                     
                     Button {
                         isShowingSheet = true
@@ -59,13 +59,20 @@ struct MyReservationView: View {
                             
                             VStack {
                                 HStack(alignment: .top) {
-                                    AsyncImage(url: URL(string: seminar.seminarImage)) { image in
-                                        image.resizable()
-                                            .frame(width: 100, height: 100)
-                                            .aspectRatio(contentMode: .fit)
-                                    } placeholder: {
-                                        ProgressView()
-                                    } // 이미지
+									if seminar.seminarImage == "" {
+										Image("TicketLion")
+											.resizable()
+											.frame(width: 100, height: 100)
+											.aspectRatio(contentMode: .fit)
+									} else {
+										AsyncImage(url: URL(string: seminar.seminarImage)) { image in
+											image.resizable()
+												.frame(width: 100, height: 100)
+												.aspectRatio(contentMode: .fit)
+										} placeholder: {
+											ProgressView()
+										} // 이미지
+									}
                                     
                                     Spacer()
                                     

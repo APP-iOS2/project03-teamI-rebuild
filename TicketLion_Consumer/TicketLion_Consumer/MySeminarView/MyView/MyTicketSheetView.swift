@@ -78,11 +78,20 @@ extension MyTicketSheetView {
                 ZStack(alignment: .leading) {
                     HStack {
                         //세미나사진
-                        AsyncImage(url: URL(string: mySeminarStore.selectedSeminar.seminarImage)) { image in
-                            image.image?.resizable()
-                                .frame(width: 160, height: 160)
-                                .opacity(0.2)
-                        }
+						if mySeminarStore.selectedSeminar.seminarImage == "" {
+							Image("TicketLion")
+								.resizable()
+								.frame(width: 160, height: 160)
+								.opacity(0.2)
+						} else {
+							AsyncImage(url: URL(string: mySeminarStore.selectedSeminar.seminarImage)) { image in
+								image.image?.resizable()
+									.frame(width: 160, height: 160)
+									.opacity(0.2)
+							}
+						}
+						
+                        
                         Spacer()
                         //티켓배경문구
                         VStack {

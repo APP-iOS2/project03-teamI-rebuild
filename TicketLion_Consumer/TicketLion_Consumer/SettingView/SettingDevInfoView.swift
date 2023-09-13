@@ -13,7 +13,7 @@ struct SettingDevInfoView: View {
     
     var body: some View {
         NavigationStack {
-            List {
+            Form {
                 Section(header: Text("PM")) {
                     ForEach(devStore.pm) { devs in
                         SettingDevInfoDetailView(name: devs.name, introduction: devs.introduction, imageURL: devs.imageURL, informationURL: devs.informationURL)
@@ -40,7 +40,6 @@ struct SettingDevInfoView: View {
                     }
                 }
             }
-            .listStyle(.grouped)
             .navigationBarTitle("개발자 정보")
             .navigationBarTitleDisplayMode(.inline)
         }
