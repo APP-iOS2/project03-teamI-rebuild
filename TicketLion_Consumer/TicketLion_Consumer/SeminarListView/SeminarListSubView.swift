@@ -14,7 +14,7 @@ struct SeminarListSubView: View {
     @Binding var search: String
     
     @State var isShowingDetail: Bool = false
-    @State private var showingAlert = false
+    @Binding var showingAlert: Bool
     
     @State var newSeminar: Seminar = Seminar.seminarsDummy[1] // 디테일뷰로 전달할때 쓸 seminar 구조체입니다. dummy는 변경할거라 임시로 넣은 것.
     
@@ -137,6 +137,6 @@ struct SeminarListSubView: View {
 
 struct SeminarListSubView_Previews: PreviewProvider {
     static var previews: some View {
-        SeminarListSubView(seminarStore: SeminarStore(), category: .constant(.iOSDevelop), search: .constant(""))
+        SeminarListSubView(seminarStore: SeminarStore(), category: .constant(.iOSDevelop), search: .constant(""), showingAlert: .constant(false))
     }
 }
