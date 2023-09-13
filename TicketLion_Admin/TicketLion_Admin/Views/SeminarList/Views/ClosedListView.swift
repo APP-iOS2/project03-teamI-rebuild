@@ -74,7 +74,6 @@ struct ClosedListView: View {
                 }
             }
         }
-        .foregroundColor(.black)
         .onAppear {
             seminarStore.fetch()
         }

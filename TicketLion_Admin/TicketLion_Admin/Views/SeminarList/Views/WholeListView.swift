@@ -96,7 +96,6 @@ struct WholeListView: View {
                 }
             }
         }
-        .foregroundColor(.black)
         .onAppear {
             seminarStore.fetch()
         }

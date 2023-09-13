@@ -262,7 +262,7 @@ struct SeminarAddView: View {
         
         let selectCategory = chipsViewModel.chipArray.filter { $0.isSelected }.map { $0.titleKey }
         
-        let seminar = Seminar(category: selectCategory, name: name, seminarImage: seminarImage, host: host, details: details, location: "\(seminarLocation.address+detailLocation)", maximumUserNumber: Int(maximumUserNumber) ?? 0, closingStatus: false, registerStartDate: registerStartDatePicker.timeIntervalSince1970, registerEndDate: registerEndDatePicker.timeIntervalSince1970, seminarStartDate: seminarStartDatePicker.timeIntervalSince1970, seminarEndDate: seminarEndDatePicker.timeIntervalSince1970, enterUsers: [])
+        let seminar = Seminar(category: selectCategory, name: name, seminarImage: seminarImage, host: host, details: details, location: "\(seminarLocation.address+detailLocation)", maximumUserNumber: Int(maximumUserNumber) ?? 0, createdAt: Date().timeIntervalSince1970, closingStatus: false, registerStartDate: registerStartDatePicker.timeIntervalSince1970, registerEndDate: registerEndDatePicker.timeIntervalSince1970, seminarStartDate: seminarStartDatePicker.timeIntervalSince1970, seminarEndDate: seminarEndDatePicker.timeIntervalSince1970, enterUsers: [])
         
         do {
             try db.collection("Seminar").document(seminar.id).setData(from: seminar)

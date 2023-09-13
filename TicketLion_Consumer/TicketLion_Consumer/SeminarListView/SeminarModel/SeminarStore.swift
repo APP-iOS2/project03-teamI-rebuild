@@ -1,31 +1,18 @@
 //
-//  MySeminarStore.swift
-//  TicketLion_Comsumer
+//  SeminarStore.swift
+//  TicketLion_Consumer
 //
-//  Created by Muker on 2023/09/07.
+//  Created by 이재승 on 2023/09/12.
 //
 
-import SwiftUI
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-final class MySeminarStore: ObservableObject {
+final class SeminarStore: ObservableObject {
     
     let db = Firestore.firestore()
     
-    //MySeminarView
-    @Published var isPresentDetailSeminar: Bool = false
-    @Published var navigationPath: [Seminar] = []
     @Published var seminarList: [Seminar] = []
-    
-    //MyReservationView
-    @Published var selectedSeminar: Seminar = Seminar.TempSeminar
-    
-    //MyFavoriteView
-    @Published var favoriteSeminar: Seminar = Seminar.TempSeminar
-    
-    //MyTicketSheetView
-    
     
     func fetchSeminar() {
         
@@ -35,22 +22,21 @@ final class MySeminarStore: ObservableObject {
                 return
             }
             
-            var fetchData = [Seminar]()
+            var fetchData = [Seminar] ()
             
             for document in documents {
                 do {
                     let temp = try document.data(as: Seminar.self)
                     fetchData.append(temp)
-                    
                 } catch {
-                    print("\(error)")
+                    print("파베 패치 에러 났어요.\n\(error)")
                 }
             }
-            
             self.seminarList = fetchData
-
         }
     }
-    
+	
+	// 유저정보 이메일 -> database
+	
 }
 
