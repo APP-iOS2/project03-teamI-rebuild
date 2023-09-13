@@ -58,6 +58,8 @@
 		8B924DC02AAFE8E00042D790 /* SeminarDetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B924DBF2AAFE8E00042D790 /* SeminarDetailMapView.swift */; };
 		8B924DC22AAFE9B30042D790 /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B924DC12AAFE9B30042D790 /* Modifier.swift */; };
 		99804C9D2AAFEAE30050F27F /* SeminarInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99804C9C2AAFEAE30050F27F /* SeminarInfoView.swift */; };
+		B5D9D2832AB1379A00315338 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D9D2822AB1379A00315338 /* GoogleService-Info.plist */; };
+		B5D9D2852AB1451100315338 /* MySeminarListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D9D2842AB1451100315338 /* MySeminarListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +105,8 @@
 		8B924DBF2AAFE8E00042D790 /* SeminarDetailMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarDetailMapView.swift; sourceTree = "<group>"; };
 		8B924DC12AAFE9B30042D790 /* Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifier.swift; sourceTree = "<group>"; };
 		99804C9C2AAFEAE30050F27F /* SeminarInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarInfoView.swift; sourceTree = "<group>"; };
+		B5D9D2822AB1379A00315338 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Developer/GoogleService_InfoFiles/TicketLion/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B5D9D2842AB1451100315338 /* MySeminarListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySeminarListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +158,7 @@
 		64B327A32AAF5CEE00D64EFF /* TicketLion_Consumer */ = {
 			isa = PBXGroup;
 			children = (
+				B5D9D2822AB1379A00315338 /* GoogleService-Info.plist */,
 				64B327A42AAF5CEE00D64EFF /* TicketLion_ConsumerApp.swift */,
 				64B327A62AAF5CEE00D64EFF /* MainTabView.swift */,
 				64B327E62AAF69E600D64EFF /* Model */,
@@ -234,6 +239,7 @@
 				64B328002AAF6D3C00D64EFF /* MySeminarView.swift */,
 				64B328022AAF6D5800D64EFF /* MyReservationView.swift */,
 				64B328042AAF6D7E00D64EFF /* MyFavoriteView.swift */,
+				B5D9D2842AB1451100315338 /* MySeminarListView.swift */,
 				64B328062AAF6D9B00D64EFF /* MyTicketSheetView.swift */,
 			);
 			path = MyView;
@@ -338,6 +344,7 @@
 			files = (
 				64B327AC2AAF5CF000D64EFF /* Preview Assets.xcassets in Resources */,
 				64B327A92AAF5CF000D64EFF /* Assets.xcassets in Resources */,
+				B5D9D2832AB1379A00315338 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +361,7 @@
 				64B327EF2AAF6BAF00D64EFF /* ResearchModel.swift in Sources */,
 				64B328122AAF6E6500D64EFF /* SettingSignUpPasswordView.swift in Sources */,
 				64B327F92AAF6CA400D64EFF /* SeminarDetailView.swift in Sources */,
+				B5D9D2852AB1451100315338 /* MySeminarListView.swift in Sources */,
 				64B327EB2AAF6B6B00D64EFF /* SeminarModel.swift in Sources */,
 				64B3281E2AAF6EEC00D64EFF /* SettingLoginView.swift in Sources */,
 				64B327F72AAF6C8500D64EFF /* SeminarEnum.swift in Sources */,
