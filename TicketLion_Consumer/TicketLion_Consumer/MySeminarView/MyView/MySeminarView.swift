@@ -43,8 +43,8 @@ struct MySeminarView: View {
 				.navigationBarTitleDisplayMode(.inline)
 				.navigationTitle("나의 세미나")
 				.navigationDestination(for: Seminar.self) { seminar in
-					SeminarDetailView(isShowingDetail: .constant(false), seminar: $mySeminarStore.selectedSeminar)
-						.navigationBarBackButtonHidden(true)
+						SeminarDetailView(isShowingDetail: $mySeminarStore.isShowingDetailSeminar, seminar: $mySeminarStore.selectedSeminar)
+							.navigationBarBackButtonHidden(true)
 				}
 				
 			}

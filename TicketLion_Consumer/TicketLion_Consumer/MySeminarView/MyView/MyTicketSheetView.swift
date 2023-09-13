@@ -10,6 +10,7 @@ import SwiftUI
 struct MyTicketSheetView: View {
     
     @ObservedObject var mySeminarStore: MySeminarStore
+	@EnvironmentObject var userStore: UserStore
     
     @State private var showingAlert = false
     @Binding var showingToast: Bool
@@ -51,6 +52,7 @@ struct MyTicketSheetView: View {
                 //                .padding([.bottom, .trailing])
                 .onTapGesture {
                     showingAlert = true
+					userStore.cancelSeminar(seminarID: mySeminarStore.selectedSeminar.id)
                 }
                 
             }

@@ -30,7 +30,7 @@ struct MyReservationView: View {
                 .padding(.top, 3)
             
             ScrollView {
-				
+				// List
 				MySeminarListView(mySeminarStore: mySeminarStore, seminarList: createSeminarList())
                 
             }

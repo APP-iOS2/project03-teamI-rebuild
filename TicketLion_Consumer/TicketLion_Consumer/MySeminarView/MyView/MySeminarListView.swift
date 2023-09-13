@@ -23,62 +23,78 @@ struct MySeminarListView: View {
 				mySeminarStore.isShowingSheet = true
 				mySeminarStore.selectedSeminar = seminar
 			} label: {
-				VStack(alignment: .leading) {
-					HStack(alignment: .top) {
-						myListTileLabel(title: seminar.name)
-						Spacer()
-						myListfavoriteOnOffBtn(seminarID: seminar.id)
-					}
-					.bold()
-					.font(.callout)
-					
-					VStack {
+				ZStack {
+
+					VStack(alignment: .leading) {
 						HStack(alignment: .top) {
-							if seminar.seminarImage == "" {
-								Image("TicketLion")
-									.resizable()
-									.frame(width: 100, height: 100)
-									.aspectRatio(contentMode: .fit)
-							} else {
-								AsyncImage(url: URL(string: seminar.seminarImage)) { phase in
-									if let image = phase.image {
-										image
-									} else if phase.error != nil { // 에러 있을때
-										Image("TicketLion")
-											.resizable()
-											.frame(width: 100, height: 100)
-											.aspectRatio(contentMode: .fit)
-									} else { // placeholder
-										Image("TicketLion")
-											.resizable()
-											.frame(width: 100, height: 100)
-											.aspectRatio(contentMode: .fit)
+							myListTileLabel(title: seminar.name)
+							Spacer()
+							myListfavoriteOnOffBtn(seminarID: seminar.id)
+						}
+						.bold()
+						.font(.callout)
+						
+						VStack {
+							HStack(alignment: .top) {
+								if seminar.seminarImage == "" {
+									Image("TicketLion")
+										.resizable()
+										.frame(width: 100, height: 100)
+										.aspectRatio(contentMode: .fit)
+								} else {
+									AsyncImage(url: URL(string: seminar.seminarImage)) { phase in
+										if let image = phase.image {
+											image
+										} else if phase.error != nil { // 에러 있을때
+											Image("TicketLion")
+												.resizable()
+												.frame(width: 100, height: 100)
+												.aspectRatio(contentMode: .fit)
+										} else { // placeholder
+											Image("TicketLion")
+												.resizable()
+												.frame(width: 100, height: 100)
+												.aspectRatio(contentMode: .fit)
+										}
 									}
 								}
-							}
-							
-							Spacer()
-							
-							VStack(alignment: .leading) { // 세미나 디테일
-								Group {
-									Text("강연자 : \(seminar.host)")
-									Text("장소 : \(seminar.location ?? "location -")")
-									Text("날짜 : \(seminar.startDateCreator(seminar.registerStartDate)) 부터")
-									Text("시간 : \(seminar.timeCreator( seminar.registerStartDate)) ~ \(seminar.timeCreator( seminar.registerEndDate))")
+								
+								Spacer()
+								
+								VStack(alignment: .leading) { // 세미나 디테일
+									Group {
+										Text("강연자 : \(seminar.host)")
+										Text("장소 : \(seminar.location ?? "location -")")
+										Text("날짜 : \(seminar.startDateCreator(seminar.registerStartDate)) 부터")
+										Text("시간 : \(seminar.timeCreator( seminar.registerStartDate)) ~ \(seminar.timeCreator( seminar.registerEndDate))")
+									}
+									.padding(EdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0))
+									.foregroundColor(.black)
+									.font(.footnote)
 								}
-								.padding(EdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0))
-								.foregroundColor(.black)
-								.font(.footnote)
+								
+								
 							}
-							
-							
 						}
+					} // VStack 끝
+					.padding()
+					.background(userStore.canceledSeminars.contains(seminar.id) ? Color(.systemGray3) : Color("Color"))
+					.cornerRadius(20)
+					.padding(EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15))
+					
+					if userStore.canceledSeminars.contains(seminar.id) {
+						Text("예매취소")
+							.font(.title)
+							.fontWeight(.black)
+							.foregroundColor(.white)
+							.padding()
+							.padding(.horizontal)
+							.background(Color("MainColor"))
+							.cornerRadius(10)
 					}
-				} // VStack 끝
-				.padding()
-				.background(Color("Color"))
-				.cornerRadius(20)
-				.padding(EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15))
+					
+				}
+				
 				
 			} // 라벨 끝
 			.sheet(isPresented: $mySeminarStore.isShowingSheet) {
@@ -89,7 +105,6 @@ struct MySeminarListView: View {
 				.presentationDetents([.height(570)])
 				.presentationDragIndicator(.visible)
 			}
-			
 		}
 	}
 }
