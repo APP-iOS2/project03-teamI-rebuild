@@ -161,6 +161,7 @@ struct SeminarAddView: View {
                                         setRegion()
                                     } label: {
                                         Label("지역 검색", systemImage: "mappin")
+                                            .foregroundColor(.white)
                                     }
                                     .buttonStyle(.borderedProminent)
                                     
@@ -287,47 +288,6 @@ struct SeminarAddView: View {
             print(error)
         }
         
-    }
-    
-    func selectLocation() {
-        if clickLocation {
-            Button {
-                isOnline.toggle()
-            } label: {
-                if isOnline == true {
-                    Label("온라인", systemImage: "checkmark.square.fill")
-                } else if isOnline == false {
-                    Label("온라인", systemImage: "square")
-                }
-            }
-            .foregroundColor(.black)
-            .padding(.top, 5)
-            
-            ZStack(alignment: .center) {
-                Map(coordinateRegion: $region, showsUserLocation: true, annotationItems: [Location(coordinate: CLLocationCoordinate2D(latitude: seminarLocation.latitude, longitude: seminarLocation.longitude))]) { location in
-                    MapMarker(coordinate: location.coordinate)
-                }
-            }.frame(width: 450, height: 250)
-            .padding([.leading, .trailing,.bottom])
-            
-            Text(seminarLocation.address)
-            TextField("상세 주소를 입력해주세요", text: $detailLocation)
-                .textFieldStyle(.roundedBorder)
-                .textInputAutocapitalization(.never)
-                .disableAutocorrection(true)
-        } else {
-            Button {
-                isOnline.toggle()
-            } label: {
-                if isOnline == true {
-                    Label("온라인", systemImage: "checkmark.square.fill")
-                } else if isOnline == false {
-                    Label("온라인", systemImage: "square")
-                }
-            }
-            .foregroundColor(.black)
-            .padding(.top, 5)
-        }
     }
 }
 
