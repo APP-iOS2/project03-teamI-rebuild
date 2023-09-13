@@ -15,11 +15,11 @@ class SeminarListStore: ObservableObject {
     let currentDate = Date().timeIntervalSince1970
     
     var recruitingList: [Seminar] {
-        seminarList.filter { $0.registerEndDate >= currentDate && $0.closingStatus}
+        seminarList.filter { $0.registerEndDate >= currentDate && !$0.closingStatus}
     }
     
     var closedList: [Seminar] {
-        seminarList.filter { $0.registerEndDate < currentDate || !$0.closingStatus}
+        seminarList.filter { $0.registerEndDate < currentDate || $0.closingStatus}
     }
     
     init() {
@@ -44,6 +44,8 @@ class SeminarListStore: ObservableObject {
                 }
             }
         }
+        
+        self.seminarList.sort { $0.createdAt > $1.createdAt }
     }
     
     func calculateDate(date: Double) -> String {
