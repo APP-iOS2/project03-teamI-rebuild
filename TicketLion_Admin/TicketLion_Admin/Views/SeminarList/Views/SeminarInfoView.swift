@@ -13,6 +13,7 @@ enum SeminarInfo: String, CaseIterable {
 }
 
 struct SeminarInfoView: View {
+    @ObservedObject private var userListStore: UserListStore = UserListStore()
     @State private var info: SeminarInfo = .detail
     let seminar: Seminar
 
@@ -31,8 +32,11 @@ struct SeminarInfoView: View {
             case .detail:
                 SeminarDetailInfo(seminars: seminar, seminarData: .constant(Seminar.seminarsDummy[0]), seminarLocation: SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청"))
             case .participation:
-                ParticipationListVIew()
+                ParticipationListVIew(selectedUsers: seminar.enterUsers)
             }
+        }
+        .onAppear {
+            userListStore.fetch(attendUsers: seminar.enterUsers)
         }
     }
 }
