@@ -66,7 +66,7 @@ struct SettingUserDetailView: View {
 struct SettingUserDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SettingUserDetailView()
+            SettingUserDetailView().environmentObject(UserStore())
         }
     }
 }

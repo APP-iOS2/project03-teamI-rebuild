@@ -11,7 +11,7 @@ struct SeminarAttendView: View {
     @Binding var seminar: Seminar
     let user: User
     @Binding var isShowingDetail: Bool
-        
+    @EnvironmentObject var userStore: UserStore
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -43,7 +43,7 @@ struct SeminarAttendView: View {
                                     .foregroundColor(.gray)
                                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
                                 
-                                Text("\(user.name)")
+                                Text("\(userStore.name)")
                             }
                             .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
                             
@@ -53,7 +53,7 @@ struct SeminarAttendView: View {
                                     .foregroundColor(.gray)
                                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
                                 
-                                Text("\(user.email)")
+                                Text("\(userStore.email)")
                             }
                             .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
                             
@@ -63,7 +63,7 @@ struct SeminarAttendView: View {
                                     .foregroundColor(.gray)
                                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
                                 
-                                Text("\(user.phoneNumber)")
+                                Text("\(userStore.phoneNumber)")
                             }
                         }
                     }.padding()
@@ -78,7 +78,7 @@ struct SeminarAttendView: View {
 
 struct SeminarAttendView_Previews: PreviewProvider {
     static var previews: some View {
-		SeminarAttendView(seminar: .constant(Seminar.TempSeminar), user: User.usersDummy[0], isShowingDetail: .constant(true))
+		SeminarAttendView(seminar: .constant(Seminar.TempSeminar), user: User.usersDummy[0], isShowingDetail: .constant(true)).environmentObject(UserStore())
 
     }
 }
