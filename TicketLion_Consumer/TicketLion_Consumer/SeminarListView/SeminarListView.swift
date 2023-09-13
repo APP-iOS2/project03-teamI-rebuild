@@ -38,15 +38,30 @@ struct SeminarListView: View {
                         Button {
                             newSeminar = seminar
                             isShowingDetail = true
-                            print("디테일뷰에 들어갈 \n")
+                            print("버튼 눌려요! \(newSeminar)")
+                            print("isShowingDetail: \(isShowingDetail)")
                         } label: {
                             VStack(alignment: .leading) {
                                 HStack(alignment: .top) {
-                                    Text("\(seminar.name) \(seminar.closingStatus ? "(모집마감)" : "(모집중)") [\(seminar.enterUsers.count)/\(seminar.maximumUserNumber)]") // 메인 타이틀
+                                    
+                                    Text("\(seminar.name)") // 메인 타이틀
                                         .foregroundColor(.black)
                                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
                                     
                                     Spacer()
+                                    
+                                    Text(seminar.closingStatus ? "모집마감" : "모집중")
+                                        .foregroundColor(seminar.closingStatus ? .red : .blue)
+                                        .border(seminar.closingStatus ? .red : .blue)
+                                        .background(.white)
+                                    
+                                    
+                                    Text("\(seminar.enterUsers.count)/\(seminar.maximumUserNumber)")
+                                        .foregroundColor(Color("AnyButtonColor"))
+                                        .border(Color("AnyButtonColor"))
+                                        .background(.white)
+                                    
+                                    
                                     
                                     Button { // 즐겨찾기 버튼
                                         // User, favoriteSeminar에 저장
@@ -110,24 +125,24 @@ struct SeminarListView: View {
                                                 }
                                             }
                                             //모집마감 여부 눈에 띄면 좋을 것 같아서 추가
-                                            Text(seminar.closingStatus ? "모집마감" : "모집중")
-                                                .foregroundColor(seminar.closingStatus ? .red : .blue)
-                                                .border(seminar.closingStatus ? .red : .blue)
-                                                .background(.white)
-                                                .frame(
-                                                    maxWidth: 100,
-                                                    maxHeight: 99,
-                                                    alignment: .topLeading)
-                                            
-                                            
-                                            Text("\(seminar.enterUsers.count)/\(seminar.maximumUserNumber)")
-                                                .foregroundColor(Color("AnyButtonColor"))
-                                                .border(Color("AnyButtonColor"))
-                                                .background(.white)
-                                                .frame(
-                                                    maxWidth: 100,
-                                                    maxHeight: 99,
-                                                    alignment: .bottomLeading)
+                                            /* Text(seminar.closingStatus ? "모집마감" : "모집중")
+                                             .foregroundColor(seminar.closingStatus ? .red : .blue)
+                                             .border(seminar.closingStatus ? .red : .blue)
+                                             .background(.white)
+                                             .frame(
+                                             maxWidth: 100,
+                                             maxHeight: 99,
+                                             alignment: .topLeading)
+                                             
+                                             
+                                             Text("\(seminar.enterUsers.count)/\(seminar.maximumUserNumber)")
+                                             .foregroundColor(Color("AnyButtonColor"))
+                                             .border(Color("AnyButtonColor"))
+                                             .background(.white)
+                                             .frame(
+                                             maxWidth: 100,
+                                             maxHeight: 99,
+                                             alignment: .bottomLeading) */
                                             
                                             
                                         }
@@ -154,16 +169,17 @@ struct SeminarListView: View {
                             .cornerRadius(20)
                             .padding(EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15))
                             
-                        } // 라벨 끝
+                        }
+                        .fullScreenCover(isPresented: $isShowingDetail) {
+                            NavigationStack {
+                                // 여기에 디테일 뷰
+                                SeminarDetailView(isShowingDetail: $isShowingDetail, seminar: $newSeminar)
+                            }
+                        }// 라벨 끝
                     }
                 } // ForEach 끝
             }
-            .fullScreenCover(isPresented: $isShowingDetail) {
-                NavigationStack {
-                    // 여기에 디테일 뷰
-                    SeminarDetailView(isShowingDetail: $isShowingDetail, seminar: $newSeminar)
-                }
-            }
+            
             .onAppear {
                 seminarStore.fetchSeminar()
                 userStore.fetchUserInfo()
