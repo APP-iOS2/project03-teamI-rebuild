@@ -38,10 +38,9 @@ class SeminarListStore: ObservableObject {
                     }
                 }
                 self.seminarList = temp
+                self.seminarList.sort { $0.createdAt > $1.createdAt }
             }
         }
-        
-        self.seminarList.sort { $0.createdAt > $1.createdAt }
     }
     
     func calculateDate(date: Double) -> String {

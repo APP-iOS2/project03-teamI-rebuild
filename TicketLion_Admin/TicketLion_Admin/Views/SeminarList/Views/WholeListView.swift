@@ -37,10 +37,6 @@ struct WholeListView: View {
     var currentPageList: [Seminar] {
         let startIndex = (currentPage - 1) * itemsPerPage
         let endIndex = min(startIndex + itemsPerPage, seminarList.count)
-        //guard startIndex > endIndex else { return [] }
-        print("\(seminarList) 리스트")
-        print("\(startIndex) Start")
-        print("\(endIndex) End")
         return Array(seminarList[startIndex..<endIndex])
     }
     
