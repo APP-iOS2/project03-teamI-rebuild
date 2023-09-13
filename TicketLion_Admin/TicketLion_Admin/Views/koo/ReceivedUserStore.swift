@@ -10,6 +10,7 @@ import FirebaseFirestore
 class UserListStore: ObservableObject {
     let dbRef = Firestore.firestore()
     @Published var userList: [User]
+    //@Published var usersFromFirebase: [User] = []
     
     let currentDate = Date().timeIntervalSince1970
     
@@ -17,7 +18,7 @@ class UserListStore: ObservableObject {
         self.userList = []
     }
     
-    func fetch(attendUsers: [String]) {
+    func fetch(attendUsers: [String]){
         userList.removeAll()
         
         dbRef.collection("users").getDocuments { (snapshot, error) in
@@ -30,16 +31,15 @@ class UserListStore: ObservableObject {
                 for document in snapshot.documents {
                     if let jsonData = try? JSONSerialization.data(withJSONObject: document.data(), options: []),
                        let userData = try? JSONDecoder().decode(User.self, from: jsonData) {
-                        let userID = userData.id
-                      
-                        if attendUsers.contains(userID) {
+                        let userEmail = userData.email
+                        
+                        if attendUsers.contains(userEmail) {
                             self.userList.append(userData)
                         }
                     }
                 }
             }
         }
-        
     }
 }
 
