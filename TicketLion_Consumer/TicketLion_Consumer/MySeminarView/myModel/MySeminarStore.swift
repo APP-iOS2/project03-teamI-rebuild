@@ -22,7 +22,6 @@ final class MySeminarStore: ObservableObject {
     @Published var selectedSeminar: Seminar = Seminar.TempSeminar
     
     //MyFavoriteView
-    @Published var favoriteSeminar: Seminar = Seminar.TempSeminar
     
     //MyTicketSheetView
     
@@ -50,6 +49,22 @@ final class MySeminarStore: ObservableObject {
             self.seminarList = fetchData
 
         }
+    }
+    
+    func timeCreator(_ time: Double) -> String {
+        let createdAt: Date = Date(timeIntervalSince1970: time)
+        let fomatter: DateFormatter = DateFormatter()
+        fomatter.dateFormat = "hh:mm a"
+        
+        return fomatter.string(from: createdAt)
+    }
+    
+    func dateCreator(_ time: Double) -> String {
+        let createdAt: Date = Date(timeIntervalSince1970: time)
+        let fomatter: DateFormatter = DateFormatter()
+        fomatter.dateFormat = "yyyy년 MM월 dd일"
+        
+        return fomatter.string(from: createdAt)
     }
     
 }
