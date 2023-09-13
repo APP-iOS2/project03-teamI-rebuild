@@ -21,21 +21,21 @@ enum Classification: String, Hashable, CaseIterable {
 //}
 
 
-
-
-
 struct ParticipationListVIew: View {
-   
+    @ObservedObject private var userListStore: UserListStore = UserListStore()
     @State private var selectedLeftlist: Classification?
     @State private var searchText = ""
     @State private var isAscendingOrder = true //정렬
     
+    // Firebase에서 가져온 사용자 데이터를 저장하는 배열
+       static var usersFromFirebase: [User] = []
+    
     
     var filteredUsers: [User] {
         if searchText.isEmpty {
-            return User.usersDummy
+            return ParticipationListVIew.usersFromFirebase
         } else {
-            return User.usersDummy.filter { user in
+            return ParticipationListVIew.usersFromFirebase.filter { user in
                 return user.name.localizedCaseInsensitiveContains(searchText) ||
                 user.phoneNumber.localizedStandardContains(searchText) ||
                 user.email.localizedStandardContains(searchText)
@@ -99,6 +99,11 @@ struct ParticipationListVIew: View {
                 }
             }
             
+        }
+        .onAppear {
+            userListStore.fetch(attendUsers: [
+            "123123@naver.com","aaa@naver.com"
+            ])
         }
     }
 }
