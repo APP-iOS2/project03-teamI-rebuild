@@ -40,11 +40,12 @@ struct SeminarListView: View {
                         Button {
                             newSeminar = seminar
                             isShowingDetail = true
-                            print("디테일뷰에 들어갈 \n")
+                            print("isShowingDetail: \(isShowingDetail)")
+                            print("userStore.loginSheet: \(userStore.loginSheet)")
                         } label: {
                             VStack(alignment: .leading) {
                                 HStack(alignment: .top) {
-                                                                    
+                                    
                                     Text("\(seminar.name)") // 메인 타이틀
                                         .foregroundColor(.black)
                                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
@@ -56,14 +57,14 @@ struct SeminarListView: View {
                                         .foregroundColor(Color("AnyButtonColor"))
                                         .border(Color("AnyButtonColor"))
                                         .background(.white)
-
+                                    
                                     
                                     Text(seminar.closingStatus ? "모집마감" : "모집중")
                                         .foregroundColor(seminar.closingStatus ? .red : .blue)
                                         .border(seminar.closingStatus ? .red : .blue)
                                         .background(.white)
-
-    
+                                    
+                                    
                                     
                                     
                                     Button { // 즐겨찾기 버튼
@@ -82,34 +83,20 @@ struct SeminarListView: View {
                                                 
                                             }
                                         } else {
-                                            showingAlert = true
+                                             showingAlert = true
                                         }
                                     } label: {
                                         
                                         Image(systemName: userStore.favoriteSeminars.contains(seminar.id) ? "star.fill" : "star")
                                             .foregroundColor(userStore.favoriteSeminars.contains(seminar.id) ? Color("AnyButtonColor") : .gray)
-                                    }.alert(isPresented: $showingAlert) {
-                                        Alert(title: Text("로그인후 이용해주세요"),
-                                              message: nil,
-                                              primaryButton: .default(Text("OK")) {
-                                            userStore.loginSheet = true
-                                        },
-                                              secondaryButton: .cancel()
-                                        )
-                                        
                                     }
-                                    .sheet(isPresented: $userStore.loginSheet, content: {
-                                        NavigationStack {
-                                            SettingLoginView()
-                                        }
-                                    })
                                 }
                                 .bold()
                                 .font(.callout)
                                 
                                 VStack {
                                     HStack(alignment: .top) {
-                                            
+                                        
                                         AsyncImage(url: URL(string: seminar.seminarImage)) { phase in
                                             if let image = phase.image {
                                                 image
@@ -125,7 +112,7 @@ struct SeminarListView: View {
                                                     .aspectRatio(contentMode: .fill)
                                             }
                                         }
-
+                                        
                                         
                                         VStack(alignment: .leading) { // 세미나 디테일
                                             Group {
@@ -153,8 +140,23 @@ struct SeminarListView: View {
                     }
                 } // ForEach 끝
             }
+            .alert(isPresented: $showingAlert) {
+                Alert(title: Text("로그인후 이용해주세요"),
+                      message: nil,
+                      primaryButton: .default(Text("OK")) {
+                    userStore.loginSheet = true
+                },
+                      secondaryButton: .cancel()
+                )
+
+            }
+//            .sheet(isPresented: $userStore.loginSheet, content: {
+//                NavigationStack {
+//                    SettingLoginView()
+//                }
+//            })
             .navigationTitle("세미나 목록")
-//            .navigationBarTitleDisplayMode(.inline)
+            //            .navigationBarTitleDisplayMode(.inline)
             .fullScreenCover(isPresented: $isShowingDetail) {
                 NavigationStack {
                     // 여기에 디테일 뷰
@@ -172,7 +174,7 @@ struct SeminarListView: View {
             .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always), prompt: "\(category.categoryName) 세미나를 찾아보세요.")
             
         }
-
+        
     }
 }
 
