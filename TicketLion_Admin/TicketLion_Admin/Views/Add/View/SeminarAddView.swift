@@ -12,6 +12,8 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseCore
 import Combine
+import FirebaseStorage
+import UIKit
 
 struct SeminarAddView: View {
     @Environment(\.dismiss) private var dismiss
@@ -28,7 +30,7 @@ struct SeminarAddView: View {
     @State private var registerEndDatePicker = Date()
     @State private var seminarStartDatePicker = Date()
     @State private var seminarEndDatePicker = Date()
-    @State private var selectedImage: UIImage? = nil
+    @State private var selectedImage: UIImage?
     @State private var isImagePickerPresented: Bool = false
     
     var isFieldAllWrite: Bool {
@@ -46,6 +48,7 @@ struct SeminarAddView: View {
     }
     
     var db = Firestore.firestore()
+	var storage = Storage.storage()
     
     @State var isOpenMap: Bool = false
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
@@ -261,16 +264,45 @@ struct SeminarAddView: View {
     func fetchSeminar() {
         
         let selectCategory = chipsViewModel.chipArray.filter { $0.isSelected }.map { $0.titleKey }
-        
-        let seminar = Seminar(category: selectCategory, name: name, seminarImage: seminarImage, host: host, details: details, location: "\(seminarLocation.address+detailLocation)", maximumUserNumber: Int(maximumUserNumber) ?? 0, closingStatus: false, registerStartDate: registerStartDatePicker.timeIntervalSince1970, registerEndDate: registerEndDatePicker.timeIntervalSince1970, seminarStartDate: seminarStartDatePicker.timeIntervalSince1970, seminarEndDate: seminarEndDatePicker.timeIntervalSince1970, enterUsers: [])
-        
-        do {
-            try db.collection("Seminar").document(seminar.id).setData(from: seminar)
-        } catch {
-            print(error)
-        }
+		
+        var seminar = Seminar(category: selectCategory, name: name, seminarImage: seminarImage, host: host, details: details, location: "\(seminarLocation.address+detailLocation)", maximumUserNumber: Int(maximumUserNumber) ?? 0, closingStatus: false, registerStartDate: registerStartDatePicker.timeIntervalSince1970, registerEndDate: registerEndDatePicker.timeIntervalSince1970, seminarStartDate: seminarStartDatePicker.timeIntervalSince1970, seminarEndDate: seminarEndDatePicker.timeIntervalSince1970, enterUsers: [])
+		
+		
+
+		if var selectedImage {
+				let updatedSize = CGSize(width: 100.0, height: 100.0)
+				selectedImage = self.resizeImage(image: selectedImage, targetSize: updatedSize)
+			
+			guard let imageData = selectedImage.jpegData(compressionQuality: 0.2) else { return }
+			
+			
+			let storageRef = storage.reference().child(seminar.id)
+			
+			storageRef.putData(imageData) { _ , error in
+				storageRef.downloadURL { url, error in
+					guard let profileImageUrl = url?.absoluteString else { return }
+					seminar.seminarImage = profileImageUrl
+					
+					do {
+						try db.collection("Seminar").document(seminar.id).setData(from: seminar)
+					} catch {
+						
+					}
+
+				}
+			}
+		}
         
     }
+	
+	func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+		let rect = CGRect(x: 0, y: 0, width: targetSize.width, height: targetSize.height)
+		UIGraphicsBeginImageContextWithOptions(targetSize, false, 1.0)
+		image.draw(in: rect)
+		let newImage = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		return newImage!
+	}
 }
 
 struct SeminarAddView_Previews: PreviewProvider {
