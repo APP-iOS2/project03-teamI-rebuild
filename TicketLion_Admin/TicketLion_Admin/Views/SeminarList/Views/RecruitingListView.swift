@@ -82,7 +82,6 @@ struct RecruitingListView: View {
                 }
             }
         }
-        .foregroundColor(.black)
         .onAppear {
             seminarStore.fetch()
         }
