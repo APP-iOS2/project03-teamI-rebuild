@@ -64,23 +64,6 @@ final class SeminarDetailStore: ObservableObject {
             print("세미나리스트 패치: \(self.seminarInfo)")
         }
     }
-    
-//    func editSeminar() async {
-//        
-//        let selectCategory = chipsViewModel.chipArray.filter { $0.isSelected }.map { $0.titleKey }
-//
-//        let seminar = Seminar(category: selectCategory, name: name, seminarImage: seminarImage, host: host, details: details, location: "\(seminarLocation.address+detailLocation)", maximumUserNumber: Int(maximumUserNumber) ?? 0, closingStatus: false, registerStartDate: registerStartDatePicker.timeIntervalSince1970, registerEndDate: registerEndDatePicker.timeIntervalSince1970, seminarStartDate: seminarStartDatePicker.timeIntervalSince1970, seminarEndDate: seminarEndDatePicker.timeIntervalSince1970, enterUsers: [])
-//
-//        do {
-//            try await detaildb.collection("Seminar").document(seminar.id).updateData(seminar.asDictionary())
-//        } catch {
-//            print(error)
-//        }
-//
-//    }
-    
-    
-    
 }
 
 
