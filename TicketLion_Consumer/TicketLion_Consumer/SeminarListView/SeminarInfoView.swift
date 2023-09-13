@@ -19,9 +19,7 @@ struct SeminarInfoView: View {
 			Grid(alignment: .topLeading) {
 				GridRow {
 					Text("세미나")
-						.bold()
-						.foregroundColor(.gray)
-						.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
+                        .modifier(textStyle())
 					
 					Text("\(seminar.name)")
 				}
@@ -31,9 +29,7 @@ struct SeminarInfoView: View {
 				GridRow {
 					
 					Text("진행날짜")
-						.bold()
-						.foregroundColor(.gray)
-						.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
+                        .modifier(textStyle())
 					
 					Text("\(seminar.startDateCreator(seminar.registerStartDate)) ~ \(seminar.endDateCreator(seminar.registerEndDate, seminar.registerStartDate))")
 				}
@@ -41,9 +37,7 @@ struct SeminarInfoView: View {
 				
 				GridRow {
 					Text("진행시간")
-						.bold()
-						.foregroundColor(.gray)
-						.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
+                        .modifier(textStyle())
 					
 					Text("\(seminar.timeCreator(seminar.registerStartDate)) ~ \(seminar.timeCreator(seminar.registerEndDate))")
 				}
@@ -51,9 +45,7 @@ struct SeminarInfoView: View {
 				
 				GridRow {
 					Text("강연자")
-						.bold()
-						.foregroundColor(.gray)
-						.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
+                        .modifier(textStyle())
 					
 					Text("\(seminar.host)")
 				}
@@ -61,9 +53,7 @@ struct SeminarInfoView: View {
 				
 				GridRow {
 					Text("장소 ")
-						.bold()
-						.foregroundColor(.gray)
-						.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
+                        .modifier(textStyle())
 					
 					if let _ = seminar.location {//오프라인이면
 						
