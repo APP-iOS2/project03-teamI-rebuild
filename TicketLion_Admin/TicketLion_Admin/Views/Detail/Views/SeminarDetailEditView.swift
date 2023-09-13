@@ -20,10 +20,10 @@ struct SeminarDetailEditView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.dismiss) private var dismiss
     
-    
+    @ObservedObject var seminarStores: SeminarDetailStore = SeminarDetailStore()
     @ObservedObject var chipsViewModel: ChipsViewModel
 //    @StateObject var seminars: SeminarDetailStore = SeminarDetailStore()
-    let seminars: Seminar
+    var seminars: Seminar
     @State private var startingPoint = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
     @State private var date : Date = Date()
     @State private var isOpenMap: Bool = false
@@ -245,16 +245,8 @@ struct SeminarDetailEditView: View {
                             //MARK: 수정하기
                             Button {
                                 isShowingAlert = true
-                                detaildb.collection("Seminar").document(introduceText).updateData([
-                                    "details": introduceText
+                                updateSeminar()
                                 
-                                ]) { error in
-                                    if let error = error {
-                                        print(error.localizedDescription) } else {
-                                            print("소개글 업데이트 성공!")
-                                    }
-                                }
-//                                fetchSeminar()
                             } label: {
                                 Text("수정하기")
                                     .font(.system(size: 30) .bold())
@@ -289,19 +281,73 @@ struct SeminarDetailEditView: View {
         }
     }
     
-//    func fetchSeminar() {
+    //MARK: 파베연동
+    func updateSeminar() {
+        let selectCategory = chipsViewModel.chipArray.filter { $0.isSelected }.map { $0.titleKey }
+        
+        
+        let seminarRef = detaildb.collection("Seminar").document(seminars.id)
+  
+        let updateData: [String: Any] = [
+            "host": OrganizerText,
+            "seminarImage": imageText,
+            "details": introduceText,
+            "location": "\(seminarLocation.address+detailLocation)",
+            "closingStatus": false,
+        ]
+        // Call updateData on the document reference
+        seminarRef.updateData(updateData) { error in
+            if let error = error {
+                print(error)
+            } else {
+                print("Document updated successfully")
+            }
+        }
+    }
+
+
+    
+//    func addSeminar(seminarID: String) {
 //
-//        let selectCategory = chipsViewModel.chipArray.filter { $0.isSelected }.map { $0.titleKey }
+//        guard let seminarRef = seminarData ??  seminars.id else {
+//                return
+//            }
+//            //appliedSeminars
 //
-//        let seminar = Seminar(category: selectCategory, name: name, seminarImage: imageText, host: OrganizerText, details: introduceText, location: "\(seminarLocation.address+detailLocation)", maximumUserNumber: Int(maximumUserNumber) ?? 0, closingStatus: false, registerStartDate: registerStartDatePicker.timeIntervalSince1970, registerEndDate: registerEndDatePicker.timeIntervalSince1970, seminarStartDate: seminarStartDatePicker.timeIntervalSince1970, seminarEndDate: seminarEndDatePicker.timeIntervalSince1970, enterUsers: [])
+//        let seminarRef = detaildb.collection("Seminar").document(seminars.category ?? seminars.id)
 //
-//        do {
-//            try detaildb.collection("Seminar").document(seminar.id).setData(from: seminar)
-//        } catch {
-//            print(error)
+//        detaildb.updateData([
+//                "Seminar" : appliedSeminars + [seminarID]
+//            ]) { err in
+//                if let err = err {
+//                    print("\(err.localizedDescription)")
+//                } else { print("") }
+//            }
+//
+//        detaildb.getDocument { (document, error) in
+//                if let document = document, document.exists {
+//                    let userData = document.data()
+//                    self.seminars = userData?["Seminar"] as? [String] ?? []
+//                } else {
+//                    print("사용자 정보를 불러오는 중 오류가 발생했습니다.")
+//                }
+//            }
+//
 //        }
-//
-//    }
+    
+    
+    
+    
+    
+    
+} // struct
+
+
+
+//MARK: 파베 연동
+class FirebaseManager {
+  static let shared = FirebaseManager()
+  let firestore = Firestore.firestore()
 }
 
 struct SeminarDetailEditView_Previews: PreviewProvider {
