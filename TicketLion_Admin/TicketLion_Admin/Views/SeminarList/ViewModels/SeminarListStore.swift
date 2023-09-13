@@ -9,17 +9,19 @@ import Foundation
 import FirebaseFirestore
 
 class SeminarListStore: ObservableObject {
-    let dbRef = Firestore.firestore()
     @Published var seminarList: [Seminar]
+    @Published var isLoading = false
+    
+    let dbRef = Firestore.firestore()
     
     let currentDate = Date().timeIntervalSince1970
     
     var recruitingList: [Seminar] {
-        seminarList.filter { $0.registerEndDate >= currentDate && $0.closingStatus}
+        seminarList.filter { $0.registerEndDate >= currentDate && !$0.closingStatus}
     }
     
     var closedList: [Seminar] {
-        seminarList.filter { $0.registerEndDate < currentDate || !$0.closingStatus}
+        seminarList.filter { $0.registerEndDate < currentDate || $0.closingStatus}
     }
     
     init() {
@@ -27,6 +29,7 @@ class SeminarListStore: ObservableObject {
     }
     
     func fetch() {
+        isLoading = false
         seminarList.removeAll()
         
         dbRef.collection("Seminar").getDocuments { (snapshot, error) in
@@ -42,8 +45,11 @@ class SeminarListStore: ObservableObject {
                         self.seminarList.append(seminarData)
                     }
                 }
+                self.isLoading = true
             }
         }
+        
+        self.seminarList.sort { $0.createdAt > $1.createdAt }
     }
     
     func calculateDate(date: Double) -> String {
