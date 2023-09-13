@@ -21,6 +21,7 @@ struct SeminarInfoView: View {
             Picker("sort whole list", selection: $info) {
                 ForEach(SeminarInfo.allCases, id:\.self) { info in
                     Text(info.rawValue)
+                        .font(.title)
                 }
             }
             .pickerStyle(.segmented)

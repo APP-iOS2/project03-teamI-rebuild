@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+
 		1BC142B12AB19DD3008077ED /* MapMarkerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC142B02AB19DD3008077ED /* MapMarkerDetailView.swift */; };
 		1BDD9AAB2AB0088C002EDE8E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BDD9AAA2AB0088C002EDE8E /* GoogleService-Info.plist */; };
+
 		6412FA092AA6FC8E00F1467B /* TicketLion_AdminApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6412FA082AA6FC8E00F1467B /* TicketLion_AdminApp.swift */; };
 		6412FA0D2AA6FC9000F1467B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6412FA0C2AA6FC9000F1467B /* Assets.xcassets */; };
 		6412FA102AA6FC9000F1467B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6412FA0F2AA6FC9000F1467B /* Preview Assets.xcassets */; };
@@ -47,14 +49,19 @@
 		9AB002AC2AA957BE0029BBC3 /* CategoryChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002A42AA957BE0029BBC3 /* CategoryChipView.swift */; };
 		9AB002AD2AA957BE0029BBC3 /* CategotyChipModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002A52AA957BE0029BBC3 /* CategotyChipModel.swift */; };
 		9AB002AE2AA957BE0029BBC3 /* SeminarMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002A62AA957BE0029BBC3 /* SeminarMapView.swift */; };
+		9AB961642AB17C53009097CB /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB961632AB17C53009097CB /* UserInfo.swift */; };
+		9AB961662AB17F6C009097CB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9AB961652AB17F6C009097CB /* GoogleService-Info.plist */; };
+		9AB961682AB18810009097CB /* ReceivedUserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB961672AB18810009097CB /* ReceivedUserStore.swift */; };
 		9ADA57582AA8045500AA4191 /* ParticipationListVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADA57572AA8045500AA4191 /* ParticipationListVIew.swift */; };
 		C06B1BA12AB00A4800D08744 /* SeminarInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B1BA02AB00A4800D08744 /* SeminarInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+
 		1BC142B02AB19DD3008077ED /* MapMarkerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarkerDetailView.swift; sourceTree = "<group>"; };
 		1BDD9AAA2AB0088C002EDE8E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1BDD9AAC2AB040C1002EDE8E /* TicketLion-Admin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "TicketLion-Admin-Info.plist"; sourceTree = SOURCE_ROOT; };
+
 		6412FA052AA6FC8E00F1467B /* TicketLion_Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicketLion_Admin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6412FA082AA6FC8E00F1467B /* TicketLion_AdminApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketLion_AdminApp.swift; sourceTree = "<group>"; };
 		6412FA0C2AA6FC9000F1467B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -85,6 +92,9 @@
 		9AB002A42AA957BE0029BBC3 /* CategoryChipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryChipView.swift; sourceTree = "<group>"; };
 		9AB002A52AA957BE0029BBC3 /* CategotyChipModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategotyChipModel.swift; sourceTree = "<group>"; };
 		9AB002A62AA957BE0029BBC3 /* SeminarMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarMapView.swift; sourceTree = "<group>"; };
+		9AB961632AB17C53009097CB /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		9AB961652AB17F6C009097CB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9AB961672AB18810009097CB /* ReceivedUserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedUserStore.swift; sourceTree = "<group>"; };
 		9ADA57572AA8045500AA4191 /* ParticipationListVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipationListVIew.swift; sourceTree = "<group>"; };
 		C06B1BA02AB00A4800D08744 /* SeminarInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,12 +159,11 @@
 		6412FA072AA6FC8E00F1467B /* TicketLion_Admin */ = {
 			isa = PBXGroup;
 			children = (
-				1BDD9AAC2AB040C1002EDE8E /* TicketLion-Admin-Info.plist */,
 				6412FA082AA6FC8E00F1467B /* TicketLion_AdminApp.swift */,
 				C06B1B082AAEC91600D08744 /* Extension */,
 				64A071032AA7246400AF887A /* Views */,
 				6412FA0C2AA6FC9000F1467B /* Assets.xcassets */,
-				1BDD9AAA2AB0088C002EDE8E /* GoogleService-Info.plist */,
+				9AB961652AB17F6C009097CB /* GoogleService-Info.plist */,
 				6412FA0E2AA6FC9000F1467B /* Preview Content */,
 			);
 			path = TicketLion_Admin;
@@ -222,6 +231,8 @@
 			isa = PBXGroup;
 			children = (
 				9ADA57572AA8045500AA4191 /* ParticipationListVIew.swift */,
+				9AB961632AB17C53009097CB /* UserInfo.swift */,
+				9AB961672AB18810009097CB /* ReceivedUserStore.swift */,
 			);
 			path = koo;
 			sourceTree = "<group>";
@@ -368,7 +379,7 @@
 			files = (
 				6412FA102AA6FC9000F1467B /* Preview Assets.xcassets in Resources */,
 				6412FA0D2AA6FC9000F1467B /* Assets.xcassets in Resources */,
-				1BDD9AAB2AB0088C002EDE8E /* GoogleService-Info.plist in Resources */,
+				9AB961662AB17F6C009097CB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +395,7 @@
 				9AB002962AA9572D0029BBC3 /* SeminarDetailInfo.swift in Sources */,
 				9AB002852AA956830029BBC3 /* RecruitingListView.swift in Sources */,
 				9AB002882AA956830029BBC3 /* MainView.swift in Sources */,
+				9AB961682AB18810009097CB /* ReceivedUserStore.swift in Sources */,
 				9AB002842AA956830029BBC3 /* WholeListView.swift in Sources */,
 				9AB0029A2AA9572D0029BBC3 /* SeminarDetail.swift in Sources */,
 				9AB002A92AA957BE0029BBC3 /* SeminarAddView.swift in Sources */,
@@ -392,6 +404,7 @@
 				1BC142B12AB19DD3008077ED /* MapMarkerDetailView.swift in Sources */,
 				9AB002AD2AA957BE0029BBC3 /* CategotyChipModel.swift in Sources */,
 				9AB002AB2AA957BE0029BBC3 /* SeminarStore.swift in Sources */,
+				9AB961642AB17C53009097CB /* UserInfo.swift in Sources */,
 				9AB002972AA9572D0029BBC3 /* SeminarDetailSidebar.swift in Sources */,
 				64B3278C2AAEA6FD00D64EFF /* ResearchModel.swift in Sources */,
 				9AB0029B2AA9572D0029BBC3 /* SeminarDetailEditView.swift in Sources */,
