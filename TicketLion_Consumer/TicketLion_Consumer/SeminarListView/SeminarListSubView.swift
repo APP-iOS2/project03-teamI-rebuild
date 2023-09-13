@@ -84,6 +84,9 @@ struct SeminarListSubView: View {
                                 AsyncImage(url: URL(string: seminar.seminarImage)) { phase in // 이미지
                                     if let image = phase.image {
                                         image
+                                        .resizable()
+                                        .frame(width: 100, height: 100)
+                                        .aspectRatio(contentMode: .fill)
                                     } else if phase.error != nil { // 에러 있을때
                                         Image("TicketLion")
                                             .resizable()
