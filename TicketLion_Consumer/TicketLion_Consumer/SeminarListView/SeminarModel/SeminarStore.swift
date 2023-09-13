@@ -35,5 +35,8 @@ final class SeminarStore: ObservableObject {
             self.seminarList = fetchData
         }
     }
+	
+	// 유저정보 이메일 -> database
+	
 }
 

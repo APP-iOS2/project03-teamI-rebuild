@@ -10,10 +10,15 @@ import SwiftUI
 struct SeminarDetailInfo: View {
     
     let seminars: Seminar
+    @ObservedObject var seminarStore: SeminarDetailStore = SeminarDetailStore()
     @Binding var seminarData: Seminar
     @State var seminarLocation: SeminarLocation
-
     @State var isShowEditView: Bool = false
+    
+    var deadline: String {
+            seminarStore.recruitingList.contains(where: { $0.id == seminars.id }) ? "진행중" : "마감"
+    }
+    
     
     var body: some View {
             NavigationStack {
@@ -22,20 +27,19 @@ struct SeminarDetailInfo: View {
                         Form {
                             Section {
                                 
-                                Text("소개 글")
+                                Text("소개글")
                                     .font(.system(size: 20) .bold())
                                     .padding(.bottom, 7)
                                 Text(seminars.details)
                                     .padding(.top, 12)
                             }
                             Section {
-                                Text("일시")
+                                Text("주최자")
                                     .font(.system(size: 20) .bold())
+  
                                 
-                                // Date 형식으로 바꿔야함
-                                Text("\(seminars.registerStartDate)")
+                                Text(seminars.host)
                             }
-
                             Section {
                                 Text("장소")
                                     .font(.system(size: 20) .bold())
@@ -44,6 +48,25 @@ struct SeminarDetailInfo: View {
                                 Text(seminars.location ?? "장소가 있어야 함")
                             }
 
+                            Section {
+                                Text("모집인원")
+                                    .font(.system(size: 20) .bold())
+                                
+                                // Date 형식으로 바꿔야함 
+                                Text(("\(seminars.enterUsers.count)/\(seminars.maximumUserNumber)"))
+                            }
+                            Section {
+                                Text("마감날짜")
+                                    .font(.system(size: 20) .bold())
+  
+                                
+                                Text(seminars.registerEndDate.description.detailcalculateDate(date: seminars.registerEndDate))
+                            }
+                            Section {
+                                Text("마감여부")
+                                    .font(.system(size: 20) .bold())
+                                Text(deadline)
+                            }
                             // VStack
                             Section {
                                 Text("대표이미지")
@@ -79,7 +102,7 @@ struct SeminarDetailInfo: View {
                         }
                     }
                 }
-                .navigationTitle("해당된 세미나")
+                .navigationTitle(seminars.name)
             } // NavigationStack
     }
 }

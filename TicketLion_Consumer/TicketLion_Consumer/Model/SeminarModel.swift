@@ -51,4 +51,40 @@ struct Seminar: Identifiable, Codable, Hashable {
         Seminar(category: ["Android Dev", "Back-End"], name: "자꾸만 듣고 싶은 안드로이드 Back-End!", seminarImage: "https://images.velog.io/images/c-on/post/2b806749-2868-4c76-8c3f-9f1e3fdc3797/hire-backend-developer.jpg", host: "개굴", details: "마약같은 Android 서버강의!", location: "서울 종로구 종로3길", maximumUserNumber: 80, closingStatus: false, registerStartDate: 5151321, registerEndDate: 5151321, seminarStartDate: 5151321, seminarEndDate: 5151321, enterUsers: ["2의재승", "우서코", "피의종찬"]),
         Seminar(category: ["iOS Dev", "Back-End"], name: "화성으로 떠나는 iOS Back-End!", seminarImage: "https://assets-prd.ignimgs.com/2022/01/28/starcraft-2-wings-of-liberty-button-crop-1643355282078.jpg?width=300&crop=1%3A1%2Csmart&dpr=2", host: "일론 머스크", details: "일론 머스크를 따라하기만 하면 화성에 갈 수 있는 iOS 서버 강의!", location: "서울 종로구 종로3길", maximumUserNumber: 80, closingStatus: false, registerStartDate: 5151321, registerEndDate: 5151321, seminarStartDate: 5151321, seminarEndDate: 5151321, enterUsers: ["2의재승","몸뚱아리","좌무커", "우서코", "피의종찬"]),
     ]
+    
+    func timeCreator(_ time: Double) -> String { //private안되는 이유..?
+        let createdAt: Date = Date(timeIntervalSince1970: time)
+        let formatter: DateFormatter = DateFormatter()
+        formatter.dateFormat = "hh:mm a"
+        
+        return formatter.string(from: createdAt)
+    }
+    
+    func startDateCreator(_ time: Double) -> String {
+        let createdAt: Date = Date(timeIntervalSince1970: time)
+        let formatter: DateFormatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 MM월 dd일"
+        
+        return formatter.string(from: createdAt)
+    }
+    
+    func endDateCreator(_ time: Double, _ startDate: Double) -> String {
+        let createdAt: Date = Date(timeIntervalSince1970: time)
+        
+        let yearFormatter: DateFormatter = DateFormatter()
+        let formatter: DateFormatter = DateFormatter()
+        
+        
+        yearFormatter.dateFormat = "yyyy"
+        
+        //start년도와 end년도가 같으면 end년도 출력안하기
+        if yearFormatter.string(from: createdAt) == yearFormatter.string(from: Date(timeIntervalSince1970: startDate)) {
+            formatter.dateFormat = "MM월 dd일"
+        }else {
+            formatter.dateFormat = "yyyy월 MM월 dd일"
+        }
+        
+        return formatter.string(from: createdAt)
+    }
+    
 }

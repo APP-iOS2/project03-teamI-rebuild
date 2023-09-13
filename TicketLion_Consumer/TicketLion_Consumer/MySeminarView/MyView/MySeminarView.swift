@@ -10,37 +10,56 @@ import SwiftUI
 struct MySeminarView: View {
     
     @StateObject var mySeminarStore = MySeminarStore()
+	@EnvironmentObject var userStore: UserStore
     
     @State private var selectedFilter: MyFilterBar = .reservation
     @Namespace var animation
     
     var body: some View {
         NavigationStack(path: $mySeminarStore.navigationPath) {
-            VStack {
-                
-                    myFilterView
-                        .padding(.top)
-                    
-                        VStack {
-                            switch selectedFilter {
-                            case .reservation: MyReservationView(mySeminarStore: mySeminarStore)
-                                    .onAppear {
-                                        mySeminarStore.fetchSeminar()
-                                    }
-                            case .favorite: MyFavoriteView()
-                            }
-                        }
-                    
-                    Spacer()
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("나의 세미나")
-            .navigationDestination(for: Seminar.self) { seminar in
-                SeminarDetailView(isShowingDetail: .constant(false), seminar: $mySeminarStore.selectedSeminar)
-                    .navigationBarBackButtonHidden(true)
-            }
-
+			if userStore.currentUser == nil {
+					Button("로그안하십셔") {
+						userStore.loginSheet = true
+					}
+			} else {
+				VStack {
+					
+					myFilterView
+						.padding(.top)
+					
+					VStack {
+						Button("딸각") {
+							print("\(userStore.appliedSeminars)")
+						}
+						
+						switch selectedFilter {
+						case .reservation: MyReservationView(mySeminarStore: mySeminarStore)
+								.onAppear {
+									mySeminarStore.fetchSeminar()
+								}
+						case .favorite: MyFavoriteView(mySeminarStore: mySeminarStore)
+						}
+					}
+					
+					Spacer()
+				}
+				.navigationBarTitleDisplayMode(.inline)
+				.navigationTitle("나의 세미나")
+				.navigationDestination(for: Seminar.self) { seminar in
+					SeminarDetailView(isShowingDetail: .constant(false), seminar: $mySeminarStore.selectedSeminar)
+						.navigationBarBackButtonHidden(true)
+				}
+				
+			}
         }
+		.onAppear {
+			userStore.fetchUserInfo()
+		}
+		.sheet(isPresented: $userStore.loginSheet) {
+			NavigationStack {
+				SettingLoginView()
+			}
+		}
     
     }//body
 }//MySeminarView
