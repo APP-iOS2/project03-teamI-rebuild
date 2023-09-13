@@ -39,9 +39,7 @@ struct SeminarAttendView: View {
                         Grid(alignment: .topLeading) {
                             GridRow {
                                 Text("이름")
-                                    .bold()
-                                    .foregroundColor(.gray)
-                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
+                                    .modifier(textStyle())
                                 
                                 Text("\(userStore.name)")
                             }
@@ -49,9 +47,7 @@ struct SeminarAttendView: View {
                             
                             GridRow {
                                 Text("이메일")
-                                    .bold()
-                                    .foregroundColor(.gray)
-                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
+                                    .modifier(textStyle())
                                 
                                 Text("\(userStore.email)")
                             }
@@ -59,9 +55,7 @@ struct SeminarAttendView: View {
                             
                             GridRow {
                                 Text("전화번호")
-                                    .bold()
-                                    .foregroundColor(.gray)
-                                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
+                                    .modifier(textStyle())
                                 
                                 Text("\(userStore.phoneNumber)")
                             }

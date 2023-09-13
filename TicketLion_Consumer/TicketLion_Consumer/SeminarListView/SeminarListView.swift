@@ -11,18 +11,18 @@ import SwiftUI
 struct SeminarListView: View {
     
     @StateObject var seminarStore: SeminarStore = SeminarStore()
-	@EnvironmentObject var userStore: UserStore
+    @EnvironmentObject var userStore: UserStore
     @State private var category: Category = .iOSDevelop
     @State private var search: String = ""
     @State var isShowingDetail: Bool = false
+    @State private var showingAlert = false
     
     @State var newSeminar: Seminar = Seminar.seminarsDummy[1]
     
-    @State var user: User = User(name: "파이링", phoneNumber: "01011111111", email: "fighring@naver.com", password: "1111", birth: "0128", appliedSeminars: [], favoriteSeminars: ["\(Seminar.seminarsDummy[0].id)", "\(Seminar.seminarsDummy[2].id)"], recentlySeminars: [], canceledSeminars: [])
-
-    
     var body: some View {
+        
         NavigationStack {
+            
             ScrollView {
                 Picker("Category", selection: $category) {
                     Text(Category.iOSDevelop.categoryName).tag(Category.iOSDevelop)
@@ -31,7 +31,7 @@ struct SeminarListView: View {
                     Text(Category.BackEnd.categoryName).tag(Category.BackEnd)
                 }
                 .pickerStyle(.segmented)
-                .padding()
+                .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                 
                 ForEach(seminarStore.seminarList.filter({"\($0)".localizedStandardContains(self.search) || self.search.isEmpty})) { seminar in
                     
@@ -40,56 +40,92 @@ struct SeminarListView: View {
                         Button {
                             newSeminar = seminar
                             isShowingDetail = true
-                            print("디테일뷰에 들어갈 \n \(seminar)")
+                            print("디테일뷰에 들어갈 \n")
                         } label: {
                             VStack(alignment: .leading) {
                                 HStack(alignment: .top) {
+                                                                    
                                     Text("\(seminar.name)") // 메인 타이틀
                                         .foregroundColor(.black)
                                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
                                     
                                     Spacer()
                                     
+                                    
+                                    Text("\(seminar.enterUsers.count)/\(seminar.maximumUserNumber)")
+                                        .foregroundColor(Color("AnyButtonColor"))
+                                        .border(Color("AnyButtonColor"))
+                                        .background(.white)
+
+                                    
+                                    Text(seminar.closingStatus ? "모집마감" : "모집중")
+                                        .foregroundColor(seminar.closingStatus ? .red : .blue)
+                                        .border(seminar.closingStatus ? .red : .blue)
+                                        .background(.white)
+
+    
+                                    
+                                    
                                     Button { // 즐겨찾기 버튼
                                         // User, favoriteSeminar에 저장
                                         // 저장 후 User의 favoriteSeminar 배열에 해당 Seminar가 있으면 즐겨찾기 버튼에 불이 들어와야한다.
-										
-										if userStore.favoriteSeminars.firstIndex(of: "\(seminar.id)") != nil {
-											// 즐겨찾기 없애기
-											userStore.removeFavoriteSeminar(seminarID: seminar.id)
-											print("\(userStore.favoriteSeminars)")
+                                        if let _ = userStore.currentUser {
+                                            if userStore.favoriteSeminars.firstIndex(of: "\(seminar.id)") != nil {
+                                                // 즐겨찾기 없애기
+                                                userStore.removeFavoriteSeminar(seminarID: seminar.id)
+                                                print("\(userStore.favoriteSeminars)")
+                                                
+                                            } else {
+                                                // 즐겨찾기 넣기
+                                                userStore.addFavoriteSeminar(seminarID: seminar.id)
+                                                print("\(userStore.favoriteSeminars)")
+                                                
+                                            }
                                         } else {
-											// 즐겨찾기 넣기
-											userStore.addFavoriteSeminar(seminarID: seminar.id)
-											print("\(userStore.favoriteSeminars)")
+                                            showingAlert = true
                                         }
                                     } label: {
                                         
                                         Image(systemName: userStore.favoriteSeminars.contains(seminar.id) ? "star.fill" : "star")
                                             .foregroundColor(userStore.favoriteSeminars.contains(seminar.id) ? Color("AnyButtonColor") : .gray)
+                                    }.alert(isPresented: $showingAlert) {
+                                        Alert(title: Text("로그인후 이용해주세요"),
+                                              message: nil,
+                                              primaryButton: .default(Text("OK")) {
+                                            userStore.loginSheet = true
+                                        },
+                                              secondaryButton: .cancel()
+                                        )
+                                        
                                     }
+                                    .sheet(isPresented: $userStore.loginSheet, content: {
+                                        NavigationStack {
+                                            SettingLoginView()
+                                        }
+                                    })
                                 }
                                 .bold()
                                 .font(.callout)
                                 
                                 VStack {
                                     HStack(alignment: .top) {
-										if seminar.seminarImage == "" {
-											Image("TicketLion")
-												.resizable()
-												.frame(width: 100, height: 100)
-												.aspectRatio(contentMode: .fit)
-										} else {
-											AsyncImage(url: URL(string: seminar.seminarImage)) { image in
-												image.resizable()
-													.frame(width: 100, height: 100)
-													.aspectRatio(contentMode: .fit)
-											} placeholder: {
-												ProgressView()
-											} // 이미지
-										}
-                                        
-                                        Spacer()
+                                            
+                                        AsyncImage(url: URL(string: seminar.seminarImage)) { phase in
+                                            if let image = phase.image {
+                                                image
+                                            } else if phase.error != nil { // 에러 있을때
+                                                Image("TicketLion")
+                                                    .resizable()
+                                                    .frame(width: 100, height: 100)
+                                                    .aspectRatio(contentMode: .fill)
+                                            } else { // placeholder
+                                                Image("TicketLion")
+                                                    .resizable()
+                                                    .frame(width: 100, height: 100)
+                                                    .aspectRatio(contentMode: .fill)
+                                            }
+                                        }
+
                                         
                                         VStack(alignment: .leading) { // 세미나 디테일
                                             Group {
@@ -99,10 +135,11 @@ struct SeminarListView: View {
                                                 Text("시간 : \(seminar.timeCreator( seminar.registerStartDate)) ~ \(seminar.timeCreator( seminar.registerEndDate))")
                                             }
                                             .padding(EdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0))
+                                            
                                             .foregroundColor(.black)
                                             .font(.footnote)
                                         }
-                                        
+                                        .padding(EdgeInsets(top: 0, leading: 7, bottom: 0, trailing: 0))
                                         
                                     }
                                 }
@@ -116,6 +153,8 @@ struct SeminarListView: View {
                     }
                 } // ForEach 끝
             }
+            .navigationTitle("세미나 목록")
+//            .navigationBarTitleDisplayMode(.inline)
             .fullScreenCover(isPresented: $isShowingDetail) {
                 NavigationStack {
                     // 여기에 디테일 뷰
@@ -124,17 +163,16 @@ struct SeminarListView: View {
             }
             .onAppear {
                 seminarStore.fetchSeminar()
-				userStore.fetchUserInfo()
+                userStore.fetchUserInfo()
             }
             .refreshable {
                 seminarStore.fetchSeminar()
-				userStore.fetchUserInfo()
+                userStore.fetchUserInfo()
             }
             .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always), prompt: "\(category.categoryName) 세미나를 찾아보세요.")
             
         }
-        .navigationTitle("Seminar")
-        .navigationBarTitleDisplayMode(.inline)
+
     }
 }
 
@@ -146,3 +184,4 @@ struct SeminarListView_Previews: PreviewProvider {
         }
     }
 }
+
