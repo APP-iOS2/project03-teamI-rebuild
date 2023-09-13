@@ -30,6 +30,7 @@ struct SeminarAddView: View {
     @State private var seminarEndDatePicker = Date()
     @State private var selectedImage: UIImage? = nil
     @State private var isImagePickerPresented: Bool = false
+    @State private var isOnline: Bool = false
     
     var isFieldAllWrite: Bool {
         let currentDate = Calendar.current.startOfDay(for: Date())
@@ -39,7 +40,6 @@ struct SeminarAddView: View {
         Calendar.current.startOfDay(for: registerEndDatePicker) != currentDate &&
         chipsViewModel.chipArray.contains(where: { $0.isSelected}) &&
         !details.isEmpty &&
-        !detailLocation.isEmpty &&
         !maximumUserNumber.isEmpty &&
         Calendar.current.startOfDay(for: seminarStartDatePicker) != currentDate &&
         Calendar.current.startOfDay(for: seminarEndDatePicker) != currentDate
@@ -144,33 +144,50 @@ struct SeminarAddView: View {
                         Text("장소")
                             .bold()
                             .padding(.top, 30)
-                        
+
                         Button {
-                            isOpenMap.toggle()
-                            setRegion()
-                        } label: {
-                            Label("지역 검색", systemImage: "mappin")
-                        }
-                        .buttonStyle(.borderedProminent)
-                    }
-                    
-                    if clickLocation {
-                        
-                        ZStack(alignment: .center) {
-                            Map(coordinateRegion: $region, showsUserLocation: true, annotationItems: [Location(coordinate: CLLocationCoordinate2D(latitude: seminarLocation.latitude, longitude: seminarLocation.longitude))]) { location in
-                                MapMarker(coordinate: location.coordinate)
+                            isOnline.toggle()
+                            if isOnline {
+                                clickLocation = false
                             }
-                        }.frame(width: 450, height: 250)
-                            .padding([.leading, .trailing,.bottom])
+                        } label: {
+                            if isOnline {
+                                Label("온라인", systemImage: "checkmark.square.fill")
+                            } else if isOnline == false {
+                                VStack(alignment: .leading) {
+                                    Label("온라인", systemImage: "square")
+                                    Button {
+                                        isOpenMap.toggle()
+                                        setRegion()
+                                    } label: {
+                                        Label("지역 검색", systemImage: "mappin")
+                                    }
+                                    .buttonStyle(.borderedProminent)
+                                    
+                                    Text("지역을 선택해주세요")
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                        }
+                        .foregroundColor(.black)
+                        .padding(.top, 5)
                         
-                        Text(seminarLocation.address)
-                        TextField("상세 주소를 입력해주세요", text: $detailLocation)
-                            .textFieldStyle(.roundedBorder)
-                            .textInputAutocapitalization(.never)
-                            .disableAutocorrection(true)
-                    } else {
-                        Text("장소를 선택해주세요")
-                            .foregroundColor(.gray)
+                        if clickLocation {
+                            ZStack(alignment: .center) {
+                                Map(coordinateRegion: $region, showsUserLocation: true, annotationItems: [Location(coordinate: CLLocationCoordinate2D(latitude: seminarLocation.latitude, longitude: seminarLocation.longitude))]) { location in
+                                    MapMarker(coordinate: location.coordinate)
+                                }
+                            }.frame(width: 450, height: 250)
+                                .padding([.leading, .trailing,.bottom])
+                            
+                            Text(seminarLocation.address)
+                            TextField("상세 주소를 입력해주세요", text: $detailLocation)
+                                .textFieldStyle(.roundedBorder)
+                                .textInputAutocapitalization(.never)
+                                .disableAutocorrection(true)
+                        } else {
+                            
+                        }
                     }
                     
                     Group {
@@ -270,6 +287,47 @@ struct SeminarAddView: View {
             print(error)
         }
         
+    }
+    
+    func selectLocation() {
+        if clickLocation {
+            Button {
+                isOnline.toggle()
+            } label: {
+                if isOnline == true {
+                    Label("온라인", systemImage: "checkmark.square.fill")
+                } else if isOnline == false {
+                    Label("온라인", systemImage: "square")
+                }
+            }
+            .foregroundColor(.black)
+            .padding(.top, 5)
+            
+            ZStack(alignment: .center) {
+                Map(coordinateRegion: $region, showsUserLocation: true, annotationItems: [Location(coordinate: CLLocationCoordinate2D(latitude: seminarLocation.latitude, longitude: seminarLocation.longitude))]) { location in
+                    MapMarker(coordinate: location.coordinate)
+                }
+            }.frame(width: 450, height: 250)
+            .padding([.leading, .trailing,.bottom])
+            
+            Text(seminarLocation.address)
+            TextField("상세 주소를 입력해주세요", text: $detailLocation)
+                .textFieldStyle(.roundedBorder)
+                .textInputAutocapitalization(.never)
+                .disableAutocorrection(true)
+        } else {
+            Button {
+                isOnline.toggle()
+            } label: {
+                if isOnline == true {
+                    Label("온라인", systemImage: "checkmark.square.fill")
+                } else if isOnline == false {
+                    Label("온라인", systemImage: "square")
+                }
+            }
+            .foregroundColor(.black)
+            .padding(.top, 5)
+        }
     }
 }
 
