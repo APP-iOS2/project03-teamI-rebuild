@@ -39,9 +39,6 @@ class UserStore: ObservableObject {
     @Published var favoriteSeminarDetails: [Seminar] = []
     @Published var canceledSeminarDetails: [Seminar] = []
     @Published var recentlySeminarsDetails: [Seminar] = []
-
-
-
     
     // 회원가입
     func signUpUser(name: String, email: String, password: String, phoneNumber: String, birth: String) {
@@ -50,9 +47,11 @@ class UserStore: ObservableObject {
                 print("회원가입 실패: \(error.localizedDescription)")
             } else if (authResult?.user) != nil {
                 // 회원가입 성공
-                let user = User(name: name, phoneNumber: phoneNumber, email: email, password: password, birth: birth, appliedSeminars: [], favoriteSeminars: [], recentlySeminars: [], canceledSeminars: [])
+                let uuid = UUID().uuidString
+                let user = User(id: uuid, name: name, phoneNumber: phoneNumber, email: email, password: password, birth: birth, appliedSeminars: [], favoriteSeminars: [], recentlySeminars: [], canceledSeminars: [])
                 
                 let userDictionary: [String: Any] = [
+                    "id": user.id,
                     "name": user.name,
                     "phoneNumber": user.phoneNumber,
                     "email": user.email,
@@ -76,7 +75,6 @@ class UserStore: ObservableObject {
             }
         }
     }
-    
     
     // 사용자 정보 가져오기
     func fetchUserInfo() {
@@ -102,7 +100,6 @@ class UserStore: ObservableObject {
             }
         }
     }
-    
     
     // 세미나 정보 가져오기
     func updateSeminarDetails() {
@@ -229,13 +226,10 @@ class UserStore: ObservableObject {
         }
     }
     
-    
-    
     var passwordsMatch: Bool {
         // 두 비밀번호가 일치하는지 확인
         return password == passwordCheck
     }
-    
     
     func isValidEmail() -> Bool {
         // [A-Z0-9a-z._%+-] 영어 대문자 소문자 특수문자까지 가능
@@ -253,8 +247,6 @@ class UserStore: ObservableObject {
         let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
         return passwordPredicate.evaluate(with: password)
     }
-    
-    
     
     init() {
         currentUser = Auth.auth().currentUser
@@ -276,9 +268,6 @@ class UserStore: ObservableObject {
         //                print("error: \(error.localizedDescription)")
         //                return
         //            }
-        
-        
-        
     }
     
     /// 로그아웃

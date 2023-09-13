@@ -47,7 +47,7 @@ struct SettingSignUpBirthView: View {
                     SettingSignUpCompleteView(/* isCompleteSignUp: $isCompleteSignUp */)
                         .onAppear {
 							Task {
-								await userStore.signUpUser(name: userStore.name, email: userStore.email, password: userStore.password, phoneNumber: userStore.phoneNumber, birth: userStore.birth)
+                                await userStore.signUpUser(name: userStore.name, email: userStore.email, password: userStore.password, phoneNumber: userStore.phoneNumber, birth: userStore.birth)
 							}
                             
                         }
