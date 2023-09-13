@@ -28,22 +28,12 @@ struct SeminarMapView: View {
                     .font(.subheadline)
                 
                 ZStack {
-//            
                     Map(coordinateRegion: $region, showsUserLocation: true)
                         .edgesIgnoringSafeArea(.bottom)
                         MapMarkerDetailView()
                     
                     VStack {
-                        ZStack{
-                            Text("클릭하면 가운데 장소로 선택됩니다")
-                                .foregroundColor(.black)
-                                .opacity(0.9)
-                            Color.gray
-                                .frame(width: 250, height: 30)
-                                .opacity(0.25)
-                        }
-                        .cornerRadius(5)
-                        .padding(.top)
+                        
                         Spacer()
                         
                         HStack {
