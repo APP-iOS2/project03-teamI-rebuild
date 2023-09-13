@@ -31,7 +31,7 @@ struct SeminarInfoView: View {
 					Text("진행날짜")
                         .modifier(textStyle())
 					
-					Text("\(seminar.startDateCreator(seminar.registerStartDate)) ~ \(seminar.endDateCreator(seminar.registerEndDate, seminar.registerStartDate))")
+					Text("\(seminar.startDateCreator(seminar.seminarStartDate)) ~ \(seminar.endDateCreator(seminar.seminarEndDate, seminar.seminarStartDate))")
 				}
 				.padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
 				
@@ -39,7 +39,7 @@ struct SeminarInfoView: View {
 					Text("진행시간")
                         .modifier(textStyle())
 					
-					Text("\(seminar.timeCreator(seminar.registerStartDate)) ~ \(seminar.timeCreator(seminar.registerEndDate))")
+					Text("\(seminar.timeCreator(seminar.seminarStartDate)) ~ \(seminar.timeCreator(seminar.seminarEndDate))")
 				}
 				.padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
 				
