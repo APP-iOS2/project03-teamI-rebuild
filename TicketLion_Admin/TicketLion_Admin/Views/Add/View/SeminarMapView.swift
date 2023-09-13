@@ -10,31 +10,29 @@ import CoreLocation
 import MapKit
 
 struct SeminarMapView: View {
-
+    
     @Environment(\.dismiss) private var dismiss
     @ObservedObject var seminarStore: SeminarStore
     @StateObject var locationManager = LocationManager()
     @State private var location = Location(coordinate: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780))
     @State private var address = "서울 시청"
-
+    
     @Binding var region: MKCoordinateRegion
     @Binding var clickLocation: Bool
     @Binding var seminarLocation: SeminarLocation
-
+    
     var body: some View {
         NavigationStack{
             VStack {
                 Text(address)
                     .font(.subheadline)
-
+                
                 ZStack {
-                    Map(coordinateRegion: $region, showsUserLocation: true, annotationItems: [location]) { location in
-                        MapAnnotation(coordinate: location.coordinate) {
-                            MapMarkerDetail()
-                        }
-                    }
-                    .edgesIgnoringSafeArea(.bottom)
-
+//            
+                    Map(coordinateRegion: $region, showsUserLocation: true)
+                        .edgesIgnoringSafeArea(.bottom)
+                        MapMarkerDetailView()
+                    
                     VStack {
                         ZStack{
                             Text("클릭하면 가운데 장소로 선택됩니다")
@@ -47,7 +45,7 @@ struct SeminarMapView: View {
                         .cornerRadius(5)
                         .padding(.top)
                         Spacer()
-
+                        
                         HStack {
                             Spacer()
                             VStack {
@@ -66,9 +64,9 @@ struct SeminarMapView: View {
                                         .clipShape(Circle())
                                         .shadow(color: .black, radius: 3)
                                 }
-
+                                
                                 Spacer()
-
+                                
                                 Button(action: {
                                     withAnimation {
                                         region.span.latitudeDelta *= 2
@@ -88,12 +86,12 @@ struct SeminarMapView: View {
                             .frame(height: 150)
                         } // Zoom In/Out 버튼
                         .padding(.init(top: 0, leading: 0, bottom: -50, trailing: 15))
-
+                        
                         Spacer()
-
+                        
                         HStack {
                             Spacer()
-
+                            
                             Button(action: {
                                 if let userLocation = locationManager.location?.coordinate {
                                     withAnimation {
@@ -121,7 +119,7 @@ struct SeminarMapView: View {
                 .onTapGesture {
                     drawMarkerWithAddress()
                 }
-
+                
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button {
@@ -130,7 +128,7 @@ struct SeminarMapView: View {
                             Text("취소")
                         }
                     }
-
+                    
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
                             dismiss()
@@ -144,7 +142,7 @@ struct SeminarMapView: View {
             }
         }
     } //body
-
+    
     func drawMarkerWithAddress() {
         let touchPoint = region.center
         location = Location(coordinate: touchPoint)

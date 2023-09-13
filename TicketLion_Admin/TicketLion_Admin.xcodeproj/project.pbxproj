@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1BC142B12AB19DD3008077ED /* MapMarkerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC142B02AB19DD3008077ED /* MapMarkerDetailView.swift */; };
 		1BDD9AAB2AB0088C002EDE8E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BDD9AAA2AB0088C002EDE8E /* GoogleService-Info.plist */; };
 		6412FA092AA6FC8E00F1467B /* TicketLion_AdminApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6412FA082AA6FC8E00F1467B /* TicketLion_AdminApp.swift */; };
 		6412FA0D2AA6FC9000F1467B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6412FA0C2AA6FC9000F1467B /* Assets.xcassets */; };
@@ -40,7 +41,6 @@
 		9AB0029B2AA9572D0029BBC3 /* SeminarDetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002912AA9572D0029BBC3 /* SeminarDetailEditView.swift */; };
 		9AB0029C2AA9572D0029BBC3 /* SeminarMapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002922AA9572D0029BBC3 /* SeminarMapMarker.swift */; };
 		9AB0029D2AA9572D0029BBC3 /* DetailSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002932AA9572D0029BBC3 /* DetailSidebar.swift */; };
-		9AB002A72AA957BE0029BBC3 /* MapMarkerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB0029F2AA957BD0029BBC3 /* MapMarkerDetailView.swift */; };
 		9AB002A92AA957BE0029BBC3 /* SeminarAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002A12AA957BD0029BBC3 /* SeminarAddView.swift */; };
 		9AB002AA2AA957BE0029BBC3 /* CategoryChipContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002A22AA957BE0029BBC3 /* CategoryChipContainerView.swift */; };
 		9AB002AB2AA957BE0029BBC3 /* SeminarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002A32AA957BE0029BBC3 /* SeminarStore.swift */; };
@@ -52,6 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1BC142B02AB19DD3008077ED /* MapMarkerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarkerDetailView.swift; sourceTree = "<group>"; };
 		1BDD9AAA2AB0088C002EDE8E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1BDD9AAC2AB040C1002EDE8E /* TicketLion-Admin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "TicketLion-Admin-Info.plist"; sourceTree = SOURCE_ROOT; };
 		6412FA052AA6FC8E00F1467B /* TicketLion_Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicketLion_Admin.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,7 +79,6 @@
 		9AB002912AA9572D0029BBC3 /* SeminarDetailEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarDetailEditView.swift; sourceTree = "<group>"; };
 		9AB002922AA9572D0029BBC3 /* SeminarMapMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarMapMarker.swift; sourceTree = "<group>"; };
 		9AB002932AA9572D0029BBC3 /* DetailSidebar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSidebar.swift; sourceTree = "<group>"; };
-		9AB0029F2AA957BD0029BBC3 /* MapMarkerDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapMarkerDetailView.swift; sourceTree = "<group>"; };
 		9AB002A12AA957BD0029BBC3 /* SeminarAddView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarAddView.swift; sourceTree = "<group>"; };
 		9AB002A22AA957BE0029BBC3 /* CategoryChipContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryChipContainerView.swift; sourceTree = "<group>"; };
 		9AB002A32AA957BE0029BBC3 /* SeminarStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarStore.swift; sourceTree = "<group>"; };
@@ -112,8 +112,8 @@
 		1BC5E98C2AAECBF00025B8A8 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9AB0029F2AA957BD0029BBC3 /* MapMarkerDetailView.swift */,
 				9AB002A12AA957BD0029BBC3 /* SeminarAddView.swift */,
+				1BC142B02AB19DD3008077ED /* MapMarkerDetailView.swift */,
 				9AB002A62AA957BE0029BBC3 /* SeminarMapView.swift */,
 				9AB002A22AA957BE0029BBC3 /* CategoryChipContainerView.swift */,
 				9AB002A42AA957BE0029BBC3 /* CategoryChipView.swift */,
@@ -389,6 +389,7 @@
 				9AB002A92AA957BE0029BBC3 /* SeminarAddView.swift in Sources */,
 				C06B1BA12AB00A4800D08744 /* SeminarInfoView.swift in Sources */,
 				64A071062AA7257B00AF887A /* SeminarModel.swift in Sources */,
+				1BC142B12AB19DD3008077ED /* MapMarkerDetailView.swift in Sources */,
 				9AB002AD2AA957BE0029BBC3 /* CategotyChipModel.swift in Sources */,
 				9AB002AB2AA957BE0029BBC3 /* SeminarStore.swift in Sources */,
 				9AB002972AA9572D0029BBC3 /* SeminarDetailSidebar.swift in Sources */,
@@ -396,7 +397,6 @@
 				9AB0029B2AA9572D0029BBC3 /* SeminarDetailEditView.swift in Sources */,
 				9AB002942AA9572D0029BBC3 /* SeminarDetailModel.swift in Sources */,
 				9AB002AC2AA957BE0029BBC3 /* CategoryChipView.swift in Sources */,
-				9AB002A72AA957BE0029BBC3 /* MapMarkerDetailView.swift in Sources */,
 				9AB002862AA956830029BBC3 /* ClosedListView.swift in Sources */,
 				9AB0029C2AA9572D0029BBC3 /* SeminarMapMarker.swift in Sources */,
 				9AB0027A2AA955E80029BBC3 /* Color+.swift in Sources */,
