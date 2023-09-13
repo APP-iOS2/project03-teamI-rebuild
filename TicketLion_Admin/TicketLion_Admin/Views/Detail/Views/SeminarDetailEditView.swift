@@ -281,7 +281,7 @@ struct SeminarDetailEditView: View {
         }
     }
     
-    //MARK: 파베연동
+    //MARK: 파베수정연동
     func updateSeminar() {
         let selectCategory = chipsViewModel.chipArray.filter { $0.isSelected }.map { $0.titleKey }
         
