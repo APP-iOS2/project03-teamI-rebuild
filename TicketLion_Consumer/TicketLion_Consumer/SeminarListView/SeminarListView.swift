@@ -48,12 +48,12 @@ struct SeminarListView: View {
             .alert(isPresented: $showingAlert) {
                 Alert(title: Text("로그인후 이용해주세요"),
                       message: nil,
-                      primaryButton: .default(Text("OK")) {
+                      primaryButton: .default(Text("로그인 하기")) {
                     userStore.loginSheet = true
                     print("userStore.loginSheet : \(userStore.loginSheet)")
                     print("알럿 먹힘")
                 },
-                      secondaryButton: .cancel()
+                      secondaryButton: .default(Text("취소"))
                 )
             }
             .navigationTitle("세미나 목록")
