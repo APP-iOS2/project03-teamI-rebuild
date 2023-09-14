@@ -30,7 +30,7 @@ struct SeminarInfoView: View {
 
             switch info {
             case .detail:
-                SeminarDetailInfo(seminars: seminar, seminarData: .constant(Seminar.seminarsDummy[0]), seminarLocation: SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청"))
+                SeminarDetailInfo(seminars: seminar, seminarData: .constant(Seminar.seminarsDummy[0]), seminarLocation: SeminarLocation(latitude: 37.39494, longitude: 127.110106, address: "서울시청"))
             case .participation:
                 ParticipationListVIew(selectedUsers: seminar.enterUsers)
             }

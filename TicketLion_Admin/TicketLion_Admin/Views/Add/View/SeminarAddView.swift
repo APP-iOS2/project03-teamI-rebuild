@@ -50,10 +50,12 @@ struct SeminarAddView: View {
     var storage = Storage.storage()
     
     @State var isOpenMap: Bool = false
-    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
-    @State var seminarLocation: SeminarLocation = SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청")
+    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.39494, longitude: 127.110106), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
+    @State var seminarLocation: SeminarLocation = SeminarLocation(latitude: 37.39494, longitude: 127.110106, address: "서울시청")
     @State var clickLocation: Bool = false
     @State var isShowing: Bool = false
+    
+    static let today = Calendar.current.startOfDay(for: Date())
     
     var body: some View {
         NavigationStack {
@@ -87,12 +89,12 @@ struct SeminarAddView: View {
                         
                         HStack {
                             Text("시작")
-                            DatePicker("Date and Time", selection: $registerStartDatePicker, displayedComponents: [.date, .hourAndMinute])
+                            DatePicker("Date and Time", selection: $registerStartDatePicker,in: Self.today..., displayedComponents: [.date, .hourAndMinute])
                                 .datePickerStyle(.compact)
                             .labelsHidden()                        }
                         HStack {
                             Text("마감")
-                            DatePicker("date select", selection: $registerEndDatePicker, displayedComponents: [.date, .hourAndMinute])
+                            DatePicker("date select", selection: $registerEndDatePicker, in: Self.today..., displayedComponents: [.date, .hourAndMinute])
                                 .datePickerStyle(.compact)
                                 .labelsHidden()
                         }
@@ -216,13 +218,13 @@ struct SeminarAddView: View {
                         
                         HStack {
                             Text("시작")
-                            DatePicker("date select", selection: $seminarStartDatePicker, displayedComponents: [.date, .hourAndMinute])
+                            DatePicker("date select", selection: $seminarStartDatePicker, in: registerEndDatePicker..., displayedComponents: [.date, .hourAndMinute])
                                 .datePickerStyle(.compact)
                                 .labelsHidden()
                         }
                         HStack {
                             Text("종료")
-                            DatePicker("date select", selection: $seminarEndDatePicker, displayedComponents: [.date, .hourAndMinute])
+                            DatePicker("date select", selection: $seminarEndDatePicker, in: registerEndDatePicker..., displayedComponents: [.date, .hourAndMinute])
                                 .datePickerStyle(.compact)
                                 .labelsHidden()
                         }
