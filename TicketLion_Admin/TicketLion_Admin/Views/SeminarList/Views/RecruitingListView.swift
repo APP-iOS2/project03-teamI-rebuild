@@ -12,6 +12,27 @@ struct RecruitingListView: View {
     @State private var selectedSeminar: Seminar.ID? = nil
     @State private var order: Order = .recent
     @State private var isShowingSeminarInfo = false
+    @State private var currentPage: Int = 1
+    let itemsPerPage = 15
+    
+    var totalPages: Int {
+        Int(ceil(Double(seminarStore.recruitingList.count) / Double(itemsPerPage)))
+    }
+    
+    var seminarList: [Seminar] {
+        switch order {
+        case .recent:
+            return seminarStore.recruitingList
+        case .deadline:
+            return seminarStore.recruitingList.sorted { $0.registerEndDate < $1.registerEndDate }
+        }
+    }
+    
+    var currentPageList: [Seminar] {
+        let startIndex = (currentPage - 1) * itemsPerPage
+        let endIndex = min(startIndex + itemsPerPage, seminarList.count)
+        return Array(seminarList[startIndex..<endIndex])
+    }
     
     var body: some View {
         
@@ -52,15 +73,8 @@ struct RecruitingListView: View {
                     }
                     .width(100)
                 } rows: {
-                    switch order {
-                    case .recent:
-                        ForEach(seminarStore.recruitingList) { seminar in
-                            TableRow(seminar)
-                        }
-                    case .deadline:
-                        ForEach(seminarStore.recruitingList.sorted { $0.registerEndDate < $1.registerEndDate }) { seminar in
-                            TableRow(seminar)
-                        }
+                    ForEach(currentPageList) { seminar in
+                        TableRow(seminar)
                     }
                 }
                 
@@ -82,7 +96,6 @@ struct RecruitingListView: View {
                 }
             }
         }
-        .foregroundColor(.black)
         .onAppear {
             seminarStore.fetch()
         }

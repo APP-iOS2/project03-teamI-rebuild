@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		082204222AB1ACEE007A9B36 /* SeminarListSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082204212AB1ACEE007A9B36 /* SeminarListSubView.swift */; };
 		08C7AD392AAFF53D00B6C19E /* SeminarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C7AD382AAFF53D00B6C19E /* SeminarStore.swift */; };
 		09EA3D8D2AAFEAB70057F805 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EA3D8C2AAFEAB70057F805 /* UserStore.swift */; };
 		51EC0F492AB14CB800D5FAC2 /* NavigationPathModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EC0F482AB14CB800D5FAC2 /* NavigationPathModel.swift */; };
@@ -64,6 +65,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		082204212AB1ACEE007A9B36 /* SeminarListSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarListSubView.swift; sourceTree = "<group>"; };
 		08C7AD382AAFF53D00B6C19E /* SeminarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarStore.swift; sourceTree = "<group>"; };
 		09EA3D8C2AAFEAB70057F805 /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		51EC0F482AB14CB800D5FAC2 /* NavigationPathModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationPathModel.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				64B327F42AAF6C4A00D64EFF /* SeminarListView.swift */,
+				082204212AB1ACEE007A9B36 /* SeminarListSubView.swift */,
 				64B327F82AAF6CA400D64EFF /* SeminarDetailView.swift */,
 				99804C9C2AAFEAE30050F27F /* SeminarInfoView.swift */,
 				8B924DBF2AAFE8E00042D790 /* SeminarDetailMapView.swift */,
@@ -378,6 +381,7 @@
 				64B328222AAF6F0D00D64EFF /* SettingUserView.swift in Sources */,
 				64B328282AAF6F7E00D64EFF /* SettingDevInfoDetailView.swift in Sources */,
 				64B328162AAF6E9C00D64EFF /* SettingSignUpPhoneNumberView.swift in Sources */,
+				082204222AB1ACEE007A9B36 /* SeminarListSubView.swift in Sources */,
 				8B924DC02AAFE8E00042D790 /* SeminarDetailMapView.swift in Sources */,
 				64B3281A2AAF6EC000D64EFF /* SettingSignUpCompleteView.swift in Sources */,
 				64B328262AAF6F6400D64EFF /* SettingDevInfoView.swift in Sources */,
