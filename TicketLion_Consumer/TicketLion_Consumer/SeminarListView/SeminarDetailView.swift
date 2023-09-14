@@ -289,7 +289,7 @@ struct SeminarDetailView: View {
                 userStore.loginSheet = true
                 print("\(userStore.loginSheet)")
             },
-                  secondaryButton: .default(Text("취소"))
+                  secondaryButton: .cancel(Text("취소하기"))
             )
         }
     }
