@@ -60,21 +60,25 @@ struct MyFavoriteView: View {
                         VStack {
                             //이미지 변경 해야함
                             HStack(alignment: .top) {
-                                AsyncImage(url: URL(string: seminar.seminarImage)) { phase in
-                                    if let image = phase.image {
-                                        image
-                                    } else if phase.error != nil { // 에러 있을때
-                                        Image("TicketLion")
-                                            .resizable()
-                                            .frame(width: 100, height: 100)
-                                            .aspectRatio(contentMode: .fit)
-                                    } else { // placeholder
-                                        Image("TicketLion")
-                                            .resizable()
-                                            .frame(width: 100, height: 100)
-                                            .aspectRatio(contentMode: .fit)
-                                    }
-                                }
+								
+								AsyncImage(url: URL(string: seminar.seminarImage)) { phase in // 이미지
+									if let image = phase.image {
+										image
+										.resizable()
+										.frame(width: 100, height: 100)
+										.aspectRatio(contentMode: .fill)
+									} else if phase.error != nil { // 에러 있을때
+										Image("TicketLion")
+											.resizable()
+											.frame(width: 100, height: 100)
+											.aspectRatio(contentMode: .fill)
+									} else { // placeholder
+										Image("TicketLion")
+											.resizable()
+											.frame(width: 100, height: 100)
+											.aspectRatio(contentMode: .fill)
+									}
+								}
                                 
                                 Spacer()
                                 

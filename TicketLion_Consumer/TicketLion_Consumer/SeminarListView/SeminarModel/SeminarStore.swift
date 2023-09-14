@@ -40,7 +40,7 @@ final class SeminarStore: ObservableObject {
     
     func addUserPhoneNumberInSeminar(seminar: Seminar) {
         
-        let seminarRef = db.collection("Seminar").document("\(seminar.id)" ?? "")
+        let seminarRef = db.collection("Seminar").document("\(seminar.id)")
         
         seminarRef.updateData([
             "enterUsers" : seminar.enterUsers + [UserStore().phoneNumber]
