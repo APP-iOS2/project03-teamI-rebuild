@@ -2,12 +2,12 @@
 //  MapMarkerDetailView.swift
 //  TicketLion_Admin
 //
-//  Created by 나예슬 on 2023/09/06.
+//  Created by 나예슬 on 2023/09/13.
 //
 
 import SwiftUI
 
-struct MapMarkerDetail: View {
+struct MapMarkerDetailView: View {
     var body: some View {
         VStack {
             Image(systemName: "mappin")
@@ -31,8 +31,8 @@ struct MapMarkerDetail: View {
     }
 }
 
-//struct MapMarkerDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MapMarkerDetailView()
-//    }
-//}
+struct MapMarkerDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        MapMarkerDetailView()
+    }
+}
