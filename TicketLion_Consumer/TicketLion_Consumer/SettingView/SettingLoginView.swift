@@ -10,13 +10,14 @@ import SwiftUI
 struct SettingLoginView: View {
     @State private var userEmail: String = ""
     @State private var userPassword: String = ""
-    @State private var isCompleteSignUp: Bool = false
     @State private var loginFailedMessage: String = ""
-    
+//    @State private var isCompleteSignUp: Bool = false
     @EnvironmentObject var userStore: UserStore
+    @EnvironmentObject var router: Router
+
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $router.path) {
             VStack(spacing: 25) {
                 Divider()
                     .background(Color("AnyButtonColor"))
@@ -71,7 +72,8 @@ struct SettingLoginView: View {
 //                })
                 
                 NavigationLink {
-                    SettingSignUpEmailView(isCompleteSignUp: $isCompleteSignUp)
+                    SettingSignUpEmailView(/*isCompleteSignUp: $isCompleteSignUp*/)
+                    
                 } label: {
                     Text("회원가입")
                     Image(systemName: "chevron.right")
@@ -92,6 +94,7 @@ struct SettingLoginView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             SettingLoginView()
+                .environmentObject(Router())
         }
     }
 }

@@ -38,6 +38,7 @@ final class SeminarStore: ObservableObject {
 	
 	// 유저정보 이메일 -> database
     
+    @MainActor
     func addUserPhoneNumberInSeminar(seminar: Seminar) {
         
         let seminarRef = db.collection("Seminar").document("\(seminar.id)")
