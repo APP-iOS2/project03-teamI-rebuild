@@ -63,8 +63,8 @@ struct MySeminarListView: View {
 											.aspectRatio(contentMode: .fill)
 									}
 								}
+								.padding(.trailing)
 								
-								Spacer()
 								
 								VStack(alignment: .leading) { // 세미나 디테일
 									Group {

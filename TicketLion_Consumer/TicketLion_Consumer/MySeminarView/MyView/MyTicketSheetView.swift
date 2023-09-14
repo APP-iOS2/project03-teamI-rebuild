@@ -125,17 +125,18 @@ extension MyTicketSheetView {
                             .foregroundColor(Color("MainColor"))
                         Divider()
                         Spacer()
-                        HStack {
+						HStack(alignment: .top) {
                             VStack(alignment: .leading) {
-                                Text("강연자: ")
-                                Text("일시: ")
-                                Text("시간: ")
-                                Text("장소: ")
+								if mySeminarStore.selectedSeminar.host != "" {
+									Text("강연자: ")
+								}
+								if mySeminarStore.selectedSeminar.location != "" {
+									Text("장소: ")
+								}
                             }
                             VStack(alignment: .leading) {
                                 Text("\(mySeminarStore.selectedSeminar.host)")
-////                                Text(mySeminarStore.selectedSeminar.registerDate)
-//                                Text("\(timeCreator(time: mySeminarStore.selectedSeminar.registerRunTime)) ~ \(timeCreator(time: mySeminarStore.selectedSeminar.registerEndTime))")
+
                                 Text(mySeminarStore.selectedSeminar.location ?? "온라인")
                             }
                             .font(.headline)
