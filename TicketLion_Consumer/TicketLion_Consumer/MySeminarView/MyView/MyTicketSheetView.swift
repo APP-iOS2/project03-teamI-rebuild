@@ -63,11 +63,11 @@ struct MyTicketSheetView: View {
             .alert(isPresented: $showingAlert) {
                 Alert(title: Text("예매 취소"),
                       message: Text("해당 세미나의 티켓 예매가 취소됩니다."),
-                      primaryButton: .destructive(Text("확인"),action: {
+                      primaryButton: .destructive(Text("예매취소"),action: {
                     showingToast.toggle()
                     isShowingSheet = false
                     userStore.cancelSeminar(seminarID: mySeminarStore.selectedSeminar.id)
-                }), secondaryButton: .cancel(Text("취소")))
+                }), secondaryButton: .cancel(Text("돌아가기")))
             }
             
         }
@@ -125,17 +125,18 @@ extension MyTicketSheetView {
                             .foregroundColor(Color("MainColor"))
                         Divider()
                         Spacer()
-                        HStack {
+						HStack(alignment: .top) {
                             VStack(alignment: .leading) {
-                                Text("강연자: ")
-                                Text("일시: ")
-                                Text("시간: ")
-                                Text("장소: ")
+								if mySeminarStore.selectedSeminar.host != "" {
+									Text("강연자: ")
+								}
+								if mySeminarStore.selectedSeminar.location != "" {
+									Text("장소: ")
+								}
                             }
                             VStack(alignment: .leading) {
                                 Text("\(mySeminarStore.selectedSeminar.host)")
-////                                Text(mySeminarStore.selectedSeminar.registerDate)
-//                                Text("\(timeCreator(time: mySeminarStore.selectedSeminar.registerRunTime)) ~ \(timeCreator(time: mySeminarStore.selectedSeminar.registerEndTime))")
+
                                 Text(mySeminarStore.selectedSeminar.location ?? "온라인")
                             }
                             .font(.headline)
