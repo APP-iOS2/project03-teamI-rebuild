@@ -12,6 +12,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseCore
 import Combine
+import FirebaseStorage
 
 struct SeminarAddView: View {
     @Environment(\.dismiss) private var dismiss
@@ -28,8 +29,9 @@ struct SeminarAddView: View {
     @State private var registerEndDatePicker = Date()
     @State private var seminarStartDatePicker = Date()
     @State private var seminarEndDatePicker = Date()
-    @State private var selectedImage: UIImage? = nil
+    @State private var selectedImage: UIImage?
     @State private var isImagePickerPresented: Bool = false
+    @State private var isOnline: Bool = false
     
     var isFieldAllWrite: Bool {
         let currentDate = Calendar.current.startOfDay(for: Date())
@@ -39,13 +41,13 @@ struct SeminarAddView: View {
         Calendar.current.startOfDay(for: registerEndDatePicker) != currentDate &&
         chipsViewModel.chipArray.contains(where: { $0.isSelected}) &&
         !details.isEmpty &&
-        !detailLocation.isEmpty &&
         !maximumUserNumber.isEmpty &&
         Calendar.current.startOfDay(for: seminarStartDatePicker) != currentDate &&
         Calendar.current.startOfDay(for: seminarEndDatePicker) != currentDate
     }
     
     var db = Firestore.firestore()
+    var storage = Storage.storage()
     
     @State var isOpenMap: Bool = false
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
@@ -144,33 +146,51 @@ struct SeminarAddView: View {
                         Text("장소")
                             .bold()
                             .padding(.top, 30)
-                        
+
                         Button {
-                            isOpenMap.toggle()
-                            setRegion()
-                        } label: {
-                            Label("지역 검색", systemImage: "mappin")
-                        }
-                        .buttonStyle(.borderedProminent)
-                    }
-                    
-                    if clickLocation {
-                        
-                        ZStack(alignment: .center) {
-                            Map(coordinateRegion: $region, showsUserLocation: true, annotationItems: [Location(coordinate: CLLocationCoordinate2D(latitude: seminarLocation.latitude, longitude: seminarLocation.longitude))]) { location in
-                                MapMarker(coordinate: location.coordinate)
+                            isOnline.toggle()
+                            if isOnline {
+                                clickLocation = false
                             }
-                        }.frame(width: 450, height: 250)
-                            .padding([.leading, .trailing,.bottom])
+                        } label: {
+                            if isOnline {
+                                Label("온라인", systemImage: "checkmark.square.fill")
+                            } else if isOnline == false {
+                                VStack(alignment: .leading) {
+                                    Label("온라인", systemImage: "square")
+                                    Button {
+                                        isOpenMap.toggle()
+                                        setRegion()
+                                    } label: {
+                                        Label("지역 검색", systemImage: "mappin")
+                                            .foregroundColor(.white)
+                                    }
+                                    .buttonStyle(.borderedProminent)
+                                    
+                                    Text("지역을 선택해주세요")
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                        }
+                        .foregroundColor(.black)
+                        .padding(.top, 5)
                         
-                        Text(seminarLocation.address)
-                        TextField("상세 주소를 입력해주세요", text: $detailLocation)
-                            .textFieldStyle(.roundedBorder)
-                            .textInputAutocapitalization(.never)
-                            .disableAutocorrection(true)
-                    } else {
-                        Text("장소를 선택해주세요")
-                            .foregroundColor(.gray)
+                        if clickLocation {
+                            ZStack(alignment: .center) {
+                                Map(coordinateRegion: $region, showsUserLocation: true, annotationItems: [Location(coordinate: CLLocationCoordinate2D(latitude: seminarLocation.latitude, longitude: seminarLocation.longitude))]) { location in
+                                    MapMarker(coordinate: location.coordinate)
+                                }
+                            }.frame(width: 450, height: 250)
+                                .padding([.leading, .trailing,.bottom])
+                            
+                            Text(seminarLocation.address)
+                            TextField("상세 주소를 입력해주세요", text: $detailLocation)
+                                .textFieldStyle(.roundedBorder)
+                                .textInputAutocapitalization(.never)
+                                .disableAutocorrection(true)
+                        } else {
+                            
+                        }
                     }
                     
                     Group {
@@ -262,14 +282,27 @@ struct SeminarAddView: View {
         
         let selectCategory = chipsViewModel.chipArray.filter { $0.isSelected }.map { $0.titleKey }
         
-        let seminar = Seminar(category: selectCategory, name: name, seminarImage: seminarImage, host: host, details: details, location: "\(seminarLocation.address+detailLocation)", maximumUserNumber: Int(maximumUserNumber) ?? 0, closingStatus: false, registerStartDate: registerStartDatePicker.timeIntervalSince1970, registerEndDate: registerEndDatePicker.timeIntervalSince1970, seminarStartDate: seminarStartDatePicker.timeIntervalSince1970, seminarEndDate: seminarEndDatePicker.timeIntervalSince1970, enterUsers: [])
+        var seminar = Seminar(category: selectCategory, name: name, seminarImage: seminarImage, host: host, details: details, location: "\(seminarLocation.address+detailLocation)", maximumUserNumber: Int(maximumUserNumber) ?? 0, createdAt: Date().timeIntervalSince1970, closingStatus: false, registerStartDate: registerStartDatePicker.timeIntervalSince1970, registerEndDate: registerEndDatePicker.timeIntervalSince1970, seminarStartDate: seminarStartDatePicker.timeIntervalSince1970, seminarEndDate: seminarEndDatePicker.timeIntervalSince1970, enterUsers: [])
         
-        do {
-            try db.collection("Seminar").document(seminar.id).setData(from: seminar)
-        } catch {
-            print(error)
+        if let selectedImage {
+            guard let imageData = selectedImage.jpegData(compressionQuality: 0.2) else { return }
+            
+            let storageRef = storage.reference().child(seminar.id)
+            
+            storageRef.putData(imageData) { _ , error in
+                storageRef.downloadURL { url, error in
+                    guard let profileImageUrl = url?.absoluteString else { return }
+                    seminar.seminarImage = profileImageUrl
+                    
+                    do {
+                        try db.collection("Seminar").document(seminar.id).setData(from: seminar)
+                    } catch {
+                        
+                    }
+                    
+                }
+            }
         }
-        
     }
 }
 

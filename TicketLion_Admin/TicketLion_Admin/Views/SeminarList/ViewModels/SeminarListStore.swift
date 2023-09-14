@@ -9,39 +9,36 @@ import Foundation
 import FirebaseFirestore
 
 class SeminarListStore: ObservableObject {
+    @Published var seminarList: [Seminar] = []
+    
     let dbRef = Firestore.firestore()
-    @Published var seminarList: [Seminar]
     
     let currentDate = Date().timeIntervalSince1970
     
     var recruitingList: [Seminar] {
-        seminarList.filter { $0.registerEndDate >= currentDate && $0.closingStatus}
+        seminarList.filter { $0.registerEndDate >= currentDate && !$0.closingStatus}
     }
     
     var closedList: [Seminar] {
-        seminarList.filter { $0.registerEndDate < currentDate || !$0.closingStatus}
-    }
-    
-    init() {
-        self.seminarList = []
+        seminarList.filter { $0.registerEndDate < currentDate || $0.closingStatus}
     }
     
     func fetch() {
-        seminarList.removeAll()
-        
         dbRef.collection("Seminar").getDocuments { (snapshot, error) in
             guard error == nil else {
                 print("error", error ?? "")
                 return
             }
-            
+            var temp: [Seminar] = []
             if let snapshot = snapshot {
                 for document in snapshot.documents {
                     if let jsonData = try? JSONSerialization.data(withJSONObject: document.data(), options: []),
                        let seminarData = try? JSONDecoder().decode(Seminar.self, from: jsonData) {
-                        self.seminarList.append(seminarData)
+                        temp.append(seminarData)
                     }
                 }
+                self.seminarList = temp
+                self.seminarList.sort { $0.createdAt > $1.createdAt }
             }
         }
     }
