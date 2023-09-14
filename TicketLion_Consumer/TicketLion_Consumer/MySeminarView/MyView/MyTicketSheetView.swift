@@ -63,11 +63,11 @@ struct MyTicketSheetView: View {
             .alert(isPresented: $showingAlert) {
                 Alert(title: Text("예매 취소"),
                       message: Text("해당 세미나의 티켓 예매가 취소됩니다."),
-                      primaryButton: .destructive(Text("확인"),action: {
+                      primaryButton: .destructive(Text("예매취소"),action: {
                     showingToast.toggle()
                     isShowingSheet = false
                     userStore.cancelSeminar(seminarID: mySeminarStore.selectedSeminar.id)
-                }), secondaryButton: .cancel(Text("취소")))
+                }), secondaryButton: .cancel(Text("돌아가기")))
             }
             
         }
