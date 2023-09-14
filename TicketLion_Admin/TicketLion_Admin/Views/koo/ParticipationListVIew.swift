@@ -21,21 +21,18 @@ enum Classification: String, Hashable, CaseIterable {
 //}
 
 
-
-
-
 struct ParticipationListVIew: View {
-   
+    @ObservedObject private var userListStore: UserListStore = UserListStore()
     @State private var selectedLeftlist: Classification?
     @State private var searchText = ""
     @State private var isAscendingOrder = true //정렬
-    
-    
+    let selectedUsers: [String]
+
     var filteredUsers: [User] {
         if searchText.isEmpty {
-            return User.usersDummy
+            return userListStore.userList
         } else {
-            return User.usersDummy.filter { user in
+            return userListStore.userList.filter { user in
                 return user.name.localizedCaseInsensitiveContains(searchText) ||
                 user.phoneNumber.localizedStandardContains(searchText) ||
                 user.email.localizedStandardContains(searchText)
@@ -45,17 +42,14 @@ struct ParticipationListVIew: View {
     }
     
     var sortedUsersByName: [User] {
-           return filteredUsers.sorted(by: { user1, user2 in
-               if isAscendingOrder {
-                   return user1.name < user2.name
-               } else {
-                   return user1.name > user2.name
-               }
-           })
-       }
-       
-    
-    
+        return filteredUsers.sorted(by: { user1, user2 in
+            if isAscendingOrder {
+                return user1.name < user2.name
+            } else {
+                return user1.name > user2.name
+            }
+        })
+    }
     
     var body: some View {
         VStack{
@@ -100,12 +94,15 @@ struct ParticipationListVIew: View {
             }
             
         }
+        .onAppear {
+            userListStore.fetch(attendUsers: selectedUsers)
+        }
     }
 }
 
 
 struct ParticipationListVIew_Previews: PreviewProvider {
     static var previews: some View {
-        ParticipationListVIew()
+        ParticipationListVIew(selectedUsers: [])
     }
 }

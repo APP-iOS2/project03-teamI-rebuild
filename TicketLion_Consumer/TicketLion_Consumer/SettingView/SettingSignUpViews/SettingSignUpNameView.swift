@@ -13,7 +13,7 @@ struct SettingSignUpNameView: View {
     
     @State private var name: String = ""
     
-    @Binding var isCompleteSignUp: Bool
+//    @Binding var isCompleteSignUp: Bool
 	
     var body: some View {
         NavigationStack{
@@ -37,17 +37,16 @@ struct SettingSignUpNameView: View {
                     .cornerRadius(5)
                 
                 NavigationLink {
-                    SettingSignUpPhoneNumberView(userStore: userStore, isCompleteSignUp: $isCompleteSignUp)
+                    SettingSignUpPhoneNumberView(userStore: userStore /*  , isCompleteSignUp: $isCompleteSignUp*/)
                 } label: {
-                    
                     Text("다음")
+                        .frame(maxWidth: .infinity, maxHeight: 20)
+                        .padding()
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .background(userStore.name.isEmpty ?  Color.gray : Color("AnyButtonColor"))
+                        .cornerRadius(5)
                 }
-                .frame(maxWidth: .infinity, maxHeight: 20)
-                .padding()
-                .font(.title2)
-                .foregroundColor(.white)
-                .background(userStore.name.isEmpty ?  Color.gray : Color("AnyButtonColor"))
-                .cornerRadius(5)
                 .disabled(userStore.name.isEmpty)
                 
             }
@@ -65,7 +64,7 @@ struct SettingSignUpNameView: View {
 struct SettingSignUpNameView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SettingSignUpNameView(isCompleteSignUp: .constant(false))
+            SettingSignUpNameView(/* isCompleteSignUp: .constant(false)*/ )
         }
     }
 }
