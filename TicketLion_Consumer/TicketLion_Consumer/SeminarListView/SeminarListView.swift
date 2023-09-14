@@ -48,19 +48,14 @@ struct SeminarListView: View {
             .alert(isPresented: $showingAlert) {
                 Alert(title: Text("로그인후 이용해주세요"),
                       message: nil,
-                      primaryButton: .default(Text("OK")) {
+                      primaryButton: .default(Text("로그인 하기")) {
                     userStore.loginSheet = true
                     print("userStore.loginSheet : \(userStore.loginSheet)")
                     print("알럿 먹힘")
                 },
-                      secondaryButton: .cancel()
+                      secondaryButton: .default(Text("취소"))
                 )
             }
-            .sheet(isPresented: $userStore.loginSheet, content: {
-                NavigationStack {
-                    SettingLoginView()
-                }
-            })
             .navigationTitle("세미나 목록")
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
@@ -71,7 +66,7 @@ struct SeminarListView: View {
                 seminarStore.fetchSeminar()
                 userStore.fetchUserInfo()
             }
-            .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always), prompt: "\(selectedCategory.categoryName) 세미나를 찾아보세요.")
+            .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always), prompt: selectedCategory.categoryName == "etc." ? "그외 세미나를 찾아보세요.": "\(selectedCategory.categoryName) 세미나를 찾아보세요.")
             
         }
         
