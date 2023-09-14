@@ -51,7 +51,7 @@ struct SeminarDetailInfo: View {
                         }
                         
                         Section {
-                            Text("모집인원")
+                            Text("모집최대인원")
                                 .font(.system(size: 20) .bold())
                             
                             // Date 형식으로 바꿔야함
@@ -68,29 +68,10 @@ struct SeminarDetailInfo: View {
                             Text("마감여부")
                                 .font(.system(size: 20) .bold())
                             Text(deadline)
-                        }
-                        // VStack
-                        Section {
-                            Text("대표이미지")
-                                .font(.system(size: 20) .bold())
-                            
-                            //                                if let userImage = seminars.seminarImage {
-                            //                                    AsyncImage(url: URL(string: userImage)) { image in
-                            //                                        image
-                            //                                            .resizable()
-                            //                                            .clipShape(Circle())
-                            //                                            .aspectRatio(contentMode: .fit)
-                            //                                            .frame(width: 400)
-                            //                                    } placeholder: {
-                            //                                        ProgressView()
-                            //                                    }
-                            //                                } else {
-                            //                                    Image(systemName: "person.circle.fill")
-                            //                                        .font(.system(size: 150))
-                            //                                }
-                        }
+                        } // VStack
                     }
-                }
+                } // Form Vstack
+                
             } // NavigationStack 다음 VStack
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -114,15 +95,15 @@ struct SeminarDetailInfo: View {
                     }
                 }
             }
-            .refreshable {
-                seminarStore.fetchSeminar { success in
-                    if success {
-                        print("패치 성공")
-                    } else {
-                        print("패치 실패")
-                    }
-                }
-            }
+            //            .refreshable {
+            //                seminarStore.fetchSeminar { success in
+            //                    if success {
+            //                        print("패치 성공")
+            //                    } else {
+            //                        print("패치 실패")
+            //                    }
+            //                }
+            //            }
         } // NavigationStack
     }
 }
