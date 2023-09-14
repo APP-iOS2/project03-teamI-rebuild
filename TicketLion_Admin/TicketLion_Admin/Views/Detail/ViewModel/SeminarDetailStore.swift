@@ -39,9 +39,6 @@ final class SeminarDetailStore: ObservableObject {
         return location
     }
     
-    
-    
-
     func fetchSeminar(completion: @escaping (Bool) -> Void) {
         seminarInfo.removeAll()
 
@@ -65,6 +62,11 @@ final class SeminarDetailStore: ObservableObject {
         }
     }
 }
+
+
+
+
+
 
 
 

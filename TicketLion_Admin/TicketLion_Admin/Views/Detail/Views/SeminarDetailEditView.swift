@@ -32,9 +32,11 @@ struct SeminarDetailEditView: View {
     @State var seminarLocation: SeminarLocation
     @Binding var seminarData: Seminar
     
+    @State private var seminarText: String = ""
     @State private var introduceText: String = ""
     @State private var imageText: String = ""
     @State private var OrganizerText: String = ""
+    
     
     @State private var name: String = ""
     @State private var seminarImage: String = ""
@@ -60,6 +62,19 @@ struct SeminarDetailEditView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
+                //MARK: 세미나 이름
+                Text("세미나 이름")
+                    .font(.system(size: 30) .bold())
+                
+                TextEditor(text: $seminarText)
+                    .keyboardType(.default)
+                    .foregroundColor(Color.black)
+                    .frame(width: 950, height: 50)
+                    .lineSpacing(10)
+                    .shadow(radius: 2.0)
+                
+                Divider()
+                    .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
                 //MARK: 소개 글
                 VStack(alignment: .center, spacing: 30) {
                     Text("소개 글")
@@ -117,8 +132,8 @@ struct SeminarDetailEditView: View {
                         Divider()
                             .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
                         
-                        //MARK: 일시
-                        Text("마감날짜")
+                        //MARK: 세미나 진행 종료 날짜
+                        Text("세미나 진행 종료 날짜")
                             .font(.system(size: 30) .bold())
                         
                         DatePicker("모집 마감 날짜 선택", selection: $date, in: self.today..., displayedComponents: .date)
@@ -126,6 +141,10 @@ struct SeminarDetailEditView: View {
                         //                        선택 시 secondary
                             .datePickerStyle(.compact)
                             .padding(.horizontal, 200)
+                        
+                        Text("선택한 날짜\n \(date.description.detailcalculateDate(date: date.timeIntervalSince1970))")
+                            .font(.system(size: 20) .bold())
+                        
                         
                         Divider()
                             .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
@@ -289,10 +308,12 @@ struct SeminarDetailEditView: View {
         let seminarRef = detaildb.collection("Seminar").document(seminars.id)
   
         let updateData: [String: Any] = [
+            "name": seminarText,
             "host": OrganizerText,
             "seminarImage": imageText,
             "details": introduceText,
             "location": "\(seminarLocation.address+detailLocation)",
+            "seminarEndDate": date.timeIntervalSince1970,
             "closingStatus": false,
         ]
         // Call updateData on the document reference
