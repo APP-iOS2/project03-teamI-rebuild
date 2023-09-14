@@ -10,6 +10,7 @@ import SwiftUI
 struct MyTicketSheetView: View {
     
     @ObservedObject var mySeminarStore: MySeminarStore
+	@EnvironmentObject var userStore: UserStore
     
     @State private var showingAlert = false
     @Binding var showingToast: Bool
@@ -36,22 +37,26 @@ struct MyTicketSheetView: View {
                     .foregroundColor(.gray)
                     .padding(.bottom, 5)
                 
-                // 예매취소 버튼
-                HStack {
-                    Text("예매 취소")
-                }
-                .font(.title3)
-                .underline()
-                .frame(width: 100)
-//                .background(.red)
-                .foregroundColor(.red)
-                .cornerRadius(10)
-                //                .underline()
-                //                .foregroundColor(.red)
-                //                .padding([.bottom, .trailing])
-                .onTapGesture {
-                    showingAlert = true
-                }
+				if !userStore.canceledSeminars.contains(mySeminarStore.selectedSeminar.id) {
+					// 예매취소 버튼
+					HStack {
+						Text("예매 취소")
+					}
+					.font(.title3)
+					.underline()
+					.frame(width: 100)
+	//                .background(.red)
+					.foregroundColor(.red)
+					.cornerRadius(10)
+					//                .underline()
+					//                .foregroundColor(.red)
+					//                .padding([.bottom, .trailing])
+					.onTapGesture {
+						showingAlert = true
+						
+					}
+				}
+				
                 
             }
             
@@ -61,6 +66,7 @@ struct MyTicketSheetView: View {
                       primaryButton: .destructive(Text("확인"),action: {
                     showingToast.toggle()
                     isShowingSheet = false
+                    userStore.cancelSeminar(seminarID: mySeminarStore.selectedSeminar.id)
                 }), secondaryButton: .cancel(Text("취소")))
             }
             
@@ -78,11 +84,20 @@ extension MyTicketSheetView {
                 ZStack(alignment: .leading) {
                     HStack {
                         //세미나사진
-                        AsyncImage(url: URL(string: mySeminarStore.selectedSeminar.seminarImage)) { image in
-                            image.image?.resizable()
-                                .frame(width: 160, height: 160)
-                                .opacity(0.2)
-                        }
+						if mySeminarStore.selectedSeminar.seminarImage == "" {
+							Image("TicketLion")
+								.resizable()
+								.frame(width: 160, height: 160)
+								.opacity(0.2)
+						} else {
+							AsyncImage(url: URL(string: mySeminarStore.selectedSeminar.seminarImage)) { image in
+								image.image?.resizable()
+									.frame(width: 160, height: 160)
+									.opacity(0.2)
+							}
+						}
+						
+                        
                         Spacer()
                         //티켓배경문구
                         VStack {
@@ -95,7 +110,7 @@ extension MyTicketSheetView {
                                             ],
                                     startPoint: .leading,
                                     endPoint: .trailing
-                                )).opacity(0.2)
+                                )).opacity(0.6)
                                 .fontDesign(.serif)
                                 .font(.title)
                                 .fontWeight(.bold)
@@ -128,7 +143,7 @@ extension MyTicketSheetView {
                         Spacer()
                     }.padding([.leading, .top])
                     
-                }
+				}
                 Spacer()
                 VStack {
                     Image(systemName: "chevron.compact.right")
@@ -139,7 +154,7 @@ extension MyTicketSheetView {
             }
         }
         .frame(height: 160)
-        .background(.white)
+		.background(Color("AnyButtonColor").opacity(0.05))
         .cornerRadius(10)
         .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color("AnyButtonColor"), lineWidth: 2))
         .padding(10)

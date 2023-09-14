@@ -21,7 +21,8 @@ struct SeminarDetailMapView: View {
     @State private var address = "서울 시청"
     
     
-    @Binding var region: MKCoordinateRegion
+//    @Binding var region: MKCoordinateRegion
+    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
     @Binding var clickLocation: Bool
     @Binding var seminarLocation: SeminarLocation
     
@@ -35,23 +36,25 @@ struct SeminarDetailMapView: View {
                     Map(coordinateRegion: $region, showsUserLocation: true, annotationItems: [location]) { location in
                         MapAnnotation(coordinate: location.coordinate) {
                             SeminarMapMarker()
+                                .gesture(
+                                    DragGesture()
+                                        .onChanged { value in
+                                            let translation = value.translation
+                                            let newCoordinate = CLLocationCoordinate2D(
+                                                latitude: location.coordinate.latitude + translation.height * region.span.latitudeDelta / 200.0,
+                                                longitude: location.coordinate.longitude + translation.width * region.span.longitudeDelta / 200.0)
+
+                                            
+                                            self.location.coordinate = newCoordinate
+                                        }
+                                        .onEnded { _ in
+                                            drawMarkerWithAddress()
+                                        }
+                                )
                         }
                     }
                     .edgesIgnoringSafeArea(.bottom)
                     
-                    VStack {
-                        ZStack{
-                            Text("클릭하면 가운데 장소로 선택됩니다")
-                                .foregroundColor(.black)
-                                .opacity(0.9)
-                            Color.gray
-                                .frame(width: 250, height: 30)
-                                .opacity(0.25)
-                        }
-                        .cornerRadius(5)
-                        .padding(.top)
-                        Spacer()
-                        
                         HStack {
                             Spacer()
                             VStack {
@@ -117,7 +120,7 @@ struct SeminarDetailMapView: View {
                             }
                         } // 현재 위치 추적 버튼
                         .padding(.init(top: 0, leading: 0, bottom: 40, trailing: 15))
-                    }
+                    
                 } // Zstack(맵뷰)
                 .onAppear {
                     drawMarkerWithAddress()
@@ -164,21 +167,21 @@ struct SeminarDetailMapView: View {
     }
 } // Struct View
 
-struct Cross: Shape {
-    func path(in rect: CGRect) -> Path {
-        return Path { path in
-            path.move(to: CGPoint(x: rect.midX, y: 15))
-            path.addLine(to: CGPoint(x: rect.midX, y: rect.maxY - 15))
-            path.move(to: CGPoint(x: 15, y: rect.midY))
-            path.addLine(to: CGPoint(x: rect.maxX - 15, y: rect.midY))
-            path.move(to: CGPoint(x: rect.midX, y: rect.midY))
-            path.addArc(center: CGPoint(x: rect.midX, y: rect.midY), radius: 10, startAngle: Angle(degrees: 0), endAngle: Angle(degrees: 360), clockwise: false)
-        }
-    }
-}
+//struct Cross: Shape {
+//    func path(in rect: CGRect) -> Path {
+//        return Path { path in
+//            path.move(to: CGPoint(x: rect.midX, y: 15))
+//            path.addLine(to: CGPoint(x: rect.midX, y: rect.maxY - 15))
+//            path.move(to: CGPoint(x: 15, y: rect.midY))
+//            path.addLine(to: CGPoint(x: rect.maxX - 15, y: rect.midY))
+//            path.move(to: CGPoint(x: rect.midX, y: rect.midY))
+//            path.addArc(center: CGPoint(x: rect.midX, y: rect.midY), radius: 10, startAngle: Angle(degrees: 0), endAngle: Angle(degrees: 360), clockwise: false)
+//        }
+//    }
+//}
 
 struct SeminarDetailMapView_Previews: PreviewProvider {
     static var previews: some View {
-        SeminarDetailMapView(seminarStore: SeminarDetailStore(), region: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), span: MKCoordinateSpan(latitudeDelta: 0.009, longitudeDelta: 0.009))), clickLocation: .constant(false), seminarLocation: .constant(SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청")))
+        SeminarDetailMapView(seminarStore: SeminarDetailStore(), clickLocation: .constant(false), seminarLocation: .constant(SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청")))
     }
 }

@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct SettingSignUpCompleteView: View {
-    @Binding var isCompleteSignUp: Bool
+    
+    @EnvironmentObject var userStore: UserStore
+    @EnvironmentObject var router: Router
+    
+//    @Binding var isCompleteSignUp: Bool
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $router.path) {
             
             VStack {
                 
@@ -36,9 +40,9 @@ struct SettingSignUpCompleteView: View {
                 VStack(spacing: 20) {
                     HStack {
                         VStack(alignment: .leading) {
-                            Text("이름 : 유재희")
+                            Text("이름 : \(userStore.name)")
                             Divider()
-                            Text("이메일 아이디 : pkj0522@naver.com")
+                            Text("이메일 아이디 : \(userStore.email)")
                         }
                         .padding()
                         .foregroundColor(.black)
@@ -51,17 +55,20 @@ struct SettingSignUpCompleteView: View {
                     )
                     
                     Button {
-                        isCompleteSignUp.toggle()
+//                        isCompleteSignUp.toggle()
+                        router.reset()
                     } label: {
                         Text("확인")
+                            .frame(maxWidth:.infinity, maxHeight: 50)
+                            .foregroundColor(.white)
+                            .background(Color("AnyButtonColor"))
+                            .cornerRadius(5)
                     }
-                    .navigationDestination(isPresented: $isCompleteSignUp, destination: {
-                        SettingLoginView()
-                    })
-                    .frame(maxWidth:.infinity, maxHeight: 50)
-                    .foregroundColor(.white)
-                    .background(Color("AnyButtonColor"))
-                    .cornerRadius(5)
+
+//                    .navigationDestination(isPresented: $isCompleteSignUp, destination: {
+//                        SettingLoginView()}
+//                    )
+
                 }
                 Spacer()
             }
@@ -76,7 +83,8 @@ struct SettingSignUpCompleteView: View {
 struct SettingSignUpCompleteView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            SettingSignUpCompleteView(isCompleteSignUp: .constant(false))
+            SettingSignUpCompleteView(/* isCompleteSignUp: .constant(false) */ )
+                .environmentObject(Router())
         }
     }
 }

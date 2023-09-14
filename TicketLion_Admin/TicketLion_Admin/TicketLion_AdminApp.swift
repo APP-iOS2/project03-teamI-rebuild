@@ -2,7 +2,7 @@
 //  TicketLion_AdminApp.swift
 //  TicketLion_Admin
 //
-//  Created by 김종찬 on 2023/09/11.
+//  Created by 김종찬 on 2023/09/05.
 //
 
 import SwiftUI
@@ -19,15 +19,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct TicketLion_AdminApp: App {
-    // register app delegate for Firebase setup
-      @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-
-
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                MainView(seminarStore: SeminarListStore())
-            }
+            MainView()
         }
     }
 }
