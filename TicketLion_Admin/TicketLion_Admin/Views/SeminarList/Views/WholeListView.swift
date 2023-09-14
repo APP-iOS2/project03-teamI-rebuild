@@ -13,10 +13,32 @@ enum Order: String, CaseIterable {
 }
 
 struct WholeListView: View {
-    @ObservedObject var seminarStore: SeminarListStore
+    @StateObject var seminarStore: SeminarListStore
     @State private var selectedSeminar: Seminar.ID? = nil
     @State private var order: Order = .recent
     @State private var isShowingSeminarInfo = false
+    @State private var currentPage: Int = 1
+    let itemsPerPage = 15
+    
+    var totalPages: Int {
+        Int(ceil(Double(seminarStore.seminarList.count) / Double(itemsPerPage)))
+    }
+    
+    var seminarList: [Seminar] {
+        switch order {
+        case .recent:
+            return seminarStore.seminarList
+        case .deadline:
+            let sort = seminarStore.recruitingList.sorted { $0.registerEndDate < $1.registerEndDate } + seminarStore.closedList.sorted { $0.registerEndDate > $1.registerEndDate }
+            return sort
+        }
+    }
+    
+    var currentPageList: [Seminar] {
+        let startIndex = (currentPage - 1) * itemsPerPage
+        let endIndex = min(startIndex + itemsPerPage, seminarList.count)
+        return Array(seminarList[startIndex..<endIndex])
+    }
     
     var body: some View {
         NavigationStack {
@@ -32,48 +54,53 @@ struct WholeListView: View {
                     .padding([.bottom, .trailing], 15)
                 }
                 
-                Table(of: Seminar.self, selection: $selectedSeminar) {
-                    TableColumn("세미나명") { seminar in
-                        Text(seminar.name)
-                    }
-                    
-                    TableColumn("주최자") { seminar in
-                        Text(seminar.host)
-                    }
-                    .width(120)
-                    
-                    TableColumn("장소") { seminar in
-                        Text(seminar.location ?? "온라인")
-                    }
-                    
-                    TableColumn("모집인원") { seminar in
-                        Text(("\(seminar.enterUsers.count)/\(seminar.maximumUserNumber)"))
-                    }
-                    .width(80)
-                    
-                    TableColumn("마감날짜") { seminar in
-                        Text(seminarStore.calculateDate(date: seminar.registerEndDate))
-                    }
-                    .width(100)
-                    
-                    TableColumn("마감여부") { seminar in
-                        Text(seminarStore.recruitingList.contains(where: { $0.id == seminar.id }) ? "진행중" : "마감")
-                    }
-                    .width(70)
-                } rows: {
-                    switch order {
-                    case .recent:
-                        ForEach(seminarStore.seminarList) { seminar in
-                            TableRow(seminar)
+                VStack {
+                    Table(of: Seminar.self, selection: $selectedSeminar) {
+                        TableColumn("세미나명") { seminar in
+                            Text(seminar.name)
                         }
-                    case .deadline :
-                        // 진행중인 세미나는 마감 될 순서
-                        // 모집 끝난 세미나는 최근에 마감 된 순서
-                        let sort = seminarStore.recruitingList.sorted { $0.registerEndDate < $1.registerEndDate } + seminarStore.closedList.sorted { $0.registerEndDate > $1.registerEndDate }
                         
-                        ForEach(sort) { seminar in
+                        TableColumn("주최자") { seminar in
+                            Text(seminar.host)
+                        }
+                        .width(120)
+                        
+                        TableColumn("장소") { seminar in
+                            Text(seminar.location ?? "온라인")
+                        }
+                        
+                        TableColumn("모집인원") { seminar in
+                            Text(("\(seminar.enterUsers.count)/\(seminar.maximumUserNumber)"))
+                        }
+                        .width(80)
+                        
+                        TableColumn("마감날짜") { seminar in
+                            Text(seminarStore.calculateDate(date: seminar.registerEndDate))
+                        }
+                        .width(100)
+                        
+                        TableColumn("마감여부") { seminar in
+                            Text(seminarStore.recruitingList.contains(where: { $0.id == seminar.id }) ? "진행중" : "마감")
+                        }
+                        .width(70)
+                    } rows: {
+                        ForEach(currentPageList) { seminar in
                             TableRow(seminar)
                         }
+                    }
+                }
+                
+                HStack {
+                    ForEach(1..<totalPages + 1, id: \.self) { num in
+                        Button {
+                            currentPage = num
+                        } label: {
+                            Text("\(num)")
+                                .fontWeight(currentPage == num ? .bold : .regular)
+                                .foregroundColor(currentPage == num ? .black : .gray)
+                                .font(.headline)
+                        }
+                        .padding(.horizontal, 5)
                     }
                 }
                 
@@ -87,7 +114,6 @@ struct WholeListView: View {
                     .padding([.horizontal, .vertical], 20)
                     .buttonStyle(.bordered)
                 }
-                
             }
             .navigationDestination(isPresented: $isShowingSeminarInfo) {
                 if let seminarId = selectedSeminar {
@@ -96,12 +122,14 @@ struct WholeListView: View {
                 }
             }
         }
-        .foregroundColor(.black)
         .onAppear {
+            UIScrollView.appearance().bounces = false
             seminarStore.fetch()
+            selectedSeminar = nil
+            //currentPage = 1
         }
         .onChange(of: selectedSeminar) { seminarId in
-            if let seminarId = seminarId {
+            if let _ = seminarId {
                 isShowingSeminarInfo.toggle()
             }
         }

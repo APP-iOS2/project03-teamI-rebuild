@@ -39,15 +39,14 @@ struct SettingSignUpNameView: View {
                 NavigationLink {
                     SettingSignUpPhoneNumberView(userStore: userStore, isCompleteSignUp: $isCompleteSignUp)
                 } label: {
-                    
                     Text("다음")
+                        .frame(maxWidth: .infinity, maxHeight: 20)
+                        .padding()
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .background(userStore.name.isEmpty ?  Color.gray : Color("AnyButtonColor"))
+                        .cornerRadius(5)
                 }
-                .frame(maxWidth: .infinity, maxHeight: 20)
-                .padding()
-                .font(.title2)
-                .foregroundColor(.white)
-                .background(userStore.name.isEmpty ?  Color.gray : Color("AnyButtonColor"))
-                .cornerRadius(5)
                 .disabled(userStore.name.isEmpty)
                 
             }

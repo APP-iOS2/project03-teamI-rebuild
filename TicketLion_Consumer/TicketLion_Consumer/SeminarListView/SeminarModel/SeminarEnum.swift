@@ -5,11 +5,12 @@
 //  Created by 이재승 on 2023/09/06.
 //
 
-enum Category {
+enum Category: Int, CaseIterable {
     case FrontEnd
     case BackEnd
     case iOSDevelop
     case AndroidDevelop
+    case etc
     
     var categoryName: String {
         switch self {
@@ -17,6 +18,7 @@ enum Category {
         case .BackEnd : return "Back-End"
         case .iOSDevelop : return "iOS Dev"
         case .AndroidDevelop : return "Android Dev"
+        case .etc : return "etc"
         }
     }
 }

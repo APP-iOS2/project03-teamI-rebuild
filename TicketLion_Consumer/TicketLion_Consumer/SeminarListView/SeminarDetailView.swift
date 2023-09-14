@@ -12,7 +12,7 @@ struct SeminarDetailView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var userStore: UserStore
     @Binding var isShowingDetail: Bool
-    
+    @State var isShowingAlert: Bool = false
     @Binding var seminar: Seminar
     
     ///하단 신청 버튼 ( 원래.contains("\(dummy.id)") )
@@ -32,7 +32,7 @@ struct SeminarDetailView: View {
         }
         
         return Color("AnyButtonColor")
-    
+        
     }
     private var attendButtonDisabled: Bool {
         if let _ = userStore.currentUser { //로그인상태
@@ -42,8 +42,11 @@ struct SeminarDetailView: View {
             return true //나머지는 비활성화
         }
         //로그인안되어있으면 무조건 비활성화 & 알림
+        if !seminar.closingStatus {
+            return false
+        }
         return true
-    
+        
     }
     
     ///모집중, 모집마감
@@ -199,24 +202,45 @@ struct SeminarDetailView: View {
                 
                 
             }
-            .navigationTitle("\(seminar.name)")
-            .navigationBarTitleDisplayMode(.inline)
-            
             
             //MARK: 신청버튼
-            NavigationLink {
-                SeminarAttendView(seminar: $seminar, user: User.usersDummy[0], isShowingDetail: $isShowingDetail)
-            } label: {
-                Text(attendButtonText)
-                //                    .frame(maxWidth: .infinity)
-                    .font(.title2.bold())
+            if let _ = userStore.currentUser {
+                NavigationLink {
+                    SeminarAttendView(seminar: $seminar, user: User.usersDummy[0], isShowingDetail: $isShowingDetail)
+                } label: {
+
+                        Text(attendButtonText)
+                        //                    .frame(maxWidth: .infinity)
+                            .font(.title2.bold())
+                            .frame(width: 380,height: 60) //버튼 전체 눌리도록
+                    
+
+                }
+                .foregroundColor(.white)
+                .background(attendButtonColor)
+                .cornerRadius(5)
+                .disabled(attendButtonDisabled)
+                .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+
+            }else {
+            
+                
+                Button {
+                    isShowingAlert = true
+                    
+                } label: {
+                    Text(attendButtonText)
+                        .font(.title2.bold())
+                        .frame(width: 380,height: 60) //버튼 전체 눌리도록
+                }
+                .foregroundColor(.white)
+                .background(attendButtonColor)
+                .cornerRadius(5)
+                .disabled(attendButtonDisabled)
+                .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+
             }
-            .frame(width: 380,height: 60)
-            .foregroundColor(.white)
-            .background(attendButtonColor)
-            .cornerRadius(5)
-            .disabled(attendButtonDisabled)
-            .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+
             
         }
         .toolbar {
@@ -231,6 +255,22 @@ struct SeminarDetailView: View {
                 
             }
         }
+        .alert(isPresented: $isShowingAlert) {
+            Alert(title: Text("로그인후 이용해주세요"),
+                  message: nil,
+                  primaryButton: .default(Text("OK")) {
+                
+                userStore.loginSheet = true
+                print("\(userStore.loginSheet)")
+            },
+                  secondaryButton: .cancel()
+            )
+        }
+        .sheet(isPresented: $userStore.loginSheet, content: {
+            NavigationStack {
+                SettingLoginView()
+            }
+        })
         
     }
     

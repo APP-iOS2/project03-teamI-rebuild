@@ -53,13 +53,13 @@ struct SettingSignUpPhoneNumberView: View {
                 } label: {
                     
                     Text("다음")
+                        .frame(maxWidth: .infinity, maxHeight: 20)
+                        .padding()
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .background(userStore.phoneNumber.isEmpty ?  Color.gray : Color("AnyButtonColor"))
+                        .cornerRadius(5)
                 }
-                .frame(maxWidth: .infinity, maxHeight: 20)
-                .padding()
-                .font(.title2)
-                .foregroundColor(.white)
-                .background(userStore.phoneNumber.isEmpty ?  Color.gray : Color("AnyButtonColor"))
-                .cornerRadius(5)
                 .disabled(userStore.phoneNumber.isEmpty)
                 
             }

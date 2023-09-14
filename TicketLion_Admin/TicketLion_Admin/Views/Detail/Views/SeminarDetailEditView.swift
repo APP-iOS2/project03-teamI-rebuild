@@ -8,13 +8,22 @@
 import SwiftUI
 import MapKit
 import CoreLocation
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+import FirebaseCore
+import Combine
+
+
 
 struct SeminarDetailEditView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.dismiss) private var dismiss
     
-    let seminars: Seminar
+    @ObservedObject var seminarStores: SeminarDetailStore = SeminarDetailStore()
+    @ObservedObject var chipsViewModel: ChipsViewModel
+//    @StateObject var seminars: SeminarDetailStore = SeminarDetailStore()
+    var seminars: Seminar
     @State private var startingPoint = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
     @State private var date : Date = Date()
     @State private var isOpenMap: Bool = false
@@ -23,20 +32,49 @@ struct SeminarDetailEditView: View {
     @State var seminarLocation: SeminarLocation
     @Binding var seminarData: Seminar
     
+    @State private var seminarText: String = ""
     @State private var introduceText: String = ""
     @State private var imageText: String = ""
     @State private var OrganizerText: String = ""
     
+    
+    @State private var name: String = ""
+    @State private var seminarImage: String = ""
+    @State private var host: String = ""
+    @State private var details: String = ""
+    @State private var detailLocation: String = ""
+    @State private var maximumUserNumber: String = ""
+    @State private var registerStartDatePicker = Date()
+    @State private var registerEndDatePicker = Date()
+    @State private var seminarStartDatePicker = Date()
+    @State private var seminarEndDatePicker = Date()
+    @State private var selectedImage: UIImage? = nil
+    @State private var isImagePickerPresented: Bool = false
     
     @State private var isShowingAlert: Bool = false
     @Binding var isShowEditView: Bool
     private let textLimit: Int = 100
     private let today = Calendar.current.startOfDay(for: Date())
     
+    let detaildb = Firestore.firestore()
+
     
     var body: some View {
         NavigationStack {
             ScrollView {
+                //MARK: 세미나 이름
+                Text("세미나 이름")
+                    .font(.system(size: 30) .bold())
+                
+                TextEditor(text: $seminarText)
+                    .keyboardType(.default)
+                    .foregroundColor(Color.black)
+                    .frame(width: 950, height: 50)
+                    .lineSpacing(10)
+                    .shadow(radius: 2.0)
+                
+                Divider()
+                    .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
                 //MARK: 소개 글
                 VStack(alignment: .center, spacing: 30) {
                     Text("소개 글")
@@ -94,8 +132,8 @@ struct SeminarDetailEditView: View {
                         Divider()
                             .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
                         
-                        //MARK: 일시
-                        Text("마감날짜")
+                        //MARK: 세미나 진행 종료 날짜
+                        Text("세미나 진행 종료 날짜")
                             .font(.system(size: 30) .bold())
                         
                         DatePicker("모집 마감 날짜 선택", selection: $date, in: self.today..., displayedComponents: .date)
@@ -103,6 +141,10 @@ struct SeminarDetailEditView: View {
                         //                        선택 시 secondary
                             .datePickerStyle(.compact)
                             .padding(.horizontal, 200)
+                        
+                        Text("선택한 날짜\n \(date.description.detailcalculateDate(date: date.timeIntervalSince1970))")
+                            .font(.system(size: 20) .bold())
+                        
                         
                         Divider()
                             .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
@@ -222,6 +264,8 @@ struct SeminarDetailEditView: View {
                             //MARK: 수정하기
                             Button {
                                 isShowingAlert = true
+                                updateSeminar()
+                                
                             } label: {
                                 Text("수정하기")
                                     .font(.system(size: 30) .bold())
@@ -255,11 +299,81 @@ struct SeminarDetailEditView: View {
             }
         }
     }
+    
+    //MARK: 파베수정연동
+    func updateSeminar() {
+        let selectCategory = chipsViewModel.chipArray.filter { $0.isSelected }.map { $0.titleKey }
+        
+        
+        let seminarRef = detaildb.collection("Seminar").document(seminars.id)
+  
+        let updateData: [String: Any] = [
+            "name": seminarText,
+            "host": OrganizerText,
+            "seminarImage": imageText,
+            "details": introduceText,
+            "location": "\(seminarLocation.address+detailLocation)",
+            "seminarEndDate": date.timeIntervalSince1970,
+            "closingStatus": false,
+        ]
+        // Call updateData on the document reference
+        seminarRef.updateData(updateData) { error in
+            if let error = error {
+                print(error)
+            } else {
+                print("Document updated successfully")
+            }
+        }
+    }
+
+
+    
+//    func addSeminar(seminarID: String) {
+//
+//        guard let seminarRef = seminarData ??  seminars.id else {
+//                return
+//            }
+//            //appliedSeminars
+//
+//        let seminarRef = detaildb.collection("Seminar").document(seminars.category ?? seminars.id)
+//
+//        detaildb.updateData([
+//                "Seminar" : appliedSeminars + [seminarID]
+//            ]) { err in
+//                if let err = err {
+//                    print("\(err.localizedDescription)")
+//                } else { print("") }
+//            }
+//
+//        detaildb.getDocument { (document, error) in
+//                if let document = document, document.exists {
+//                    let userData = document.data()
+//                    self.seminars = userData?["Seminar"] as? [String] ?? []
+//                } else {
+//                    print("사용자 정보를 불러오는 중 오류가 발생했습니다.")
+//                }
+//            }
+//
+//        }
+    
+    
+    
+    
+    
+    
+} // struct
+
+
+
+//MARK: 파베 연동
+class FirebaseManager {
+  static let shared = FirebaseManager()
+  let firestore = Firestore.firestore()
 }
 
 struct SeminarDetailEditView_Previews: PreviewProvider {
     static var previews: some View {
-        SeminarDetailEditView(seminars: Seminar.seminarsDummy[0], seminarLocation: SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청"), seminarData: .constant(Seminar.seminarsDummy[0]), isShowEditView: .constant(true))
+        SeminarDetailEditView(chipsViewModel: ChipsViewModel(), seminars: Seminar.seminarsDummy[0], seminarLocation: SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청"), seminarData: .constant(Seminar.seminarsDummy[0]), isShowEditView: .constant(true))
     }
 }
 
