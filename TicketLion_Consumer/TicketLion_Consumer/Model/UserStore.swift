@@ -40,6 +40,7 @@ class UserStore: ObservableObject {
     @Published var favoriteSeminarDetails: [Seminar] = []
     @Published var canceledSeminarDetails: [Seminar] = []
     @Published var recentlySeminarsDetails: [Seminar] = []
+
     
     // 회원가입
     func signUpUser(name: String, email: String, password: String, phoneNumber: String, birth: String) {
@@ -354,34 +355,32 @@ class UserStore: ObservableObject {
     }
     
     func addSeminar(seminarID: String) {
-            
-            guard let currentUser = currentUser else {
-                return
-            }
-            //appliedSeminars
-            
-            let userRef = db.collection("users").document(currentUser.email ?? currentUser.uid)
-            
-            userRef.updateData([
-                "appliedSeminars" : appliedSeminars + [seminarID],
-                "canceledSeminars" : canceledSeminars.filter { $0 != seminarID }
-            ]) { err in
-                if let err = err {
-                    print("\(err.localizedDescription)")
-                } else { print("") }
-            }
-            
-            userRef.getDocument { (document, error) in
-                if let document = document, document.exists {
-                    let userData = document.data()
-                    self.appliedSeminars = userData?["appliedSeminars"] as? [String] ?? []
-                    self.canceledSeminars = userData?["canceledSeminars"] as? [String] ?? []
-                } else {
-                    print("사용자 정보를 불러오는 중 오류가 발생했습니다.")
-                }
-            }
-            
+        guard let currentUser = currentUser else {
+            return
         }
+        //appliedSeminars
+        
+        let userRef = db.collection("users").document(currentUser.email ?? currentUser.uid)
+        
+        userRef.updateData([
+            "appliedSeminars" : appliedSeminars + [seminarID],
+            "canceledSeminars" : canceledSeminars.filter { $0 != seminarID }
+        ]) { err in
+            if let err = err {
+                print("\(err.localizedDescription)")
+            } else { print("") }
+        }
+        
+        userRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let userData = document.data()
+                self.appliedSeminars = userData?["appliedSeminars"] as? [String] ?? []
+                self.canceledSeminars = userData?["canceledSeminars"] as? [String] ?? []
+            } else {
+                print("사용자 정보를 불러오는 중 오류가 발생했습니다.")
+            }
+        }
+    }
     
     func cancelSeminar(seminarID: String) {
         guard let currentUser = currentUser else {
@@ -433,8 +432,6 @@ class UserStore: ObservableObject {
                 print("사용자 정보를 불러오는 중 오류가 발생했습니다.")
             }
         }
-        
     }
-
 }
 
