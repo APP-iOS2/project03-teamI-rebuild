@@ -24,7 +24,7 @@ struct SeminarDetailEditView: View {
     @ObservedObject var chipsViewModel: ChipsViewModel
 //    @StateObject var seminars: SeminarDetailStore = SeminarDetailStore()
     var seminars: Seminar
-    @State private var startingPoint = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
+    @State private var startingPoint = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.39494, longitude: 127.110106), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
     @State private var date : Date = Date()
     @State private var isOpenMap: Bool = false
     @State private var clickLocation: Bool = false
@@ -36,7 +36,8 @@ struct SeminarDetailEditView: View {
     @State private var introduceText: String = ""
     @State private var imageText: String = ""
     @State private var OrganizerText: String = ""
-    
+    @State private var registerText: String = ""
+
     
     @State private var name: String = ""
     @State private var seminarImage: String = ""
@@ -57,6 +58,7 @@ struct SeminarDetailEditView: View {
     private let today = Calendar.current.startOfDay(for: Date())
     
     let detaildb = Firestore.firestore()
+    @State private var isOnline: Bool = false
 
     
     var body: some View {
@@ -108,7 +110,7 @@ struct SeminarDetailEditView: View {
                                 HStack {
                                     Spacer()
                                     Text("\(introduceText.count) / \(textLimit)")
-                                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 220))
+                                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 90))
                                 }
                             }
                         }
@@ -131,24 +133,69 @@ struct SeminarDetailEditView: View {
                         
                         Divider()
                             .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
-                        
+                        //MARK: 모집인원
+//                        Group {
+//                            Text("모집인원")
+//                                .font(.system(size: 30) .bold())
+//
+//                            TextEditor(text: $registerText)
+//                                .keyboardType(.default)
+//                                .foregroundColor(Color.black)
+//                                .frame(width: 950, height: 50)
+//                                .lineSpacing(10)
+//                                .shadow(radius: 2.0)
+//                                .onReceive(Just(maximumUserNumber)) { newValue in
+//                                    let filtered = newValue.filter { "0123456789".contains($0) }
+//                                    if filtered != newValue {
+//                                        self.maximumUserNumber = filtered
+//                                    }
+//                                }
+//                            Divider()
+//                                .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
+//                        }
                         //MARK: 세미나 진행 종료 날짜
-                        Text("세미나 진행 종료 날짜")
-                            .font(.system(size: 30) .bold())
-                        
-                        DatePicker("모집 마감 날짜 선택", selection: $date, in: self.today..., displayedComponents: .date)
-                        //                        .foregroundColor(.secondary)
-                        //                        선택 시 secondary
-                            .datePickerStyle(.compact)
-                            .padding(.horizontal, 200)
-                        
-                        Text("선택한 날짜\n \(date.description.detailcalculateDate(date: date.timeIntervalSince1970))")
-                            .font(.system(size: 20) .bold())
-                        
+                        Group {
+                            Text("세미나 진행 종료 날짜")
+                                .font(.system(size: 30) .bold())
+                            
+                            DatePicker("모집 마감 날짜 선택", selection: $date, in: self.today..., displayedComponents: .date)
+                            //                        .foregroundColor(.secondary)
+                            //                        선택 시 secondary
+                                .datePickerStyle(.compact)
+                                .padding(.horizontal, 200)
+                            
+                            Text("선택한 날짜\n \(date.description.detailcalculateDate(date: date.timeIntervalSince1970))")
+                                .font(.system(size: 20) .bold())
+                            
+                            
+                            Divider()
+                                .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
+                        }
+                        //MARK: 상태
+                        Group {
+                            Text("마감여부")
+                                .font(.system(size: 30) .bold())
+                                .padding()
+                            Button {
+                                isOnline.toggle()
+                                if isOnline {
+                                    clickLocation = false
+                                }
+                            } label: {
+                                if isOnline {
+                                    Label("마감", systemImage: "checkmark.square.fill")
+                                        .foregroundColor(.gray)
+
+                                } else if isOnline == false {
+                                    Label("마감", systemImage: "square")
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                            .font(.title)
+                        }
                         
                         Divider()
                             .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
-                        
                         //MARK: 장소
                         VStack(alignment: .center) {
                             VStack {
@@ -197,104 +244,58 @@ struct SeminarDetailEditView: View {
                             Divider()
                                 .padding(EdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0))
                             //MARK: 대표 이미지
-                            VStack(alignment: .center, spacing: 50) {
-                                Text("대표 이미지")
+                            
+                            Group {
+                                Text("이미지")
                                     .font(.system(size: 30) .bold())
                                 
-                            }
-                            // AsyncImage를 쓰려면 String? 타입이여야함
-                            // UIImage 쓰신다는 거 이해 후 다시 작성해야함
-                            //                        if let userImage = seminars.seminarImage {
-                            //                            AsyncImage(url: URL(string: userImage)) { image in
-                            //                                image
-                            //                                    .resizable()
-                            //                                    .clipShape(Circle())
-                            //                                    .aspectRatio(contentMode: .fit)
-                            //                                    .frame(width: 400)
-                            //                            } placeholder: {
-                            //                                ProgressView()
-                            //                            }
-                            //                        } else {
-                            //                            Image(systemName: "person.circle.fill")
-                            //                                .font(.system(size: 150))
-                            //                        }
-                            Text("이미지 URL을 입력하세요")
-                                .padding()
-                            
-                            ZStack(alignment: .topLeading) {
-                                VStack {
-                                    TextEditor(text: $imageText)
-                                        .keyboardType(.default)
-                                        .foregroundColor(Color.black)
-                                        .frame(width: 600, height: 70)
-                                        .lineSpacing(10)
-                                        .shadow(radius: 2.0)
-                                    
-                                    //                                    .actionSheet(isPresented: $showingSheet) {
-                                    //                                        ActionSheet(title: Text("프로필 사진 편집"), buttons: [
-                                    //                                            .default(Text("라이브러리에서 선택")) {
-                                    //                                                isOpenPhoto = true
-                                    //                                            },
-                                    //                                            .default(Text("사진 찍기")) {
-                                    //                                                // TODO: 사진 찍기
-                                    //                                            },
-                                    //                                            .cancel()
-                                    //                                        ])
-                                    //                                    }
-                                    //                                    .onDisappear{
-                                    //                                        myPageStore.image = UIImage()
-                                    //                                    }
-                                    //                                    .sheet(isPresented: $isOpenPhoto, content: {
-                                    //                                        ImagePicker(sourceType: .photoLibrary, selectedImage: self.$myPageStore.image)
-                                    //                                    })
-                                    
-                                    // 글자제한
-                                        .onChange(of: self.imageText, perform: {
-                                            if $0.count > textLimit {
-                                                self.imageText = String($0.prefix(textLimit))
-                                            }
-                                        })
-                                    // TextEditor누르면 키보드 내려감
-                                        .onTapGesture {
-                                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                        }
+                                Button(action: {
+                                    isImagePickerPresented.toggle()
+                                }) {
+                                    Text("앨범에서 사진 선택")
                                 }
-                                .padding(.bottom, 50)
+                                .buttonStyle(.bordered)
+                                .sheet(isPresented: $isImagePickerPresented) {
+                                    ImagePickerView(selectedImage: $selectedImage)
+                                }
+                                
+                                if let image = selectedImage {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 250, height: 250)
+                                        .clipShape(Rectangle())
+                                }
                             }
+                            .padding()
                             //MARK: 수정하기
-                            Button {
-                                isShowingAlert = true
-                                updateSeminar()
-                                
-                            } label: {
-                                Text("수정하기")
-                                    .font(.system(size: 30) .bold())
-                                
+                            Group {
+                                Button {
+                                    isShowingAlert = true
+                                    updateSeminar()
+                                    
+                                } label: {
+                                    Text("수정하기")
+                                        .font(.system(size: 30) .bold())
+                                    
+                                }
+                                .padding(.bottom, 20)
+                                .buttonStyle(.borderedProminent)
+                                .alert(isPresented: $isShowingAlert) {
+                                    Alert(
+                                        title: Text("세미나 수정"),
+                                        message: Text("수정완료"),
+                                        dismissButton:
+                                                .default(Text("확인"),
+                                                         action: {
+                                                             dismiss()
+                                                         })
+                                    )
+                                }
                             }
-                            .padding(.bottom, 20)
-                            .buttonStyle(.borderedProminent)
-                            .alert(isPresented: $isShowingAlert) {
-                                Alert(
-                                    title: Text("세미나 수정"),
-                                    message: Text("수정완료"),
-                                    dismissButton:
-                                            .default(Text("확인"),
-                                                     action: {
-                                                         dismiss()
-                                                     })
-                                )
-                            }
-                            
-                        }
-                        
-                        // 장소, 이미지 VStack
-                        // 이미지 ContextMenu로 처리할지 URLString을 받아서 처리할지 고민
+                            .padding()
+                        } // 장소, 이미지 VStack
                     }
-                    //        func setRegion() {
-                    //          startingPoint.center.latitude = seminars.location.latitude
-                    //          startingPoint.center.longitude = seminars.location.longitude
-                    //        }
-                    
                 }
             }
         }
@@ -325,47 +326,8 @@ struct SeminarDetailEditView: View {
             }
         }
     }
-
-
-    
-//    func addSeminar(seminarID: String) {
-//
-//        guard let seminarRef = seminarData ??  seminars.id else {
-//                return
-//            }
-//            //appliedSeminars
-//
-//        let seminarRef = detaildb.collection("Seminar").document(seminars.category ?? seminars.id)
-//
-//        detaildb.updateData([
-//                "Seminar" : appliedSeminars + [seminarID]
-//            ]) { err in
-//                if let err = err {
-//                    print("\(err.localizedDescription)")
-//                } else { print("") }
-//            }
-//
-//        detaildb.getDocument { (document, error) in
-//                if let document = document, document.exists {
-//                    let userData = document.data()
-//                    self.seminars = userData?["Seminar"] as? [String] ?? []
-//                } else {
-//                    print("사용자 정보를 불러오는 중 오류가 발생했습니다.")
-//                }
-//            }
-//
-//        }
-    
-    
-    
-    
-    
-    
 } // struct
 
-
-
-//MARK: 파베 연동
 class FirebaseManager {
   static let shared = FirebaseManager()
   let firestore = Firestore.firestore()
@@ -373,7 +335,7 @@ class FirebaseManager {
 
 struct SeminarDetailEditView_Previews: PreviewProvider {
     static var previews: some View {
-        SeminarDetailEditView(chipsViewModel: ChipsViewModel(), seminars: Seminar.seminarsDummy[0], seminarLocation: SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청"), seminarData: .constant(Seminar.seminarsDummy[0]), isShowEditView: .constant(true))
+        SeminarDetailEditView(chipsViewModel: ChipsViewModel(), seminars: Seminar.seminarsDummy[0], seminarLocation: SeminarLocation(latitude: 37.39494, longitude: 127.110106, address: "서울시청"), seminarData: .constant(Seminar.seminarsDummy[0]), isShowEditView: .constant(true))
     }
 }
 

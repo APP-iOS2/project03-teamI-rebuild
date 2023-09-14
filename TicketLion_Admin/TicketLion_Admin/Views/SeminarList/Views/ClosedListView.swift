@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum ColosedOrder: String, CaseIterable {
+enum ClosedOrder: String, CaseIterable {
     case register = "최근등록순"
     case closed = "최근마감순"
 }
@@ -15,13 +15,13 @@ enum ColosedOrder: String, CaseIterable {
 struct ClosedListView: View {
     @ObservedObject var seminarStore: SeminarListStore
     @State private var selectedSeminar: Seminar.ID? = nil
-    @State private var order: ColosedOrder = .register
+    @State private var order: ClosedOrder = .register
     @State private var isShowingSeminarInfo = false
     @State private var currentPage: Int = 1
-    let itemsPerPage = 15
+    let itemsPerPage = 17
     
     var totalPages: Int {
-        Int(ceil(Double(seminarStore.recruitingList.count) / Double(itemsPerPage)))
+        Int(ceil(Double(seminarStore.closedList.count) / Double(itemsPerPage)))
     }
     
     var seminarList: [Seminar] {
@@ -42,42 +42,11 @@ struct ClosedListView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                HStack {
-                    Spacer()
-                    Picker("sort closed list", selection: $order) {
-                        ForEach(ColosedOrder.allCases, id:\.self) { order in
-                            Text(order.rawValue)
-                        }
-                    }
-                    .pickerStyle(.menu)
-                    .padding([.bottom, .trailing], 15)
-                }
+                ClosedTopView(order: $order)
                 
-                Table(of: Seminar.self, selection: $selectedSeminar) {
-                    TableColumn("세미나명") { seminar in
-                        Text(seminar.name)
-                    }
-                    TableColumn("주최자") { seminar in
-                        Text(seminar.host)
-                    }
-                    .width(180)
-                    TableColumn("장소") { seminar in
-                        Text(seminar.location ?? "온라인")
-                    }
-                    TableColumn("모집인원") { seminar in
-                        Text(("\(seminar.enterUsers.count)/\(seminar.maximumUserNumber)"))
-                    }
-                    .width(120)
-                    
-                    TableColumn("마감날짜") { seminar in
-                        Text(seminarStore.calculateDate(date: seminar.registerEndDate))
-                    }
-                    .width(100)
-                } rows: {
-                    ForEach(currentPageList) { seminar in
-                        TableRow(seminar)
-                    }
-                }
+                ClosedTableView(seminarStore: seminarStore, selectedSeminar: $selectedSeminar, currentPageList: currentPageList)
+                
+                PageListView(currentPage: $currentPage, totalPages: totalPages)
             }
             .navigationDestination(isPresented: $isShowingSeminarInfo) {
                 if let seminarId = selectedSeminar {
@@ -88,10 +57,64 @@ struct ClosedListView: View {
         }
         .onAppear {
             seminarStore.fetch()
+            selectedSeminar = nil
         }
         .onChange(of: selectedSeminar) { seminarId in
-            if let seminarId = seminarId {
+            if let _ = seminarId {
                 isShowingSeminarInfo.toggle()
+            }
+        }
+    }
+}
+
+struct ClosedTopView: View {
+    @Binding var order: ClosedOrder
+    
+    var body: some View {
+        HStack {
+            Spacer()
+            Picker("sort closed list", selection: $order) {
+                ForEach(ClosedOrder.allCases, id:\.self) { order in
+                    Text(order.rawValue)
+                }
+            }
+            .pickerStyle(.menu)
+            .padding(.trailing, 15)
+        }
+        .padding(.top, 15)
+        .padding(.bottom, 10)
+    }
+}
+
+struct ClosedTableView: View {
+    @StateObject var seminarStore: SeminarListStore
+    @Binding var selectedSeminar: Seminar.ID?
+    var currentPageList: [Seminar]
+    
+    var body: some View {
+        Table(of: Seminar.self, selection: $selectedSeminar) {
+            TableColumn("세미나명") { seminar in
+                Text(seminar.name)
+            }
+            TableColumn("주최자") { seminar in
+                Text(seminar.host)
+            }
+            .width(180)
+            TableColumn("장소") { seminar in
+                Text(seminar.location ?? "온라인")
+            }
+            TableColumn("모집인원") { seminar in
+                Text(("\(seminar.enterUsers.count)/\(seminar.maximumUserNumber)"))
+            }
+            .width(120)
+            
+            TableColumn("마감날짜") { seminar in
+                Text(seminarStore.calculateDate(date: seminar.registerEndDate))
+            }
+            .width(100)
+        } rows: {
+            ForEach(currentPageList) { seminar in
+                TableRow(seminar)
             }
         }
     }
