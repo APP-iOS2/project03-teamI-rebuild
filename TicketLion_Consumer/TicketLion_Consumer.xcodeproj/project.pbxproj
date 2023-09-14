@@ -231,7 +231,6 @@
 				64B328252AAF6F6400D64EFF /* SettingDevInfoView.swift */,
 				64B328272AAF6F7E00D64EFF /* SettingDevInfoDetailView.swift */,
 				64B328292AAF6FA700D64EFF /* SettingDevInformationView.swift */,
-				632D2A6F2AAFFDF5003F2D1C /* NotificationSettingsView.swift */,
 			);
 			path = SettingView;
 			sourceTree = "<group>";
@@ -384,7 +383,6 @@
 				64B327ED2AAF6B7E00D64EFF /* UserModel.swift in Sources */,
 				64B327A52AAF5CEE00D64EFF /* TicketLion_ConsumerApp.swift in Sources */,
 				64B328182AAF6EB000D64EFF /* SettingSignUpBirthView.swift in Sources */,
-				632D2A702AAFFDF5003F2D1C /* NotificationSettingsView.swift in Sources */,
 				64B328142AAF6E7400D64EFF /* SettingSignUpNameView.swift in Sources */,
 				64B327F52AAF6C4A00D64EFF /* SeminarListView.swift in Sources */,
 				64B3280D2AAF6DE000D64EFF /* MyCategoryButton.swift in Sources */,

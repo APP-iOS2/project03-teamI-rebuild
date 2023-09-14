@@ -13,15 +13,14 @@ import FirebaseFirestoreSwift
 
 @MainActor
 class UserStore: ObservableObject {
-
-
+    
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var passwordCheck: String = ""
     @Published var name: String = ""
     @Published var birth: String = ""
     @Published var phoneNumber: String = ""
-
+    
     
     @Published var appliedSeminars: [String] = []
     @Published var favoriteSeminars: [String] = []
@@ -40,7 +39,7 @@ class UserStore: ObservableObject {
     @Published var favoriteSeminarDetails: [Seminar] = []
     @Published var canceledSeminarDetails: [Seminar] = []
     @Published var recentlySeminarsDetails: [Seminar] = []
-
+    
     
     // 회원가입
     func signUpUser(name: String, email: String, password: String, phoneNumber: String, birth: String) {
@@ -250,6 +249,11 @@ class UserStore: ObservableObject {
         return passwordPredicate.evaluate(with: password)
     }
     
+    func openAppNotificationSettings() {
+        guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
+        UIApplication.shared.open(settingsURL)
+    }
+    
     init() {
         currentUser = Auth.auth().currentUser
     }
@@ -393,10 +397,10 @@ class UserStore: ObservableObject {
              "canceledSeminars" : canceledSeminars + [seminarID]
             ]
         ) { err in
-                if let err = err {
-                    print("\(err.localizedDescription)")
-                } else { print("") }
-            }
+            if let err = err {
+                print("\(err.localizedDescription)")
+            } else { print("") }
+        }
         
         userRef .getDocument { (document, error) in
             if let document = document, document.exists {
