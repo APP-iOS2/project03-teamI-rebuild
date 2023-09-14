@@ -62,11 +62,12 @@ struct SettingView: View {
 				
 				
                 Section("알림") {
-                    NavigationLink {
+                    Button {
                         // 푸시 알림 설정
-                        NotificationSettingsView()
+                        userStore.openAppNotificationSettings()
                     } label: {
                         Text("푸시 알림 설정")
+                            .foregroundColor(.black)
                     }
                 }
                 Section("정보") {
