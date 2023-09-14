@@ -53,7 +53,7 @@ struct MyTicketSheetView: View {
 					//                .padding([.bottom, .trailing])
 					.onTapGesture {
 						showingAlert = true
-						userStore.cancelSeminar(seminarID: mySeminarStore.selectedSeminar.id)
+						
 					}
 				}
 				
@@ -66,6 +66,7 @@ struct MyTicketSheetView: View {
                       primaryButton: .destructive(Text("확인"),action: {
                     showingToast.toggle()
                     isShowingSheet = false
+                    userStore.cancelSeminar(seminarID: mySeminarStore.selectedSeminar.id)
                 }), secondaryButton: .cancel(Text("취소")))
             }
             
