@@ -96,10 +96,10 @@ extension MyReservationView {
                     }
                 }
                 .onTapGesture {
-                    withAnimation(Animation.default) {
+//                    withAnimation(Animation.default) {
                         self.selectedCategory = category
                         print(self.selectedCategory)
-                    }
+//                    }
                 }
             }
             .padding(.leading, 2)
