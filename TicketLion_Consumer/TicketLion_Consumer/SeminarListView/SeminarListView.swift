@@ -56,11 +56,6 @@ struct SeminarListView: View {
                       secondaryButton: .cancel()
                 )
             }
-            .sheet(isPresented: $userStore.loginSheet, content: {
-                NavigationStack {
-                    SettingLoginView()
-                }
-            })
             .navigationTitle("세미나 목록")
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {

@@ -37,23 +37,26 @@ struct MyTicketSheetView: View {
                     .foregroundColor(.gray)
                     .padding(.bottom, 5)
                 
-                // 예매취소 버튼
-                HStack {
-                    Text("예매 취소")
-                }
-                .font(.title3)
-                .underline()
-                .frame(width: 100)
-//                .background(.red)
-                .foregroundColor(.red)
-                .cornerRadius(10)
-                //                .underline()
-                //                .foregroundColor(.red)
-                //                .padding([.bottom, .trailing])
-                .onTapGesture {
-                    showingAlert = true
-					userStore.cancelSeminar(seminarID: mySeminarStore.selectedSeminar.id)
-                }
+				if !userStore.canceledSeminars.contains(mySeminarStore.selectedSeminar.id) {
+					// 예매취소 버튼
+					HStack {
+						Text("예매 취소")
+					}
+					.font(.title3)
+					.underline()
+					.frame(width: 100)
+	//                .background(.red)
+					.foregroundColor(.red)
+					.cornerRadius(10)
+					//                .underline()
+					//                .foregroundColor(.red)
+					//                .padding([.bottom, .trailing])
+					.onTapGesture {
+						showingAlert = true
+						
+					}
+				}
+				
                 
             }
             
@@ -63,6 +66,7 @@ struct MyTicketSheetView: View {
                       primaryButton: .destructive(Text("확인"),action: {
                     showingToast.toggle()
                     isShowingSheet = false
+                    userStore.cancelSeminar(seminarID: mySeminarStore.selectedSeminar.id)
                 }), secondaryButton: .cancel(Text("취소")))
             }
             
@@ -106,7 +110,7 @@ extension MyTicketSheetView {
                                             ],
                                     startPoint: .leading,
                                     endPoint: .trailing
-                                )).opacity(0.2)
+                                )).opacity(0.6)
                                 .fontDesign(.serif)
                                 .font(.title)
                                 .fontWeight(.bold)
@@ -139,7 +143,7 @@ extension MyTicketSheetView {
                         Spacer()
                     }.padding([.leading, .top])
                     
-                }
+				}
                 Spacer()
                 VStack {
                     Image(systemName: "chevron.compact.right")
@@ -150,7 +154,7 @@ extension MyTicketSheetView {
             }
         }
         .frame(height: 160)
-        .background(.white)
+		.background(Color("AnyButtonColor").opacity(0.05))
         .cornerRadius(10)
         .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color("AnyButtonColor"), lineWidth: 2))
         .padding(10)

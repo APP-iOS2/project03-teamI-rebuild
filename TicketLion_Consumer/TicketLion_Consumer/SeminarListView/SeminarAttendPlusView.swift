@@ -96,7 +96,7 @@ struct SeminarAttendPlusView: View {
                         isShowingAlert = true
                         // 세미나신청 함수
                         userStore.addSeminar(seminarID: seminar.id)
-                        seminarStore.addUserPhoneNumberInSeminar(seminar: seminar)
+                        seminarStore.addUserPhoneNumberInSeminar(seminar: seminar, userPhoneNumber: userStore.phoneNumber)
                         alertText = "세미나 신청이 완료되었습니다."
                     }
                 } label: {
