@@ -37,69 +37,11 @@ struct RecruitingListView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                HStack {
-                    NavigationLink {
-                        SeminarAddView(seminarStore: SeminarStore(), chipsViewModel: ChipsViewModel())
-                    } label: {
-                        Text("세미나 등록하기")
-                            .font(.title3).bold()
-                    }
-                    .padding(.leading, 15)
-                    
-                    Spacer()
-                    
-                    Picker("sort recruiting list", selection: $order) {
-                        ForEach(Order.allCases, id:\.self) { order in
-                            Text(order.rawValue)
-                        }
-                    }
-                    .pickerStyle(.menu)
-                    .padding(.trailing, 15)
-                }
-                .padding(.bottom, 10)
+                TopView(order: $order, type: .recruiting)
                 
-                Table(of: Seminar.self, selection: $selectedSeminar) {
-                    TableColumn("세미나명") { seminar in
-                        Text(seminar.name)
-                    }
-                    
-                    TableColumn("주최자") { seminar in
-                        Text(seminar.host)
-                    }
-                    .width(120)
-                    
-                    TableColumn("장소") { seminar in
-                        Text(seminar.location ?? "온라인")
-                    }
-                    
-                    TableColumn("모집인원") { seminar in
-                        Text(("\(seminar.enterUsers.count)/\(seminar.maximumUserNumber)"))
-                    }
-                    .width(80)
-                    
-                    TableColumn("마감날짜") { seminar in
-                        Text(seminarStore.calculateDate(date: seminar.registerEndDate))
-                    }
-                    .width(100)
-                } rows: {
-                    ForEach(currentPageList) { seminar in
-                        TableRow(seminar)
-                    }
-                }
+                RecruitingTableView(seminarStore: seminarStore, selectedSeminar: $selectedSeminar, currentPageList: currentPageList)
                 
-                HStack {
-                    ForEach(1..<totalPages + 1, id: \.self) { num in
-                        Button {
-                            currentPage = num
-                        } label: {
-                            Text("\(num)")
-                                .fontWeight(currentPage == num ? .bold : .regular)
-                                .foregroundColor(currentPage == num ? .black : .gray)
-                                .font(.headline)
-                        }
-                        .padding(.horizontal, 5)
-                    }
-                }
+                PageListView(currentPage: $currentPage, totalPages: totalPages)
             }
             .padding(.vertical, 15)
             .navigationDestination(isPresented: $isShowingSeminarInfo) {
@@ -111,10 +53,48 @@ struct RecruitingListView: View {
         }
         .onAppear {
             seminarStore.fetch()
+            selectedSeminar = nil
         }
         .onChange(of: selectedSeminar) { seminarId in
             if let _ = seminarId {
                 isShowingSeminarInfo.toggle()
+            }
+        }
+    }
+}
+
+struct RecruitingTableView: View {
+    @StateObject var seminarStore: SeminarListStore
+    @Binding var selectedSeminar: Seminar.ID?
+    var currentPageList: [Seminar]
+    
+    var body: some View {
+        Table(of: Seminar.self, selection: $selectedSeminar) {
+            TableColumn("세미나명") { seminar in
+                Text(seminar.name)
+            }
+            
+            TableColumn("주최자") { seminar in
+                Text(seminar.host)
+            }
+            .width(120)
+            
+            TableColumn("장소") { seminar in
+                Text(seminar.location ?? "온라인")
+            }
+            
+            TableColumn("모집인원") { seminar in
+                Text(("\(seminar.enterUsers.count)/\(seminar.maximumUserNumber)"))
+            }
+            .width(80)
+            
+            TableColumn("마감날짜") { seminar in
+                Text(seminarStore.calculateDate(date: seminar.registerEndDate))
+            }
+            .width(100)
+        } rows: {
+            ForEach(currentPageList) { seminar in
+                TableRow(seminar)
             }
         }
     }
