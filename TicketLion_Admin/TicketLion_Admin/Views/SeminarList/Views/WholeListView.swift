@@ -18,7 +18,7 @@ struct WholeListView: View {
     @State private var order: Order = .recent
     @State private var isShowingSeminarInfo = false
     @State private var currentPage: Int = 1
-    let itemsPerPage = 15
+    let itemsPerPage = 17
     
     var totalPages: Int {
         Int(ceil(Double(seminarStore.seminarList.count) / Double(itemsPerPage)))
@@ -37,83 +37,19 @@ struct WholeListView: View {
     var currentPageList: [Seminar] {
         let startIndex = (currentPage - 1) * itemsPerPage
         let endIndex = min(startIndex + itemsPerPage, seminarList.count)
-        //guard startIndex > endIndex else { return [] }
         return Array(seminarList[startIndex..<endIndex])
     }
     
     var body: some View {
         NavigationStack {
             VStack {
-                HStack {
-                    Spacer()
-                    Picker("sort whole list", selection: $order) {
-                        ForEach(Order.allCases, id:\.self) { order in
-                            Text(order.rawValue)
-                        }
-                    }
-                    .pickerStyle(.menu)
-                    .padding([.bottom, .trailing], 15)
-                }
+                TopView(order: $order, type: .whole)
                 
-                Table(of: Seminar.self, selection: $selectedSeminar) {
-                    TableColumn("세미나명") { seminar in
-                        Text(seminar.name)
-                    }
-                    
-                    TableColumn("주최자") { seminar in
-                        Text(seminar.host)
-                    }
-                    .width(120)
-                    
-                    TableColumn("장소") { seminar in
-                        Text(seminar.location ?? "온라인")
-                    }
-                    
-                    TableColumn("모집인원") { seminar in
-                        Text(("\(seminar.enterUsers.count)/\(seminar.maximumUserNumber)"))
-                    }
-                    .width(80)
-                    
-                    TableColumn("마감날짜") { seminar in
-                        Text(seminarStore.calculateDate(date: seminar.registerEndDate))
-                    }
-                    .width(100)
-                    
-                    TableColumn("마감여부") { seminar in
-                        Text(seminarStore.recruitingList.contains(where: { $0.id == seminar.id }) ? "진행중" : "마감")
-                    }
-                    .width(70)
-                } rows: {
-                    ForEach(currentPageList) { seminar in
-                        TableRow(seminar)
-                    }
-                }
+                WholeTableView(seminarStore: seminarStore, selectedSeminar: $selectedSeminar, currentPageList: currentPageList)
                 
-                HStack {
-                    ForEach(1..<totalPages + 1, id: \.self) { num in
-                        Button {
-                            currentPage = num
-                        } label: {
-                            Text("\(num)")
-                                .fontWeight(currentPage == num ? .bold : .regular)
-                                .foregroundColor(currentPage == num ? .black : .gray)
-                                .font(.headline)
-                        }
-                        .padding(.horizontal, 5)
-                    }
-                }
-                
-                HStack {
-                    NavigationLink {
-                        SeminarAddView(seminarStore: SeminarStore(), chipsViewModel: ChipsViewModel())
-                    } label: {
-                        Text("세미나 등록하기")
-                            .font(.title).bold()
-                    }
-                    .padding([.horizontal, .vertical], 20)
-                    .buttonStyle(.bordered)
-                }
+                PageListView(currentPage: $currentPage, totalPages: totalPages)
             }
+            .padding(.vertical, 15)
             .navigationDestination(isPresented: $isShowingSeminarInfo) {
                 if let seminarId = selectedSeminar {
                     if let seminar = seminarStore.selectSeminar(id: seminarId) { SeminarInfoView(seminar: seminar)
@@ -124,11 +60,54 @@ struct WholeListView: View {
         .onAppear {
             UIScrollView.appearance().bounces = false
             seminarStore.fetch()
-            currentPage = 1
+            selectedSeminar = nil
         }
         .onChange(of: selectedSeminar) { seminarId in
             if let _ = seminarId {
                 isShowingSeminarInfo.toggle()
+            }
+        }
+    }
+}
+
+
+struct WholeTableView: View {
+    @StateObject var seminarStore: SeminarListStore
+    @Binding var selectedSeminar: Seminar.ID?
+    var currentPageList: [Seminar]
+    
+    var body: some View {
+        Table(of: Seminar.self, selection: $selectedSeminar) {
+            TableColumn("세미나명") { seminar in
+                Text(seminar.name)
+            }
+            
+            TableColumn("주최자") { seminar in
+                Text(seminar.host)
+            }
+            .width(120)
+            
+            TableColumn("장소") { seminar in
+                Text(seminar.location ?? "온라인")
+            }
+            
+            TableColumn("모집인원") { seminar in
+                Text(("\(seminar.enterUsers.count)/\(seminar.maximumUserNumber)"))
+            }
+            .width(80)
+            
+            TableColumn("마감날짜") { seminar in
+                Text(seminarStore.calculateDate(date: seminar.registerEndDate))
+            }
+            .width(100)
+            
+            TableColumn("마감여부") { seminar in
+                Text(seminarStore.recruitingList.contains(where: { $0.id == seminar.id }) ? "진행중" : "마감")
+            }
+            .width(70)
+        } rows: {
+            ForEach(currentPageList) { seminar in
+                TableRow(seminar)
             }
         }
     }

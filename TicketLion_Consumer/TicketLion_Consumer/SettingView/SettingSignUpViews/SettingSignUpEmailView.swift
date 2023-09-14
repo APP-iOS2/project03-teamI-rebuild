@@ -11,10 +11,13 @@ struct SettingSignUpEmailView: View {
     
 	@EnvironmentObject var userStore: UserStore
     
-    @Binding var isCompleteSignUp: Bool
+//    @Binding var isCompleteSignUp: Bool
+    @EnvironmentObject var router: Router
+    
+    
     
     var body: some View {
-            NavigationStack {
+            NavigationStack(path: $router.path) {
                 VStack(alignment: .leading, spacing: 25) {
                     Divider()
                         .background(Color("AnyButtonColor"))
@@ -39,16 +42,16 @@ struct SettingSignUpEmailView: View {
                         .textContentType(.none)
                     
                     NavigationLink {
-                        SettingSignUpPasswordView(isCompleteSignUp: $isCompleteSignUp)
+                        SettingSignUpPasswordView(/* isCompleteSignUp: $isCompleteSignUp*/)
                     } label: {
                         Text("다음")
+                            .frame(maxWidth: .infinity, maxHeight: 20)
+                            .padding()
+                            .font(.title2)
+                            .foregroundColor(.white)
+                            .background(userStore.isValidEmail() ? Color("AnyButtonColor") : Color.gray)
+                            .cornerRadius(5)
                     }
-                    .frame(maxWidth: .infinity, maxHeight: 20)
-                    .padding()
-                    .font(.title2)
-                    .foregroundColor(.white)
-                    .background(userStore.isValidEmail() ? Color("AnyButtonColor") : Color.gray)
-                    .cornerRadius(5)
                     .disabled(!userStore.isValidEmail())
                 }
                 .padding()
@@ -62,7 +65,7 @@ struct SettingSignUpEmailView: View {
 struct SettingSignUpEmailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            SettingSignUpEmailView(isCompleteSignUp: .constant(false))
+            SettingSignUpEmailView(/* isCompleteSignUp: .constant(false) */)
         }
     }
 }

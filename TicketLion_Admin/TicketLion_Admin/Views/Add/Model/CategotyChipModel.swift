@@ -20,6 +20,6 @@ class ChipsViewModel: ObservableObject {
     CategoryChipModel(isSelected: false, titleKey: "Back-End"),
     CategoryChipModel(isSelected: false, titleKey: "iOS Dev"),
     CategoryChipModel(isSelected: false, titleKey: "Android Dev"),
-    CategoryChipModel(isSelected: false, titleKey: "etc")
+    CategoryChipModel(isSelected: false, titleKey: "etc.")
     ]
 }

@@ -17,12 +17,12 @@ struct SeminarDetailMapView: View {
     @ObservedObject var seminarStore: SeminarDetailStore
     
     @StateObject var locationManager = LocationManager()
-    @State private var location = Location(coordinate: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780))
+    @State private var location = Location(coordinate: CLLocationCoordinate2D(latitude: 37.39494, longitude: 127.110106))
     @State private var address = "서울 시청"
     
     
 //    @Binding var region: MKCoordinateRegion
-    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
+    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.39494, longitude: 127.110106), span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
     @Binding var clickLocation: Bool
     @Binding var seminarLocation: SeminarLocation
     
@@ -55,19 +55,6 @@ struct SeminarDetailMapView: View {
                     }
                     .edgesIgnoringSafeArea(.bottom)
                     
-                    VStack {
-                        ZStack{
-                            Text("클릭하면 가운데 장소로 선택됩니다")
-                                .foregroundColor(.black)
-                                .opacity(0.9)
-                            Color.gray
-                                .frame(width: 250, height: 30)
-                                .opacity(0.25)
-                        }
-                        .cornerRadius(5)
-                        .padding(.top)
-                        Spacer()
-                        
                         HStack {
                             Spacer()
                             VStack {
@@ -110,7 +97,10 @@ struct SeminarDetailMapView: View {
                         .padding(.init(top: 0, leading: 0, bottom: -50, trailing: 15))
                         
                         Spacer()
+
                     }
+
+
                 } // Zstack(맵뷰)
                 .onAppear {
                     drawMarkerWithAddress()
@@ -172,6 +162,6 @@ struct SeminarDetailMapView: View {
 
 struct SeminarDetailMapView_Previews: PreviewProvider {
     static var previews: some View {
-        SeminarDetailMapView(seminarStore: SeminarDetailStore(), clickLocation: .constant(false), seminarLocation: .constant(SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청")))
+        SeminarDetailMapView(seminarStore: SeminarDetailStore(), clickLocation: .constant(false), seminarLocation: .constant(SeminarLocation(latitude: 37.39494, longitude: 127.110106, address: "서울시청")))
     }
 }

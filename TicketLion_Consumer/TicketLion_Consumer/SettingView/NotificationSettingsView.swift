@@ -15,7 +15,7 @@ struct NotificationSettingsView: View {
                 Section(header: Text("알림 설정")) {
                     Button("알림 허용 설정") {
                         openAppNotificationSettings()
-                        let notificationTime = Date().addingTimeInterval(3) // 10초 뒤의 시간을 계산합니다.
+                        let notificationTime = Date().addingTimeInterval(15)
                         scheduleLocalNotification(at: notificationTime, withTitle: "Ticket Lion", andBody: "새로운 새미나를 만나보세요!")
                     }
                 }

@@ -9,8 +9,7 @@ import Foundation
 import FirebaseFirestore
 
 class SeminarListStore: ObservableObject {
-    @Published var seminarList: [Seminar]
-    @Published var isLoading = false
+    @Published var seminarList: [Seminar] = []
     
     let dbRef = Firestore.firestore()
     
@@ -24,32 +23,24 @@ class SeminarListStore: ObservableObject {
         seminarList.filter { $0.registerEndDate < currentDate || $0.closingStatus}
     }
     
-    init() {
-        self.seminarList = []
-    }
-    
     func fetch() {
-        isLoading = false
-        seminarList.removeAll()
-        
         dbRef.collection("Seminar").getDocuments { (snapshot, error) in
             guard error == nil else {
                 print("error", error ?? "")
                 return
             }
-            
+            var temp: [Seminar] = []
             if let snapshot = snapshot {
                 for document in snapshot.documents {
                     if let jsonData = try? JSONSerialization.data(withJSONObject: document.data(), options: []),
                        let seminarData = try? JSONDecoder().decode(Seminar.self, from: jsonData) {
-                        self.seminarList.append(seminarData)
+                        temp.append(seminarData)
                     }
                 }
-                self.isLoading = true
+                self.seminarList = temp
+                self.seminarList.sort { $0.createdAt > $1.createdAt }
             }
         }
-        
-        self.seminarList.sort { $0.createdAt > $1.createdAt }
     }
     
     func calculateDate(date: Double) -> String {

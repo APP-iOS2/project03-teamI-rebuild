@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingSignUpPasswordView: View {
     @EnvironmentObject var userStore: UserStore
-    @Binding var isCompleteSignUp: Bool
+//    @Binding var isCompleteSignUp: Bool
     
     var body: some View {
         NavigationStack {
@@ -54,16 +54,16 @@ struct SettingSignUpPasswordView: View {
                 .font(.subheadline)
                 
                 NavigationLink {
-                    SettingSignUpNameView(isCompleteSignUp: $isCompleteSignUp)
+                    SettingSignUpNameView(/* isCompleteSignUp: $isCompleteSignUp*/)
                 } label: {
                     Text("다음")
+                        .frame(maxWidth: .infinity, maxHeight: 20)
+                        .padding()
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .background(userStore.isPasswordValid && userStore.passwordsMatch ? Color("AnyButtonColor") : Color.gray)
+                        .cornerRadius(5)
                 }
-                .frame(maxWidth: .infinity, maxHeight: 20)
-                .padding()
-                .font(.title2)
-                .foregroundColor(.white)
-                .background(userStore.isPasswordValid && userStore.passwordsMatch ? Color("AnyButtonColor") : Color.gray)
-                .cornerRadius(5)
                 .disabled(!userStore.isPasswordValid || !userStore.passwordsMatch)
             }
             .padding()
@@ -78,7 +78,7 @@ struct SettingSignUpPasswordView: View {
 struct SettingSignUpPasswordView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SettingSignUpPasswordView(isCompleteSignUp: .constant(false))
+            SettingSignUpPasswordView(/* isCompleteSignUp: .constant(false)*/)
         }
     }
 }

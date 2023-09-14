@@ -14,7 +14,7 @@ struct SeminarMapView: View {
     @Environment(\.dismiss) private var dismiss
     @ObservedObject var seminarStore: SeminarStore
     @StateObject var locationManager = LocationManager()
-    @State private var location = Location(coordinate: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780))
+    @State private var location = Location(coordinate: CLLocationCoordinate2D(latitude: 37.39494, longitude: 127.110106))
     @State private var address = "서울 시청"
     
     @Binding var region: MKCoordinateRegion
@@ -28,22 +28,12 @@ struct SeminarMapView: View {
                     .font(.subheadline)
                 
                 ZStack {
-//            
                     Map(coordinateRegion: $region, showsUserLocation: true)
                         .edgesIgnoringSafeArea(.bottom)
                         MapMarkerDetailView()
                     
                     VStack {
-                        ZStack{
-                            Text("클릭하면 가운데 장소로 선택됩니다")
-                                .foregroundColor(.black)
-                                .opacity(0.9)
-                            Color.gray
-                                .frame(width: 250, height: 30)
-                                .opacity(0.25)
-                        }
-                        .cornerRadius(5)
-                        .padding(.top)
+                        
                         Spacer()
                         
                         HStack {
@@ -170,7 +160,7 @@ struct Cross: Shape {
 
 struct SeminarMapView_Previews: PreviewProvider {
     static var previews: some View {
-        SeminarMapView(seminarStore: SeminarStore(), region: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), span: MKCoordinateSpan(latitudeDelta: 0.009, longitudeDelta: 0.009))), clickLocation: .constant(false), seminarLocation: .constant(SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청")))
+        SeminarMapView(seminarStore: SeminarStore(), region: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.39494, longitude: 127.110106), span: MKCoordinateSpan(latitudeDelta: 0.009, longitudeDelta: 0.009))), clickLocation: .constant(false), seminarLocation: .constant(SeminarLocation(latitude: 37.39494, longitude: 127.110106, address: "서울시청")))
     }
 }
 

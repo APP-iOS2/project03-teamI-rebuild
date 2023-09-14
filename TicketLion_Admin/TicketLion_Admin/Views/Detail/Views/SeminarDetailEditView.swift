@@ -24,7 +24,7 @@ struct SeminarDetailEditView: View {
     @ObservedObject var chipsViewModel: ChipsViewModel
 //    @StateObject var seminars: SeminarDetailStore = SeminarDetailStore()
     var seminars: Seminar
-    @State private var startingPoint = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
+    @State private var startingPoint = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.39494, longitude: 127.110106), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
     @State private var date : Date = Date()
     @State private var isOpenMap: Bool = false
     @State private var clickLocation: Bool = false
@@ -335,7 +335,7 @@ class FirebaseManager {
 
 struct SeminarDetailEditView_Previews: PreviewProvider {
     static var previews: some View {
-        SeminarDetailEditView(chipsViewModel: ChipsViewModel(), seminars: Seminar.seminarsDummy[0], seminarLocation: SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청"), seminarData: .constant(Seminar.seminarsDummy[0]), isShowEditView: .constant(true))
+        SeminarDetailEditView(chipsViewModel: ChipsViewModel(), seminars: Seminar.seminarsDummy[0], seminarLocation: SeminarLocation(latitude: 37.39494, longitude: 127.110106, address: "서울시청"), seminarData: .constant(Seminar.seminarsDummy[0]), isShowEditView: .constant(true))
     }
 }
 

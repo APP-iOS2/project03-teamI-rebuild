@@ -26,16 +26,13 @@ struct ParticipationListVIew: View {
     @State private var selectedLeftlist: Classification?
     @State private var searchText = ""
     @State private var isAscendingOrder = true //정렬
-    
-    // Firebase에서 가져온 사용자 데이터를 저장하는 배열
-       static var usersFromFirebase: [User] = []
-    
-    
+    let selectedUsers: [String]
+
     var filteredUsers: [User] {
         if searchText.isEmpty {
-            return ParticipationListVIew.usersFromFirebase
+            return userListStore.userList
         } else {
-            return ParticipationListVIew.usersFromFirebase.filter { user in
+            return userListStore.userList.filter { user in
                 return user.name.localizedCaseInsensitiveContains(searchText) ||
                 user.phoneNumber.localizedStandardContains(searchText) ||
                 user.email.localizedStandardContains(searchText)
@@ -45,17 +42,14 @@ struct ParticipationListVIew: View {
     }
     
     var sortedUsersByName: [User] {
-           return filteredUsers.sorted(by: { user1, user2 in
-               if isAscendingOrder {
-                   return user1.name < user2.name
-               } else {
-                   return user1.name > user2.name
-               }
-           })
-       }
-       
-    
-    
+        return filteredUsers.sorted(by: { user1, user2 in
+            if isAscendingOrder {
+                return user1.name < user2.name
+            } else {
+                return user1.name > user2.name
+            }
+        })
+    }
     
     var body: some View {
         VStack{
@@ -101,9 +95,7 @@ struct ParticipationListVIew: View {
             
         }
         .onAppear {
-            userListStore.fetch(attendUsers: [
-            "123123@naver.com","aaa@naver.com"
-            ])
+            userListStore.fetch(attendUsers: selectedUsers)
         }
     }
 }
@@ -111,6 +103,6 @@ struct ParticipationListVIew: View {
 
 struct ParticipationListVIew_Previews: PreviewProvider {
     static var previews: some View {
-        ParticipationListVIew()
+        ParticipationListVIew(selectedUsers: [])
     }
 }

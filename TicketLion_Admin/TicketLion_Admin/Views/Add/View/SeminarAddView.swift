@@ -12,6 +12,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseCore
 import Combine
+import FirebaseStorage
 
 struct SeminarAddView: View {
     @Environment(\.dismiss) private var dismiss
@@ -28,7 +29,7 @@ struct SeminarAddView: View {
     @State private var registerEndDatePicker = Date()
     @State private var seminarStartDatePicker = Date()
     @State private var seminarEndDatePicker = Date()
-    @State private var selectedImage: UIImage? = nil
+    @State private var selectedImage: UIImage?
     @State private var isImagePickerPresented: Bool = false
     @State private var isOnline: Bool = false
     
@@ -46,12 +47,15 @@ struct SeminarAddView: View {
     }
     
     var db = Firestore.firestore()
+    var storage = Storage.storage()
     
     @State var isOpenMap: Bool = false
-    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
-    @State var seminarLocation: SeminarLocation = SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청")
+    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.39494, longitude: 127.110106), span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
+    @State var seminarLocation: SeminarLocation = SeminarLocation(latitude: 37.39494, longitude: 127.110106, address: "서울시청")
     @State var clickLocation: Bool = false
     @State var isShowing: Bool = false
+    
+    static let today = Calendar.current.startOfDay(for: Date())
     
     var body: some View {
         NavigationStack {
@@ -85,12 +89,12 @@ struct SeminarAddView: View {
                         
                         HStack {
                             Text("시작")
-                            DatePicker("Date and Time", selection: $registerStartDatePicker, displayedComponents: [.date, .hourAndMinute])
+                            DatePicker("Date and Time", selection: $registerStartDatePicker,in: Self.today..., displayedComponents: [.date, .hourAndMinute])
                                 .datePickerStyle(.compact)
                             .labelsHidden()                        }
                         HStack {
                             Text("마감")
-                            DatePicker("date select", selection: $registerEndDatePicker, displayedComponents: [.date, .hourAndMinute])
+                            DatePicker("date select", selection: $registerEndDatePicker, in: Self.today..., displayedComponents: [.date, .hourAndMinute])
                                 .datePickerStyle(.compact)
                                 .labelsHidden()
                         }
@@ -214,13 +218,13 @@ struct SeminarAddView: View {
                         
                         HStack {
                             Text("시작")
-                            DatePicker("date select", selection: $seminarStartDatePicker, displayedComponents: [.date, .hourAndMinute])
+                            DatePicker("date select", selection: $seminarStartDatePicker, in: registerEndDatePicker..., displayedComponents: [.date, .hourAndMinute])
                                 .datePickerStyle(.compact)
                                 .labelsHidden()
                         }
                         HStack {
                             Text("종료")
-                            DatePicker("date select", selection: $seminarEndDatePicker, displayedComponents: [.date, .hourAndMinute])
+                            DatePicker("date select", selection: $seminarEndDatePicker, in: registerEndDatePicker..., displayedComponents: [.date, .hourAndMinute])
                                 .datePickerStyle(.compact)
                                 .labelsHidden()
                         }
@@ -280,14 +284,27 @@ struct SeminarAddView: View {
         
         let selectCategory = chipsViewModel.chipArray.filter { $0.isSelected }.map { $0.titleKey }
         
-        let seminar = Seminar(category: selectCategory, name: name, seminarImage: seminarImage, host: host, details: details, location: "\(seminarLocation.address+detailLocation)", maximumUserNumber: Int(maximumUserNumber) ?? 0, createdAt: Date().timeIntervalSince1970, closingStatus: false, registerStartDate: registerStartDatePicker.timeIntervalSince1970, registerEndDate: registerEndDatePicker.timeIntervalSince1970, seminarStartDate: seminarStartDatePicker.timeIntervalSince1970, seminarEndDate: seminarEndDatePicker.timeIntervalSince1970, enterUsers: [])
+        var seminar = Seminar(category: selectCategory, name: name, seminarImage: seminarImage, host: host, details: details, location: "\(seminarLocation.address+detailLocation)", maximumUserNumber: Int(maximumUserNumber) ?? 0, createdAt: Date().timeIntervalSince1970, closingStatus: false, registerStartDate: registerStartDatePicker.timeIntervalSince1970, registerEndDate: registerEndDatePicker.timeIntervalSince1970, seminarStartDate: seminarStartDatePicker.timeIntervalSince1970, seminarEndDate: seminarEndDatePicker.timeIntervalSince1970, enterUsers: [])
         
-        do {
-            try db.collection("Seminar").document(seminar.id).setData(from: seminar)
-        } catch {
-            print(error)
+        if let selectedImage {
+            guard let imageData = selectedImage.jpegData(compressionQuality: 0.2) else { return }
+            
+            let storageRef = storage.reference().child(seminar.id)
+            
+            storageRef.putData(imageData) { _ , error in
+                storageRef.downloadURL { url, error in
+                    guard let profileImageUrl = url?.absoluteString else { return }
+                    seminar.seminarImage = profileImageUrl
+                    
+                    do {
+                        try db.collection("Seminar").document(seminar.id).setData(from: seminar)
+                    } catch {
+                        
+                    }
+                    
+                }
+            }
         }
-        
     }
 }
 
