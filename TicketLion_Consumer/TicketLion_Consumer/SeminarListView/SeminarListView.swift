@@ -66,7 +66,7 @@ struct SeminarListView: View {
                 seminarStore.fetchSeminar()
                 userStore.fetchUserInfo()
             }
-            .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always), prompt: "\(selectedCategory.categoryName) 세미나를 찾아보세요.")
+            .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always), prompt: selectedCategory.categoryName == "etc." ? "그외 세미나를 찾아보세요.": "\(selectedCategory.categoryName) 세미나를 찾아보세요.")
             
         }
         
