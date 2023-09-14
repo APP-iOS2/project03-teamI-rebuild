@@ -39,6 +39,7 @@ class UserStore: ObservableObject {
     @Published var favoriteSeminarDetails: [Seminar] = []
     @Published var canceledSeminarDetails: [Seminar] = []
     @Published var recentlySeminarsDetails: [Seminar] = []
+
     
     // 회원가입
     func signUpUser(name: String, email: String, password: String, phoneNumber: String, birth: String) {
@@ -353,7 +354,6 @@ class UserStore: ObservableObject {
     }
     
     func addSeminar(seminarID: String) {
-        
         guard let currentUser = currentUser else {
             return
         }
@@ -379,7 +379,6 @@ class UserStore: ObservableObject {
                 print("사용자 정보를 불러오는 중 오류가 발생했습니다.")
             }
         }
-        
     }
     
     func cancelSeminar(seminarID: String) {
@@ -432,8 +431,6 @@ class UserStore: ObservableObject {
                 print("사용자 정보를 불러오는 중 오류가 발생했습니다.")
             }
         }
-        
     }
-    
 }
 
