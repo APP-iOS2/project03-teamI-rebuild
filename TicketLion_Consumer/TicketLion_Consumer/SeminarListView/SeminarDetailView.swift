@@ -260,13 +260,13 @@ struct SeminarDetailView: View {
         .alert(isPresented: $isShowingAlert) {
             Alert(title: Text("로그인후 이용해주세요"),
                   message: nil,
-                  primaryButton: .default(Text("OK")) {
+                  primaryButton: .default(Text("로그인 하기")) {
                 
                 isShowingDetail = false
                 userStore.loginSheet = true
                 print("\(userStore.loginSheet)")
             },
-                  secondaryButton: .cancel()
+                  secondaryButton: .default(Text("취소"))
             )
         }
     }
