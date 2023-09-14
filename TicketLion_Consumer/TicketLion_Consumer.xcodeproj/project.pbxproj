@@ -56,7 +56,6 @@
 		64B328262AAF6F6400D64EFF /* SettingDevInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328252AAF6F6400D64EFF /* SettingDevInfoView.swift */; };
 		64B328282AAF6F7E00D64EFF /* SettingDevInfoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328272AAF6F7E00D64EFF /* SettingDevInfoDetailView.swift */; };
 		64B3282A2AAF6FA700D64EFF /* SettingDevInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B328292AAF6FA700D64EFF /* SettingDevInformationView.swift */; };
-		8B125E1D2AB20D360065317B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B125E1C2AB20D360065317B /* GoogleService-Info.plist */; };
 		8B924DC02AAFE8E00042D790 /* SeminarDetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B924DBF2AAFE8E00042D790 /* SeminarDetailMapView.swift */; };
 		8B924DC22AAFE9B30042D790 /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B924DC12AAFE9B30042D790 /* Modifier.swift */; };
 		99804C9D2AAFEAE30050F27F /* SeminarInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99804C9C2AAFEAE30050F27F /* SeminarInfoView.swift */; };
@@ -104,7 +103,6 @@
 		64B328252AAF6F6400D64EFF /* SettingDevInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDevInfoView.swift; sourceTree = "<group>"; };
 		64B328272AAF6F7E00D64EFF /* SettingDevInfoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDevInfoDetailView.swift; sourceTree = "<group>"; };
 		64B328292AAF6FA700D64EFF /* SettingDevInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDevInformationView.swift; sourceTree = "<group>"; };
-		8B125E1C2AB20D360065317B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8B924DBF2AAFE8E00042D790 /* SeminarDetailMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarDetailMapView.swift; sourceTree = "<group>"; };
 		8B924DC12AAFE9B30042D790 /* Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifier.swift; sourceTree = "<group>"; };
 		99804C9C2AAFEAE30050F27F /* SeminarInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarInfoView.swift; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 		64B327A32AAF5CEE00D64EFF /* TicketLion_Consumer */ = {
 			isa = PBXGroup;
 			children = (
-				8B125E1C2AB20D360065317B /* GoogleService-Info.plist */,
 				64B327A42AAF5CEE00D64EFF /* TicketLion_ConsumerApp.swift */,
 				64B327A62AAF5CEE00D64EFF /* MainTabView.swift */,
 				64B327E62AAF69E600D64EFF /* Model */,
@@ -347,7 +344,6 @@
 			files = (
 				64B327AC2AAF5CF000D64EFF /* Preview Assets.xcassets in Resources */,
 				64B327A92AAF5CF000D64EFF /* Assets.xcassets in Resources */,
-				8B125E1D2AB20D360065317B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
