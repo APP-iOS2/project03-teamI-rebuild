@@ -120,7 +120,9 @@ class UserStore: ObservableObject {
 		currentUser = Auth.auth().currentUser
 	}
 	
+    
 	/// 로그인
+    @MainActor
 	func login(email: String, password: String) async throws {
 		do {
 			var result = try await Auth.auth().signIn(withEmail: email, password: password)

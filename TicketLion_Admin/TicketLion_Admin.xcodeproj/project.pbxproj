@@ -48,6 +48,7 @@
 		9AB002AE2AA957BE0029BBC3 /* SeminarMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB002A62AA957BE0029BBC3 /* SeminarMapView.swift */; };
 		9ADA57582AA8045500AA4191 /* ParticipationListVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADA57572AA8045500AA4191 /* ParticipationListVIew.swift */; };
 		C06B1BA12AB00A4800D08744 /* SeminarInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B1BA02AB00A4800D08744 /* SeminarInfoView.swift */; };
+		C0E196502AB14ACF008808E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0E1964F2AB14ACF008808E0 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		9AB002A62AA957BE0029BBC3 /* SeminarMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarMapView.swift; sourceTree = "<group>"; };
 		9ADA57572AA8045500AA4191 /* ParticipationListVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipationListVIew.swift; sourceTree = "<group>"; };
 		C06B1BA02AB00A4800D08744 /* SeminarInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarInfoView.swift; sourceTree = "<group>"; };
+		C0E1964F2AB14ACF008808E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 		6412F9FC2AA6FC8E00F1467B = {
 			isa = PBXGroup;
 			children = (
+				C0E1964F2AB14ACF008808E0 /* GoogleService-Info.plist */,
 				6412FA072AA6FC8E00F1467B /* TicketLion_Admin */,
 				6412FA062AA6FC8E00F1467B /* Products */,
 			);
@@ -363,6 +366,7 @@
 			files = (
 				6412FA102AA6FC9000F1467B /* Preview Assets.xcassets in Resources */,
 				6412FA0D2AA6FC9000F1467B /* Assets.xcassets in Resources */,
+				C0E196502AB14ACF008808E0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

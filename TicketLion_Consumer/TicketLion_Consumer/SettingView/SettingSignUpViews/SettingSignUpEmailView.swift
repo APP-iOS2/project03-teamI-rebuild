@@ -42,13 +42,13 @@ struct SettingSignUpEmailView: View {
                         SettingSignUpPasswordView(isCompleteSignUp: $isCompleteSignUp)
                     } label: {
                         Text("다음")
+                            .frame(maxWidth: .infinity, maxHeight: 20)
+                            .padding()
+                            .font(.title2)
+                            .foregroundColor(.white)
+                            .background(userStore.isValidEmail() ? Color("AnyButtonColor") : Color.gray)
+                            .cornerRadius(5)
                     }
-                    .frame(maxWidth: .infinity, maxHeight: 20)
-                    .padding()
-                    .font(.title2)
-                    .foregroundColor(.white)
-                    .background(userStore.isValidEmail() ? Color("AnyButtonColor") : Color.gray)
-                    .cornerRadius(5)
                     .disabled(!userStore.isValidEmail())
                 }
                 .padding()
