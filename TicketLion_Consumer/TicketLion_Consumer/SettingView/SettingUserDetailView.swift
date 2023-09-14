@@ -31,8 +31,8 @@ struct SettingUserDetailView: View {
                             Text(userStore.name)
                                 .font(.title)
                                 .bold()
-                            Text(userStore.phoneNumber)
                             Text(userStore.email)
+                            Text(userStore.phoneNumber)
                             Text(userStore.birth)
                         }
                     }
@@ -52,16 +52,6 @@ struct SettingUserDetailView: View {
                     } else {
                         ForEach(userStore.favoriteSeminarDetails, id: \.self) { favoriteSeminar in
                             Text(favoriteSeminar.name)
-                        }
-                    }
-                }
-                
-                Section("최근 본 세미나") {
-                    if userStore.recentlySeminars.count == 0 {
-                        Text("최근 본 세미나가 없습니다")
-                    } else {
-                        ForEach(userStore.recentlySeminars, id: \.self) { recentlySeminar in
-                            Text(recentlySeminar)
                         }
                     }
                 }
