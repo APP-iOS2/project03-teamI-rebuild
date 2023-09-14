@@ -89,6 +89,7 @@ struct SeminarDetailView: View {
                         
                         //모집마감 여부 눈에 띄면 좋을 것 같아서 추가
                         Text(" \(recruiteText) ")
+                            .font(.title2)
                             .foregroundColor(recruiteColor)
                             .border(recruiteColor)
                             .background(.white)
@@ -146,24 +147,45 @@ struct SeminarDetailView: View {
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
                         
+//                        GridRow {
+//                            Text("모집 시작")
+//                                .modifier(textStyle())
+//
+//
+//                            Text("\(seminar.startDateCreator(seminar.registerStartDate))")
+//
+//                        }
+//                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
+//
+//                        GridRow {
+//                            Text("모집 종료")
+//                                .modifier(textStyle())
+//
+//
+//                            Text("\(seminar.startDateCreator(seminar.registerEndDate))")
+//
+//                        }
+//                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
+                        
+                        
                         GridRow {
-                            Text("모집 기간")
+                            
+                            Text("세미나 시작")
                                 .modifier(textStyle())
                             
-                            
-                            Text("\(seminar.startDateCreator(seminar.registerStartDate)) ~ \(seminar.endDateCreator(seminar.registerEndDate, seminar.registerStartDate))")
+                            Text("\(seminar.startDateCreator(seminar.seminarStartDate))")
                             
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
-                        
+                                 
                         GridRow {
-                            Text("진행 날짜")
+                            Text("세미나 종료")
                                 .modifier(textStyle())
-                            
-                            Text("\(seminar.startDateCreator(seminar.seminarStartDate)) ~ \(seminar.endDateCreator(seminar.seminarEndDate, seminar.seminarStartDate))")
+                                 
+                            Text("\(seminar.startDateCreator(seminar.seminarEndDate))")
                         }
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
-                        
+
                         GridRow {
                             Text("진행 시간")
                                 .modifier(textStyle())
@@ -246,12 +268,13 @@ struct SeminarDetailView: View {
         .navigationTitle(seminar.name)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
+            ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
                     //                    isShowingDetail = false
                     dismiss()
                 } label: {
-                    Image(systemName: "chevron.backward")
+//                    Image(systemName: "chevron.backward")
+                    Text("닫기")
                         .foregroundColor(.orange)
                 }
                 
@@ -260,20 +283,15 @@ struct SeminarDetailView: View {
         .alert(isPresented: $isShowingAlert) {
             Alert(title: Text("로그인후 이용해주세요"),
                   message: nil,
-                  primaryButton: .default(Text("OK")) {
+                  primaryButton: .default(Text("로그인 하기")) {
                 
+                isShowingDetail = false
                 userStore.loginSheet = true
                 print("\(userStore.loginSheet)")
             },
-                  secondaryButton: .cancel()
+                  secondaryButton: .cancel(Text("취소하기"))
             )
         }
-        .sheet(isPresented: $userStore.loginSheet, content: {
-            NavigationStack {
-                SettingLoginView()
-            }
-        })
-        
     }
     
 }
