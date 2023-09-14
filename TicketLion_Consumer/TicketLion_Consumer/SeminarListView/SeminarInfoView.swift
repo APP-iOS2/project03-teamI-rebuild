@@ -28,12 +28,22 @@ struct SeminarInfoView: View {
 				
 				GridRow {
 					
-					Text("진행날짜")
+					Text("세미나 시작")
                         .modifier(textStyle())
 					
-					Text("\(seminar.startDateCreator(seminar.seminarStartDate)) ~ \(seminar.endDateCreator(seminar.seminarEndDate, seminar.seminarStartDate))")
+					Text("\(seminar.startDateCreator(seminar.seminarStartDate))")
+                    
 				}
 				.padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
+                         
+                GridRow {
+                    Text("세미나 종료")
+                        .modifier(textStyle())
+                         
+                    Text("\(seminar.startDateCreator(seminar.seminarEndDate))")
+                }
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
+
 				
 				GridRow {
 					Text("진행시간")
