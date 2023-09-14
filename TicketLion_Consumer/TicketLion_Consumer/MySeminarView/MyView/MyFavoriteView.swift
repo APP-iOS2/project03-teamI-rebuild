@@ -10,36 +10,22 @@ import SwiftUI
 struct MyFavoriteView: View {
     //아직 안써요
     @ObservedObject var mySeminarStore: MySeminarStore
+    @EnvironmentObject var userStore: UserStore
     @State private var selectedSeminar = Seminar.TempSeminar
-    
     @State private var isShowingDetail = false
-    
-    func timeCreator(_ time: Double) -> String {
-        let createdAt: Date = Date(timeIntervalSince1970: time)
-        let fomatter: DateFormatter = DateFormatter()
-        fomatter.dateFormat = "hh:mm a"
-        
-        return fomatter.string(from: createdAt)
-    }
-    
-    func dateCreator(_ time: Double) -> String {
-        let createdAt: Date = Date(timeIntervalSince1970: time)
-        let fomatter: DateFormatter = DateFormatter()
-        fomatter.dateFormat = "yyyy년 MM월 dd일"
-        
-        return fomatter.string(from: createdAt)
-    }
-    
     
     
     var body: some View {
         
         ScrollView {
             
-            ForEach(Seminar.seminarsDummy) { seminar in
+            ForEach(mySeminarStore.seminarList.filter {
+                userStore.favoriteSeminars.contains($0.id)
+            }) { seminar in
                 Button {
                     
                     isShowingDetail = true
+                    selectedSeminar = seminar
                     
                 } label: {
                     VStack(alignment: .leading) {
@@ -51,27 +37,44 @@ struct MyFavoriteView: View {
                             Spacer()
                             
                             Button { // 즐겨찾기 버튼
-                                // 헉 구조체 안에 즐겨찾기 체크하는 bool값이 필요할지도, 그런데 배열안에 들어가 있는 구조체 값도 변경 가능한가요? 갑자기 헷갈..
                                 
+                                
+                                if userStore.favoriteSeminars.firstIndex(of: "\(seminar.id)") != nil {
+                                    // 즐겨찾기 없애기
+                                    userStore.removeFavoriteSeminar(seminarID: seminar.id)
+                                    print("\(userStore.favoriteSeminars)")
+                                } else {
+                                    // 즐겨찾기 넣기
+                                    userStore.addFavoriteSeminar(seminarID: seminar.id)
+                                    print("\(userStore.favoriteSeminars)")
+                                }
                             } label: {
                                 
-                                Image(systemName:  "star.fill")
-                                    .foregroundColor(Color("AnyButtonColor"))
-                                    
+                                Image(systemName: userStore.favoriteSeminars.contains(seminar.id) ? "star.fill" : "star")
+                                    .foregroundColor(userStore.favoriteSeminars.contains(seminar.id) ? Color("AnyButtonColor") : .gray)
                             }
                         }
                         .bold()
                         .font(.callout)
                         
                         VStack {
+                            //이미지 변경 해야함
                             HStack(alignment: .top) {
-                                AsyncImage(url: URL(string: seminar.seminarImage)) { image in
-                                    image.resizable()
-                                        .frame(width: 100, height: 100)
-                                        .aspectRatio(contentMode: .fit)
-                                } placeholder: {
-                                    ProgressView()
-                                } // 이미지
+                                AsyncImage(url: URL(string: seminar.seminarImage)) { phase in
+                                    if let image = phase.image {
+                                        image
+                                    } else if phase.error != nil { // 에러 있을때
+                                        Image("TicketLion")
+                                            .resizable()
+                                            .frame(width: 100, height: 100)
+                                            .aspectRatio(contentMode: .fit)
+                                    } else { // placeholder
+                                        Image("TicketLion")
+                                            .resizable()
+                                            .frame(width: 100, height: 100)
+                                            .aspectRatio(contentMode: .fit)
+                                    }
+                                }
                                 
                                 Spacer()
                                 
@@ -79,8 +82,8 @@ struct MyFavoriteView: View {
                                     Group {
                                         Text("강연자 : \(seminar.host)")
                                         Text("장소 : \(seminar.location ?? "location -")")
-                                        Text("날짜 : \(dateCreator(seminar.registerStartDate))")
-                                        Text("시간 : \(timeCreator( seminar.registerStartDate)) ~ \(timeCreator( seminar.registerEndDate))")
+                                        Text("날짜 : \(mySeminarStore.dateCreator(seminar.registerStartDate))")
+                                        Text("시간 : \(mySeminarStore.timeCreator( seminar.registerStartDate)) ~ \(mySeminarStore.timeCreator( seminar.registerEndDate))")
                                     }
                                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0))
                                     .foregroundColor(.black)
@@ -101,7 +104,7 @@ struct MyFavoriteView: View {
             .fullScreenCover(isPresented: $isShowingDetail) {
                 NavigationStack {
                     
-//                    SeminarDetailView(isShowingDetail: $isShowingDetail, seminar: $seminar)
+                    SeminarDetailView(isShowingDetail: $isShowingDetail, seminar: $selectedSeminar)
                 }
             }
             
@@ -112,6 +115,6 @@ struct MyFavoriteView: View {
 
 struct MyFavoriteView_Previews: PreviewProvider {
     static var previews: some View {
-        MyFavoriteView(mySeminarStore: MySeminarStore())
+        MyFavoriteView(mySeminarStore: MySeminarStore()).environmentObject(UserStore())
     }
 }
