@@ -13,6 +13,7 @@ struct MySeminarListView: View {
 	@EnvironmentObject var userStore: UserStore
 	@State private var starChecker = false
 	@State private var isShowingSheet = false
+	@State var isShowingDetail: Bool = false
 	
 	var seminarList: [Seminar]
 	
@@ -20,8 +21,15 @@ struct MySeminarListView: View {
 		ForEach(seminarList, id: \.id) { seminar in
 			
 			Button {
-				mySeminarStore.isShowingSheet = true
+				
 				mySeminarStore.selectedSeminar = seminar
+				
+				if userStore.canceledSeminars.contains(mySeminarStore.selectedSeminar.id) {
+					isShowingDetail = true
+				} else {
+					mySeminarStore.isShowingSheet = true
+				}
+				
 			} label: {
 				ZStack {
 
@@ -36,26 +44,23 @@ struct MySeminarListView: View {
 						
 						VStack {
 							HStack(alignment: .top) {
-								if seminar.seminarImage == "" {
-									Image("TicketLion")
+								
+								AsyncImage(url: URL(string: seminar.seminarImage)) { phase in // 이미지
+									if let image = phase.image {
+										image
 										.resizable()
 										.frame(width: 100, height: 100)
-										.aspectRatio(contentMode: .fit)
-								} else {
-									AsyncImage(url: URL(string: seminar.seminarImage)) { phase in
-										if let image = phase.image {
-											image
-										} else if phase.error != nil { // 에러 있을때
-											Image("TicketLion")
-												.resizable()
-												.frame(width: 100, height: 100)
-												.aspectRatio(contentMode: .fit)
-										} else { // placeholder
-											Image("TicketLion")
-												.resizable()
-												.frame(width: 100, height: 100)
-												.aspectRatio(contentMode: .fit)
-										}
+										.aspectRatio(contentMode: .fill)
+									} else if phase.error != nil { // 에러 있을때
+										Image("TicketLion")
+											.resizable()
+											.frame(width: 100, height: 100)
+											.aspectRatio(contentMode: .fill)
+									} else { // placeholder
+										Image("TicketLion")
+											.resizable()
+											.frame(width: 100, height: 100)
+											.aspectRatio(contentMode: .fill)
 									}
 								}
 								
@@ -104,6 +109,12 @@ struct MySeminarListView: View {
 				)
 				.presentationDetents([.height(570)])
 				.presentationDragIndicator(.visible)
+			}
+			.fullScreenCover(isPresented: $isShowingDetail) {
+				NavigationStack {
+					// 여기에 디테일 뷰
+					SeminarDetailView(isShowingDetail: $isShowingDetail, seminar: $mySeminarStore.selectedSeminar)
+				}
 			}
 		}
 	}
