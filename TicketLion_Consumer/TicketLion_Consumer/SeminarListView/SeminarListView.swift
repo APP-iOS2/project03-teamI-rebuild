@@ -53,7 +53,7 @@ struct SeminarListView: View {
                     print("userStore.loginSheet : \(userStore.loginSheet)")
                     print("알럿 먹힘")
                 },
-                      secondaryButton: .default(Text("취소"))
+                      secondaryButton: .cancel(Text("취소하기"))
                 )
             }
             .navigationTitle("세미나 목록")
