@@ -18,10 +18,10 @@ struct ClosedListView: View {
     @State private var order: ColosedOrder = .register
     @State private var isShowingSeminarInfo = false
     @State private var currentPage: Int = 1
-    let itemsPerPage = 15
+    let itemsPerPage = 17
     
     var totalPages: Int {
-        Int(ceil(Double(seminarStore.recruitingList.count) / Double(itemsPerPage)))
+        Int(ceil(Double(seminarStore.closedList.count) / Double(itemsPerPage)))
     }
     
     var seminarList: [Seminar] {
@@ -50,8 +50,10 @@ struct ClosedListView: View {
                         }
                     }
                     .pickerStyle(.menu)
-                    .padding([.bottom, .trailing], 15)
+                    .padding(.trailing, 15)
                 }
+                .padding(.top, 15)
+                .padding(.bottom, 10)
                 
                 Table(of: Seminar.self, selection: $selectedSeminar) {
                     TableColumn("세미나명") { seminar in
@@ -78,6 +80,20 @@ struct ClosedListView: View {
                         TableRow(seminar)
                     }
                 }
+                
+                HStack {
+                    ForEach(1..<totalPages + 1, id: \.self) { num in
+                        Button {
+                            currentPage = num
+                        } label: {
+                            Text("\(num)")
+                                .fontWeight(currentPage == num ? .bold : .regular)
+                                .foregroundColor(currentPage == num ? .black : .gray)
+                                .font(.headline)
+                        }
+                        .padding(.horizontal, 5)
+                    }
+                }
             }
             .navigationDestination(isPresented: $isShowingSeminarInfo) {
                 if let seminarId = selectedSeminar {
@@ -90,7 +106,7 @@ struct ClosedListView: View {
             seminarStore.fetch()
         }
         .onChange(of: selectedSeminar) { seminarId in
-            if let seminarId = seminarId {
+            if let _ = seminarId {
                 isShowingSeminarInfo.toggle()
             }
         }

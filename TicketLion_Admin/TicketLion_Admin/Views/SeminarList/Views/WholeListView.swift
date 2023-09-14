@@ -18,7 +18,7 @@ struct WholeListView: View {
     @State private var order: Order = .recent
     @State private var isShowingSeminarInfo = false
     @State private var currentPage: Int = 1
-    let itemsPerPage = 15
+    let itemsPerPage = 17
     
     var totalPages: Int {
         Int(ceil(Double(seminarStore.seminarList.count) / Double(itemsPerPage)))
@@ -44,15 +44,25 @@ struct WholeListView: View {
         NavigationStack {
             VStack {
                 HStack {
+                    NavigationLink {
+                        SeminarAddView(seminarStore: SeminarStore(), chipsViewModel: ChipsViewModel())
+                    } label: {
+                        Text("세미나 등록하기")
+                            .font(.title3).bold()
+                    }
+                    .padding(.leading, 15)
+                    
                     Spacer()
+                    
                     Picker("sort whole list", selection: $order) {
                         ForEach(Order.allCases, id:\.self) { order in
                             Text(order.rawValue)
                         }
                     }
                     .pickerStyle(.menu)
-                    .padding([.bottom, .trailing], 15)
+                    .padding(.trailing, 15)
                 }
+                .padding(.bottom, 10)
                 
                 VStack {
                     Table(of: Seminar.self, selection: $selectedSeminar) {
@@ -103,18 +113,8 @@ struct WholeListView: View {
                         .padding(.horizontal, 5)
                     }
                 }
-                
-                HStack {
-                    NavigationLink {
-                        SeminarAddView(seminarStore: SeminarStore(), chipsViewModel: ChipsViewModel())
-                    } label: {
-                        Text("세미나 등록하기")
-                            .font(.title).bold()
-                    }
-                    .padding([.horizontal, .vertical], 20)
-                    .buttonStyle(.bordered)
-                }
             }
+            .padding(.vertical, 15)
             .navigationDestination(isPresented: $isShowingSeminarInfo) {
                 if let seminarId = selectedSeminar {
                     if let seminar = seminarStore.selectSeminar(id: seminarId) { SeminarInfoView(seminar: seminar)

@@ -13,7 +13,7 @@ struct RecruitingListView: View {
     @State private var order: Order = .recent
     @State private var isShowingSeminarInfo = false
     @State private var currentPage: Int = 1
-    let itemsPerPage = 15
+    let itemsPerPage = 17
     
     var totalPages: Int {
         Int(ceil(Double(seminarStore.recruitingList.count) / Double(itemsPerPage)))
@@ -35,19 +35,28 @@ struct RecruitingListView: View {
     }
     
     var body: some View {
-        
         NavigationStack {
             VStack {
                 HStack {
+                    NavigationLink {
+                        SeminarAddView(seminarStore: SeminarStore(), chipsViewModel: ChipsViewModel())
+                    } label: {
+                        Text("세미나 등록하기")
+                            .font(.title3).bold()
+                    }
+                    .padding(.leading, 15)
+                    
                     Spacer()
+                    
                     Picker("sort recruiting list", selection: $order) {
                         ForEach(Order.allCases, id:\.self) { order in
                             Text(order.rawValue)
                         }
                     }
                     .pickerStyle(.menu)
-                    .padding([.bottom, .trailing], 15)
+                    .padding(.trailing, 15)
                 }
+                .padding(.bottom, 10)
                 
                 Table(of: Seminar.self, selection: $selectedSeminar) {
                     TableColumn("세미나명") { seminar in
@@ -79,16 +88,20 @@ struct RecruitingListView: View {
                 }
                 
                 HStack {
-                    NavigationLink {
-                        SeminarAddView(seminarStore: SeminarStore(), chipsViewModel: ChipsViewModel())
-                    } label: {
-                        Text("세미나 등록하기")
-                            .font(.title).bold()
+                    ForEach(1..<totalPages + 1, id: \.self) { num in
+                        Button {
+                            currentPage = num
+                        } label: {
+                            Text("\(num)")
+                                .fontWeight(currentPage == num ? .bold : .regular)
+                                .foregroundColor(currentPage == num ? .black : .gray)
+                                .font(.headline)
+                        }
+                        .padding(.horizontal, 5)
                     }
-                    .padding([.horizontal, .vertical], 20)
-                    .buttonStyle(.bordered)
                 }
             }
+            .padding(.vertical, 15)
             .navigationDestination(isPresented: $isShowingSeminarInfo) {
                 if let seminarId = selectedSeminar {
                     if let seminar = seminarStore.selectSeminar(id: seminarId) { SeminarInfoView(seminar: seminar)
@@ -100,7 +113,7 @@ struct RecruitingListView: View {
             seminarStore.fetch()
         }
         .onChange(of: selectedSeminar) { seminarId in
-            if let seminarId = seminarId {
+            if let _ = seminarId {
                 isShowingSeminarInfo.toggle()
             }
         }

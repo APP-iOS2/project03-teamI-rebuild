@@ -36,6 +36,7 @@ struct SeminarInfoView: View {
             }
         }
         .onAppear {
+            print("\(seminar.id)")
             userListStore.fetch(attendUsers: seminar.enterUsers)
         }
     }
