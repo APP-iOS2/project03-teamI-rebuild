@@ -37,6 +37,22 @@ final class SeminarStore: ObservableObject {
     }
 	
 	// 유저정보 이메일 -> database
+    
+    func addUserPhoneNumberInSeminar(seminar: Seminar) {
+        
+        let seminarRef = db.collection("Seminar").document("\(seminar.id)" ?? "")
+        
+        seminarRef.updateData([
+            "enterUsers" : seminar.enterUsers + [UserStore().phoneNumber]
+        ]) { err in
+            if let err = err {
+                print("\(err.localizedDescription)")
+            } else { print("") }
+        }
+        
+        fetchSeminar()
+        
+    }
 	
 }
 

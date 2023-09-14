@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		082204222AB1ACEE007A9B36 /* SeminarListSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082204212AB1ACEE007A9B36 /* SeminarListSubView.swift */; };
 		08C7AD392AAFF53D00B6C19E /* SeminarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C7AD382AAFF53D00B6C19E /* SeminarStore.swift */; };
 		09EA3D8D2AAFEAB70057F805 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EA3D8C2AAFEAB70057F805 /* UserStore.swift */; };
 		632D2A702AAFFDF5003F2D1C /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632D2A6F2AAFFDF5003F2D1C /* NotificationSettingsView.swift */; };
@@ -58,9 +59,12 @@
 		8B924DC02AAFE8E00042D790 /* SeminarDetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B924DBF2AAFE8E00042D790 /* SeminarDetailMapView.swift */; };
 		8B924DC22AAFE9B30042D790 /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B924DC12AAFE9B30042D790 /* Modifier.swift */; };
 		99804C9D2AAFEAE30050F27F /* SeminarInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99804C9C2AAFEAE30050F27F /* SeminarInfoView.swift */; };
+		B5D9D2832AB1379A00315338 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5D9D2822AB1379A00315338 /* GoogleService-Info.plist */; };
+		B5D9D2852AB1451100315338 /* MySeminarListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D9D2842AB1451100315338 /* MySeminarListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		082204212AB1ACEE007A9B36 /* SeminarListSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarListSubView.swift; sourceTree = "<group>"; };
 		08C7AD382AAFF53D00B6C19E /* SeminarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarStore.swift; sourceTree = "<group>"; };
 		09EA3D8C2AAFEAB70057F805 /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		632D2A6F2AAFFDF5003F2D1C /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
@@ -103,6 +107,8 @@
 		8B924DBF2AAFE8E00042D790 /* SeminarDetailMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarDetailMapView.swift; sourceTree = "<group>"; };
 		8B924DC12AAFE9B30042D790 /* Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifier.swift; sourceTree = "<group>"; };
 		99804C9C2AAFEAE30050F27F /* SeminarInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeminarInfoView.swift; sourceTree = "<group>"; };
+		B5D9D2822AB1379A00315338 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Developer/GoogleService_InfoFiles/TicketLion/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B5D9D2842AB1451100315338 /* MySeminarListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySeminarListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				64B327F42AAF6C4A00D64EFF /* SeminarListView.swift */,
+				082204212AB1ACEE007A9B36 /* SeminarListSubView.swift */,
 				64B327F82AAF6CA400D64EFF /* SeminarDetailView.swift */,
 				99804C9C2AAFEAE30050F27F /* SeminarInfoView.swift */,
 				8B924DBF2AAFE8E00042D790 /* SeminarDetailMapView.swift */,
@@ -234,6 +241,7 @@
 				64B328002AAF6D3C00D64EFF /* MySeminarView.swift */,
 				64B328022AAF6D5800D64EFF /* MyReservationView.swift */,
 				64B328042AAF6D7E00D64EFF /* MyFavoriteView.swift */,
+				B5D9D2842AB1451100315338 /* MySeminarListView.swift */,
 				64B328062AAF6D9B00D64EFF /* MyTicketSheetView.swift */,
 			);
 			path = MyView;
@@ -354,6 +362,7 @@
 				64B327EF2AAF6BAF00D64EFF /* ResearchModel.swift in Sources */,
 				64B328122AAF6E6500D64EFF /* SettingSignUpPasswordView.swift in Sources */,
 				64B327F92AAF6CA400D64EFF /* SeminarDetailView.swift in Sources */,
+				B5D9D2852AB1451100315338 /* MySeminarListView.swift in Sources */,
 				64B327EB2AAF6B6B00D64EFF /* SeminarModel.swift in Sources */,
 				64B3281E2AAF6EEC00D64EFF /* SettingLoginView.swift in Sources */,
 				64B327F72AAF6C8500D64EFF /* SeminarEnum.swift in Sources */,
@@ -367,6 +376,7 @@
 				64B328222AAF6F0D00D64EFF /* SettingUserView.swift in Sources */,
 				64B328282AAF6F7E00D64EFF /* SettingDevInfoDetailView.swift in Sources */,
 				64B328162AAF6E9C00D64EFF /* SettingSignUpPhoneNumberView.swift in Sources */,
+				082204222AB1ACEE007A9B36 /* SeminarListSubView.swift in Sources */,
 				8B924DC02AAFE8E00042D790 /* SeminarDetailMapView.swift in Sources */,
 				64B3281A2AAF6EC000D64EFF /* SettingSignUpCompleteView.swift in Sources */,
 				64B328262AAF6F6400D64EFF /* SettingDevInfoView.swift in Sources */,

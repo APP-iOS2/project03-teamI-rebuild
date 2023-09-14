@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct SeminarAttendPlusView: View {
-	@EnvironmentObject var userStore: UserStore
+    @EnvironmentObject var userStore: UserStore
+    @StateObject var seminarStore: SeminarStore = SeminarStore() // 세미나에 유저 저장하기 위해
     @State var research : Research = Research(seminarID: "", userID: "")
     @State private var alertText: String = "세미나 신청이 완료되었습니다."
     @State private var isShowingAlert : Bool = false
-	@Binding var seminar: Seminar
-	
+    @Binding var seminar: Seminar
+    
     private var isButton: Bool {
         if research.answer1 == nil || research.answer2 == nil {
             return false
@@ -93,8 +94,9 @@ struct SeminarAttendPlusView: View {
                         alertText = "모두 체크해 주세요"
                     }else if (research.answer1 != nil) && (research.answer2 != nil){
                         isShowingAlert = true
-						// 세미나신청 함수
-						userStore.addSeminar(seminarID: seminar.id)
+                        // 세미나신청 함수
+                        userStore.addSeminar(seminarID: seminar.id)
+                        seminarStore.addUserPhoneNumberInSeminar(seminar: seminar)
                         alertText = "세미나 신청이 완료되었습니다."
                     }
                 } label: {
@@ -123,6 +125,6 @@ struct SeminarAttendPlusView: View {
 
 struct SeminarAttendPlusView_Previews: PreviewProvider {
     static var previews: some View {
-		SeminarAttendPlusView(seminar: .constant(Seminar.TempSeminar), isShowingDetail: .constant(true))
+        SeminarAttendPlusView(seminar: .constant(Seminar.TempSeminar), isShowingDetail: .constant(true))
     }
 }
