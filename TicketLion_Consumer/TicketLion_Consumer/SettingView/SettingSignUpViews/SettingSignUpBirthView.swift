@@ -17,7 +17,7 @@ struct SettingSignUpBirthView: View {
     
     @State private var birth: String = ""
     
-    @Binding var isCompleteSignUp: Bool
+//    @Binding var isCompleteSignUp: Bool
     
     var body: some View {
         NavigationStack{
@@ -44,23 +44,23 @@ struct SettingSignUpBirthView: View {
                 
                 
                 NavigationLink {
-                    SettingSignUpCompleteView(isCompleteSignUp: $isCompleteSignUp)
+                    SettingSignUpCompleteView(/* isCompleteSignUp: $isCompleteSignUp */)
                         .onAppear {
 							Task {
-								await userStore.signUpUser(name: userStore.name, email: userStore.email, password: userStore.password, phoneNumber: userStore.phoneNumber, birth: userStore.birth)
+                                await userStore.signUpUser(name: userStore.name, email: userStore.email, password: userStore.password, phoneNumber: userStore.phoneNumber, birth: userStore.birth)
 							}
                             
                         }
                 } label: {
                     
                     Text("다음")
+                        .frame(maxWidth: .infinity, maxHeight: 20)
+                        .padding()
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .background(userStore.birth.isEmpty ?  Color.gray : Color("AnyButtonColor"))
+                        .cornerRadius(5)
                 }
-                .frame(maxWidth: .infinity, maxHeight: 20)
-                .padding()
-                .font(.title2)
-                .foregroundColor(.white)
-                .background(userStore.birth.isEmpty ?  Color.gray : Color("AnyButtonColor"))
-                .cornerRadius(5)
                 .disabled(userStore.birth.isEmpty)
                 
                 
@@ -77,7 +77,7 @@ struct SettingSignUpBirthView: View {
 struct SettingSignUpBirthView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            SettingSignUpBirthView(userStore: UserStore(), isCompleteSignUp: .constant(false))
+            SettingSignUpBirthView(userStore: UserStore() /*, isCompleteSignUp: .constant(false) */)
         }
     }
 }

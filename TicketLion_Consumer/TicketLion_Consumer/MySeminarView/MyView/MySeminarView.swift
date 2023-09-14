@@ -18,9 +18,27 @@ struct MySeminarView: View {
     var body: some View {
         NavigationStack(path: $mySeminarStore.navigationPath) {
 			if userStore.currentUser == nil {
-					Button("로그안하십셔") {
+				VStack {
+					Text("로그인하시면")
+					HStack {
+						Text("나의 세미나").fontWeight(.bold).foregroundColor(Color("AnyButtonColor"))
+						Text("를 이용할 수 있습니다.")
+					}.padding(.bottom, 40)
+					
+					
+					Button {
 						userStore.loginSheet = true
+					} label: {
+						Text("로그인 하기")
+							.font(.title2)
+							.foregroundColor(.white)
+							.padding()
+							.padding(.horizontal)
+							.background(Color("AnyButtonColor"))
+							.cornerRadius(10)
 					}
+
+				}
 			} else {
 				VStack {
 					
@@ -28,9 +46,6 @@ struct MySeminarView: View {
 						.padding(.top)
 					
 					VStack {
-						Button("딸각") {
-							print("\(userStore.appliedSeminars)")
-						}
 						
 						switch selectedFilter {
 						case .reservation: MyReservationView(mySeminarStore: mySeminarStore)
@@ -46,8 +61,8 @@ struct MySeminarView: View {
 				.navigationBarTitleDisplayMode(.inline)
 				.navigationTitle("나의 세미나")
 				.navigationDestination(for: Seminar.self) { seminar in
-					SeminarDetailView(isShowingDetail: .constant(false), seminar: $mySeminarStore.selectedSeminar)
-						.navigationBarBackButtonHidden(true)
+						SeminarDetailView(isShowingDetail: $mySeminarStore.isShowingDetailSeminar, seminar: $mySeminarStore.selectedSeminar)
+							.navigationBarBackButtonHidden(true)
 				}
 				
 			}
