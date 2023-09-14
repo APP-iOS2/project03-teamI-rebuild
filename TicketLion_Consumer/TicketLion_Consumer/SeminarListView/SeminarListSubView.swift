@@ -38,15 +38,18 @@ struct SeminarListSubView: View {
                             Spacer()
                             
                             Text("\(seminar.enterUsers.count)/\(seminar.maximumUserNumber)")
-                                .foregroundColor(Color("AnyButtonColor"))
-                                .border(Color("AnyButtonColor"))
-                                .background(.white)
+                                .padding(EdgeInsets(top: 0, leading: 2, bottom: 0, trailing: 2))
+                                .background(Color("AnyButtonColor"))
+                                .foregroundColor(.white)
+                                .cornerRadius(3)
                             
                             
                             Text(seminar.closingStatus ? "모집마감" : "모집중")
-                                .foregroundColor(seminar.closingStatus ? .red : .blue)
+                                .padding(EdgeInsets(top: 0, leading: 2, bottom: 0, trailing: 2))
+                                .background(seminar.closingStatus ? .red : .blue)
                                 .border(seminar.closingStatus ? .red : .blue)
-                                .background(.white)
+                                .foregroundColor(.white)
+                                .cornerRadius(3)
                             
                             
                             
