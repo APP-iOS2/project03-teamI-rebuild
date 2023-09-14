@@ -18,7 +18,7 @@ enum Category: Int, CaseIterable {
         case .BackEnd : return "Back-End"
         case .iOSDevelop : return "iOS Dev"
         case .AndroidDevelop : return "Android Dev"
-        case .etc : return "etc"
+        case .etc : return "etc."
         }
     }
 }
