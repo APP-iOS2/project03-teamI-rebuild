@@ -262,18 +262,13 @@ struct SeminarDetailView: View {
                   message: nil,
                   primaryButton: .default(Text("OK")) {
                 
+                isShowingDetail = false
                 userStore.loginSheet = true
                 print("\(userStore.loginSheet)")
             },
                   secondaryButton: .cancel()
             )
         }
-        .sheet(isPresented: $userStore.loginSheet, content: {
-            NavigationStack {
-                SettingLoginView()
-            }
-        })
-        
     }
     
 }
