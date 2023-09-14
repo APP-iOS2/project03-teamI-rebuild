@@ -39,12 +39,12 @@ final class SeminarStore: ObservableObject {
 	// 유저정보 이메일 -> database
     
     @MainActor
-    func addUserPhoneNumberInSeminar(seminar: Seminar, userPhoneNumber: String) {
+    func addUserPhoneNumberInSeminar(seminar: Seminar, userEmail: String) {
         
         let seminarRef = db.collection("Seminar").document("\(seminar.id)")
         
         seminarRef.updateData([
-            "enterUsers" : seminar.enterUsers + [userPhoneNumber]
+            "enterUsers" : seminar.enterUsers + [userEmail]
         ]) { err in
             if let err = err {
                 print("\(err.localizedDescription)")
