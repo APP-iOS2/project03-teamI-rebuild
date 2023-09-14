@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct SettingSignUpNameView: View {
+    
+    @EnvironmentObject var userStore: UserStore
+    
     @State private var name: String = ""
     
-    @Binding var isCompleteSignUp: Bool
+//    @Binding var isCompleteSignUp: Bool
+	
     var body: some View {
         NavigationStack{
             VStack(alignment: .leading, spacing: 25 ){
@@ -27,24 +31,23 @@ struct SettingSignUpNameView: View {
                     }
                     .font(.title2)
 
-                    TextField("이름 입력", text: $name)
+                TextField("이름 입력", text: $userStore.name)
                     .padding()
                     .background(Color(uiColor: .secondarySystemBackground))
                     .cornerRadius(5)
                 
                 NavigationLink {
-                    SettingSignUpPhoneNumberView( isCompleteSignUp: $isCompleteSignUp)
+                    SettingSignUpPhoneNumberView(userStore: userStore /*  , isCompleteSignUp: $isCompleteSignUp*/)
                 } label: {
-                    
                     Text("다음")
+                        .frame(maxWidth: .infinity, maxHeight: 20)
+                        .padding()
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .background(userStore.name.isEmpty ?  Color.gray : Color("AnyButtonColor"))
+                        .cornerRadius(5)
                 }
-                .frame(maxWidth: .infinity, maxHeight: 20)
-                .padding()
-                .font(.title2)
-                .foregroundColor(.white)
-                .background(name.isEmpty ?  Color.gray : Color("AnyButtonColor"))
-                .cornerRadius(5)
-                .disabled(name.isEmpty)
+                .disabled(userStore.name.isEmpty)
                 
             }
             .padding()
@@ -61,7 +64,7 @@ struct SettingSignUpNameView: View {
 struct SettingSignUpNameView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SettingSignUpNameView(isCompleteSignUp: .constant(false))
+            SettingSignUpNameView(/* isCompleteSignUp: .constant(false)*/ )
         }
     }
 }

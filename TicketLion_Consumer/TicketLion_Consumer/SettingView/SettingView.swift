@@ -9,13 +9,16 @@ import SwiftUI
 
 struct SettingView: View {
     @State private var isToggleAutomaticLogin: Bool = false
-    @State private var isLoggedinUser: Bool = true
     @State private var isShowingTermsView: Bool = false
     @State private var isLogoutAlert: Bool = false
+    
+    @EnvironmentObject var userStore: UserStore
+
+    
     var body: some View {
         NavigationStack {
-            Form {
-                if isLoggedinUser {
+            List {
+                if userStore.currentUser != nil {
                     Section("계정 정보") {
                         NavigationLink {
                             SettingUserDetailView()
@@ -25,7 +28,7 @@ struct SettingView: View {
                     }
                 }
                 Section("계정 로그인") {
-                    if isLoggedinUser {
+					if userStore.currentUser != nil {
                         Button {
                             isLogoutAlert.toggle()
                         } label: {
@@ -37,29 +40,34 @@ struct SettingView: View {
                                   message: Text("해당 계정이 로그아웃 됩니다."),
                                   primaryButton: .destructive(Text("확인"),action: {
                                 // 로그아웃 시켜야함
-                                isLoggedinUser.toggle()
+                                userStore.logout()
                             }), secondaryButton: .cancel(Text("취소")))
                         }
                     } else {
-                        NavigationLink {
-                            SettingLoginView()
-                        } label: {
-                            Text("로그인")
-                        }
-                        
-                        HStack {
-                            Text("자동 로그인")
-                            Toggle(isOn: $isToggleAutomaticLogin) {
-                                //
-                            }
-                        }
+						Button("로그인") {
+							userStore.loginSheet = true
+						}
+//                        NavigationLink {
+//                            SettingLoginView(isLoggedinUser: $isLoggedinUser, userStore: userStore)
+//                        } label: {
+//                            Text("로그인")
+//                        }
                     }
                 }
+				.sheet(isPresented: $userStore.loginSheet, content: {
+					NavigationStack {
+						SettingLoginView()
+					}
+				})
+				
+				
                 Section("알림") {
-                    NavigationLink {
+                    Button {
                         // 푸시 알림 설정
+                        userStore.openAppNotificationSettings()
                     } label: {
                         Text("푸시 알림 설정")
+                            .foregroundColor(.black)
                     }
                 }
                 Section("정보") {
@@ -93,15 +101,21 @@ struct SettingView: View {
                     }
                 }
             }
-            .listStyle(.grouped)
             .navigationTitle("설정")
             .navigationBarTitleDisplayMode(.inline)
+        }
+        .onAppear {
+            if userStore.currentUser != nil {
+				Task {
+					await userStore.autoLogin()
+				}
+            }
         }
     }
 }
 
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingView()
+        SettingView().environmentObject(UserStore())
     }
 }

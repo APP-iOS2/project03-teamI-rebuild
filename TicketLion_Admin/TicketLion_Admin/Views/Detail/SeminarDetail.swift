@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct SeminarDetail: View {
-    //    @State var columnVisibility = NavigationSplitViewVisibility.doubleColumn
+    @State var columnVisibility = NavigationSplitViewVisibility.doubleColumn
     
     var body: some View {
-        NavigationSplitView {
+        NavigationSplitView(columnVisibility: $columnVisibility) {
             SeminarDetailSidebar()
         } detail: {
-            SeminarDetailInfo(seminars: Seminar.seminarsDummy[0], seminarData: .constant(Seminar.seminarsDummy[0]), seminarLocation: SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청"))
+            
         }
     }
 }

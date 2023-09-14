@@ -11,74 +11,91 @@ struct RecruitingListView: View {
     @ObservedObject var seminarStore: SeminarListStore
     @State private var selectedSeminar: Seminar.ID? = nil
     @State private var order: Order = .recent
+    @State private var isShowingSeminarInfo = false
+    @State private var currentPage: Int = 1
+    let itemsPerPage = 17
     
-    let currentDate = Date().timeIntervalSince1970
+    var totalPages: Int {
+        Int(ceil(Double(seminarStore.recruitingList.count) / Double(itemsPerPage)))
+    }
+    
+    var seminarList: [Seminar] {
+        switch order {
+        case .recent:
+            return seminarStore.recruitingList
+        case .deadline:
+            return seminarStore.recruitingList.sorted { $0.registerEndDate < $1.registerEndDate }
+        }
+    }
+    
+    var currentPageList: [Seminar] {
+        let startIndex = (currentPage - 1) * itemsPerPage
+        let endIndex = min(startIndex + itemsPerPage, seminarList.count)
+        return Array(seminarList[startIndex..<endIndex])
+    }
     
     var body: some View {
-        if let seminarId = selectedSeminar {
-            SeminarDetail()
-        } else {
-            NavigationStack {
-                HStack {
-                    Spacer()
-                    Picker("sort recruiting list", selection: $order) {
-                        ForEach(Order.allCases, id:\.self) { order in
-                            Text(order.rawValue)
-                        }
-                    }
-                    .pickerStyle(.menu)
-                    .padding([.bottom, .trailing], 15)
-                }
+        NavigationStack {
+            VStack {
+                TopView(order: $order, type: .recruiting)
                 
-                Table(of: Seminar.self, selection: $selectedSeminar) {
-                    TableColumn("세미나명") { seminar in
-                        Text(seminar.name)
-                    }
-                    
-                    TableColumn("주최자") { seminar in
-                        Text(seminar.host)
-                    }
-                    .width(120)
-                    
-                    TableColumn("장소") { seminar in
-                        Text(seminar.location ?? "온라인")
-                    }
-                    
-                    TableColumn("모집인원") { seminar in
-                        Text(("\(seminar.enterUsers.count)/\(seminar.maximumUserNumber)"))
-                    }
-                    .width(80)
-                    
-                    TableColumn("마감날짜") { seminar in
-                        Text(seminarStore.calculateDate(date: seminar.registerEndDate))
-                    }
-                    .width(100)
-                } rows: {
-                    switch order {
-                    case .recent:
-                        ForEach(seminarStore.recruitingList) { seminar in
-                            TableRow(seminar)
-                        }
-                    case .deadline:
-                        ForEach(seminarStore.recruitingList.sorted { $0.registerEndDate < $1.registerEndDate }) { seminar in
-                            TableRow(seminar)
-                        }
-                    }
-                }
+                RecruitingTableView(seminarStore: seminarStore, selectedSeminar: $selectedSeminar, currentPageList: currentPageList)
                 
-                HStack {
-                    NavigationLink {
-                        SeminarAddView(seminarStore: SeminarStore())
-                    } label: {
-                        Text("세미나 등록하기")
-                            .font(.title).bold()
+                PageListView(currentPage: $currentPage, totalPages: totalPages)
+            }
+            .padding(.vertical, 15)
+            .navigationDestination(isPresented: $isShowingSeminarInfo) {
+                if let seminarId = selectedSeminar {
+                    if let seminar = seminarStore.selectSeminar(id: seminarId) { SeminarInfoView(seminar: seminar)
                     }
-                    .padding([.horizontal, .vertical], 20)
-                    .buttonStyle(.bordered)
                 }
             }
-            //.tint(Color(hex: 0xD7D7D9))
-            .foregroundColor(.black)
+        }
+        .onAppear {
+            seminarStore.fetch()
+            selectedSeminar = nil
+        }
+        .onChange(of: selectedSeminar) { seminarId in
+            if let _ = seminarId {
+                isShowingSeminarInfo.toggle()
+            }
+        }
+    }
+}
+
+struct RecruitingTableView: View {
+    @StateObject var seminarStore: SeminarListStore
+    @Binding var selectedSeminar: Seminar.ID?
+    var currentPageList: [Seminar]
+    
+    var body: some View {
+        Table(of: Seminar.self, selection: $selectedSeminar) {
+            TableColumn("세미나명") { seminar in
+                Text(seminar.name)
+            }
+            
+            TableColumn("주최자") { seminar in
+                Text(seminar.host)
+            }
+            .width(120)
+            
+            TableColumn("장소") { seminar in
+                Text(seminar.location ?? "온라인")
+            }
+            
+            TableColumn("모집인원") { seminar in
+                Text(("\(seminar.enterUsers.count)/\(seminar.maximumUserNumber)"))
+            }
+            .width(80)
+            
+            TableColumn("마감날짜") { seminar in
+                Text(seminarStore.calculateDate(date: seminar.registerEndDate))
+            }
+            .width(100)
+        } rows: {
+            ForEach(currentPageList) { seminar in
+                TableRow(seminar)
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct CategoryChipContainerView: View {
     
     @StateObject var viewModel : ChipsViewModel
+	
     var body: some View {
         var width = CGFloat.zero
         var height = CGFloat.zero

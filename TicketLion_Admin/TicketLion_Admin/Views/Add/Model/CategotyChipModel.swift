@@ -16,10 +16,10 @@ struct CategoryChipModel: Identifiable {
 
 class ChipsViewModel: ObservableObject {
     @Published var chipArray: [CategoryChipModel] = [
-    CategoryChipModel(isSelected: false, titleKey: "프론트엔드"),
-    CategoryChipModel(isSelected: false, titleKey: "백엔드"),
-    CategoryChipModel(isSelected: false, titleKey: "iOS"),
-    CategoryChipModel(isSelected: false, titleKey: "안드로이드"),
-    CategoryChipModel(isSelected: false, titleKey: "기타")
+    CategoryChipModel(isSelected: false, titleKey: "Front-End"),
+    CategoryChipModel(isSelected: false, titleKey: "Back-End"),
+    CategoryChipModel(isSelected: false, titleKey: "iOS Dev"),
+    CategoryChipModel(isSelected: false, titleKey: "Android Dev"),
+    CategoryChipModel(isSelected: false, titleKey: "etc.")
     ]
 }
