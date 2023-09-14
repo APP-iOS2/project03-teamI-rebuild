@@ -26,21 +26,23 @@ struct SeminarInfoView: View {
 				.padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
 				
 				
-				GridRow {
-					
-					Text("세미나 시작")
-                        .modifier(textStyle())
-					
-					Text("\(seminar.startDateCreator(seminar.seminarStartDate))")
-                    
-				}
-				.padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
-                         
                 GridRow {
-                    Text("세미나 종료")
+                    Text("모집 시작")
                         .modifier(textStyle())
-                         
-                    Text("\(seminar.startDateCreator(seminar.seminarEndDate))")
+
+
+                    Text("\(seminar.startDateCreator(seminar.registerStartDate))")
+
+                }
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
+
+                GridRow {
+                    Text("모집 종료")
+                        .modifier(textStyle())
+
+
+                    Text("\(seminar.startDateCreator(seminar.registerEndDate))")
+
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
 
