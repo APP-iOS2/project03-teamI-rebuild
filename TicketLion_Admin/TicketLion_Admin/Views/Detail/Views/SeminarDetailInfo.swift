@@ -129,6 +129,6 @@ struct SeminarDetailInfo: View {
 
 struct SeminarDetailInfo_Previews: PreviewProvider {
     static var previews: some View {
-        SeminarDetailInfo(seminars: Seminar.seminarsDummy[0], seminarData: .constant(Seminar.seminarsDummy[0]), seminarLocation: SeminarLocation(latitude: 37.5665, longitude: 126.9780, address: "서울시청"))
+        SeminarDetailInfo(seminars: Seminar.seminarsDummy[0], seminarData: .constant(Seminar.seminarsDummy[0]), seminarLocation: SeminarLocation(latitude: 37.39494, longitude: 127.110106, address: "서울시청"))
     }
 }

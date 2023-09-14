@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-
+		1B0EB6AF2AB2A99A0013721E /* TicketLion-Admin-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1B0EB6AE2AB2A99A0013721E /* TicketLion-Admin-Info.plist */; };
 		1BC142B12AB19DD3008077ED /* MapMarkerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC142B02AB19DD3008077ED /* MapMarkerDetailView.swift */; };
-		1BDD9AAB2AB0088C002EDE8E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BDD9AAA2AB0088C002EDE8E /* GoogleService-Info.plist */; };
-
 		6412FA092AA6FC8E00F1467B /* TicketLion_AdminApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6412FA082AA6FC8E00F1467B /* TicketLion_AdminApp.swift */; };
 		6412FA0D2AA6FC9000F1467B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6412FA0C2AA6FC9000F1467B /* Assets.xcassets */; };
 		6412FA102AA6FC9000F1467B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6412FA0F2AA6FC9000F1467B /* Preview Assets.xcassets */; };
@@ -56,11 +54,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-
+		1B0EB6AE2AB2A99A0013721E /* TicketLion-Admin-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "TicketLion-Admin-Info.plist"; path = "../../../../../Downloads/TicketLion-Admin-Info.plist"; sourceTree = "<group>"; };
 		1BC142B02AB19DD3008077ED /* MapMarkerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarkerDetailView.swift; sourceTree = "<group>"; };
-		1BDD9AAA2AB0088C002EDE8E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		1BDD9AAC2AB040C1002EDE8E /* TicketLion-Admin-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "TicketLion-Admin-Info.plist"; sourceTree = SOURCE_ROOT; };
-
 		6412FA052AA6FC8E00F1467B /* TicketLion_Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicketLion_Admin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6412FA082AA6FC8E00F1467B /* TicketLion_AdminApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketLion_AdminApp.swift; sourceTree = "<group>"; };
 		6412FA0C2AA6FC9000F1467B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -157,6 +152,7 @@
 		6412FA072AA6FC8E00F1467B /* TicketLion_Admin */ = {
 			isa = PBXGroup;
 			children = (
+				1B0EB6AE2AB2A99A0013721E /* TicketLion-Admin-Info.plist */,
 				6412FA082AA6FC8E00F1467B /* TicketLion_AdminApp.swift */,
 				C06B1B082AAEC91600D08744 /* Extension */,
 				64A071032AA7246400AF887A /* Views */,
@@ -376,6 +372,7 @@
 			files = (
 				6412FA102AA6FC9000F1467B /* Preview Assets.xcassets in Resources */,
 				6412FA0D2AA6FC9000F1467B /* Assets.xcassets in Resources */,
+				1B0EB6AF2AB2A99A0013721E /* TicketLion-Admin-Info.plist in Resources */,
 				9AB961662AB17F6C009097CB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,9 +398,7 @@
 				1BC142B12AB19DD3008077ED /* MapMarkerDetailView.swift in Sources */,
 				9AB002AD2AA957BE0029BBC3 /* CategotyChipModel.swift in Sources */,
 				9AB002AB2AA957BE0029BBC3 /* SeminarStore.swift in Sources */,
-
 				9AB961642AB17C53009097CB /* UserInfo.swift in Sources */,
-				9AB002972AA9572D0029BBC3 /* SeminarDetailSidebar.swift in Sources */,
 				64B3278C2AAEA6FD00D64EFF /* ResearchModel.swift in Sources */,
 				9AB0029B2AA9572D0029BBC3 /* SeminarDetailEditView.swift in Sources */,
 				9AB002942AA9572D0029BBC3 /* SeminarDetailModel.swift in Sources */,

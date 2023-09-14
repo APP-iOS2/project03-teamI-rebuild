@@ -20,7 +20,7 @@ struct SeminarDetailMapView: View {
 //    @State var address: String
     @State private var coordinate: CLLocationCoordinate2D?
     @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), // 초기 지도 표시 위치 (예: 샌프란시스코)
+        center: CLLocationCoordinate2D(latitude: 37.39494, longitude: 127.110106), // 초기 지도 표시 위치 (예: 샌프란시스코)
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01) // 초기 확대 수준
     )
     @State private var annotation: MKPointAnnotation?
@@ -32,7 +32,7 @@ struct SeminarDetailMapView: View {
         VStack { // interactionModes: []
             Map(coordinateRegion: $region, showsUserLocation: true, annotationItems: [annotation].compactMap { $0 }) { pin in
                 //MapMarker(coordinate: pin.coordinate, tint: .red)
-                MapAnnotation(coordinate: annotation?.coordinate ?? CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780)) {
+                MapAnnotation(coordinate: annotation?.coordinate ?? CLLocationCoordinate2D(latitude: 37.39494, longitude: 127.110106)) {
                     Image("customPin")
                 }
             }
