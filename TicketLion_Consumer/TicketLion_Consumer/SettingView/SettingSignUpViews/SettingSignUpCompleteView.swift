@@ -57,14 +57,14 @@ struct SettingSignUpCompleteView: View {
                         isCompleteSignUp.toggle()
                     } label: {
                         Text("확인")
+                            .frame(maxWidth:.infinity, maxHeight: 50)
+                            .foregroundColor(.white)
+                            .background(Color("AnyButtonColor"))
+                            .cornerRadius(5)
                     }
                     .navigationDestination(isPresented: $isCompleteSignUp, destination: {
                         SettingLoginView()
                     })
-                    .frame(maxWidth:.infinity, maxHeight: 50)
-                    .foregroundColor(.white)
-                    .background(Color("AnyButtonColor"))
-                    .cornerRadius(5)
                 }
                 Spacer()
             }

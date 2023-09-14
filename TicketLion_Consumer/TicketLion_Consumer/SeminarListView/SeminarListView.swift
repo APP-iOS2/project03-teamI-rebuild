@@ -26,6 +26,13 @@ struct SeminarListView: View {
         
         NavigationStack {
             
+            ScrollView(.horizontal, showsIndicators: false){
+                seminarCategoryButton
+                    .padding(EdgeInsets(top: 1, leading: 0, bottom: 2, trailing: 0))
+                
+            }
+            .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+            
             ScrollView {
                 //                Picker("Category", selection: $category) {
                 //                    Text(Category.iOSDevelop.categoryName).tag(Category.iOSDevelop)
@@ -35,14 +42,6 @@ struct SeminarListView: View {
                 //                }
                 //                .pickerStyle(.segmented)
                 //                .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
-                
-                ScrollView(.horizontal, showsIndicators: false){
-                    seminarCategoryButton
-                        .padding(EdgeInsets(top: 10, leading: 0, bottom: 16, trailing: 0))
-                    
-                }
-                .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
-                
                 
                 SeminarListSubView(seminarStore: seminarStore, category: $selectedCategory, search: $search, showingAlert: $showingAlert) // 서브뷰
             }
@@ -57,8 +56,13 @@ struct SeminarListView: View {
                       secondaryButton: .cancel()
                 )
             }
+            .sheet(isPresented: $userStore.loginSheet, content: {
+                NavigationStack {
+                    SettingLoginView()
+                }
+            })
             .navigationTitle("세미나 목록")
-            //            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 seminarStore.fetchSeminar()
                 userStore.fetchUserInfo()
@@ -118,11 +122,10 @@ extension SeminarListView {
 }
 
 struct SeminarListView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            SeminarListView()
-                .environmentObject(UserStore())
-        }
-    }
+	static var previews: some View {
+		NavigationStack {
+			SeminarListView().environmentObject(UserStore())
+		}
+	}
 }
 
