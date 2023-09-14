@@ -55,6 +55,19 @@ struct SeminarDetailMapView: View {
                     }
                     .edgesIgnoringSafeArea(.bottom)
                     
+                    VStack {
+                        ZStack{
+                            Text("클릭하면 가운데 장소로 선택됩니다")
+                                .foregroundColor(.black)
+                                .opacity(0.9)
+                            Color.gray
+                                .frame(width: 250, height: 30)
+                                .opacity(0.25)
+                        }
+                        .cornerRadius(5)
+                        .padding(.top)
+                        Spacer()
+                        
                         HStack {
                             Spacer()
                             VStack {
@@ -97,30 +110,7 @@ struct SeminarDetailMapView: View {
                         .padding(.init(top: 0, leading: 0, bottom: -50, trailing: 15))
                         
                         Spacer()
-                        
-                        HStack {
-                            Spacer()
-                            
-                            Button(action: {
-                                if let userLocation = locationManager.location?.coordinate {
-                                    withAnimation {
-                                        region.center = userLocation
-                                        drawMarkerWithAddress()
-                                    }
-                                }
-                            }) {
-                                Image(systemName: "location.fill")
-                                    .resizable()
-                                    .frame(width: 25, height: 25)
-                                    .bold()
-                                    .padding()
-                                    .background(Color.white)
-                                    .clipShape(Circle())
-                                    .shadow(color: .black, radius: 3)
-                            }
-                        } // 현재 위치 추적 버튼
-                        .padding(.init(top: 0, leading: 0, bottom: 40, trailing: 15))
-                    
+                    }
                 } // Zstack(맵뷰)
                 .onAppear {
                     drawMarkerWithAddress()
