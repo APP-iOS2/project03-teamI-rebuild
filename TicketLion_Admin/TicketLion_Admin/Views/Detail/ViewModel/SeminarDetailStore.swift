@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreLocation
 import MapKit
+import Firebase
 import FirebaseFirestore
 
 final class SeminarDetailStore: ObservableObject {
@@ -32,36 +33,40 @@ final class SeminarDetailStore: ObservableObject {
     }
     
 
+
     func setLocation(latitude: Double, longitude: Double, address: String) -> SeminarLocation {
         let location = SeminarLocation(latitude: latitude, longitude: longitude, address: address)
         return location
     }
-
+    
     func fetchSeminar(completion: @escaping (Bool) -> Void) {
         seminarInfo.removeAll()
-        
-        let dataBase = Firestore.firestore().collection("studies")
+
+        let dataBase = Firestore.firestore().collection("Seminar")
         dataBase.getDocuments { snapshot, error in
             guard let snapshot = snapshot, error == nil else {
                 print("Error fetching data: (error?.localizedDescription ?? ")
                 return
             }
-            
+
             for document in snapshot.documents {
                 if let jsonData = try? JSONSerialization.data(withJSONObject: document.data(), options: []),
                    let seminar = try? JSONDecoder().decode(Seminar.self, from: jsonData) {
                     self.seminarInfo.append(seminar)
                     print(seminar)
-                    
-                        
                 }
             }
-            
+
             completion(true)
             print("세미나리스트 패치: \(self.seminarInfo)")
         }
     }
 }
+
+
+
+
+
 
 
 
@@ -146,3 +151,7 @@ extension Binding {
     Binding<T>(get: { self.wrappedValue ?? defaultValue }, set: { self.wrappedValue = $0 })
   }
 }
+
+
+
+

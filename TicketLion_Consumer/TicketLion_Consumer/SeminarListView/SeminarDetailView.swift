@@ -41,7 +41,7 @@ struct SeminarDetailView: View {
             }
             return true //나머지는 비활성화
         }
-        //로그인안되어있으면 무조건 비활성화 & 알림
+        //로그인안되어있으면
         if !seminar.closingStatus {
             return false
         }
@@ -243,6 +243,8 @@ struct SeminarDetailView: View {
 
             
         }
+        .navigationTitle(seminar.name)
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
