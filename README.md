@@ -46,7 +46,6 @@ test용 아이디 및 비밀번호
 
 ## Made By 최애의 I팀👨‍👩‍👧‍👦
 - PM : 김종찬 https://github.com/JCxxn
-- PO, 응원단장 : 김강호(?)
 - 1팀(이벤트 목록) :<br/>
       윤진영(팀장) https://github.com/Jin0Yun<br/>
       남현정 https://github.com/nhyeonjeong<br/>
