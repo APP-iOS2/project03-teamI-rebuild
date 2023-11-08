@@ -96,11 +96,8 @@ GoogleService-info.plist
   - 마감 기한에 따른 세미나 관리
   - 참가 신청한 사용자 관리
 
-<!--
 </details>
-<img src="https://github.com/APPSCHOOL3-iOS/project03-teamD/assets/74815957/c3cc60bc-9d5e-4a3e-8bbf-cc1c3971adef" width="500">
-
--->
+<!-- <img src="https://github.com/APPSCHOOL3-iOS/project03-teamD/assets/74815957/c3cc60bc-9d5e-4a3e-8bbf-cc1c3971adef" width="500"> -->
 
 
 <br/><br/>
