@@ -6,14 +6,17 @@
 ## 개발기간
 - 2023.9.4~2023.9.14
 
-## 실행방법
+## 설치및 실행 방법
 firebase 구글인포 설치 필요
-> GoogleService-info.plist
+```
+GoogleService-info.plist
+```
 
 test용 아이디 및 비밀번호
-> 아이디 : idol_I@test.com<br/>
-> 비밀번호 : 123123
-
+```
+아이디 : test@test.com
+비밀번호 : test123
+```
 
 
 ## 사용자 App 기능
