@@ -102,8 +102,12 @@ GoogleService-info.plist
 
 <br/><br/>
 
-## 📌 개발도구 및 기술스택
-<img src="https://img.shields.io/badge/swift-F05138?style=for-the-badge&logo=swift&logoColor=white"><img src="https://img.shields.io/badge/xcode-147EFB?style=for-the-badge&logo=xcode&logoColor=white"><img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"><img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"><img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=black"><img src="https://img.shields.io/badge/SwiftUI-0070FD?style=for-the-badge&logo=swift&logoColor=black"><img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
+## 👉 개발도구 및 기술스택
+<img src="https://img.shields.io/badge/swift-F05138?style=for-the-badge&logo=swift&logoColor=white"><img src="https://img.shields.io/badge/SwiftUI-0070FD?style=for-the-badge&logo=swift&logoColor=black"><img src="https://img.shields.io/badge/xcode-147EFB?style=for-the-badge&logo=xcode&logoColor=white"><img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
+<br>
+<img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"><img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"><img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=black">
+
+
 
 #### 개발환경
 - Swift 5.9, Xcode 14.0, iOS 16.2 이상
@@ -119,7 +123,7 @@ GoogleService-info.plist
 <br/><br/>
 
 
-## 📌 팀원소개
+## 👉 팀원소개
 #### PM
 <table>
   <tr align="center">
@@ -219,5 +223,5 @@ GoogleService-info.plist
 <br/><br/>
 
 
-## 📌 License
+## 👉 License
 "TicketLion" is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
