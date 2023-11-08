@@ -3,6 +3,21 @@
 ## 목적
 - 멋쟁이사자처럼에서 주최하는 세미나 행사에 대한 정보를 보여주고 티케팅을 할 수 있도록 도와주는 앱
 
+## 개발기간
+- 2023.9.4~2023.9.14
+
+## 설치및 실행 방법
+firebase 구글인포 설치 필요
+```
+GoogleService-info.plist
+```
+
+test용 아이디 및 비밀번호
+```
+아이디 : test@test.com
+비밀번호 : test123
+```
+
 
 ## 사용자 App 기능
 ### 이벤트 목록
@@ -30,9 +45,22 @@
 
 
 ## Made By 최애의 I팀👨‍👩‍👧‍👦
-- PM : 김종찬
-- PO, 응원단장 : 김강호(?)
-- 1팀(이벤트 목록) : 윤진영(팀장), 남현정, 이재승, 주진형
-- 2팀(나의 이벤트) : 한아리(팀장), 원강묵, 정석호
-- 3팀(설정) : 이승준(팀장), 김윤우, 유재희
-- 관리자팀 : 임병구(팀장), 나예슬, 선아라, 최세근
+- PM : 김종찬 https://github.com/JCxxn
+- 1팀(이벤트 목록) :<br/>
+      윤진영(팀장) https://github.com/Jin0Yun<br/>
+      남현정 https://github.com/nhyeonjeong<br/>
+      이재승 https://github.com/JASONLEE-hub<br/>
+      주진형 https://github.com/mhn03148<br/>
+- 2팀(나의 이벤트)<br/>
+      한아리(팀장) https://github.com/ariirang<br/>
+      원강묵 https://github.com/MUKER-WON<br/>
+      정석호 https://github.com/seokhoho<br/>
+- 3팀(설정) :<br/>
+      이승준(팀장) https://github.com/seungzunlee<br/>
+      김윤우 https://github.com/yoonwoo4429<br/>
+      유재희 https://github.com/Jaehui-Yu<br/>
+- 관리자팀 :<br/>
+      임병구(팀장) https://github.com/9oos<br/>
+      나예슬 https://github.com/ffv1104<br/>
+      선아라 https://github.com/SunAra25<br/>
+      최세근 https://github.com/segeun<br/>
