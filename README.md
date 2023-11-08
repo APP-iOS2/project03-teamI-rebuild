@@ -45,9 +45,23 @@ test용 아이디 및 비밀번호
 
 
 ## Made By 최애의 I팀👨‍👩‍👧‍👦
-- PM : 김종찬
+- PM : 김종찬 https://github.com/JCxxn
 - PO, 응원단장 : 김강호(?)
-- 1팀(이벤트 목록) : 윤진영(팀장), 남현정, 이재승, 주진형
-- 2팀(나의 이벤트) : 한아리(팀장), 원강묵, 정석호
-- 3팀(설정) : 이승준(팀장), 김윤우, 유재희
-- 관리자팀 : 임병구(팀장), 나예슬, 선아라, 최세근
+- 1팀(이벤트 목록) :
+      윤진영(팀장) https://github.com/Jin0Yun
+      남현정 https://github.com/nhyeonjeong
+      이재승 https://github.com/JASONLEE-hub
+      주진형 https://github.com/mhn03148
+- 2팀(나의 이벤트)
+      한아리(팀장) https://github.com/ariirang
+      원강묵 https://github.com/MUKER-WON
+      정석호 https://github.com/seokhoho
+- 3팀(설정) :
+      이승준(팀장) https://github.com/seungzunlee
+      김윤우 https://github.com/yoonwoo4429
+      유재희 https://github.com/Jaehui-Yu
+- 관리자팀 :
+      임병구(팀장) https://github.com/9oos
+      나예슬 https://github.com/ffv1104
+      선아라 https://github.com/SunAra25
+      최세근 https://github.com/segeun
