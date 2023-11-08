@@ -12,7 +12,7 @@ struct SettingUserView: View {
     
     var body: some View {
         HStack {
-            AsyncImage(url: URL(string: "https://i.namu.wiki/i/y7qTOOIL6nIa2cXybk511OASqwAGMgZiNjh6CtErz0ust7MPJaztzSYiypYevehQOjdJc-TQvTctUk7N629V7A.webp")) { image in
+            AsyncImage(url: URL(string: "https://mblogthumb-phinf.pstatic.net/MjAyMzA0MjVfMjcy/MDAxNjgyMzU4NjI2Mzkw.dlSXH48cwR-1KMSXQChtFF2hkpkX9OUSv7YU6StCsr8g.j0q0ghFJp2Y20EfuidDV-H6Td3PhOo5-SJqmP2sLPvog.PNG.uguuuu/ai.png?type=w800")) { image in
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
