@@ -1,6 +1,10 @@
 # TicketLion 🎫🦁
 <img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/81094267/61d4e3c7-5c9f-4f83-af03-2a408880a2a7" width="300" height="300">
 
+## 👉 소개 블로그
+🍏 [[iOS] 수강생 팀 프로젝트 소개 2탄](https://velog.io/@app_school/iOS-수강생-팀-프로젝트-소개-2탄)
+
+<br/><br/>
 
 ## 👉 프로젝트 소개
 > 개발기간 : 2023.09.04 ~ 2023.09.14 (10일간)
@@ -58,16 +62,27 @@ GoogleService-info.plist
  
 <table align="center">
   <tr>
-    <th><code>홈/예약</code></th>
-    <th><code>검색/찜</code></th>
-    <th><code>지도</code></th>
-    <th><code>마이페이지</code></th>
+    <th><code>세미나신청</code></th>
+    <th><code>예매내역,취소,즐겨찾기</code></th>
+    <th><code>설정 및 로그아웃</code></th>
   </tr>
   <tr>
-    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamD/assets/74815957/5c77a9cc-6fa2-4c9d-bf07-194025e3f984" alt="홈/예약">
-    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamD/assets/74815957/19b12b98-2a7b-4612-a44d-ead62048231c" alt="검색/찜"></td>
-    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamD/assets/74815957/a30e566c-6894-4b80-89f7-cfd6709f690f" alt="지도"></td>
-    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamD/assets/74815957/23b6cd0e-80ef-408c-8a5d-02c185d92c7a" alt="마이페이지"></td>
+    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/81094267/3bbb6e8a-51d7-4b82-931c-9156f84bb3a2" alt="세미나신청">
+    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/81094267/9720f822-e789-47bd-9a61-3ed4129b0dab" alt="예매내역,취소,즐겨찾기"></td>
+    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/81094267/91bdf94c-8e90-4de5-9da2-f79a4ed0c0af" alt="설정 및 로그아웃"></td>
+  </tr>
+</table>
+
+<table align="center">
+  <tr>
+    <th><code>게스트상태</code></th>
+    <th><code>회원가입</code></th>
+    <th><code>로그인</code></th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/81094267/acd891b1-14e1-44e0-a58d-47d67eec37fe" alt="게스트상태">
+    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/81094267/98a99b9e-fb5a-4f69-aa30-45fdf7f27cb4" alt="회원가입"></td>
+    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/81094267/c781c04e-8665-42e4-a362-506412b0e663" alt="로그인"></td>
   </tr>
 </table>
 
@@ -93,12 +108,12 @@ GoogleService-info.plist
 <img src="https://img.shields.io/badge/swift-F05138?style=for-the-badge&logo=swift&logoColor=white"><img src="https://img.shields.io/badge/xcode-147EFB?style=for-the-badge&logo=xcode&logoColor=white"><img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"><img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"><img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=black"><img src="https://img.shields.io/badge/SwiftUI-0070FD?style=for-the-badge&logo=swift&logoColor=black"><img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
 
 #### 개발환경
-- Swift 5.9, Xcode 14.0, iOS 16.4 이상
+- Swift 5.9, Xcode 14.0, iOS 16.2 이상
 #### 협업도구 
 - Figma, Github, Notion
 #### 기술스택
 - SwiftUI
-- FiresStore, Firebase Storage
+- Firebase Auth, FiresStore, Firebase Storage
 - KakaoMapAPI, MapKit
 
 
@@ -145,7 +160,7 @@ GoogleService-info.plist
 #### User Team2
 <table>
   <tr align="center">
-    <th>한아리</th>
+    <th>한아리</th>
     <th>원강묵</th>
     <th>정석호</th>
   </tr>
@@ -166,7 +181,7 @@ GoogleService-info.plist
 <table>
   <tr align="center">
     <th>이승준</th>
-    <th>김윤우</th>
+    <th>김윤우</th>
     <th>유재희</th>
   </tr>
   <tr align="center">
@@ -184,7 +199,7 @@ GoogleService-info.plist
 #### Admin Team
 <table>
   <tr align="center">
-    <th>임병구</th>
+    <th>임병구</th>
     <th>나예슬</th>
     <th>선아라</th>
     <th>최세근</th>
