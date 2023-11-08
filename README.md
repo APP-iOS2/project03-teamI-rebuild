@@ -6,6 +6,15 @@
 ## 개발기간
 - 2023.9.4~2023.9.14
 
+## 실행방법
+firebase 구글인포 설치 필요
+> GoogleService-info.plist
+
+test용 아이디 및 비밀번호
+> 아이디 : idol_I@test.com
+> 비밀번호 : 123123
+
+
 
 ## 사용자 App 기능
 ### 이벤트 목록
