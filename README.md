@@ -11,7 +11,7 @@ firebase 구글인포 설치 필요
 > GoogleService-info.plist
 
 test용 아이디 및 비밀번호
-> 아이디 : idol_I@test.com
+> 아이디 : idol_I@test.com<br/>
 > 비밀번호 : 123123
 
 
