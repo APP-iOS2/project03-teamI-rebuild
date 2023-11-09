@@ -1,5 +1,5 @@
 # TicketLion 🎫🦁
-<img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/81094267/61d4e3c7-5c9f-4f83-af03-2a408880a2a7" width="300" height="300">
+<img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/112805366/86fb9ace-8ce6-4499-a5dd-f567c50671d3" width="300" height="300">
 
 ## 👉 소개 블로그
 🍏 [[iOS] 수강생 팀 프로젝트 소개 2탄](https://velog.io/@app_school/iOS-수강생-팀-프로젝트-소개-2탄)
@@ -18,13 +18,6 @@
 ```
 GoogleService-info.plist
 ```
-
-- Test용 아이디 및 비밀번호
-```
-아이디 : test@test.com
-비밀번호 : test123
-```
-
 
 <br/><br/>
 
@@ -104,8 +97,8 @@ GoogleService-info.plist
     <th><code>세미나 등록</code></th>
   </tr>
   <tr>
-    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/112805366/968c99d0-952a-48a6-948d-3e022f62b097" width=470 height=360 alt="세미나 리스트">
-    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/112805366/73992546-6888-49a4-932e-c3d55ffe32ec" width=470 height=360 alt="세미나 등록"></td>
+    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/112805366/c7003396-b202-4f8c-90e6-e0fd1dc4fa25" width=470 height=360 alt="세미나 리스트">
+    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/112805366/a780e1c1-ad6b-4a77-9397-6fcac2e152a8" width=470 height=360 alt="세미나 등록"></td>
   </tr>
 </table>
 
@@ -115,8 +108,8 @@ GoogleService-info.plist
     <th><code>세미나 수정</code></th>
   </tr>
   <tr>
-    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/112805366/0ced42cf-9634-465d-a3e8-c780ad390064" width=470 height=360 alt="세미나 참여 명단 관리">
-    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/112805366/4f28570b-b5f8-433d-8eb3-47ef697ee8d0" width=470 height=360 alt="세미나 수정"></td>
+    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/112805366/ebc6ffce-19d6-4b3f-8af0-4afdd6a4e7e9" width=470 height=360 alt="세미나 참여 명단 관리">
+    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/112805366/8893708f-bc2d-49ce-8b3f-a365fa3e7e9d" width=470 height=360 alt="세미나 수정"></td>
   </tr>
 </table>
 
