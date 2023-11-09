@@ -14,12 +14,12 @@
 <br/><br/>
 
 ## 👉 설치 / 실행방법
-- firebase 구글인포 설치 필요
+- Firebase 구글인포 소비자용, 관리자용 설치 필요
 ```
 GoogleService-info.plist
 ```
 
-- test용 아이디 및 비밀번호
+- Test용 아이디 및 비밀번호
 ```
 아이디 : test@test.com
 비밀번호 : test123
@@ -30,7 +30,7 @@ GoogleService-info.plist
 
 ### 🎫🦁 소비자 앱
 <details>
-<summary>이벤트 목록</summary>
+<summary>세미나 목록</summary>
   
   - 개최 예정인 세미나 리스트 보여주기
   - 세미나 상세 정보 보여주기
@@ -41,7 +41,7 @@ GoogleService-info.plist
 
 
 <details>
-<summary>나의 이벤트</summary>
+<summary>나의 세미나</summary>
 
   - 사용자가 즐겨찾기한 세미나 정보 표시, 관리
   - 사용자가 참가 신청한 세미나 정보 표시
@@ -62,7 +62,7 @@ GoogleService-info.plist
  
 <table align="center">
   <tr>
-    <th><code>세미나신청</code></th>
+    <th><code>세미나 신청</code></th>
     <th><code>예매내역,취소,즐겨찾기</code></th>
     <th><code>설정 및 로그아웃</code></th>
   </tr>
@@ -75,7 +75,7 @@ GoogleService-info.plist
 
 <table align="center">
   <tr>
-    <th><code>게스트상태</code></th>
+    <th><code>게스트 상태</code></th>
     <th><code>회원가입</code></th>
     <th><code>로그인</code></th>
   </tr>
@@ -90,15 +90,35 @@ GoogleService-info.plist
 
 ### 🎫🦁 관리자 앱
 <details>
-<summary>세미나관리</summary>
+<summary>세미나 관리</summary>
   
   - 개최할 세미나 등록
   - 마감 기한에 따른 세미나 관리
   - 참가 신청한 사용자 관리
 
 </details>
-<!-- <img src="https://github.com/APPSCHOOL3-iOS/project03-teamD/assets/74815957/c3cc60bc-9d5e-4a3e-8bbf-cc1c3971adef" width="500"> -->
 
+<table align="center">
+  <tr>
+    <th><code>세미나 리스트</code></th>
+    <th><code>세미나 등록</code></th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/112805366/968c99d0-952a-48a6-948d-3e022f62b097" width=470 height=360 alt="세미나 리스트">
+    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/112805366/73992546-6888-49a4-932e-c3d55ffe32ec" width=470 height=360 alt="세미나 등록"></td>
+  </tr>
+</table>
+
+<table align="center">
+  <tr>
+    <th><code>세미나 참여 명단 관리</code></th>
+    <th><code>세미나 수정</code></th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/112805366/0ced42cf-9634-465d-a3e8-c780ad390064" width=470 height=360 alt="세미나 참여 명단 관리">
+    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/112805366/4f28570b-b5f8-433d-8eb3-47ef697ee8d0" width=470 height=360 alt="세미나 수정"></td>
+  </tr>
+</table>
 
 <br/><br/>
 
