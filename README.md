@@ -60,9 +60,9 @@ GoogleService-info.plist
     <th><code>설정 및 로그아웃</code></th>
   </tr>
   <tr>
-    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/81094267/3bbb6e8a-51d7-4b82-931c-9156f84bb3a2" alt="세미나신청">
-    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/81094267/9720f822-e789-47bd-9a61-3ed4129b0dab" alt="예매내역,취소,즐겨찾기"></td>
-    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/81094267/91bdf94c-8e90-4de5-9da2-f79a4ed0c0af" alt="설정 및 로그아웃"></td>
+    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/81094267/1c751381-6144-4718-a6d8-bba08263fd68" alt="세미나신청">
+    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/81094267/415f7f6a-817f-444b-b852-b1c5bf455c35" alt="예매내역,취소,즐겨찾기"></td>
+    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/81094267/19269eb4-fa01-4207-8bc8-f881033ac255" alt="설정 및 로그아웃"></td>
   </tr>
 </table>
 
@@ -73,9 +73,9 @@ GoogleService-info.plist
     <th><code>로그인</code></th>
   </tr>
   <tr>
-    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/81094267/acd891b1-14e1-44e0-a58d-47d67eec37fe" alt="게스트상태">
-    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/81094267/98a99b9e-fb5a-4f69-aa30-45fdf7f27cb4" alt="회원가입"></td>
-    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/81094267/c781c04e-8665-42e4-a362-506412b0e663" alt="로그인"></td>
+    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/81094267/af5ad21f-3369-4663-9ac2-efa2d8c6382c" alt="게스트상태">
+    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/81094267/14a5b3aa-ed1c-43c2-84a3-0959c03979e4" alt="회원가입"></td>
+    <td><img src="https://github.com/APPSCHOOL3-iOS/project03-teamI-rebuild/assets/81094267/2d525462-d7f7-43c6-a3a6-022ab5c5a18b" alt="로그인"></td>
   </tr>
 </table>
 
